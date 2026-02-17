@@ -1,0 +1,42 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": [
+    "config:recommended"
+  ],
+  "schedule": [
+    "every weekend"
+  ],
+  "labels": [
+    "dependencies"
+  ],
+  "assignees": [
+    "Abolfazl-Alemi"
+  ],
+  "gomod": {
+    "enabled": true
+  },
+  "packageRules": [
+    {
+      "description": "Group Go minor and patch updates together",
+      "matchManagers": [
+        "gomod"
+      ],
+      "matchUpdateTypes": [
+        "minor",
+        "patch"
+      ],
+      "groupName": "Go dependencies"
+    },
+    {
+      "description": "Automerge GitHub Actions patch/digest updates",
+      "matchManagers": [
+        "github-actions"
+      ],
+      "matchUpdateTypes": [
+        "patch",
+        "digest"
+      ],
+      "automerge": true
+    }
+  ]
+}

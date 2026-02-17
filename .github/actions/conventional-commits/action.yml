@@ -1,0 +1,86 @@
+name: "Conventional Commits Check"
+description: "Validates PR titles and commit messages follow conventional commits format"
+
+inputs:
+  github-token:
+    description: "GitHub token for API access"
+    required: false
+    default: ${{ github.token }}
+  check-pr-title:
+    description: "Whether to check PR title (default: true)"
+    required: false
+    default: "true"
+  check-commit-messages:
+    description: "Whether to check commit messages (default: true)"
+    required: false
+    default: "true"
+
+runs:
+  using: "composite"
+  steps:
+    - name: Check conventional commits
+      shell: bash
+      env:
+        PR_TITLE: ${{ github.event.pull_request.title }}
+      run: |
+        PATTERN="^(feat|fix|docs|style|refactor|perf|test|build|ci|chore|revert|deps)(\(.+\))?\!?:\s.+"
+
+        # Check PR title
+        if [ "${{ github.event_name }}" == "pull_request" ] && [ "${{ inputs.check-pr-title }}" == "true" ]; then
+          if echo "$PR_TITLE" | grep -qE "$PATTERN"; then
+            echo "✅ PR title follows conventional commits format"
+          else
+            echo "❌ PR title does not follow conventional commits format"
+            echo ""
+            echo "  Got: $PR_TITLE"
+            echo ""
+            echo "  Expected format: type(scope): description"
+            echo "  Types: feat, fix, docs, style, refactor, perf, test, build, ci, chore, revert, deps"
+            echo ""
+            echo "  Examples:"
+            echo "    feat: add new user authentication"
+            echo "    fix(api): resolve login endpoint issue"
+            echo "    feat!: remove deprecated Config field"
+            exit 1
+          fi
+        fi
+
+        # Check individual commit messages on push to main
+        if [ "${{ github.event_name }}" == "push" ] \
+            && [ "${{ github.ref }}" == "refs/heads/main" ] \
+            && [ "${{ inputs.check-commit-messages }}" == "true" ]; then
+
+          echo "Checking commit messages..."
+          COMMITS=$(git log --format="%H %s" ${{ github.event.before }}..${{ github.event.after }})
+
+          if [ -z "$COMMITS" ]; then
+            echo "No commits found in this push"
+            exit 0
+          fi
+
+          FAILED=0
+          while IFS= read -r line; do
+            if [ -n "$line" ]; then
+              COMMIT_HASH=$(echo "$line" | cut -d' ' -f1)
+              COMMIT_MSG=$(echo "$line" | cut -d' ' -f2-)
+
+              if echo "$COMMIT_MSG" | grep -qE "$PATTERN"; then
+                echo "✅ ${COMMIT_HASH:0:7} $COMMIT_MSG"
+              else
+                echo "❌ ${COMMIT_HASH:0:7} $COMMIT_MSG"
+                FAILED=1
+              fi
+            fi
+          done <<< "$COMMITS"
+
+          if [ "$FAILED" -eq 1 ]; then
+            echo ""
+            echo "One or more commits do not follow conventional commits format."
+            echo "Expected format: type(scope): description"
+            echo "Types: feat, fix, docs, style, refactor, perf, test, build, ci, chore, revert, deps"
+            exit 1
+          fi
+        fi
+
+        echo ""
+        echo "✅ All checks passed"
