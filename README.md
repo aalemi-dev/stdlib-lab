@@ -26,3 +26,5 @@ Contributions are welcome. Please open an issue before submitting a pull request
 Generated on Wed Feb 18 00:18:42 CET 2026
 
 ## Packages
+
+- [logger](docs/logger.md)
