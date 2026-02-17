@@ -1,4 +1,4 @@
-module github.com/Abolfazl-Alemi/stdlib-lab
+module github.com/Abolfazl-Alemi/stdlib-lab/logger
 
 go 1.25
 
