@@ -1,0 +1,77 @@
+package logger
+
+// Log level constants that define the available logging levels.
+// These string constants are used in configuration to set the desired log level.
+const (
+	// Debug represents the most verbose logging level, intended for development and troubleshooting.
+	// When the logger is set to Debug level, all log messages (Debug, Info, Warning, Error) will be output.
+	Debug = "debug"
+
+	// Info represents the standard logging level for general operational information.
+	// When the logger is set to Info level, Info, Warning, and Error messages will be output, but Debug messages will be suppressed.
+	Info = "info"
+
+	// Warning represents the logging level for potential issues that aren't errors.
+	// When the logger is set to Warning level, only Warning and Error messages will be output.
+	Warning = "warning"
+
+	// Error represents the logging level for error conditions.
+	// When the logger is set to Error level, only Error messages will be output.
+	Error = "error"
+)
+
+// Config defines the configuration structure for the logger.
+// It contains settings that control the behavior of the logging system.
+type Config struct {
+	// Level determines the minimum log level that will be output.
+	// Valid values are:
+	//   - "debug": Most verbose, shows all log messages
+	//   - "info": Shows info, warning, and error messages
+	//   - "warning": Shows only warning and error messages
+	//   - "error": Shows only error messages
+	//
+	// The default behavior is:
+	//   - In production environments: defaults to "info"
+	//   - In development environments: defaults to "debug"
+	//   - In other/unspecified environments: defaults to "info"
+	//
+	// This setting can be configured via:
+	//   - YAML configuration with the "level" key
+	//   - Environment variable ZAP_LOGGER_LEVEL
+	Level string
+
+	// EnableTracing controls whether tracing integration is enabled for logging operations.
+	// When set to true, the logger will automatically extract trace and span information
+	// from context and include it in log entries. This provides correlation between
+	// logs and distributed traces.
+	//
+	// When tracing is enabled, the following fields are automatically added to log entries:
+	//   - "trace_id": The trace ID from the current span context
+	//   - "span_id": The span ID from the current span context
+	//
+	// This setting can be configured via:
+	//   - YAML configuration with the "enable_tracing" key
+	//   - Environment variable LOGGER_ENABLE_TRACING
+	EnableTracing bool
+
+	// ServiceName is the name of the service that is logging messages.
+	// This value is used to populate the "service" field in log entries.
+	ServiceName string
+
+	// CallerSkip controls the number of stack frames to skip when reporting the caller.
+	// This is useful when you have wrapper layers around the logger.
+	//
+	// Guidelines for setting CallerSkip:
+	//   - 1 (default): Use when calling std logger directly from your code
+	//   - 2: Use when you have one additional wrapper layer (e.g., service-specific logger wrapper)
+	//   - 3+: Use when you have multiple wrapper layers
+	//
+	// Example call stack with CallerSkip=2:
+	//   Your business logic (this will be reported as caller) ✓
+	//   └─> Your service wrapper calls std logger
+	//       └─> std logger calls zap (skipped)
+	//           └─> zap logs (skipped)
+	//
+	// If not set or set to 0, defaults to 1.
+	CallerSkip int
+}
