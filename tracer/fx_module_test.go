@@ -10,6 +10,7 @@ import (
 )
 
 func TestFXModule_ProvidesTracerClient(t *testing.T) {
+	t.Parallel()
 	var client *TracerClient
 
 	app := fxtest.New(t,
@@ -27,6 +28,7 @@ func TestFXModule_ProvidesTracerClient(t *testing.T) {
 }
 
 func TestFXModule_ProvidesTracerInterface(t *testing.T) {
+	t.Parallel()
 	var tr Tracer
 
 	app := fxtest.New(t,
@@ -44,6 +46,7 @@ func TestFXModule_ProvidesTracerInterface(t *testing.T) {
 }
 
 func TestRegisterTracerLifecycle_Shutdown(t *testing.T) {
+	t.Parallel()
 	client, err := NewClient(Config{ServiceName: "shutdown-test", AppEnv: "test", EnableExport: false})
 	require.NoError(t, err)
 
@@ -57,6 +60,7 @@ func TestRegisterTracerLifecycle_Shutdown(t *testing.T) {
 }
 
 func TestRegisterTracerLifecycle_NilTracer(t *testing.T) {
+	t.Parallel()
 	client := &TracerClient{tracer: nil}
 
 	app := fxtest.New(t,

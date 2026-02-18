@@ -18,6 +18,7 @@ func newTestClient(t *testing.T) *TracerClient {
 }
 
 func TestStartSpan_ReturnsSpanAndContext(t *testing.T) {
+	t.Parallel()
 	client := newTestClient(t)
 
 	ctx, span := client.StartSpan(context.Background(), "test-op")
@@ -28,6 +29,7 @@ func TestStartSpan_ReturnsSpanAndContext(t *testing.T) {
 }
 
 func TestStartSpan_SpanIsRecording(t *testing.T) {
+	t.Parallel()
 	client := newTestClient(t)
 
 	ctx, span := client.StartSpan(context.Background(), "test-op")
@@ -38,6 +40,7 @@ func TestStartSpan_SpanIsRecording(t *testing.T) {
 }
 
 func TestStartSpan_ChildInheritsParent(t *testing.T) {
+	t.Parallel()
 	client := newTestClient(t)
 
 	parentCtx, parentSpan := client.StartSpan(context.Background(), "parent")
@@ -53,6 +56,7 @@ func TestStartSpan_ChildInheritsParent(t *testing.T) {
 }
 
 func TestSpanEnd_DoesNotPanic(t *testing.T) {
+	t.Parallel()
 	client := newTestClient(t)
 	_, span := client.StartSpan(context.Background(), "test-op")
 
@@ -60,6 +64,7 @@ func TestSpanEnd_DoesNotPanic(t *testing.T) {
 }
 
 func TestSetAttributes_AllTypes(t *testing.T) {
+	t.Parallel()
 	client := newTestClient(t)
 	_, span := client.StartSpan(context.Background(), "attrs-op")
 	defer span.End()
@@ -77,6 +82,7 @@ func TestSetAttributes_AllTypes(t *testing.T) {
 }
 
 func TestSetAttributes_EmptyMap(t *testing.T) {
+	t.Parallel()
 	client := newTestClient(t)
 	_, span := client.StartSpan(context.Background(), "attrs-op")
 	defer span.End()
@@ -87,6 +93,7 @@ func TestSetAttributes_EmptyMap(t *testing.T) {
 }
 
 func TestRecordError(t *testing.T) {
+	t.Parallel()
 	client := newTestClient(t)
 	_, span := client.StartSpan(context.Background(), "err-op")
 	defer span.End()
@@ -97,6 +104,7 @@ func TestRecordError(t *testing.T) {
 }
 
 func TestGetCarrier_NoActiveSpan(t *testing.T) {
+	t.Parallel()
 	client := newTestClient(t)
 
 	carrier := client.GetCarrier(context.Background())
@@ -106,6 +114,7 @@ func TestGetCarrier_NoActiveSpan(t *testing.T) {
 }
 
 func TestGetCarrier_WithActiveSpan(t *testing.T) {
+	t.Parallel()
 	client := newTestClient(t)
 
 	ctx, span := client.StartSpan(context.Background(), "carrier-op")
@@ -118,6 +127,7 @@ func TestGetCarrier_WithActiveSpan(t *testing.T) {
 }
 
 func TestSetCarrierOnContext_InjectsTrace(t *testing.T) {
+	t.Parallel()
 	client := newTestClient(t)
 
 	ctx, span := client.StartSpan(context.Background(), "inject-op")
@@ -132,6 +142,7 @@ func TestSetCarrierOnContext_InjectsTrace(t *testing.T) {
 }
 
 func TestSetCarrierOnContext_EmptyCarrier(t *testing.T) {
+	t.Parallel()
 	client := newTestClient(t)
 
 	newCtx := client.SetCarrierOnContext(context.Background(), map[string]string{})
@@ -140,6 +151,7 @@ func TestSetCarrierOnContext_EmptyCarrier(t *testing.T) {
 }
 
 func TestGetAndSetCarrier_RoundTrip(t *testing.T) {
+	t.Parallel()
 	client := newTestClient(t)
 
 	ctx, span := client.StartSpan(context.Background(), "roundtrip-op")
