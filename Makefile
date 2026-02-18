@@ -28,10 +28,20 @@ clean:
 	@find . -name "dist" -type d -exec rm -rf {} + 2>/dev/null; true
 	@echo "Cleaned"
 
-# Run linter
+# Run linter for all modules (installs golangci-lint from source if not present)
 lint:
 	@echo "Running linter..."
-	GOROOT=$$($(GO) env GOROOT) PATH="$$($(GO) env GOPATH)/bin:$$($(GO) env GOROOT)/bin:$$PATH" golangci-lint run
+	@export PATH="$$($(GO) env GOPATH)/bin:$$PATH"; \
+	which golangci-lint >/dev/null 2>&1 || { \
+		echo "golangci-lint not found, installing from source..."; \
+		$(GO) install github.com/golangci/golangci-lint/cmd/golangci-lint@latest; \
+	}; \
+	for pkg in $$(find . -maxdepth 1 -mindepth 1 -type d | grep -v -E "^\./(\.|docs|vendor)"); do \
+		if [ ! -f "$$pkg/go.mod" ]; then continue; fi; \
+		pkgname=$$(basename $$pkg); \
+		echo "Linting $$pkgname..."; \
+		(cd $$pkg && golangci-lint run ./...); \
+	done
 
 # Format code
 fmt:
@@ -43,8 +53,9 @@ install-tools:
 	@echo "Installing tools..."
 	$(GO) install github.com/evilmartians/lefthook@latest
 	$(GO) install golang.org/x/tools/cmd/goimports@latest
-	@echo "Installing golangci-lint from source..."
-	GOPROXY=https://proxy.golang.org,direct $(GO) install github.com/golangci/golangci-lint/cmd/golangci-lint@latest
+	$(GO) install github.com/princjef/gomarkdoc/cmd/gomarkdoc@latest
+	$(GO) install github.com/golangci/golangci-lint/cmd/golangci-lint@latest
+	@echo "All tools installed"
 
 # Generate documentation using gomarkdoc
 docs:
