@@ -8,8 +8,7 @@ import "github.com/aalemi-dev/stdlib-lab/tracer"
 
 Package tracer provides distributed tracing functionality using OpenTelemetry.
 
-The tracer package offers a simplified interface for implementing distributed tracing in Go applications. It abstracts
-away the complexity of OpenTelemetry to provide a clean, easy\-to\-use API for creating and managing trace spans.
+The tracer package offers a simplified interface for implementing distributed tracing in Go applications. It abstracts away the complexity of OpenTelemetry to provide a clean, easy\-to\-use API for creating and managing trace spans.
 
 ### Architecture
 
@@ -188,12 +187,9 @@ All methods on the TracerClient type and Span interface are safe for concurrent 
 
 ## Variables
 
-<a name="FXModule"></a>FXModule provides a Uber FX module that configures distributed tracing for your application. This
-module registers the tracer client with the dependency injection system and sets up proper lifecycle management to
-ensure graceful startup and shutdown of the tracer.
+<a name="FXModule"></a>FXModule provides a Uber FX module that configures distributed tracing for your application. This module registers the tracer client with the dependency injection system and sets up proper lifecycle management to ensure graceful startup and shutdown of the tracer.
 
-The module provides: 1. \*TracerClient \(concrete type\) for direct use 2. Tracer interface for dependency injection 3.
-Shutdown hooks to cleanly close tracer resources
+The module provides: 1. \*TracerClient \(concrete type\) for direct use 2. Tracer interface for dependency injection 3. Shutdown hooks to cleanly close tracer resources
 
 Usage:
 
@@ -205,8 +201,7 @@ app := fx.New(
 app.Run()
 ```
 
-This module should be included in your main application to enable distributed tracing throughout your dependency graph
-without manual wiring.
+This module should be included in your main application to enable distributed tracing throughout your dependency graph without manual wiring.
 
 ```go
 var FXModule = fx.Module("tracer",
@@ -229,17 +224,14 @@ var FXModule = fx.Module("tracer",
 func RegisterTracerLifecycle(lc fx.Lifecycle, tracer *TracerClient)
 ```
 
-RegisterTracerLifecycle registers shutdown hooks for the tracer with the FX lifecycle. This function ensures that tracer
-resources are properly released when the application terminates, preventing resource leaks and ensuring traces are
-flushed to exporters.
+RegisterTracerLifecycle registers shutdown hooks for the tracer with the FX lifecycle. This function ensures that tracer resources are properly released when the application terminates, preventing resource leaks and ensuring traces are flushed to exporters.
 
 Parameters:
 
 - lc: The FX lifecycle to register hooks with
 - tracer: The tracer instance to manage lifecycle for
 
-The function registers an OnStop hook that: 1. Logs that the tracer is shutting down 2. Gracefully shuts down the tracer
-provider 3. Handles edge cases where the tracer might be nil
+The function registers an OnStop hook that: 1. Logs that the tracer is shutting down 2. Gracefully shuts down the tracer provider 3. Handles edge cases where the tracer might be nil
 
 This function is automatically invoked by the FXModule and normally doesn't need to be called directly.
 
@@ -257,8 +249,7 @@ app := fx.New(
 <a name="Config"></a>
 ## type [Config](<https://github.com/aalemi-dev/stdlib-lab/blob/main/tracer/configs.go#L6-L34>)
 
-Config defines the configuration for the OpenTelemetry tracer. It controls service identification, environment settings,
-and whether traces should be exported to an observability backend.
+Config defines the configuration for the OpenTelemetry tracer. It controls service identification, environment settings, and whether traces should be exported to an observability backend.
 
 ```go
 type Config struct {
@@ -295,20 +286,15 @@ type Config struct {
 <a name="Span"></a>
 ## type [Span](<https://github.com/aalemi-dev/stdlib-lab/blob/main/tracer/interface.go#L48-L85>)
 
-Span represents a trace span for tracking operations in distributed systems. It provides methods for ending the span,
-recording errors, and setting attributes.
+Span represents a trace span for tracking operations in distributed systems. It provides methods for ending the span, recording errors, and setting attributes.
 
-The Span interface abstracts the underlying OpenTelemetry implementation details, providing a clean API for application
-code to interact with spans without direct dependencies on the tracing library.
+The Span interface abstracts the underlying OpenTelemetry implementation details, providing a clean API for application code to interact with spans without direct dependencies on the tracing library.
 
-Spans represent a single operation or unit of work in your application. They form a hierarchy where a parent span can
-have multiple child spans, creating a trace that shows the flow of operations and their relationships.
+Spans represent a single operation or unit of work in your application. They form a hierarchy where a parent span can have multiple child spans, creating a trace that shows the flow of operations and their relationships.
 
-To use a span effectively: 1. Always call End\(\) when the operation completes \(typically with defer\) 2. Add
-attributes that provide context about the operation 3. Record any errors that occur during the operation
+To use a span effectively: 1. Always call End\(\) when the operation completes \(typically with defer\) 2. Add attributes that provide context about the operation 3. Record any errors that occur during the operation
 
-Spans created with StartSpan\(\) automatically inherit the parent span from the context if one exists, creating a proper
-span hierarchy.
+Spans created with StartSpan\(\) automatically inherit the parent span from the context if one exists, creating a proper span hierarchy.
 
 ```go
 type Span interface {
@@ -354,8 +340,7 @@ type Span interface {
 <a name="Tracer"></a>
 ## type [Tracer](<https://github.com/aalemi-dev/stdlib-lab/blob/main/tracer/interface.go#L12-L28>)
 
-Tracer provides distributed tracing capabilities for applications. It wraps OpenTelemetry functionality with a
-simplified interface for creating spans, recording errors, and propagating trace context.
+Tracer provides distributed tracing capabilities for applications. It wraps OpenTelemetry functionality with a simplified interface for creating spans, recording errors, and propagating trace context.
 
 This interface is implemented by the concrete \*Tracer type.
 
@@ -382,16 +367,11 @@ type Tracer interface {
 <a name="TracerClient"></a>
 ## type [TracerClient](<https://github.com/aalemi-dev/stdlib-lab/blob/main/tracer/setup.go#L32-L34>)
 
-TracerClient provides a simplified API for distributed tracing with OpenTelemetry. It wraps the OpenTelemetry
-TracerProvider and provides convenient methods for creating spans, recording errors, and propagating trace context
-across service boundaries.
+TracerClient provides a simplified API for distributed tracing with OpenTelemetry. It wraps the OpenTelemetry TracerProvider and provides convenient methods for creating spans, recording errors, and propagating trace context across service boundaries.
 
-TracerClient handles the complexity of trace context propagation, span creation, and attribute management, making it
-easier to implement distributed tracing in your applications.
+TracerClient handles the complexity of trace context propagation, span creation, and attribute management, making it easier to implement distributed tracing in your applications.
 
-To use TracerClient effectively: 1. Create spans for significant operations in your code 2. Record errors when
-operations fail 3. Add attributes to spans to provide context 4. Extract and inject trace context when crossing service
-boundaries
+To use TracerClient effectively: 1. Create spans for significant operations in your code 2. Record errors when operations fail 3. Add attributes to spans to provide context 4. Extract and inject trace context when crossing service boundaries
 
 The TracerClient is designed to be thread\-safe and can be shared across goroutines. It implements the Tracer interface.
 
@@ -408,9 +388,7 @@ type TracerClient struct {
 func NewClient(cfg Config) (*TracerClient, error)
 ```
 
-NewClient creates and initializes a new TracerClient instance with OpenTelemetry. This function sets up the
-OpenTelemetry tracer provider with the provided configuration, configures trace exporters if enabled, and sets global
-OpenTelemetry settings.
+NewClient creates and initializes a new TracerClient instance with OpenTelemetry. This function sets up the OpenTelemetry tracer provider with the provided configuration, configures trace exporters if enabled, and sets global OpenTelemetry settings.
 
 Parameters:
 
@@ -420,8 +398,7 @@ Returns:
 
 - \*TracerClient: A configured TracerClient instance ready for creating spans and managing trace context
 
-If trace export is enabled in the configuration, this function will set up an OTLP HTTP exporter that sends traces to
-the configured endpoint. If export fails to initialize, it will return an error.
+If trace export is enabled in the configuration, this function will set up an OTLP HTTP exporter that sends traces to the configured endpoint. If export fails to initialize, it will return an error.
 
 The function also configures resource attributes for the service, including:
 
@@ -455,17 +432,11 @@ defer span.End()
 func (t *TracerClient) GetCarrier(ctx context.Context) map[string]string
 ```
 
-GetCarrier extracts the current trace context from a context object and returns it as a map that can be transmitted
-across service boundaries. This is essential for distributed tracing to maintain trace continuity across different
-services.
+GetCarrier extracts the current trace context from a context object and returns it as a map that can be transmitted across service boundaries. This is essential for distributed tracing to maintain trace continuity across different services.
 
-This method extracts W3C Trace Context headers, which follow the standard format for distributed tracing propagation.
-Using standardized headers ensures compatibility with other services and observability tools in your infrastructure that
-support the W3C Trace Context specification.
+This method extracts W3C Trace Context headers, which follow the standard format for distributed tracing propagation. Using standardized headers ensures compatibility with other services and observability tools in your infrastructure that support the W3C Trace Context specification.
 
-When a trace spans multiple services \(e.g., a web service calling a database service\), the trace context must be
-passed between these services to maintain a unified trace. This method facilitates this by extracting that context into
-a format that can be added to HTTP headers, message queue properties, or other inter\-service communication.
+When a trace spans multiple services \(e.g., a web service calling a database service\), the trace context must be passed between these services to maintain a unified trace. This method facilitates this by extracting that context into a format that can be added to HTTP headers, message queue properties, or other inter\-service communication.
 
 Parameters:
 
@@ -510,17 +481,11 @@ func makeHttpRequest(ctx context.Context, url string) (*http.Response, error) {
 func (t *TracerClient) SetCarrierOnContext(ctx context.Context, carrier map[string]string) context.Context
 ```
 
-SetCarrierOnContext extracts trace information from a carrier map and injects it into a context. This is the complement
-to GetCarrier and is typically used when receiving requests or messages from other services that include trace headers.
+SetCarrierOnContext extracts trace information from a carrier map and injects it into a context. This is the complement to GetCarrier and is typically used when receiving requests or messages from other services that include trace headers.
 
-This method is crucial for maintaining distributed trace continuity across service boundaries. When a service receives a
-request from another service that includes trace context headers, this method allows the receiving service to continue
-the existing trace rather than starting a new one. This creates a complete end\-to\-end view of the request's journey
-through your distributed system.
+This method is crucial for maintaining distributed trace continuity across service boundaries. When a service receives a request from another service that includes trace context headers, this method allows the receiving service to continue the existing trace rather than starting a new one. This creates a complete end\-to\-end view of the request's journey through your distributed system.
 
-The method works with standard W3C Trace Context headers, ensuring compatibility across different services and
-observability systems. It handles extracting trace IDs, span IDs, and other trace context information from the carrier
-map and properly initializing the context for continuation of the trace.
+The method works with standard W3C Trace Context headers, ensuring compatibility across different services and observability systems. It handles extracting trace IDs, span IDs, and other trace context information from the carrier map and properly initializing the context for continuation of the trace.
 
 Parameters:
 
@@ -566,12 +531,9 @@ func httpHandler(w http.ResponseWriter, r *http.Request) {
 func (t *TracerClient) StartSpan(ctx context.Context, name string) (context.Context, Span)
 ```
 
-StartSpan creates a new span with the given name and returns an updated context containing the span, along with a Span
-interface. This is the primary method for creating spans to trace operations in your application.
+StartSpan creates a new span with the given name and returns an updated context containing the span, along with a Span interface. This is the primary method for creating spans to trace operations in your application.
 
-The created span becomes a child of any span that exists in the provided context. If no span exists in the context, a
-new root span is created. This automatically builds a hierarchy of spans that reflects the structure of your
-application's operations.
+The created span becomes a child of any span that exists in the provided context. If no span exists in the context, a new root span is created. This automatically builds a hierarchy of spans that reflects the structure of your application's operations.
 
 Parameters:
 
@@ -587,8 +549,7 @@ Best practices:
 
 - Use descriptive, consistent naming conventions for spans
 - Create spans for operations that are significant for performance or debugging
-- For operations with sub\-operations, create a parent span for the overall operation and child spans for each
-  sub\-operation
+- For operations with sub\-operations, create a parent span for the overall operation and child spans for each sub\-operation
 - Always defer span.End\(\) immediately after creating the span
 
 Example:
