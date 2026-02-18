@@ -25,6 +25,7 @@ jobs:
         module:
           - logger
           - tracer
+          - observability
 
     steps:
       - name: Checkout

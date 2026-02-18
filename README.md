@@ -5,10 +5,11 @@ infrastructure.
 
 ## Packages
 
-| Package              | Description                                                  | Go Reference                                                                                                                                                |
-|----------------------|--------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| [`logger`](./logger) | Structured logging with OpenTelemetry tracing and fx support | [![Go Reference](https://pkg.go.dev/badge/github.com/Abolfazl-Alemi/stdlib-lab/logger.svg)](https://pkg.go.dev/github.com/Abolfazl-Alemi/stdlib-lab/logger) |
-| [`tracer`](./tracer) | Distributed tracing with OpenTelemetry and OTLP HTTP export  | [![Go Reference](https://pkg.go.dev/badge/github.com/Abolfazl-Alemi/stdlib-lab/tracer.svg)](https://pkg.go.dev/github.com/Abolfazl-Alemi/stdlib-lab/tracer) |
+| Package                            | Description                                                  | Go Reference                                                                                                                                                      |
+|------------------------------------|--------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| [`logger`](./logger)               | Structured logging with OpenTelemetry tracing and fx support | [![Go Reference](https://pkg.go.dev/badge/github.com/aalemi-dev/stdlib-lab/logger.svg)](https://pkg.go.dev/github.com/aalemi-dev/stdlib-lab/logger)               |
+| [`tracer`](./tracer)               | Distributed tracing with OpenTelemetry and OTLP HTTP export  | [![Go Reference](https://pkg.go.dev/badge/github.com/aalemi-dev/stdlib-lab/tracer.svg)](https://pkg.go.dev/github.com/aalemi-dev/stdlib-lab/tracer)               |
+| [`observability`](./observability) | Unified observer interface for infrastructure packages       | [![Go Reference](https://pkg.go.dev/badge/github.com/aalemi-dev/stdlib-lab/observability.svg)](https://pkg.go.dev/github.com/aalemi-dev/stdlib-lab/observability) |
 
 ## Requirements
 
@@ -21,11 +22,3 @@ Contributions are welcome. Please open an issue before submitting a pull request
 ## License
 
 [MIT](./LICENSE)
-
-# Go Packages Documentation
-
-Generated on Wed Feb 18 00:18:42 CET 2026
-
-## Packages
-
-- [logger](docs/logger.md)

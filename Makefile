@@ -1,4 +1,6 @@
 GO ?= go
+
+.PHONY: test pr clean lint fmt install-tools docs
 COVERAGE_THRESHOLD ?= 80
 
 # Run tests with coverage for all modules
@@ -41,16 +43,18 @@ clean:
 # Run linter for all modules (installs golangci-lint from source if not present)
 lint:
 	@echo "Running linter..."
-	@export PATH="$$($(GO) env GOPATH)/bin:$$PATH"; \
-	which golangci-lint >/dev/null 2>&1 || { \
+	@GOBIN="$$($(GO) env GOBIN)"; \
+	if [ -z "$$GOBIN" ]; then GOBIN="$$($(GO) env GOPATH)/bin"; fi; \
+	GOLANGCI="$$GOBIN/golangci-lint"; \
+	if [ ! -f "$$GOLANGCI" ]; then \
 		echo "golangci-lint not found, installing from source..."; \
 		$(GO) install github.com/golangci/golangci-lint/v2/cmd/golangci-lint@latest; \
-	}; \
+	fi; \
 	for pkg in $$(find . -maxdepth 1 -mindepth 1 -type d | grep -v -E "^\./(\.|docs|vendor)"); do \
 		if [ ! -f "$$pkg/go.mod" ]; then continue; fi; \
 		pkgname=$$(basename $$pkg); \
 		echo "Linting $$pkgname..."; \
-		(cd $$pkg && golangci-lint run ./...); \
+		(cd $$pkg && $$GOLANGCI run ./...); \
 	done
 
 # Format code
@@ -70,21 +74,22 @@ install-tools:
 # Generate documentation using gomarkdoc
 docs:
 	@echo "Generating Markdown documentation..."
-	@export PATH="$$($(GO) env GOPATH)/bin:$$PATH"; \
-	which gomarkdoc >/dev/null 2>&1 || { \
+	@GOBIN="$$($(GO) env GOBIN)"; \
+	if [ -z "$$GOBIN" ]; then GOBIN="$$($(GO) env GOPATH)/bin"; fi; \
+	GOMARKDOC="$$GOBIN/gomarkdoc"; \
+	if [ ! -f "$$GOMARKDOC" ]; then \
 		echo "gomarkdoc not found, installing..."; \
 		$(GO) install github.com/princjef/gomarkdoc/cmd/gomarkdoc@latest; \
-		echo "gomarkdoc installed successfully"; \
-	}; \
+	fi; \
 	mkdir -p docs; \
 	rm -f docs/*.md; \
 	for pkg in $$(find . -maxdepth 1 -mindepth 1 -type d | grep -v -E "^\./(\.|docs|vendor)"); do \
 		pkgname=$$(basename $$pkg); \
 		if [ ! -f "$$pkg/go.mod" ]; then continue; fi; \
 		echo "Processing $$pkgname..."; \
-		gomarkdoc ./$$pkg/... \
+		$$GOMARKDOC ./$$pkg/... \
 			--output "docs/$$pkgname.md" \
-			--repository.url "https://github.com/Abolfazl-Alemi/stdlib-lab" \
+			--repository.url "https://github.com/aalemi-dev/stdlib-lab" \
 			--format github; \
 	done; \
 	echo "Documentation generated in docs/ directory"

@@ -28,6 +28,7 @@ jobs:
         module:
           - logger
           - tracer
+          - observability
 
     defaults:
       run:

@@ -34,7 +34,7 @@ linters-settings:
   gofmt:
     simplify: true
   goimports:
-    local-prefixes: github.com/Abolfazl-Alemi/stdlib-lab
+    local-prefixes: github.com/aalemi-dev/stdlib-lab
   gosec:
     excludes:
       - G104 # errors unhandled — covered by errcheck

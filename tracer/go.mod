@@ -1,4 +1,4 @@
-module github.com/Abolfazl-Alemi/stdlib-lab/tracer
+module github.com/aalemi-dev/stdlib-lab/tracer
 
 go 1.25
 
@@ -26,7 +26,7 @@ require (
 	go.opentelemetry.io/proto/otlp v1.9.0 // indirect
 	go.uber.org/dig v1.19.0 // indirect
 	go.uber.org/multierr v1.10.0 // indirect
-	go.uber.org/zap v1.26.0 // indirect
+	go.uber.org/zap v1.27.1 // indirect
 	golang.org/x/net v0.49.0 // indirect
 	golang.org/x/sys v0.40.0 // indirect
 	golang.org/x/text v0.33.0 // indirect
