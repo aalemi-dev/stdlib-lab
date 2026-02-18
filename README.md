@@ -8,6 +8,7 @@ infrastructure.
 | Package              | Description                                                  | Go Reference                                                                                                                                                |
 |----------------------|--------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | [`logger`](./logger) | Structured logging with OpenTelemetry tracing and fx support | [![Go Reference](https://pkg.go.dev/badge/github.com/Abolfazl-Alemi/stdlib-lab/logger.svg)](https://pkg.go.dev/github.com/Abolfazl-Alemi/stdlib-lab/logger) |
+| [`tracer`](./tracer) | Distributed tracing with OpenTelemetry and OTLP HTTP export  | [![Go Reference](https://pkg.go.dev/badge/github.com/Abolfazl-Alemi/stdlib-lab/tracer.svg)](https://pkg.go.dev/github.com/Abolfazl-Alemi/stdlib-lab/tracer) |
 
 ## Requirements
 

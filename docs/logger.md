@@ -169,6 +169,32 @@ production environments.
 
 All methods on the Logger interface are safe for concurrent use by multiple goroutines.
 
+<details><summary>Example (Caller Skip)</summary>
+<p>
+
+```go
+package main
+
+import (
+	"github.com/Abolfazl-Alemi/stdlib-lab/logger"
+)
+
+func main() {
+	// When wrapping the logger in your own type, increase CallerSkip
+	// so the reported caller points to your business logic, not the wrapper.
+	log := logger.NewLoggerClient(logger.Config{
+		Level:       logger.Info,
+		ServiceName: "example-service",
+		CallerSkip:  2,
+	})
+
+	log.Info("called from wrapper", nil)
+}
+```
+
+</p>
+</details>
+
 ## Index
 
 - [Constants](<#constants>)
@@ -189,6 +215,7 @@ All methods on the Logger interface are safe for concurrent use by multiple goro
     - [func \(l \*LoggerClient\) Warn\(msg string, err error, fields ...map\[string\]interface\{\}\)](<#LoggerClient.Warn>)
     - [func \(l \*LoggerClient\) WarnWithContext\(ctx context.Context, msg string, err error, fields ...map\[string\]interface\{\}\)](<#LoggerClient.WarnWithContext>)
 
+
 ## Constants
 
 <a name="Debug"></a>Log level constants that define the available logging levels. These string constants are used in
@@ -196,21 +223,21 @@ configuration to set the desired log level.
 
 ```go
 const (
-// Debug represents the most verbose logging level, intended for development and troubleshooting.
-// When the logger is set to Debug level, all log messages (Debug, Info, Warning, Error) will be output.
-Debug = "debug"
+    // Debug represents the most verbose logging level, intended for development and troubleshooting.
+    // When the logger is set to Debug level, all log messages (Debug, Info, Warning, Error) will be output.
+    Debug = "debug"
 
-// Info represents the standard logging level for general operational information.
-// When the logger is set to Info level, Info, Warning, and Error messages will be output, but Debug messages will be suppressed.
-Info = "info"
+    // Info represents the standard logging level for general operational information.
+    // When the logger is set to Info level, Info, Warning, and Error messages will be output, but Debug messages will be suppressed.
+    Info = "info"
 
-// Warning represents the logging level for potential issues that aren't errors.
-// When the logger is set to Warning level, only Warning and Error messages will be output.
-Warning = "warning"
+    // Warning represents the logging level for potential issues that aren't errors.
+    // When the logger is set to Warning level, only Warning and Error messages will be output.
+    Warning = "warning"
 
-// Error represents the logging level for error conditions.
-// When the logger is set to Error level, only Error messages will be output.
-Error = "error"
+    // Error represents the logging level for error conditions.
+    // When the logger is set to Error level, only Error messages will be output.
+    Error = "error"
 )
 ```
 
@@ -236,20 +263,19 @@ container
 
 ```go
 var FXModule = fx.Module("logger",
-fx.Provide(
-NewLoggerClient,
+    fx.Provide(
+        NewLoggerClient,
 
-fx.Annotate(
-func (l *LoggerClient) Logger { return l },
-fx.As(new(Logger)),
-),
-),
-fx.Invoke(RegisterLoggerLifecycle),
+        fx.Annotate(
+            func(l *LoggerClient) Logger { return l },
+            fx.As(new(Logger)),
+        ),
+    ),
+    fx.Invoke(RegisterLoggerLifecycle),
 )
 ```
 
 <a name="RegisterLoggerLifecycle"></a>
-
 ## func [RegisterLoggerLifecycle](<https://github.com/Abolfazl-Alemi/stdlib-lab/blob/main/logger/fx_module.go#L56>)
 
 ```go
@@ -275,7 +301,6 @@ Note: This function is automatically invoked by the FXModule and does not need t
 code.
 
 <a name="Config"></a>
-
 ## type [Config](<https://github.com/Abolfazl-Alemi/stdlib-lab/blob/main/logger/configs.go#L25-L77>)
 
 Config defines the configuration structure for the logger. It contains settings that control the behavior of the logging
@@ -283,62 +308,61 @@ system.
 
 ```go
 type Config struct {
-// Level determines the minimum log level that will be output.
-// Valid values are:
-//   - "debug": Most verbose, shows all log messages
-//   - "info": Shows info, warning, and error messages
-//   - "warning": Shows only warning and error messages
-//   - "error": Shows only error messages
-//
-// The default behavior is:
-//   - In production environments: defaults to "info"
-//   - In development environments: defaults to "debug"
-//   - In other/unspecified environments: defaults to "info"
-//
-// This setting can be configured via:
-//   - YAML configuration with the "level" key
-//   - Environment variable ZAP_LOGGER_LEVEL
-Level string
+    // Level determines the minimum log level that will be output.
+    // Valid values are:
+    //   - "debug": Most verbose, shows all log messages
+    //   - "info": Shows info, warning, and error messages
+    //   - "warning": Shows only warning and error messages
+    //   - "error": Shows only error messages
+    //
+    // The default behavior is:
+    //   - In production environments: defaults to "info"
+    //   - In development environments: defaults to "debug"
+    //   - In other/unspecified environments: defaults to "info"
+    //
+    // This setting can be configured via:
+    //   - YAML configuration with the "level" key
+    //   - Environment variable ZAP_LOGGER_LEVEL
+    Level string
 
-// EnableTracing controls whether tracing integration is enabled for logging operations.
-// When set to true, the logger will automatically extract trace and span information
-// from context and include it in log entries. This provides correlation between
-// logs and distributed traces.
-//
-// When tracing is enabled, the following fields are automatically added to log entries:
-//   - "trace_id": The trace ID from the current span context
-//   - "span_id": The span ID from the current span context
-//
-// This setting can be configured via:
-//   - YAML configuration with the "enable_tracing" key
-//   - Environment variable LOGGER_ENABLE_TRACING
-EnableTracing bool
+    // EnableTracing controls whether tracing integration is enabled for logging operations.
+    // When set to true, the logger will automatically extract trace and span information
+    // from context and include it in log entries. This provides correlation between
+    // logs and distributed traces.
+    //
+    // When tracing is enabled, the following fields are automatically added to log entries:
+    //   - "trace_id": The trace ID from the current span context
+    //   - "span_id": The span ID from the current span context
+    //
+    // This setting can be configured via:
+    //   - YAML configuration with the "enable_tracing" key
+    //   - Environment variable LOGGER_ENABLE_TRACING
+    EnableTracing bool
 
-// ServiceName is the name of the service that is logging messages.
-// This value is used to populate the "service" field in log entries.
-ServiceName string
+    // ServiceName is the name of the service that is logging messages.
+    // This value is used to populate the "service" field in log entries.
+    ServiceName string
 
-// CallerSkip controls the number of stack frames to skip when reporting the caller.
-// This is useful when you have wrapper layers around the logger.
-//
-// Guidelines for setting CallerSkip:
-//   - 1 (default): Use when calling std logger directly from your code
-//   - 2: Use when you have one additional wrapper layer (e.g., service-specific logger wrapper)
-//   - 3+: Use when you have multiple wrapper layers
-//
-// Example call stack with CallerSkip=2:
-//   Your business logic (this will be reported as caller) ✓
-//   └─> Your service wrapper calls std logger
-//       └─> std logger calls zap (skipped)
-//           └─> zap logs (skipped)
-//
-// If not set or set to 0, defaults to 1.
-CallerSkip int
+    // CallerSkip controls the number of stack frames to skip when reporting the caller.
+    // This is useful when you have wrapper layers around the logger.
+    //
+    // Guidelines for setting CallerSkip:
+    //   - 1 (default): Use when calling std logger directly from your code
+    //   - 2: Use when you have one additional wrapper layer (e.g., service-specific logger wrapper)
+    //   - 3+: Use when you have multiple wrapper layers
+    //
+    // Example call stack with CallerSkip=2:
+    //   Your business logic (this will be reported as caller) ✓
+    //   └─> Your service wrapper calls std logger
+    //       └─> std logger calls zap (skipped)
+    //           └─> zap logs (skipped)
+    //
+    // If not set or set to 0, defaults to 1.
+    CallerSkip int
 }
 ```
 
 <a name="Logger"></a>
-
 ## type [Logger](<https://github.com/Abolfazl-Alemi/stdlib-lab/blob/main/logger/interface.go#L11-L45>)
 
 Logger provides a high\-level interface for structured logging. It wraps Uber's Zap logger with a simplified API and
@@ -349,40 +373,39 @@ This interface is implemented by the concrete \*LoggerClient type.
 ```go
 type Logger interface {
 
-// Debug logs a debug-level message, useful for development and troubleshooting.
-Debug(msg string, err error, fields ...map[string]interface{})
+    // Debug logs a debug-level message, useful for development and troubleshooting.
+    Debug(msg string, err error, fields ...map[string]interface{})
 
-// Info logs an informational message about general application progress.
-Info(msg string, err error, fields ...map[string]interface{})
+    // Info logs an informational message about general application progress.
+    Info(msg string, err error, fields ...map[string]interface{})
 
-// Warn logs a warning message, indicating potential issues.
-Warn(msg string, err error, fields ...map[string]interface{})
+    // Warn logs a warning message, indicating potential issues.
+    Warn(msg string, err error, fields ...map[string]interface{})
 
-// Error logs an error message with details of the error.
-Error(msg string, err error, fields ...map[string]interface{})
+    // Error logs an error message with details of the error.
+    Error(msg string, err error, fields ...map[string]interface{})
 
-// Fatal logs a critical error message and terminates the application.
-Fatal(msg string, err error, fields ...map[string]interface{})
+    // Fatal logs a critical error message and terminates the application.
+    Fatal(msg string, err error, fields ...map[string]interface{})
 
-// DebugWithContext logs a debug-level message with trace context.
-DebugWithContext(ctx context.Context, msg string, err error, fields ...map[string]interface{})
+    // DebugWithContext logs a debug-level message with trace context.
+    DebugWithContext(ctx context.Context, msg string, err error, fields ...map[string]interface{})
 
-// InfoWithContext logs an informational message with trace context.
-InfoWithContext(ctx context.Context, msg string, err error, fields ...map[string]interface{})
+    // InfoWithContext logs an informational message with trace context.
+    InfoWithContext(ctx context.Context, msg string, err error, fields ...map[string]interface{})
 
-// WarnWithContext logs a warning message with trace context.
-WarnWithContext(ctx context.Context, msg string, err error, fields ...map[string]interface{})
+    // WarnWithContext logs a warning message with trace context.
+    WarnWithContext(ctx context.Context, msg string, err error, fields ...map[string]interface{})
 
-// ErrorWithContext logs an error message with trace context.
-ErrorWithContext(ctx context.Context, msg string, err error, fields ...map[string]interface{})
+    // ErrorWithContext logs an error message with trace context.
+    ErrorWithContext(ctx context.Context, msg string, err error, fields ...map[string]interface{})
 
-// FatalWithContext logs a critical error message with trace context and terminates the application.
-FatalWithContext(ctx context.Context, msg string, err error, fields ...map[string]interface{})
+    // FatalWithContext logs a critical error message with trace context and terminates the application.
+    FatalWithContext(ctx context.Context, msg string, err error, fields ...map[string]interface{})
 }
 ```
 
 <a name="LoggerClient"></a>
-
 ## type [LoggerClient](<https://github.com/Abolfazl-Alemi/stdlib-lab/blob/main/logger/setup.go#L16-L26>)
 
 LoggerClient is a wrapper around Uber's Zap logger. It provides a simplified interface to the underlying Zap logger,
@@ -392,16 +415,15 @@ LoggerClient implements the Logger interface.
 
 ```go
 type LoggerClient struct {
-// Zap is the underlying zap.Logger instance
-// This is exposed to allow direct access to Zap-specific functionality
-// when needed, but most logging should go through the wrapper methods.
-Zap *zap.Logger
-// contains filtered or unexported fields
+    // Zap is the underlying zap.Logger instance
+    // This is exposed to allow direct access to Zap-specific functionality
+    // when needed, but most logging should go through the wrapper methods.
+    Zap *zap.Logger
+    // contains filtered or unexported fields
 }
 ```
 
 <a name="NewLoggerClient"></a>
-
 ### func [NewLoggerClient](<https://github.com/Abolfazl-Alemi/stdlib-lab/blob/main/logger/setup.go#L67>)
 
 ```go
@@ -454,8 +476,30 @@ loggerConfig := logger.Config{
 log := logger.NewLoggerClient(loggerConfig)
 ```
 
-<a name="LoggerClient.Debug"></a>
+<details><summary>Example</summary>
+<p>
 
+```go
+package main
+
+import (
+	"github.com/Abolfazl-Alemi/stdlib-lab/logger"
+)
+
+func main() {
+	log := logger.NewLoggerClient(logger.Config{
+		Level:       logger.Info,
+		ServiceName: "example-service",
+	})
+
+	log.Info("service started", nil)
+}
+```
+
+</p>
+</details>
+
+<a name="LoggerClient.Debug"></a>
 ### func \(\*LoggerClient\) [Debug](<https://github.com/Abolfazl-Alemi/stdlib-lab/blob/main/logger/utils.go#L108>)
 
 ```go
@@ -481,8 +525,33 @@ logger.Debug("Processing request", nil, map[string]interface{}{
 })
 ```
 
-<a name="LoggerClient.DebugWithContext"></a>
+<details><summary>Example</summary>
+<p>
 
+```go
+package main
+
+import (
+	"github.com/Abolfazl-Alemi/stdlib-lab/logger"
+)
+
+func main() {
+	log := logger.NewLoggerClient(logger.Config{
+		Level:       logger.Debug,
+		ServiceName: "example-service",
+	})
+
+	log.Debug("processing request", nil, map[string]interface{}{
+		"request_id":   "abc-123",
+		"payload_size": 1024,
+	})
+}
+```
+
+</p>
+</details>
+
+<a name="LoggerClient.DebugWithContext"></a>
 ### func \(\*LoggerClient\) [DebugWithContext](<https://github.com/Abolfazl-Alemi/stdlib-lab/blob/main/logger/utils.go#L213>)
 
 ```go
@@ -510,7 +579,6 @@ logger.DebugWithContext(ctx, "Processing request", nil, map[string]interface{}{
 ```
 
 <a name="LoggerClient.Error"></a>
-
 ### func \(\*LoggerClient\) [Error](<https://github.com/Abolfazl-Alemi/stdlib-lab/blob/main/logger/utils.go#L149>)
 
 ```go
@@ -538,8 +606,36 @@ if err != nil {
 }
 ```
 
-<a name="LoggerClient.ErrorWithContext"></a>
+<details><summary>Example</summary>
+<p>
 
+```go
+package main
+
+import (
+	"errors"
+
+	"github.com/Abolfazl-Alemi/stdlib-lab/logger"
+)
+
+func main() {
+	log := logger.NewLoggerClient(logger.Config{
+		Level:       logger.Info,
+		ServiceName: "example-service",
+	})
+
+	err := errors.New("connection refused")
+	log.Error("database connection failed", err, map[string]interface{}{
+		"host":        "localhost:5432",
+		"retry_count": 3,
+	})
+}
+```
+
+</p>
+</details>
+
+<a name="LoggerClient.ErrorWithContext"></a>
 ### func \(\*LoggerClient\) [ErrorWithContext](<https://github.com/Abolfazl-Alemi/stdlib-lab/blob/main/logger/utils.go#L258>)
 
 ```go
@@ -568,8 +664,39 @@ if err != nil {
 }
 ```
 
-<a name="LoggerClient.Fatal"></a>
+<details><summary>Example</summary>
+<p>
 
+```go
+package main
+
+import (
+	"context"
+	"errors"
+
+	"github.com/Abolfazl-Alemi/stdlib-lab/logger"
+)
+
+func main() {
+	log := logger.NewLoggerClient(logger.Config{
+		Level:         logger.Info,
+		ServiceName:   "example-service",
+		EnableTracing: true,
+	})
+
+	ctx := context.Background()
+	err := errors.New("timeout")
+
+	log.ErrorWithContext(ctx, "upstream call failed", err, map[string]interface{}{
+		"service": "payments",
+	})
+}
+```
+
+</p>
+</details>
+
+<a name="LoggerClient.Fatal"></a>
 ### func \(\*LoggerClient\) [Fatal](<https://github.com/Abolfazl-Alemi/stdlib-lab/blob/main/logger/utils.go#L172>)
 
 ```go
@@ -599,7 +726,6 @@ if configErr != nil {
 Note: This function does not return as it terminates the application.
 
 <a name="LoggerClient.FatalWithContext"></a>
-
 ### func \(\*LoggerClient\) [FatalWithContext](<https://github.com/Abolfazl-Alemi/stdlib-lab/blob/main/logger/utils.go#L285>)
 
 ```go
@@ -632,7 +758,6 @@ if configErr != nil {
 Note: This function does not return as it terminates the application.
 
 <a name="LoggerClient.Info"></a>
-
 ### func \(\*LoggerClient\) [Info](<https://github.com/Abolfazl-Alemi/stdlib-lab/blob/main/logger/utils.go#L88>)
 
 ```go
@@ -657,8 +782,33 @@ logger.Info("User logged in successfully", nil, map[string]interface{}{
 })
 ```
 
-<a name="LoggerClient.InfoWithContext"></a>
+<details><summary>Example</summary>
+<p>
 
+```go
+package main
+
+import (
+	"github.com/Abolfazl-Alemi/stdlib-lab/logger"
+)
+
+func main() {
+	log := logger.NewLoggerClient(logger.Config{
+		Level:       logger.Info,
+		ServiceName: "example-service",
+	})
+
+	log.Info("user logged in", nil, map[string]interface{}{
+		"user_id": "12345",
+		"ip":      "192.168.1.1",
+	})
+}
+```
+
+</p>
+</details>
+
+<a name="LoggerClient.InfoWithContext"></a>
 ### func \(\*LoggerClient\) [InfoWithContext](<https://github.com/Abolfazl-Alemi/stdlib-lab/blob/main/logger/utils.go#L191>)
 
 ```go
@@ -684,8 +834,39 @@ logger.InfoWithContext(ctx, "User logged in successfully", nil, map[string]inter
 })
 ```
 
-<a name="LoggerClient.Warn"></a>
+<details><summary>Example</summary>
+<p>
 
+```go
+package main
+
+import (
+	"context"
+
+	"github.com/Abolfazl-Alemi/stdlib-lab/logger"
+)
+
+func main() {
+	log := logger.NewLoggerClient(logger.Config{
+		Level:         logger.Info,
+		ServiceName:   "example-service",
+		EnableTracing: true,
+	})
+
+	ctx := context.Background()
+
+	// When an active OpenTelemetry span is present in ctx,
+	// trace_id and span_id are automatically attached to the log entry.
+	log.InfoWithContext(ctx, "handling request", nil, map[string]interface{}{
+		"request_id": "abc-123",
+	})
+}
+```
+
+</p>
+</details>
+
+<a name="LoggerClient.Warn"></a>
 ### func \(\*LoggerClient\) [Warn](<https://github.com/Abolfazl-Alemi/stdlib-lab/blob/main/logger/utils.go#L127>)
 
 ```go
@@ -711,7 +892,6 @@ logger.Warn("High resource usage detected", nil, map[string]interface{}{
 ```
 
 <a name="LoggerClient.WarnWithContext"></a>
-
 ### func \(\*LoggerClient\) [WarnWithContext](<https://github.com/Abolfazl-Alemi/stdlib-lab/blob/main/logger/utils.go#L234>)
 
 ```go
