@@ -11,8 +11,6 @@ linters:
     - unused          # unused code
 
     # Style & maintainability
-    - gofmt           # formatting
-    - goimports       # import ordering
     - misspell        # spelling mistakes in comments/strings
     - unconvert       # unnecessary type conversions
     - unparam         # unused function parameters
@@ -28,6 +26,11 @@ linters:
     # Tests
     - thelper         # test helpers without t.Helper()
     - tparallel       # missing t.Parallel() in tests
+
+formatters:
+  enable:
+    - gofmt           # formatting
+    - goimports       # import ordering
 
 linters-settings:
   gofmt:
