@@ -4,11 +4,9 @@ linters:
   enable:
     # Correctness
     - errcheck        # unchecked errors
-    - gosimple        # simplification suggestions
     - govet           # suspicious constructs
     - ineffassign     # unused assignments
-    - staticcheck     # static analysis
-    - unused          # unused code
+    - staticcheck     # static analysis (includes gosimple, unused)
 
     # Style & maintainability
     - misspell        # spelling mistakes in comments/strings
