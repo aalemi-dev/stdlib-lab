@@ -6,6 +6,11 @@
       "release-type": "go",
       "package-name": "logger",
       "changelog-path": "CHANGELOG.md"
+    },
+    "tracer": {
+      "release-type": "go",
+      "package-name": "tracer",
+      "changelog-path": "CHANGELOG.md"
     }
   },
   "pull-request-title-pattern": "chore: release${component} ${version}",

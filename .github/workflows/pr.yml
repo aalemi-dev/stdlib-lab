@@ -27,6 +27,7 @@ jobs:
       matrix:
         module:
           - logger
+          - tracer
 
     defaults:
       run:
