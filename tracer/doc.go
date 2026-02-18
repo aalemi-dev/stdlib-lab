@@ -29,7 +29,7 @@
 //
 //	import (
 //		"context"
-//		"github.com/Abolfazl-Alemi/stdlib-lab/tracer"
+//		"github.com/aalemi-dev/stdlib-lab/tracer"
 //	)
 //
 //	// Create a tracer (returns concrete *TracerClient)
@@ -63,7 +63,7 @@
 // The package provides an FX module that injects both concrete and interface types:
 //
 //	import (
-//		"github.com/Abolfazl-Alemi/stdlib-lab/tracer"
+//		"github.com/aalemi-dev/stdlib-lab/tracer"
 //		"go.uber.org/fx"
 //	)
 //
@@ -93,7 +93,7 @@
 //	// In your application's observability package
 //	package observability
 //
-//	import stdTracer "github.com/Abolfazl-Alemi/stdlib-lab/tracer"
+//	import stdTracer "github.com/aalemi-dev/stdlib-lab/tracer"
 //
 //	// Type aliases reference std interfaces directly
 //	type Tracer = stdTracer.Tracer
