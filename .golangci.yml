@@ -1,0 +1,51 @@
+version: "2"
+
+linters:
+  enable:
+    # Correctness
+    - errcheck        # unchecked errors
+    - govet           # suspicious constructs
+    - ineffassign     # unused assignments
+    - staticcheck     # static analysis (includes gosimple, unused)
+
+    # Style & maintainability
+    - misspell        # spelling mistakes in comments/strings
+    - unconvert       # unnecessary type conversions
+    - unparam         # unused function parameters
+    - nakedret        # naked returns in long functions
+    - noctx           # http requests without context
+
+    # Safety
+    - gosec           # security issues
+    - bodyclose       # http response body not closed
+    - nilerr          # returning nil instead of err
+    - errorlint       # error wrapping issues
+
+    # Tests
+    - thelper         # test helpers without t.Helper()
+    - tparallel       # missing t.Parallel() in tests
+
+formatters:
+  enable:
+    - gofmt           # formatting
+    - goimports       # import ordering
+
+linters-settings:
+  gofmt:
+    simplify: true
+  goimports:
+    local-prefixes: github.com/Abolfazl-Alemi/stdlib-lab
+  gosec:
+    excludes:
+      - G104 # errors unhandled — covered by errcheck
+  nakedret:
+    max-func-lines: 30
+  misspell:
+    locale: US
+
+issues:
+  exclude-rules:
+    - path: "_test\\.go"
+      linters:
+        - gosec
+        - unparam

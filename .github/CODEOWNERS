@@ -1,0 +1,8 @@
+# Global owner — fallback for everything not matched below
+* @Abolfazl-Alemi
+
+# Packages
+/logger/ @Abolfazl-Alemi
+
+# CI / repo config
+/.github/ @Abolfazl-Alemi
