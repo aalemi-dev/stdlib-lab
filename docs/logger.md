@@ -8,9 +8,7 @@ import "github.com/aalemi-dev/stdlib-lab/logger"
 
 Package logger provides structured logging functionality for Go applications.
 
-The logger package is designed to provide a standardized logging approach with features such as log levels, contextual
-logging, distributed tracing integration, and flexible output formatting. It integrates with the fx dependency injection
-framework for easy incorporation into applications.
+The logger package is designed to provide a standardized logging approach with features such as log levels, contextual logging, distributed tracing integration, and flexible output formatting. It integrates with the fx dependency injection framework for easy incorporation into applications.
 
 ### Architecture
 
@@ -59,8 +57,7 @@ log.InfoWithContext(ctx, "Processing request", nil, map[string]interface{}{
 
 ### FX Module Integration
 
-For production applications using Uber's fx, use the FXModule which provides both the concrete type and interface. You
-must supply a logger.Config to the dependency injection container:
+For production applications using Uber's fx, use the FXModule which provides both the concrete type and interface. You must supply a logger.Config to the dependency injection container:
 
 ```
 import (
@@ -148,22 +145,18 @@ LOGGER_CALLER_SKIP=1            # Number of stack frames to skip for caller repo
 
 ### Tracing Integration
 
-When tracing is enabled \(EnableTracing: true\), the logger will automatically extract trace and span IDs from the
-context and include them in log entries. This provides correlation between logs and distributed traces in your
-observability system.
+When tracing is enabled \(EnableTracing: true\), the logger will automatically extract trace and span IDs from the context and include them in log entries. This provides correlation between logs and distributed traces in your observability system.
 
 The following fields are automatically added to log entries when tracing is enabled and a valid span context is present:
 
 - trace\_id: The OpenTelemetry trace ID
 - span\_id: The OpenTelemetry span ID
 
-To use tracing, ensure your application has OpenTelemetry configured and pass context with active spans to the
-\*WithContext logging methods.
+To use tracing, ensure your application has OpenTelemetry configured and pass context with active spans to the \*WithContext logging methods.
 
 ### Performance Considerations
 
-The logger is designed to be performant with minimal allocations. However, be mindful of excessive debug logging in
-production environments.
+The logger is designed to be performant with minimal allocations. However, be mindful of excessive debug logging in production environments.
 
 ### Thread Safety
 
@@ -171,6 +164,8 @@ All methods on the Logger interface are safe for concurrent use by multiple goro
 
 <details><summary>Example (Caller Skip)</summary>
 <p>
+
+
 
 ```go
 package main
@@ -218,8 +213,7 @@ func main() {
 
 ## Constants
 
-<a name="Debug"></a>Log level constants that define the available logging levels. These string constants are used in
-configuration to set the desired log level.
+<a name="Debug"></a>Log level constants that define the available logging levels. These string constants are used in configuration to set the desired log level.
 
 ```go
 const (
@@ -243,11 +237,9 @@ const (
 
 ## Variables
 
-<a name="FXModule"></a>FXModule defines the Fx module for the logger package. This module integrates the logger into an
-Fx\-based application by providing the logger factory and registering its lifecycle hooks.
+<a name="FXModule"></a>FXModule defines the Fx module for the logger package. This module integrates the logger into an Fx\-based application by providing the logger factory and registering its lifecycle hooks.
 
-The module provides: 1. \*LoggerClient \(concrete type\) for direct use 2. Logger interface for dependency injection 3.
-Lifecycle management for proper cleanup
+The module provides: 1. \*LoggerClient \(concrete type\) for direct use 2. Logger interface for dependency injection 3. Lifecycle management for proper cleanup
 
 Usage:
 
@@ -258,8 +250,7 @@ app := fx.New(
 )
 ```
 
-Dependencies required by this module: \- A logger.Config instance must be available in the dependency injection
-container
+Dependencies required by this module: \- A logger.Config instance must be available in the dependency injection container
 
 ```go
 var FXModule = fx.Module("logger",
@@ -282,8 +273,7 @@ var FXModule = fx.Module("logger",
 func RegisterLoggerLifecycle(lc fx.Lifecycle, client *LoggerClient)
 ```
 
-RegisterLoggerLifecycle handles cleanup \(sync\) of the Zap logger. This function registers a shutdown hook with the Fx
-lifecycle system that ensures any buffered log entries are flushed when the application terminates.
+RegisterLoggerLifecycle handles cleanup \(sync\) of the Zap logger. This function registers a shutdown hook with the Fx lifecycle system that ensures any buffered log entries are flushed when the application terminates.
 
 Parameters:
 
@@ -292,19 +282,16 @@ Parameters:
 
 The lifecycle hook:
 
-- OnStop: Calls Sync\(\) on the underlying Zap logger to flush any buffered logs to their output destinations before the
-  application terminates
+- OnStop: Calls Sync\(\) on the underlying Zap logger to flush any buffered logs to their output destinations before the application terminates
 
 This ensures that no log entries are lost if the application shuts down while logs are still buffered in memory.
 
-Note: This function is automatically invoked by the FXModule and does not need to be called directly in application
-code.
+Note: This function is automatically invoked by the FXModule and does not need to be called directly in application code.
 
 <a name="Config"></a>
 ## type [Config](<https://github.com/aalemi-dev/stdlib-lab/blob/main/logger/configs.go#L25-L77>)
 
-Config defines the configuration structure for the logger. It contains settings that control the behavior of the logging
-system.
+Config defines the configuration structure for the logger. It contains settings that control the behavior of the logging system.
 
 ```go
 type Config struct {
@@ -365,8 +352,7 @@ type Config struct {
 <a name="Logger"></a>
 ## type [Logger](<https://github.com/aalemi-dev/stdlib-lab/blob/main/logger/interface.go#L11-L45>)
 
-Logger provides a high\-level interface for structured logging. It wraps Uber's Zap logger with a simplified API and
-optional tracing integration.
+Logger provides a high\-level interface for structured logging. It wraps Uber's Zap logger with a simplified API and optional tracing integration.
 
 This interface is implemented by the concrete \*LoggerClient type.
 
@@ -408,8 +394,7 @@ type Logger interface {
 <a name="LoggerClient"></a>
 ## type [LoggerClient](<https://github.com/aalemi-dev/stdlib-lab/blob/main/logger/setup.go#L16-L26>)
 
-LoggerClient is a wrapper around Uber's Zap logger. It provides a simplified interface to the underlying Zap logger,
-with additional functionality specific to the application's needs.
+LoggerClient is a wrapper around Uber's Zap logger. It provides a simplified interface to the underlying Zap logger, with additional functionality specific to the application's needs.
 
 LoggerClient implements the Logger interface.
 
@@ -430,8 +415,7 @@ type LoggerClient struct {
 func NewLoggerClient(cfg Config) *LoggerClient
 ```
 
-NewLoggerClient initializes and returns a new instance of the logger based on configuration. This function creates a
-configured Zap logger with appropriate encoding, log levels, and output destinations.
+NewLoggerClient initializes and returns a new instance of the logger based on configuration. This function creates a configured Zap logger with appropriate encoding, log levels, and output destinations.
 
 Parameters:
 
@@ -479,6 +463,8 @@ log := logger.NewLoggerClient(loggerConfig)
 <details><summary>Example</summary>
 <p>
 
+
+
 ```go
 package main
 
@@ -506,8 +492,7 @@ func main() {
 func (l *LoggerClient) Debug(msg string, err error, fields ...map[string]interface{})
 ```
 
-Debug logs a debug\-level message, useful for development and troubleshooting. Debug logs are typically more verbose and
-include information primarily useful during development or when diagnosing issues.
+Debug logs a debug\-level message, useful for development and troubleshooting. Debug logs are typically more verbose and include information primarily useful during development or when diagnosing issues.
 
 Parameters:
 
@@ -527,6 +512,8 @@ logger.Debug("Processing request", nil, map[string]interface{}{
 
 <details><summary>Example</summary>
 <p>
+
+
 
 ```go
 package main
@@ -558,8 +545,7 @@ func main() {
 func (l *LoggerClient) DebugWithContext(ctx context.Context, msg string, err error, fields ...map[string]interface{})
 ```
 
-DebugWithContext logs a debug\-level message with trace context, useful for development and troubleshooting. This method
-automatically extracts trace and span IDs from the provided context when tracing is enabled.
+DebugWithContext logs a debug\-level message with trace context, useful for development and troubleshooting. This method automatically extracts trace and span IDs from the provided context when tracing is enabled.
 
 Parameters:
 
@@ -585,8 +571,7 @@ logger.DebugWithContext(ctx, "Processing request", nil, map[string]interface{}{
 func (l *LoggerClient) Error(msg string, err error, fields ...map[string]interface{})
 ```
 
-Error logs an error message, including details of the error and additional context fields. Use Error when something has
-gone wrong that affects the current operation but doesn't require immediate termination of the application.
+Error logs an error message, including details of the error and additional context fields. Use Error when something has gone wrong that affects the current operation but doesn't require immediate termination of the application.
 
 Parameters:
 
@@ -608,6 +593,8 @@ if err != nil {
 
 <details><summary>Example</summary>
 <p>
+
+
 
 ```go
 package main
@@ -642,8 +629,7 @@ func main() {
 func (l *LoggerClient) ErrorWithContext(ctx context.Context, msg string, err error, fields ...map[string]interface{})
 ```
 
-ErrorWithContext logs an error message with trace context, including details of the error and additional context fields.
-This method automatically extracts trace and span IDs from the provided context when tracing is enabled.
+ErrorWithContext logs an error message with trace context, including details of the error and additional context fields. This method automatically extracts trace and span IDs from the provided context when tracing is enabled.
 
 Parameters:
 
@@ -666,6 +652,8 @@ if err != nil {
 
 <details><summary>Example</summary>
 <p>
+
+
 
 ```go
 package main
@@ -703,8 +691,7 @@ func main() {
 func (l *LoggerClient) Fatal(msg string, err error, fields ...map[string]interface{})
 ```
 
-Fatal logs a critical error message and terminates the application. Use Fatal only for errors that make it impossible
-for the application to continue running. This method will call os.Exit\(1\) after logging the message.
+Fatal logs a critical error message and terminates the application. Use Fatal only for errors that make it impossible for the application to continue running. This method will call os.Exit\(1\) after logging the message.
 
 Parameters:
 
@@ -732,10 +719,7 @@ Note: This function does not return as it terminates the application.
 func (l *LoggerClient) FatalWithContext(ctx context.Context, msg string, err error, fields ...map[string]interface{})
 ```
 
-FatalWithContext logs a critical error message with trace context and terminates the application. This method
-automatically extracts trace and span IDs from the provided context when tracing is enabled. Use Fatal only for errors
-that make it impossible for the application to continue running. This method will call os.Exit\(1\) after logging the
-message.
+FatalWithContext logs a critical error message with trace context and terminates the application. This method automatically extracts trace and span IDs from the provided context when tracing is enabled. Use Fatal only for errors that make it impossible for the application to continue running. This method will call os.Exit\(1\) after logging the message.
 
 Parameters:
 
@@ -764,8 +748,7 @@ Note: This function does not return as it terminates the application.
 func (l *LoggerClient) Info(msg string, err error, fields ...map[string]interface{})
 ```
 
-Info logs an informational message, along with an optional error and structured fields. Use Info for general application
-progress and successful operations.
+Info logs an informational message, along with an optional error and structured fields. Use Info for general application progress and successful operations.
 
 Parameters:
 
@@ -784,6 +767,8 @@ logger.Info("User logged in successfully", nil, map[string]interface{}{
 
 <details><summary>Example</summary>
 <p>
+
+
 
 ```go
 package main
@@ -815,8 +800,7 @@ func main() {
 func (l *LoggerClient) InfoWithContext(ctx context.Context, msg string, err error, fields ...map[string]interface{})
 ```
 
-InfoWithContext logs an informational message with trace context, along with an optional error and structured fields.
-This method automatically extracts trace and span IDs from the provided context when tracing is enabled.
+InfoWithContext logs an informational message with trace context, along with an optional error and structured fields. This method automatically extracts trace and span IDs from the provided context when tracing is enabled.
 
 Parameters:
 
@@ -836,6 +820,8 @@ logger.InfoWithContext(ctx, "User logged in successfully", nil, map[string]inter
 
 <details><summary>Example</summary>
 <p>
+
+
 
 ```go
 package main
@@ -873,8 +859,7 @@ func main() {
 func (l *LoggerClient) Warn(msg string, err error, fields ...map[string]interface{})
 ```
 
-Warn logs a warning message, indicating potential issues that aren't necessarily errors. Warnings indicate situations
-that aren't failures but might need attention or could lead to problems if not addressed.
+Warn logs a warning message, indicating potential issues that aren't necessarily errors. Warnings indicate situations that aren't failures but might need attention or could lead to problems if not addressed.
 
 Parameters:
 
@@ -898,8 +883,7 @@ logger.Warn("High resource usage detected", nil, map[string]interface{}{
 func (l *LoggerClient) WarnWithContext(ctx context.Context, msg string, err error, fields ...map[string]interface{})
 ```
 
-WarnWithContext logs a warning message with trace context, indicating potential issues that aren't necessarily errors.
-This method automatically extracts trace and span IDs from the provided context when tracing is enabled.
+WarnWithContext logs a warning message with trace context, indicating potential issues that aren't necessarily errors. This method automatically extracts trace and span IDs from the provided context when tracing is enabled.
 
 Parameters:
 

@@ -30,6 +30,10 @@ jobs:
           - tracer
           - observability
           - metrics
+          - kafka
+        include:
+          - module: kafka
+            test-env: TESTCONTAINERS_RYUK_DISABLED=true
 
     defaults:
       run:
@@ -60,7 +64,7 @@ jobs:
         run: go build ./...
 
       - name: Test
-        run: go test -race -count=1 -coverprofile=coverage.out -covermode=atomic ./...
+        run: ${{ matrix.test-env }} go test -v -race -count=1 -coverprofile=coverage.out -covermode=atomic ./...
 
       - name: Check coverage threshold
         run: |

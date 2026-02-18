@@ -10,16 +10,11 @@ Package observability provides a unified interface for observing operations acro
 
 ### Overview
 
-The observability package defines a single Observer interface that all std packages can use to emit operation events.
-This allows applications to implement metrics, tracing, and logging in a consistent way across all infrastructure
-layers.
+The observability package defines a single Observer interface that all std packages can use to emit operation events. This allows applications to implement metrics, tracing, and logging in a consistent way across all infrastructure layers.
 
 ### Design Philosophy
 
-1. \*\*Optional\*\*: std packages work perfectly without an observer 2. \*\*Unified\*\*: Same interface for all
-   infrastructure \(DB, storage, queues, etc.\) 3. \*\*Flexible\*\*: Observer can implement metrics, tracing, logging,
-   or all three 4. \*\*Generic\*\*: OperationContext works across different infrastructure types 5.
-   \*\*Non\-intrusive\*\*: Minimal code in std packages
+1. \*\*Optional\*\*: std packages work perfectly without an observer 2. \*\*Unified\*\*: Same interface for all infrastructure \(DB, storage, queues, etc.\) 3. \*\*Flexible\*\*: Observer can implement metrics, tracing, logging, or all three 4. \*\*Generic\*\*: OperationContext works across different infrastructure types 5. \*\*Non\-intrusive\*\*: Minimal code in std packages
 
 ### Usage in std Packages
 
@@ -224,17 +219,16 @@ Observer implementations must be thread\-safe. They will be called concurrently 
 ## Index
 
 - [type NoOpObserver](<#NoOpObserver>)
-    - [func \(n \*NoOpObserver\) ObserveOperation\(ctx OperationContext\)](<#NoOpObserver.ObserveOperation>)
+  - [func \(n \*NoOpObserver\) ObserveOperation\(ctx OperationContext\)](<#NoOpObserver.ObserveOperation>)
 - [type Observer](<#Observer>)
-    - [func NewNoOpObserver\(\) Observer](<#NewNoOpObserver>)
+  - [func NewNoOpObserver\(\) Observer](<#NewNoOpObserver>)
 - [type OperationContext](<#OperationContext>)
 
 
 <a name="NoOpObserver"></a>
 ## type [NoOpObserver](<https://github.com/aalemi-dev/stdlib-lab/blob/main/observability/noop.go#L6>)
 
-NoOpObserver is a no\-op implementation of Observer. It does nothing when ObserveOperation is called. This can be useful
-for testing or as a default value.
+NoOpObserver is a no\-op implementation of Observer. It does nothing when ObserveOperation is called. This can be useful for testing or as a default value.
 
 ```go
 type NoOpObserver struct{}
@@ -252,9 +246,7 @@ ObserveOperation does nothing \(no\-op\).
 <a name="Observer"></a>
 ## type [Observer](<https://github.com/aalemi-dev/stdlib-lab/blob/main/observability/interface.go#L11-L15>)
 
-Observer is a unified interface for observability across all std packages. It allows external code to observe operations
-happening in infrastructure packages \(postgres, mariadb, minio, kafka, rabbitmq, redis, etc.\) without coupling them to
-specific observability implementations \(metrics, tracing, logging\).
+Observer is a unified interface for observability across all std packages. It allows external code to observe operations happening in infrastructure packages \(postgres, mariadb, minio, kafka, rabbitmq, redis, etc.\) without coupling them to specific observability implementations \(metrics, tracing, logging\).
 
 This interface is optional \- std packages work perfectly fine without an observer.
 
@@ -278,8 +270,7 @@ NewNoOpObserver creates a new NoOpObserver.
 <a name="OperationContext"></a>
 ## type [OperationContext](<https://github.com/aalemi-dev/stdlib-lab/blob/main/observability/interface.go#L20-L71>)
 
-OperationContext contains all information about an infrastructure operation. This struct is designed to be generic
-enough to work across all std packages while providing enough detail for comprehensive observability.
+OperationContext contains all information about an infrastructure operation. This struct is designed to be generic enough to work across all std packages while providing enough detail for comprehensive observability.
 
 ```go
 type OperationContext struct {

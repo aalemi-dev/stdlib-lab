@@ -8,9 +8,7 @@ import "github.com/aalemi-dev/stdlib-lab/metrics"
 
 Package metrics provides Prometheus\-based monitoring and metrics collection functionality for Go applications.
 
-The metrics package is designed to provide a standardized observability approach with dual HTTP endpoints for
-system\-level and application\-level metrics, full control over metric definitions, and integration with the Fx
-dependency injection framework for easy incorporation into Aleph Alpha services.
+The metrics package is designed to provide a standardized observability approach with dual HTTP endpoints for system\-level and application\-level metrics, full control over metric definitions, and integration with the Fx dependency injection framework for easy incorporation into Aleph Alpha services.
 
 ### Architecture
 
@@ -504,13 +502,11 @@ func NewBusinessMetrics(m metrics.MetricsCollector) *BusinessMetrics {
 
 ### Thread Safety
 
-All methods on the Metrics struct and all Prometheus collectors are safe for concurrent use by multiple goroutines. No
-additional synchronization is needed.
+All methods on the Metrics struct and all Prometheus collectors are safe for concurrent use by multiple goroutines. No additional synchronization is needed.
 
 ### Observability
 
-Exposed metrics can be scraped by Prometheus and visualized in Grafana or any compatible monitoring system. Example
-Prometheus scrape config:
+Exposed metrics can be scraped by Prometheus and visualized in Grafana or any compatible monitoring system. Example Prometheus scrape config:
 
 ```
 scrape_configs:
@@ -557,14 +553,15 @@ func TestMyFunction(t *testing.T) {
 - [type Gauge](<#Gauge>)
 - [type Histogram](<#Histogram>)
 - [type Metrics](<#Metrics>)
-    - [func NewMetrics\(cfg Config\) \*Metrics](<#NewMetrics>)
-    - [func \(m \*Metrics\) CreateCounter\(name, help string, labels \[\]string\) Counter](<#Metrics.CreateCounter>)
-    - [func \(m \*Metrics\) CreateGauge\(name, help string, labels \[\]string\) Gauge](<#Metrics.CreateGauge>)
-    - [func \(m \*Metrics\) CreateHistogram\(name, help string, labels \[\]string, buckets \[\]float64\) Histogram](<#Metrics.CreateHistogram>)
-    - [func \(m \*Metrics\) CreateSummary\(name, help string, labels \[\]string, objectives map\[float64\]float64\) Summary](<#Metrics.CreateSummary>)
+  - [func NewMetrics\(cfg Config\) \*Metrics](<#NewMetrics>)
+  - [func \(m \*Metrics\) CreateCounter\(name, help string, labels \[\]string\) Counter](<#Metrics.CreateCounter>)
+  - [func \(m \*Metrics\) CreateGauge\(name, help string, labels \[\]string\) Gauge](<#Metrics.CreateGauge>)
+  - [func \(m \*Metrics\) CreateHistogram\(name, help string, labels \[\]string, buckets \[\]float64\) Histogram](<#Metrics.CreateHistogram>)
+  - [func \(m \*Metrics\) CreateSummary\(name, help string, labels \[\]string, objectives map\[float64\]float64\) Summary](<#Metrics.CreateSummary>)
 - [type MetricsCollector](<#MetricsCollector>)
 - [type Observer](<#Observer>)
 - [type Summary](<#Summary>)
+
 
 ## Constants
 
@@ -579,12 +576,9 @@ const (
 
 ## Variables
 
-<a name="FXModule"></a>FXModule defines the Fx module for the metrics package. This module integrates two separate
-Prometheus metrics servers into an Fx\-based application by providing the Metrics factory and registering lifecycle
-hooks for both servers.
+<a name="FXModule"></a>FXModule defines the Fx module for the metrics package. This module integrates two separate Prometheus metrics servers into an Fx\-based application by providing the Metrics factory and registering lifecycle hooks for both servers.
 
-The module provides: 1. \*Metrics \(concrete type\) for direct use 2. MetricsCollector interface for dependency
-injection 3. Lifecycle management for both system and application metrics HTTP servers
+The module provides: 1. \*Metrics \(concrete type\) for direct use 2. MetricsCollector interface for dependency injection 3. Lifecycle management for both system and application metrics HTTP servers
 
 System Metrics Endpoint \(default: :9090\):
 
@@ -616,8 +610,7 @@ app := fx.New(
 )
 ```
 
-Dependencies required by this module: \- A metrics.Config instance must be available in the dependency injection
-container \- A logger.LoggerClient instance is optional but recommended for startup/shutdown logs
+Dependencies required by this module: \- A metrics.Config instance must be available in the dependency injection container \- A logger.LoggerClient instance is optional but recommended for startup/shutdown logs
 
 ```go
 var FXModule = fx.Module("metrics",
@@ -634,7 +627,6 @@ var FXModule = fx.Module("metrics",
 ```
 
 <a name="Ptr"></a>
-
 ## func [Ptr](<https://github.com/aalemi-dev/stdlib-lab/blob/main/metrics/configs.go#L78>)
 
 ```go
@@ -654,15 +646,13 @@ cfg := metrics.Config{
 ```
 
 <a name="RegisterMetricsLifecycle"></a>
-
 ## func [RegisterMetricsLifecycle](<https://github.com/aalemi-dev/stdlib-lab/blob/main/metrics/fx_module.go#L79>)
 
 ```go
 func RegisterMetricsLifecycle(lc fx.Lifecycle, m *Metrics, log *logger.LoggerClient)
 ```
 
-RegisterMetricsLifecycle manages the startup and shutdown lifecycle of both Prometheus metrics HTTP servers \(system and
-application\).
+RegisterMetricsLifecycle manages the startup and shutdown lifecycle of both Prometheus metrics HTTP servers \(system and application\).
 
 Parameters:
 
@@ -675,22 +665,16 @@ The lifecycle hook:
 - OnStart: Launches both metrics servers in background goroutines
 - OnStop: Gracefully shuts down both servers
 
-This ensures that both metrics endpoints are available for scraping during the application's lifetime and shut down
-cleanly when the application stops.
+This ensures that both metrics endpoints are available for scraping during the application's lifetime and shut down cleanly when the application stops.
 
-Note: This function is automatically invoked by the FXModule and does not need to be called directly in application
-code.
+Note: This function is automatically invoked by the FXModule and does not need to be called directly in application code.
 
 <a name="Config"></a>
-
 ## type [Config](<https://github.com/aalemi-dev/stdlib-lab/blob/main/metrics/configs.go#L15-L66>)
 
-Config defines the configuration structure for the Prometheus metrics servers. It contains settings that control how
-metrics are exposed and collected.
+Config defines the configuration structure for the Prometheus metrics servers. It contains settings that control how metrics are exposed and collected.
 
-The package provides two separate metrics endpoints: 1. System Metrics Endpoint \(default: :9090\): Exposes Go runtime,
-process, and build info metrics 2. Application Metrics Endpoint \(default: :9091\): Exposes user\-defined
-application\-specific metrics
+The package provides two separate metrics endpoints: 1. System Metrics Endpoint \(default: :9090\): Exposes Go runtime, process, and build info metrics 2. Application Metrics Endpoint \(default: :9091\): Exposes user\-defined application\-specific metrics
 
 ```go
 type Config struct {
@@ -748,11 +732,9 @@ type Config struct {
 ```
 
 <a name="Counter"></a>
-
 ## type [Counter](<https://github.com/aalemi-dev/stdlib-lab/blob/main/metrics/types.go#L11-L22>)
 
-Counter represents a cumulative metric that only increases. It is used to track totals such as request counts, errors,
-or bytes processed.
+Counter represents a cumulative metric that only increases. It is used to track totals such as request counts, errors, or bytes processed.
 
 This interface abstracts the underlying Prometheus CounterVec implementation.
 
@@ -772,11 +754,9 @@ type Counter interface {
 ```
 
 <a name="Gauge"></a>
-
 ## type [Gauge](<https://github.com/aalemi-dev/stdlib-lab/blob/main/metrics/types.go#L28-L51>)
 
-Gauge represents a metric that can arbitrarily go up and down. It is used for values like active connections,
-temperature, or queue depth.
+Gauge represents a metric that can arbitrarily go up and down. It is used for values like active connections, temperature, or queue depth.
 
 This interface abstracts the underlying Prometheus GaugeVec implementation.
 
@@ -808,11 +788,9 @@ type Gauge interface {
 ```
 
 <a name="Histogram"></a>
-
 ## type [Histogram](<https://github.com/aalemi-dev/stdlib-lab/blob/main/metrics/types.go#L57-L65>)
 
-Histogram tracks the distribution of observations \(e.g., request durations or response sizes\). Histograms calculate
-quantiles, counts, and sums on the server side.
+Histogram tracks the distribution of observations \(e.g., request durations or response sizes\). Histograms calculate quantiles, counts, and sums on the server side.
 
 This interface abstracts the underlying Prometheus HistogramVec implementation.
 
@@ -829,15 +807,11 @@ type Histogram interface {
 ```
 
 <a name="Metrics"></a>
+## type [Metrics](<https://github.com/aalemi-dev/stdlib-lab/blob/main/metrics/setup.go#L18-L41>)
 
-## type [Metrics](<https://github.com/aalemi-dev/stdlib-lab/blob/main/metrics/setup.go#L17-L40>)
+Metrics encapsulates two separate Prometheus registries and HTTP servers: 1. System metrics \(Go runtime, process, build info\) \- exposed on SystemServer 2. Application metrics \(user\-defined custom metrics\) \- exposed on ApplicationServer
 
-Metrics encapsulates two separate Prometheus registries and HTTP servers: 1. System metrics \(Go runtime, process, build
-info\) \- exposed on SystemServer 2. Application metrics \(user\-defined custom metrics\) \- exposed on
-ApplicationServer
-
-This separation allows different scrape configurations and access controls for system\-level vs application\-level
-observability.
+This separation allows different scrape configurations and access controls for system\-level vs application\-level observability.
 
 ```go
 type Metrics struct {
@@ -864,15 +838,13 @@ type Metrics struct {
 ```
 
 <a name="NewMetrics"></a>
-
-### func [NewMetrics](<https://github.com/aalemi-dev/stdlib-lab/blob/main/metrics/setup.go#L78>)
+### func [NewMetrics](<https://github.com/aalemi-dev/stdlib-lab/blob/main/metrics/setup.go#L79>)
 
 ```go
 func NewMetrics(cfg Config) *Metrics
 ```
 
-NewMetrics initializes and returns a new instance of the Metrics struct. It sets up two separate Prometheus registries
-and HTTP servers:
+NewMetrics initializes and returns a new instance of the Metrics struct. It sets up two separate Prometheus registries and HTTP servers:
 
 1. System Metrics Endpoint \(default: :9090\):
 
@@ -893,8 +865,7 @@ Returns:
 
 - \*Metrics: A configured Metrics instance ready for lifecycle management and Fx module integration
 
-Both registries automatically wrap all metrics with a constant \`service\` label for easier aggregation and filtering in
-multi\-service environments.
+Both registries automatically wrap all metrics with a constant \`service\` label for easier aggregation and filtering in multi\-service environments.
 
 Example:
 
@@ -915,7 +886,6 @@ Access metrics at:
 - Application metrics: http://localhost:9091/metrics
 
 <a name="Metrics.CreateCounter"></a>
-
 ### func \(\*Metrics\) [CreateCounter](<https://github.com/aalemi-dev/stdlib-lab/blob/main/metrics/utils.go#L17>)
 
 ```go
@@ -935,7 +905,6 @@ counter.WithLabelValues("POST", "500").Inc()
 ```
 
 <a name="Metrics.CreateGauge"></a>
-
 ### func \(\*Metrics\) [CreateGauge](<https://github.com/aalemi-dev/stdlib-lab/blob/main/metrics/utils.go#L56>)
 
 ```go
@@ -956,7 +925,6 @@ gauge.WithLabelValues("postgres").Dec()
 ```
 
 <a name="Metrics.CreateHistogram"></a>
-
 ### func \(\*Metrics\) [CreateHistogram](<https://github.com/aalemi-dev/stdlib-lab/blob/main/metrics/utils.go#L38>)
 
 ```go
@@ -980,7 +948,6 @@ hist.WithLabelValues("/api/search").Observe(0.25)
 ```
 
 <a name="Metrics.CreateSummary"></a>
-
 ### func \(\*Metrics\) [CreateSummary](<https://github.com/aalemi-dev/stdlib-lab/blob/main/metrics/utils.go#L77>)
 
 ```go
@@ -989,8 +956,7 @@ func (m *Metrics) CreateSummary(name, help string, labels []string, objectives m
 
 CreateSummary creates a new summary metric and registers it to the application metrics registry.
 
-Summaries calculate streaming quantiles on the client side. Objectives define the quantile ranks and their allowed
-error.
+Summaries calculate streaming quantiles on the client side. Objectives define the quantile ranks and their allowed error.
 
 Example:
 
@@ -1005,17 +971,13 @@ summary.WithLabelValues("/api/search").Observe(0.25)
 ```
 
 <a name="MetricsCollector"></a>
-
 ## type [MetricsCollector](<https://github.com/aalemi-dev/stdlib-lab/blob/main/metrics/interface.go#L11-L55>)
 
-MetricsCollector provides an interface for collecting and exposing application metrics. It abstracts metric operations
-with support for counters, histograms, gauges, and summaries.
+MetricsCollector provides an interface for collecting and exposing application metrics. It abstracts metric operations with support for counters, histograms, gauges, and summaries.
 
-This interface is implemented by the concrete \*Metrics type and does not expose any Prometheus\-specific types,
-allowing for potential alternative implementations or testing mocks.
+This interface is implemented by the concrete \*Metrics type and does not expose any Prometheus\-specific types, allowing for potential alternative implementations or testing mocks.
 
-All metrics created through this interface are registered to the application metrics registry and exposed via the
-application metrics endpoint \(default: :9091\).
+All metrics created through this interface are registered to the application metrics registry and exposed via the application metrics endpoint \(default: :9091\).
 
 ```go
 type MetricsCollector interface {
@@ -1066,7 +1028,6 @@ type MetricsCollector interface {
 ```
 
 <a name="Observer"></a>
-
 ## type [Observer](<https://github.com/aalemi-dev/stdlib-lab/blob/main/metrics/types.go#L82-L85>)
 
 Observer is a common interface for metrics that observe values \(Histogram and Summary\).
@@ -1079,11 +1040,9 @@ type Observer interface {
 ```
 
 <a name="Summary"></a>
-
 ## type [Summary](<https://github.com/aalemi-dev/stdlib-lab/blob/main/metrics/types.go#L71-L79>)
 
-Summary calculates streaming quantiles of observed values on the client side. Unlike histograms, summaries cannot be
-aggregated across multiple instances.
+Summary calculates streaming quantiles of observed values on the client side. Unlike histograms, summaries cannot be aggregated across multiple instances.
 
 This interface abstracts the underlying Prometheus SummaryVec implementation.
 

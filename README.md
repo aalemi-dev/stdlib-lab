@@ -11,6 +11,7 @@ infrastructure.
 | [`tracer`](./tracer)               | Distributed tracing with OpenTelemetry and OTLP HTTP export     | [![Go Reference](https://pkg.go.dev/badge/github.com/aalemi-dev/stdlib-lab/tracer.svg)](https://pkg.go.dev/github.com/aalemi-dev/stdlib-lab/tracer)               |
 | [`observability`](./observability) | Unified observer interface for infrastructure packages          | [![Go Reference](https://pkg.go.dev/badge/github.com/aalemi-dev/stdlib-lab/observability.svg)](https://pkg.go.dev/github.com/aalemi-dev/stdlib-lab/observability) |
 | [`metrics`](./metrics)             | Prometheus metrics with dual-endpoint separation and fx support | [![Go Reference](https://pkg.go.dev/badge/github.com/aalemi-dev/stdlib-lab/metrics.svg)](https://pkg.go.dev/github.com/aalemi-dev/stdlib-lab/metrics)             |
+| [`kafka`](./kafka)                 | Apache Kafka client with serialization, SASL/TLS and fx support | [![Go Reference](https://pkg.go.dev/badge/github.com/aalemi-dev/stdlib-lab/kafka.svg)](https://pkg.go.dev/github.com/aalemi-dev/stdlib-lab/kafka)                 |
 
 ## Requirements
 
