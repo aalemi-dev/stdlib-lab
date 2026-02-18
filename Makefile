@@ -44,7 +44,7 @@ lint:
 	@export PATH="$$($(GO) env GOPATH)/bin:$$PATH"; \
 	which golangci-lint >/dev/null 2>&1 || { \
 		echo "golangci-lint not found, installing from source..."; \
-		$(GO) install github.com/golangci/golangci-lint/cmd/golangci-lint@latest; \
+		$(GO) install github.com/golangci/golangci-lint/v2/cmd/golangci-lint@latest; \
 	}; \
 	for pkg in $$(find . -maxdepth 1 -mindepth 1 -type d | grep -v -E "^\./(\.|docs|vendor)"); do \
 		if [ ! -f "$$pkg/go.mod" ]; then continue; fi; \
@@ -64,7 +64,7 @@ install-tools:
 	$(GO) install github.com/evilmartians/lefthook@latest
 	$(GO) install golang.org/x/tools/cmd/goimports@latest
 	$(GO) install github.com/princjef/gomarkdoc/cmd/gomarkdoc@latest
-	$(GO) install github.com/golangci/golangci-lint/cmd/golangci-lint@latest
+	$(GO) install github.com/golangci/golangci-lint/v2/cmd/golangci-lint@latest
 	@echo "All tools installed"
 
 # Generate documentation using gomarkdoc
