@@ -166,6 +166,23 @@ func httpHandler(w http.ResponseWriter, r *http.Request) {
 | `bool`    | Bool                  |
 | other     | String (`fmt.Sprint`) |
 
+## Testing
+
+Run the test suite:
+
+```sh
+go test ./...
+```
+
+Run with the race detector and coverage:
+
+```sh
+go test -race -coverprofile=coverage.out ./...
+go tool cover -func=coverage.out
+```
+
+All tests run in parallel and require no external dependencies (no running collector needed).
+
 ## Requirements
 
 - Go 1.25+

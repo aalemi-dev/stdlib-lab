@@ -1,6 +1,7 @@
 package tracer
 
 import (
+	"context"
 	"testing"
 
 	"github.com/stretchr/testify/assert"
@@ -50,4 +51,23 @@ func TestNewClient_EnableExport_NoCollector(t *testing.T) {
 
 	require.NoError(t, err)
 	assert.NotNil(t, client)
+}
+
+func TestNewClient_EnableExport_CancelledContext(t *testing.T) {
+	t.Parallel()
+
+	ctx, cancel := context.WithCancel(context.Background())
+	cancel() // cancel immediately so the exporter handshake fails
+
+	cfg := Config{
+		ServiceName:  "test-service",
+		AppEnv:       "test",
+		EnableExport: true,
+	}
+
+	client, err := newClientWithContext(ctx, cfg)
+
+	assert.Error(t, err)
+	assert.Nil(t, client)
+	assert.Contains(t, err.Error(), "failed to initialize OTLP exporter")
 }
