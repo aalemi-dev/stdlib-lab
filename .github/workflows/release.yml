@@ -42,7 +42,7 @@ jobs:
       - name: Set up Go
         uses: actions/setup-go@v5
         with:
-          go-version-file: logger/go.mod
+          go-version-file: go.work
 
       - name: Build release archives
         run: |
