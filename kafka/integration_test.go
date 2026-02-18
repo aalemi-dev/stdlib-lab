@@ -502,7 +502,8 @@ func createKafkaContainer(ctx context.Context, hostPort string) (testcontainers.
 }
 
 func getFreePort() (string, error) {
-	l, err := net.Listen("tcp", "127.0.0.1:0") //nolint:gosec
+	lc := &net.ListenConfig{}
+	l, err := lc.Listen(context.Background(), "tcp", "127.0.0.1:0")
 	if err != nil {
 		return "", err
 	}
