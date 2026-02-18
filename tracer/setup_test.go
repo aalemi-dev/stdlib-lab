@@ -8,6 +8,7 @@ import (
 )
 
 func TestNewClient_NoExport(t *testing.T) {
+	t.Parallel()
 	cfg := Config{
 		ServiceName:  "test-service",
 		AppEnv:       "test",
@@ -22,6 +23,7 @@ func TestNewClient_NoExport(t *testing.T) {
 }
 
 func TestNewClient_EmptyServiceName(t *testing.T) {
+	t.Parallel()
 	cfg := Config{
 		ServiceName:  "",
 		AppEnv:       "test",
@@ -35,6 +37,7 @@ func TestNewClient_EmptyServiceName(t *testing.T) {
 }
 
 func TestNewClient_EnableExport_NoCollector(t *testing.T) {
+	t.Parallel()
 	cfg := Config{
 		ServiceName:  "test-service",
 		AppEnv:       "production",
