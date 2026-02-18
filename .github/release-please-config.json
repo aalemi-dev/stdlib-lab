@@ -21,6 +21,11 @@
       "release-type": "go",
       "package-name": "metrics",
       "changelog-path": "CHANGELOG.md"
+    },
+    "kafka": {
+      "release-type": "go",
+      "package-name": "kafka",
+      "changelog-path": "CHANGELOG.md"
     }
   },
   "pull-request-title-pattern": "chore: release${component} ${version}",

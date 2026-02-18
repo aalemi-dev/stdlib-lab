@@ -27,6 +27,7 @@ jobs:
           - tracer
           - observability
           - metrics
+          - kafka
 
     steps:
       - name: Checkout
