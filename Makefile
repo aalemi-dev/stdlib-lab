@@ -21,6 +21,16 @@ test:
 		fi); \
 	done
 
+# Open a pull request against main, deriving the title from the branch name
+# Branch format: type/short-description → "type: short description"
+pr:
+	@BRANCH=$$(git rev-parse --abbrev-ref HEAD); \
+	TYPE=$$(echo $$BRANCH | cut -d'/' -f1); \
+	DESC=$$(echo $$BRANCH | cut -d'/' -f2- | tr '-' ' '); \
+	TITLE="$$TYPE: $$DESC"; \
+	echo "Opening PR with title: $$TITLE"; \
+	gh pr create --title "$$TITLE" --fill --base main
+
 # Remove build and test artifacts
 clean:
 	@find . -name "coverage.out" -delete
