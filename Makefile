@@ -1,4 +1,32 @@
 GO ?= go
+COVERAGE_THRESHOLD ?= 80
+
+# Run tests with coverage for all modules
+test:
+	@echo "Running tests..."
+	@for pkg in $$(find . -maxdepth 1 -mindepth 1 -type d | grep -v -E "^\./(\.|docs|vendor)"); do \
+		if [ ! -f "$$pkg/go.mod" ]; then continue; fi; \
+		pkgname=$$(basename $$pkg); \
+		echo "Testing $$pkgname..."; \
+		(cd $$pkg && $(GO) test -race -count=1 -coverprofile=coverage.out -covermode=atomic ./... && \
+		COVERAGE=$$($(GO) tool cover -func=coverage.out | grep total | awk '{print $$3}' | tr -d '%') && \
+		echo "  Coverage: $${COVERAGE}%  (threshold: $(COVERAGE_THRESHOLD)%)" && \
+		if [ "$$(echo "$$COVERAGE < $(COVERAGE_THRESHOLD)" | bc -l)" -eq 1 ]; then \
+			echo "  ❌ Coverage $${COVERAGE}% is below threshold $(COVERAGE_THRESHOLD)%"; \
+			rm -f coverage.out; \
+			exit 1; \
+		else \
+			echo "  ✅ Coverage ok"; \
+			rm -f coverage.out; \
+		fi); \
+	done
+
+# Remove build and test artifacts
+clean:
+	@find . -name "coverage.out" -delete
+	@find . -name "*.test" -delete
+	@find . -name "dist" -type d -exec rm -rf {} + 2>/dev/null; true
+	@echo "Cleaned"
 
 # Run linter
 lint:
