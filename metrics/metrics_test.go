@@ -236,24 +236,16 @@ func TestMetricsInterfaceImplementation(t *testing.T) {
 	// This should compile if *Metrics implements MetricsCollector
 	var _ metrics.MetricsCollector = m
 
-	// Test interface methods return our custom interfaces (not prometheus types)
-	counter := m.CreateCounter("test", "test", []string{"label"})
-	if counter == nil {
+	if m.CreateCounter("test", "test", []string{"label"}) == nil {
 		t.Fatal("CreateCounter via interface returned nil")
 	}
-
-	gauge := m.CreateGauge("test_gauge", "test", []string{"label"})
-	if gauge == nil {
+	if m.CreateGauge("test_gauge", "test", []string{"label"}) == nil {
 		t.Fatal("CreateGauge via interface returned nil")
 	}
-
-	histogram := m.CreateHistogram("test_hist", "test", []string{"label"}, []float64{.01, .05, .1, .5, 1, 5})
-	if histogram == nil {
+	if m.CreateHistogram("test_hist", "test", []string{"label"}, []float64{.01, .05, .1, .5, 1, 5}) == nil {
 		t.Fatal("CreateHistogram via interface returned nil")
 	}
-
-	summary := m.CreateSummary("test_summary", "test", []string{"label"}, map[float64]float64{0.5: 0.05})
-	if summary == nil {
+	if m.CreateSummary("test_summary", "test", []string{"label"}, map[float64]float64{0.5: 0.05}) == nil {
 		t.Fatal("CreateSummary via interface returned nil")
 	}
 }
@@ -290,15 +282,8 @@ func TestMetricTypesImplementInterfaces(t *testing.T) {
 
 	m := metrics.NewMetrics(cfg)
 
-	// Test that Counter interface works
-	var _ metrics.Counter = m.CreateCounter("test_counter", "test", []string{"label"})
-
-	// Test that Gauge interface works
-	var _ metrics.Gauge = m.CreateGauge("test_gauge", "test", []string{"label"})
-
-	// Test that Histogram interface works
-	var _ metrics.Histogram = m.CreateHistogram("test_hist", "test", []string{"label"}, []float64{1, 5, 10})
-
-	// Test that Summary interface works
-	var _ metrics.Summary = m.CreateSummary("test_summary", "test", []string{"label"}, map[float64]float64{0.5: 0.05})
+	var _ = m.CreateCounter("test_counter", "test", []string{"label"})
+	var _ = m.CreateGauge("test_gauge", "test", []string{"label"})
+	var _ = m.CreateHistogram("test_hist", "test", []string{"label"}, []float64{1, 5, 10})
+	var _ = m.CreateSummary("test_summary", "test", []string{"label"}, map[float64]float64{0.5: 0.05})
 }

@@ -2,6 +2,7 @@ package metrics
 
 import (
 	"net/http"
+	"time"
 
 	"github.com/prometheus/client_golang/prometheus"
 	"github.com/prometheus/client_golang/prometheus/collectors"
@@ -105,8 +106,9 @@ func NewMetrics(cfg Config) *Metrics {
 
 		m.SystemRegistry = systemRegistry
 		m.SystemServer = &http.Server{
-			Addr:    systemAddr,
-			Handler: promhttp.HandlerFor(systemRegistry, promhttp.HandlerOpts{}),
+			Addr:              systemAddr,
+			Handler:           promhttp.HandlerFor(systemRegistry, promhttp.HandlerOpts{}),
+			ReadHeaderTimeout: 10 * time.Second,
 		}
 	}
 
@@ -131,8 +133,9 @@ func NewMetrics(cfg Config) *Metrics {
 		m.ApplicationRegistry = applicationRegistry
 		m.wrappedApplicationRegisterer = wrappedApplicationRegisterer
 		m.ApplicationServer = &http.Server{
-			Addr:    appAddr,
-			Handler: promhttp.HandlerFor(applicationRegistry, promhttp.HandlerOpts{}),
+			Addr:              appAddr,
+			Handler:           promhttp.HandlerFor(applicationRegistry, promhttp.HandlerOpts{}),
+			ReadHeaderTimeout: 10 * time.Second,
 		}
 	}
 
