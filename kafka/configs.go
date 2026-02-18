@@ -162,7 +162,7 @@ type SASLConfig struct {
 	Username string
 
 	// Password is the SASL password
-	Password string
+	Password string //nolint:gosec
 }
 
 // Default values for configuration

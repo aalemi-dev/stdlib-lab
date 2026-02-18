@@ -22,14 +22,12 @@ import (
 
 // TestKafkaPublish verifies that publishing a message to Kafka works correctly.
 func TestKafkaPublish(t *testing.T) {
-	// Skip if running in short mode
 	if testing.Short() {
 		t.Skip("Skipping integration test in short mode")
 	}
 
 	ctx := context.Background()
 
-	// Initialize Kafka container
 	brokers, containerInstance := initializeKafka(ctx, t)
 	defer func() {
 		if err := containerInstance.Terminate(ctx); err != nil {
@@ -47,19 +45,19 @@ func TestKafkaPublish(t *testing.T) {
 
 	app := fx.New(
 		FXModule,
-		fx.Provide(
-			func() Config { return cfg },
-		),
+		fx.Provide(func() Config { return cfg }),
 		fx.Populate(&client),
 	)
 
 	require.NoError(t, app.Start(ctx))
-	defer app.Stop(ctx)
+	defer func() {
+		if err := app.Stop(ctx); err != nil {
+			t.Logf("failed to stop app: %v", err)
+		}
+	}()
 
-	// Wait a bit for the writer to be ready and topic to be auto-created
 	time.Sleep(5 * time.Second)
 
-	// Publish a test message
 	msgBody := []byte(`{"event":"test-publish"}`)
 	err := client.Publish(ctx, "test-key", msgBody)
 	require.NoError(t, err)
@@ -69,14 +67,12 @@ func TestKafkaPublish(t *testing.T) {
 
 // TestKafkaConsumeWithCommit verifies that a Kafka client can consume and commit a message.
 func TestKafkaConsumeWithCommit(t *testing.T) {
-	// Skip if running in short mode
 	if testing.Short() {
 		t.Skip("Skipping integration test in short mode")
 	}
 
 	ctx := context.Background()
 
-	// Initialize Kafka container
 	brokers, containerInstance := initializeKafka(ctx, t)
 	defer func() {
 		if err := containerInstance.Terminate(ctx); err != nil {
@@ -84,7 +80,6 @@ func TestKafkaConsumeWithCommit(t *testing.T) {
 		}
 	}()
 
-	// Create producer client
 	producerCfg := Config{
 		Brokers:    brokers,
 		Topic:      "test-topic",
@@ -94,19 +89,19 @@ func TestKafkaConsumeWithCommit(t *testing.T) {
 	var producer *KafkaClient
 	producerApp := fx.New(
 		FXModule,
-		fx.Provide(
-			func() Config { return producerCfg },
-		),
+		fx.Provide(func() Config { return producerCfg }),
 		fx.Populate(&producer),
 	)
 
 	require.NoError(t, producerApp.Start(ctx))
-	defer producerApp.Stop(ctx)
+	defer func() {
+		if err := producerApp.Stop(ctx); err != nil {
+			t.Logf("failed to stop producer app: %v", err)
+		}
+	}()
 
-	// Wait for producer to be ready and topic to be auto-created
 	time.Sleep(5 * time.Second)
 
-	// Create consumer client
 	consumerCfg := Config{
 		Brokers:    brokers,
 		Topic:      "test-topic",
@@ -117,16 +112,17 @@ func TestKafkaConsumeWithCommit(t *testing.T) {
 	var consumer *KafkaClient
 	consumerApp := fx.New(
 		FXModule,
-		fx.Provide(
-			func() Config { return consumerCfg },
-		),
+		fx.Provide(func() Config { return consumerCfg }),
 		fx.Populate(&consumer),
 	)
 
 	require.NoError(t, consumerApp.Start(ctx))
-	defer consumerApp.Stop(ctx)
+	defer func() {
+		if err := consumerApp.Stop(ctx); err != nil {
+			t.Logf("failed to stop consumer app: %v", err)
+		}
+	}()
 
-	// Wait for consumer to be ready
 	time.Sleep(3 * time.Second)
 
 	wg := &sync.WaitGroup{}
@@ -147,17 +143,15 @@ func TestKafkaConsumeWithCommit(t *testing.T) {
 			}
 			t.Log("Message committed successfully")
 			errCh <- nil
-			return
+			return //nolint:staticcheck
 		}
 	}()
 
-	// Publish a test message
 	msgBody := []byte(`{"event":"test-consume"}`)
 	err := producer.Publish(ctx, "test-key", msgBody)
 	require.NoError(t, err)
 	t.Log("Message published successfully")
 
-	// Wait for message to be consumed
 	select {
 	case err := <-errCh:
 		require.NoError(t, err)
@@ -165,7 +159,6 @@ func TestKafkaConsumeWithCommit(t *testing.T) {
 		t.Fatal("Timed out waiting for message to be consumed")
 	}
 
-	// Cancel context to stop consumer
 	consumeCancel()
 	wg.Wait()
 }
@@ -178,7 +171,6 @@ func TestKafkaPublishWithHeaders(t *testing.T) {
 
 	ctx := context.Background()
 
-	// Initialize Kafka container
 	brokers, containerInstance := initializeKafka(ctx, t)
 	defer func() {
 		if err := containerInstance.Terminate(ctx); err != nil {
@@ -186,7 +178,6 @@ func TestKafkaPublishWithHeaders(t *testing.T) {
 		}
 	}()
 
-	// Create producer client
 	producerCfg := Config{
 		Brokers:    brokers,
 		Topic:      "test-topic",
@@ -196,18 +187,19 @@ func TestKafkaPublishWithHeaders(t *testing.T) {
 	var producer *KafkaClient
 	producerApp := fx.New(
 		FXModule,
-		fx.Provide(
-			func() Config { return producerCfg },
-		),
+		fx.Provide(func() Config { return producerCfg }),
 		fx.Populate(&producer),
 	)
 
 	require.NoError(t, producerApp.Start(ctx))
-	defer producerApp.Stop(ctx)
+	defer func() {
+		if err := producerApp.Stop(ctx); err != nil {
+			t.Logf("failed to stop producer app: %v", err)
+		}
+	}()
 
 	time.Sleep(2 * time.Second)
 
-	// Create consumer client
 	consumerCfg := Config{
 		Brokers:    brokers,
 		Topic:      "test-topic",
@@ -218,14 +210,16 @@ func TestKafkaPublishWithHeaders(t *testing.T) {
 	var consumer *KafkaClient
 	consumerApp := fx.New(
 		FXModule,
-		fx.Provide(
-			func() Config { return consumerCfg },
-		),
+		fx.Provide(func() Config { return consumerCfg }),
 		fx.Populate(&consumer),
 	)
 
 	require.NoError(t, consumerApp.Start(ctx))
-	defer consumerApp.Stop(ctx)
+	defer func() {
+		if err := consumerApp.Stop(ctx); err != nil {
+			t.Logf("failed to stop consumer app: %v", err)
+		}
+	}()
 
 	time.Sleep(2 * time.Second)
 
@@ -244,7 +238,6 @@ func TestKafkaPublishWithHeaders(t *testing.T) {
 			headers := msg.Header()
 			t.Logf("Headers: %v", headers)
 
-			// Verify headers
 			if headers["trace-id"] != "12345" {
 				errCh <- fmt.Errorf("expected trace-id to be 12345, got %v", headers["trace-id"])
 				return
@@ -256,11 +249,10 @@ func TestKafkaPublishWithHeaders(t *testing.T) {
 			}
 			t.Log("Message with headers committed successfully")
 			errCh <- nil
-			return
+			return //nolint:staticcheck
 		}
 	}()
 
-	// Publish with headers
 	headers := map[string]interface{}{
 		"trace-id": "12345",
 		"span-id":  "67890",
@@ -270,7 +262,6 @@ func TestKafkaPublishWithHeaders(t *testing.T) {
 	require.NoError(t, err)
 	t.Log("Message with headers published successfully")
 
-	// Wait for message to be consumed
 	select {
 	case err := <-errCh:
 		require.NoError(t, err)
@@ -278,7 +269,6 @@ func TestKafkaPublishWithHeaders(t *testing.T) {
 		t.Fatal("Timed out waiting for message to be consumed")
 	}
 
-	// Cancel context to stop consumer
 	consumeCancel()
 	wg.Wait()
 }
@@ -286,14 +276,12 @@ func TestKafkaPublishWithHeaders(t *testing.T) {
 // TestKafkaConsumerContextCancellation verifies that the Kafka consumer correctly handles
 // context cancellation during message consumption.
 func TestKafkaConsumerContextCancellation(t *testing.T) {
-	// Skip if running in short mode
 	if testing.Short() {
 		t.Skip("Skipping integration test in short mode")
 	}
 
 	ctx := context.Background()
 
-	// Initialize Kafka container
 	brokers, containerInstance := initializeKafka(ctx, t)
 	defer func() {
 		if err := containerInstance.Terminate(ctx); err != nil {
@@ -312,23 +300,23 @@ func TestKafkaConsumerContextCancellation(t *testing.T) {
 
 	app := fx.New(
 		FXModule,
-		fx.Provide(
-			func() Config { return cfg },
-		),
+		fx.Provide(func() Config { return cfg }),
 		fx.Populate(&client),
 	)
 
 	require.NoError(t, app.Start(ctx))
-	defer app.Stop(ctx)
+	defer func() {
+		if err := app.Stop(ctx); err != nil {
+			t.Logf("failed to stop app: %v", err)
+		}
+	}()
 
 	time.Sleep(2 * time.Second)
 
-	// Start consumer with a cancellable context
 	consumeCtx, consumeCancel := context.WithCancel(context.Background())
 	wg := &sync.WaitGroup{}
 	outChan := client.Consume(consumeCtx, wg)
 
-	// Trigger context cancellation after delay
 	wg.Add(1)
 	go func() {
 		defer wg.Done()
@@ -336,7 +324,6 @@ func TestKafkaConsumerContextCancellation(t *testing.T) {
 		consumeCancel()
 	}()
 
-	// Verify consumer shutdown and channel closure
 	select {
 	case _, ok := <-outChan:
 		if ok {
@@ -349,7 +336,7 @@ func TestKafkaConsumerContextCancellation(t *testing.T) {
 	wg.Wait()
 }
 
-// TestKafkaErrorTranslation verifies error translation works correctly
+// TestKafkaErrorTranslation verifies error translation works correctly.
 func TestKafkaErrorTranslation(t *testing.T) {
 	k := &KafkaClient{}
 
@@ -358,72 +345,50 @@ func TestKafkaErrorTranslation(t *testing.T) {
 		input    string
 		expected error
 	}{
-		{
-			name:     "connection refused",
-			input:    "connection refused",
-			expected: ErrConnectionFailed,
-		},
-		{
-			name:     "broker not available",
-			input:    "broker not available",
-			expected: ErrBrokerNotAvailable,
-		},
-		{
-			name:     "authentication failed",
-			input:    "authentication failed",
-			expected: ErrAuthenticationFailed,
-		},
-		{
-			name:     "topic not found",
-			input:    "topic not found",
-			expected: ErrTopicNotFound,
-		},
-		{
-			name:     "offset out of range",
-			input:    "offset out of range",
-			expected: ErrOffsetOutOfRange,
-		},
+		{"connection refused", "connection refused", ErrConnectionFailed},
+		{"broker not available", "broker not available", ErrBrokerNotAvailable},
+		{"authentication failed", "authentication failed", ErrAuthenticationFailed},
+		{"topic not found", "topic not found", ErrTopicNotFound},
+		{"offset out of range", "offset out of range", ErrOffsetOutOfRange},
 	}
 
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			err := fmt.Errorf("%s", tt.input)
-			result := k.TranslateError(err)
+			result := k.TranslateError(fmt.Errorf("%s", tt.input))
 			assert.Equal(t, tt.expected, result)
 		})
 	}
 }
 
-// TestKafkaErrorClassification verifies error classification methods
+// TestKafkaErrorClassification verifies error classification methods.
 func TestKafkaErrorClassification(t *testing.T) {
 	k := &KafkaClient{}
 
-	// Test retryable errors
 	assert.True(t, k.IsRetryableError(ErrConnectionFailed))
 	assert.True(t, k.IsRetryableError(ErrBrokerNotAvailable))
 	assert.False(t, k.IsRetryableError(ErrAuthenticationFailed))
 
-	// Test permanent errors
 	assert.True(t, k.IsPermanentError(ErrAuthenticationFailed))
 	assert.True(t, k.IsPermanentError(ErrTopicNotFound))
 	assert.False(t, k.IsPermanentError(ErrConnectionFailed))
 
-	// Test authentication errors
 	assert.True(t, k.IsAuthenticationError(ErrAuthenticationFailed))
 	assert.True(t, k.IsAuthenticationError(ErrInvalidCredentials))
 	assert.False(t, k.IsAuthenticationError(ErrConnectionFailed))
 }
 
 func initializeKafka(ctx context.Context, t *testing.T) ([]string, testcontainers.Container) {
+	t.Helper()
+
 	hostPort, err := getFreePort()
 	require.NoError(t, err)
 
 	containerInstance, err := createKafkaContainer(ctx, hostPort)
 	require.NoError(t, err)
 
-	// Wait for Kafka to be ready
+	dialer := &net.Dialer{Timeout: 2 * time.Second}
 	require.Eventually(t, func() bool {
-		conn, err := net.DialTimeout("tcp", net.JoinHostPort("localhost", hostPort), 2*time.Second)
+		conn, err := dialer.DialContext(ctx, "tcp", net.JoinHostPort("localhost", hostPort))
 		if err != nil {
 			return false
 		}
@@ -432,21 +397,25 @@ func initializeKafka(ctx context.Context, t *testing.T) ([]string, testcontainer
 	}, 60*time.Second, 500*time.Millisecond, "Kafka port not ready")
 
 	brokers := []string{fmt.Sprintf("localhost:%s", hostPort)}
-
-	// Create test topic to ensure it exists
-	createTestTopic(brokers, "test-topic", t)
+	createTestTopic(t, brokers, "test-topic")
 
 	return brokers, containerInstance
 }
 
-// createTestTopic creates a test topic using kafka-go admin operations
-func createTestTopic(brokers []string, topic string, t *testing.T) {
+// createTestTopic creates a test topic using kafka-go admin operations.
+func createTestTopic(t *testing.T, brokers []string, topic string) {
+	t.Helper()
+
 	conn, err := kafka.Dial("tcp", brokers[0])
 	if err != nil {
 		t.Logf("Warning: Could not create admin connection: %v", err)
 		return
 	}
-	defer conn.Close()
+	defer func() {
+		if err := conn.Close(); err != nil {
+			t.Logf("failed to close admin connection: %v", err)
+		}
+	}()
 
 	controller, err := conn.Controller()
 	if err != nil {
@@ -459,17 +428,17 @@ func createTestTopic(brokers []string, topic string, t *testing.T) {
 		t.Logf("Warning: Could not connect to controller: %v", err)
 		return
 	}
-	defer controllerConn.Close()
+	defer func() {
+		if err := controllerConn.Close(); err != nil {
+			t.Logf("failed to close controller connection: %v", err)
+		}
+	}()
 
-	topicConfigs := []kafka.TopicConfig{
-		{
-			Topic:             topic,
-			NumPartitions:     1,
-			ReplicationFactor: 1,
-		},
-	}
-
-	err = controllerConn.CreateTopics(topicConfigs...)
+	err = controllerConn.CreateTopics(kafka.TopicConfig{
+		Topic:             topic,
+		NumPartitions:     1,
+		ReplicationFactor: 1,
+	})
 	if err != nil {
 		t.Logf("Warning: Could not create topic (may already exist): %v", err)
 	} else {
@@ -483,10 +452,8 @@ func createKafkaContainer(ctx context.Context, hostPort string) (testcontainers.
 	}
 
 	req := testcontainers.ContainerRequest{
-		Image: "confluentinc/cp-kafka:7.5.0",
-		ExposedPorts: []string{
-			"9092/tcp",
-		},
+		Image:        "confluentinc/cp-kafka:7.5.0",
+		ExposedPorts: []string{"9092/tcp"},
 		Env: map[string]string{
 			"KAFKA_BROKER_ID":                                "1",
 			"KAFKA_LISTENER_SECURITY_PROTOCOL_MAP":           "PLAINTEXT:PLAINTEXT,PLAINTEXT_HOST:PLAINTEXT,CONTROLLER:PLAINTEXT",
@@ -514,23 +481,20 @@ func createKafkaContainer(ctx context.Context, hostPort string) (testcontainers.
 		),
 	}
 
-	var containerInstance testcontainers.Container
 	var lastErr error
-
 	for attempt := 0; attempt < 3; attempt++ {
-		containerInstance, lastErr = testcontainers.GenericContainer(ctx, testcontainers.GenericContainerRequest{
+		c, err := testcontainers.GenericContainer(ctx, testcontainers.GenericContainerRequest{
 			ContainerRequest: req,
 			Started:          true,
 		})
-		if lastErr == nil {
-			return containerInstance, nil
+		if err == nil {
+			return c, nil
 		}
-
-		if strings.Contains(lastErr.Error(), "docker.sock") {
+		lastErr = err
+		if strings.Contains(err.Error(), "docker.sock") {
 			time.Sleep(time.Duration(attempt+1) * time.Second)
 			continue
 		}
-
 		break
 	}
 
@@ -538,11 +502,10 @@ func createKafkaContainer(ctx context.Context, hostPort string) (testcontainers.
 }
 
 func getFreePort() (string, error) {
-	l, err := net.Listen("tcp", ":0")
+	l, err := net.Listen("tcp", "127.0.0.1:0") //nolint:gosec
 	if err != nil {
 		return "", err
 	}
-	defer l.Close()
-	addr := l.Addr().(*net.TCPAddr)
-	return strconv.Itoa(addr.Port), nil
+	defer func() { _ = l.Close() }()
+	return strconv.Itoa(l.Addr().(*net.TCPAddr).Port), nil
 }

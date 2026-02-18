@@ -2,6 +2,7 @@ package kafka
 
 import (
 	"context"
+	"errors"
 	"sync"
 	"testing"
 	"time"
@@ -258,7 +259,7 @@ func TestObserverErrorTracking(t *testing.T) {
 	}
 
 	op := ops[0]
-	if op.Error != testErr {
+	if !errors.Is(op.Error, testErr) {
 		t.Errorf("Expected error '%v', got '%v'", testErr, op.Error)
 	}
 	if op.Size != 0 {
@@ -284,12 +285,12 @@ func TestObserverConcurrency(t *testing.T) {
 
 	wg.Add(numGoroutines)
 	for i := 0; i < numGoroutines; i++ {
-		go func(id int) {
+		go func() {
 			defer wg.Done()
 			for j := 0; j < operationsPerGoroutine; j++ {
 				client.observeOperation("produce", "test-topic", "", time.Duration(j)*time.Microsecond, nil, int64(j))
 			}
-		}(i)
+		}()
 	}
 
 	wg.Wait()

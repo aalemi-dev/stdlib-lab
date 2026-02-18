@@ -384,7 +384,7 @@ func createReader(cfg Config, tlsConfig *tls.Config, mechanism sasl.Mechanism, c
 // createTLSConfig creates a TLS configuration from the provided config
 func createTLSConfig(cfg TLSConfig) (*tls.Config, error) {
 	tlsConfig := &tls.Config{
-		InsecureSkipVerify: cfg.InsecureSkipVerify,
+		InsecureSkipVerify: cfg.InsecureSkipVerify, //nolint:gosec
 	}
 
 	// Load CA certificate
