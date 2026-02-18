@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.2.0](https://github.com/aalemi-dev/stdlib-lab/compare/observability/v1.1.0...observability/v1.2.0) (2026-02-18)
+
+
+### Features
+
+* add kafka pkg ([e486502](https://github.com/aalemi-dev/stdlib-lab/commit/e48650248b7f63f422d285e3c47fc83ea3cd902c))
+
 ## [1.1.0](https://github.com/aalemi-dev/stdlib-lab/compare/observability/v1.0.0...observability/v1.1.0) (2026-02-18)
 
 
