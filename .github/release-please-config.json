@@ -16,6 +16,11 @@
       "release-type": "go",
       "package-name": "observability",
       "changelog-path": "CHANGELOG.md"
+    },
+    "metrics": {
+      "release-type": "go",
+      "package-name": "metrics",
+      "changelog-path": "CHANGELOG.md"
     }
   },
   "pull-request-title-pattern": "chore: release${component} ${version}",

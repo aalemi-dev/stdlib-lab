@@ -229,8 +229,8 @@ Observer implementations must be thread\-safe. They will be called concurrently 
     - [func NewNoOpObserver\(\) Observer](<#NewNoOpObserver>)
 - [type OperationContext](<#OperationContext>)
 
-<a name="NoOpObserver"></a>
 
+<a name="NoOpObserver"></a>
 ## type [NoOpObserver](<https://github.com/aalemi-dev/stdlib-lab/blob/main/observability/noop.go#L6>)
 
 NoOpObserver is a no\-op implementation of Observer. It does nothing when ObserveOperation is called. This can be useful
@@ -241,7 +241,6 @@ type NoOpObserver struct{}
 ```
 
 <a name="NoOpObserver.ObserveOperation"></a>
-
 ### func \(\*NoOpObserver\) [ObserveOperation](<https://github.com/aalemi-dev/stdlib-lab/blob/main/observability/noop.go#L9>)
 
 ```go
@@ -251,7 +250,6 @@ func (n *NoOpObserver) ObserveOperation(ctx OperationContext)
 ObserveOperation does nothing \(no\-op\).
 
 <a name="Observer"></a>
-
 ## type [Observer](<https://github.com/aalemi-dev/stdlib-lab/blob/main/observability/interface.go#L11-L15>)
 
 Observer is a unified interface for observability across all std packages. It allows external code to observe operations
@@ -269,7 +267,6 @@ type Observer interface {
 ```
 
 <a name="NewNoOpObserver"></a>
-
 ### func [NewNoOpObserver](<https://github.com/aalemi-dev/stdlib-lab/blob/main/observability/noop.go#L14>)
 
 ```go
@@ -279,7 +276,6 @@ func NewNoOpObserver() Observer
 NewNoOpObserver creates a new NoOpObserver.
 
 <a name="OperationContext"></a>
-
 ## type [OperationContext](<https://github.com/aalemi-dev/stdlib-lab/blob/main/observability/interface.go#L20-L71>)
 
 OperationContext contains all information about an infrastructure operation. This struct is designed to be generic

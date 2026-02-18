@@ -180,10 +180,10 @@ All methods on the TracerClient type and Span interface are safe for concurrent 
 - [type Span](<#Span>)
 - [type Tracer](<#Tracer>)
 - [type TracerClient](<#TracerClient>)
-    - [func NewClient\(cfg Config\) \(\*TracerClient, error\)](<#NewClient>)
-    - [func \(t \*TracerClient\) GetCarrier\(ctx context.Context\) map\[string\]string](<#TracerClient.GetCarrier>)
-    - [func \(t \*TracerClient\) SetCarrierOnContext\(ctx context.Context, carrier map\[string\]string\) context.Context](<#TracerClient.SetCarrierOnContext>)
-    - [func \(t \*TracerClient\) StartSpan\(ctx context.Context, name string\) \(context.Context, Span\)](<#TracerClient.StartSpan>)
+  - [func NewClient\(cfg Config\) \(\*TracerClient, error\)](<#NewClient>)
+  - [func \(t \*TracerClient\) GetCarrier\(ctx context.Context\) map\[string\]string](<#TracerClient.GetCarrier>)
+  - [func \(t \*TracerClient\) SetCarrierOnContext\(ctx context.Context, carrier map\[string\]string\) context.Context](<#TracerClient.SetCarrierOnContext>)
+  - [func \(t \*TracerClient\) StartSpan\(ctx context.Context, name string\) \(context.Context, Span\)](<#TracerClient.StartSpan>)
 
 
 ## Variables
@@ -223,7 +223,6 @@ var FXModule = fx.Module("tracer",
 ```
 
 <a name="RegisterTracerLifecycle"></a>
-
 ## func [RegisterTracerLifecycle](<https://github.com/aalemi-dev/stdlib-lab/blob/main/tracer/fx_module.go#L65>)
 
 ```go
@@ -256,7 +255,6 @@ app := fx.New(
 ```
 
 <a name="Config"></a>
-
 ## type [Config](<https://github.com/aalemi-dev/stdlib-lab/blob/main/tracer/configs.go#L6-L34>)
 
 Config defines the configuration for the OpenTelemetry tracer. It controls service identification, environment settings,
@@ -295,7 +293,6 @@ type Config struct {
 ```
 
 <a name="Span"></a>
-
 ## type [Span](<https://github.com/aalemi-dev/stdlib-lab/blob/main/tracer/interface.go#L48-L85>)
 
 Span represents a trace span for tracking operations in distributed systems. It provides methods for ending the span,
@@ -355,7 +352,6 @@ type Span interface {
 ```
 
 <a name="Tracer"></a>
-
 ## type [Tracer](<https://github.com/aalemi-dev/stdlib-lab/blob/main/tracer/interface.go#L12-L28>)
 
 Tracer provides distributed tracing capabilities for applications. It wraps OpenTelemetry functionality with a
@@ -384,7 +380,6 @@ type Tracer interface {
 ```
 
 <a name="TracerClient"></a>
-
 ## type [TracerClient](<https://github.com/aalemi-dev/stdlib-lab/blob/main/tracer/setup.go#L32-L34>)
 
 TracerClient provides a simplified API for distributed tracing with OpenTelemetry. It wraps the OpenTelemetry
@@ -407,7 +402,6 @@ type TracerClient struct {
 ```
 
 <a name="NewClient"></a>
-
 ### func [NewClient](<https://github.com/aalemi-dev/stdlib-lab/blob/main/tracer/setup.go#L70>)
 
 ```go
@@ -455,7 +449,6 @@ defer span.End()
 ```
 
 <a name="TracerClient.GetCarrier"></a>
-
 ### func \(\*TracerClient\) [GetCarrier](<https://github.com/aalemi-dev/stdlib-lab/blob/main/tracer/utils.go#L231>)
 
 ```go
@@ -511,7 +504,6 @@ func makeHttpRequest(ctx context.Context, url string) (*http.Response, error) {
 ```
 
 <a name="TracerClient.SetCarrierOnContext"></a>
-
 ### func \(\*TracerClient\) [SetCarrierOnContext](<https://github.com/aalemi-dev/stdlib-lab/blob/main/tracer/utils.go#L284>)
 
 ```go
@@ -568,7 +560,6 @@ func httpHandler(w http.ResponseWriter, r *http.Request) {
 ```
 
 <a name="TracerClient.StartSpan"></a>
-
 ### func \(\*TracerClient\) [StartSpan](<https://github.com/aalemi-dev/stdlib-lab/blob/main/tracer/utils.go#L176>)
 
 ```go
