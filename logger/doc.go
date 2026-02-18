@@ -26,7 +26,7 @@
 //
 // For simple applications or tests, create a logger directly:
 //
-//	import "github.com/Abolfazl-Alemi/stdlib-lab/logger"
+//	import "github.com/aalemi-dev/stdlib-lab/logger"
 //
 //	// Create a new logger (returns concrete *LoggerClient)
 //	log := logger.NewLoggerClient(logger.Config{
@@ -53,7 +53,7 @@
 // dependency injection container:
 //
 //	import (
-//		"github.com/Abolfazl-Alemi/stdlib-lab/logger"
+//		"github.com/aalemi-dev/stdlib-lab/logger"
 //		"go.uber.org/fx"
 //	)
 //
@@ -79,7 +79,7 @@
 //
 //	package myapp
 //
-//	import stdLogger "github.com/Abolfazl-Alemi/stdlib-lab/logger"
+//	import stdLogger "github.com/aalemi-dev/stdlib-lab/logger"
 //
 //	// Use type alias to reference the Logger interface
 //	type Logger = stdLogger.Logger

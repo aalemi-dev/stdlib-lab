@@ -4,7 +4,7 @@ import (
 	"context"
 	"errors"
 
-	"github.com/Abolfazl-Alemi/stdlib-lab/logger"
+	"github.com/aalemi-dev/stdlib-lab/logger"
 )
 
 func ExampleNewLoggerClient() {
