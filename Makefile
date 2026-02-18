@@ -67,7 +67,7 @@ install-tools:
 	@echo "Installing tools..."
 	$(GO) install github.com/evilmartians/lefthook@latest
 	$(GO) install golang.org/x/tools/cmd/goimports@latest
-	$(GO) install github.com/princjef/gomarkdoc/cmd/gomarkdoc@latest
+	$(GO) install github.com/princjef/gomarkdoc/cmd/gomarkdoc@v1.1.0
 	$(GO) install github.com/golangci/golangci-lint/v2/cmd/golangci-lint@latest
 	@echo "All tools installed"
 
@@ -79,7 +79,7 @@ docs:
 	GOMARKDOC="$$GOBIN/gomarkdoc"; \
 	if [ ! -f "$$GOMARKDOC" ]; then \
 		echo "gomarkdoc not found, installing..."; \
-		$(GO) install github.com/princjef/gomarkdoc/cmd/gomarkdoc@latest; \
+		$(GO) install github.com/princjef/gomarkdoc/cmd/gomarkdoc@v1.1.0; \
 	fi; \
 	mkdir -p docs; \
 	rm -f docs/*.md; \

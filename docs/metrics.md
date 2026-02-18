@@ -566,6 +566,7 @@ func TestMyFunction(t *testing.T) {
 - [type Observer](<#Observer>)
 - [type Summary](<#Summary>)
 
+
 ## Constants
 
 <a name="DefaultSystemMetricsAddress"></a>Default addresses for metrics servers if none is specified.
@@ -634,7 +635,6 @@ var FXModule = fx.Module("metrics",
 ```
 
 <a name="Ptr"></a>
-
 ## func [Ptr](<https://github.com/aalemi-dev/stdlib-lab/blob/main/metrics/configs.go#L78>)
 
 ```go
@@ -654,7 +654,6 @@ cfg := metrics.Config{
 ```
 
 <a name="RegisterMetricsLifecycle"></a>
-
 ## func [RegisterMetricsLifecycle](<https://github.com/aalemi-dev/stdlib-lab/blob/main/metrics/fx_module.go#L79>)
 
 ```go
@@ -682,7 +681,6 @@ Note: This function is automatically invoked by the FXModule and does not need t
 code.
 
 <a name="Config"></a>
-
 ## type [Config](<https://github.com/aalemi-dev/stdlib-lab/blob/main/metrics/configs.go#L15-L66>)
 
 Config defines the configuration structure for the Prometheus metrics servers. It contains settings that control how
@@ -748,7 +746,6 @@ type Config struct {
 ```
 
 <a name="Counter"></a>
-
 ## type [Counter](<https://github.com/aalemi-dev/stdlib-lab/blob/main/metrics/types.go#L11-L22>)
 
 Counter represents a cumulative metric that only increases. It is used to track totals such as request counts, errors,
@@ -772,7 +769,6 @@ type Counter interface {
 ```
 
 <a name="Gauge"></a>
-
 ## type [Gauge](<https://github.com/aalemi-dev/stdlib-lab/blob/main/metrics/types.go#L28-L51>)
 
 Gauge represents a metric that can arbitrarily go up and down. It is used for values like active connections,
@@ -808,7 +804,6 @@ type Gauge interface {
 ```
 
 <a name="Histogram"></a>
-
 ## type [Histogram](<https://github.com/aalemi-dev/stdlib-lab/blob/main/metrics/types.go#L57-L65>)
 
 Histogram tracks the distribution of observations \(e.g., request durations or response sizes\). Histograms calculate
@@ -830,7 +825,7 @@ type Histogram interface {
 
 <a name="Metrics"></a>
 
-## type [Metrics](<https://github.com/aalemi-dev/stdlib-lab/blob/main/metrics/setup.go#L17-L40>)
+## type [Metrics](<https://github.com/aalemi-dev/stdlib-lab/blob/main/metrics/setup.go#L18-L41>)
 
 Metrics encapsulates two separate Prometheus registries and HTTP servers: 1. System metrics \(Go runtime, process, build
 info\) \- exposed on SystemServer 2. Application metrics \(user\-defined custom metrics\) \- exposed on
@@ -865,7 +860,7 @@ type Metrics struct {
 
 <a name="NewMetrics"></a>
 
-### func [NewMetrics](<https://github.com/aalemi-dev/stdlib-lab/blob/main/metrics/setup.go#L78>)
+### func [NewMetrics](<https://github.com/aalemi-dev/stdlib-lab/blob/main/metrics/setup.go#L79>)
 
 ```go
 func NewMetrics(cfg Config) *Metrics
@@ -915,7 +910,6 @@ Access metrics at:
 - Application metrics: http://localhost:9091/metrics
 
 <a name="Metrics.CreateCounter"></a>
-
 ### func \(\*Metrics\) [CreateCounter](<https://github.com/aalemi-dev/stdlib-lab/blob/main/metrics/utils.go#L17>)
 
 ```go
@@ -935,7 +929,6 @@ counter.WithLabelValues("POST", "500").Inc()
 ```
 
 <a name="Metrics.CreateGauge"></a>
-
 ### func \(\*Metrics\) [CreateGauge](<https://github.com/aalemi-dev/stdlib-lab/blob/main/metrics/utils.go#L56>)
 
 ```go
@@ -956,7 +949,6 @@ gauge.WithLabelValues("postgres").Dec()
 ```
 
 <a name="Metrics.CreateHistogram"></a>
-
 ### func \(\*Metrics\) [CreateHistogram](<https://github.com/aalemi-dev/stdlib-lab/blob/main/metrics/utils.go#L38>)
 
 ```go
@@ -980,7 +972,6 @@ hist.WithLabelValues("/api/search").Observe(0.25)
 ```
 
 <a name="Metrics.CreateSummary"></a>
-
 ### func \(\*Metrics\) [CreateSummary](<https://github.com/aalemi-dev/stdlib-lab/blob/main/metrics/utils.go#L77>)
 
 ```go
@@ -1005,7 +996,6 @@ summary.WithLabelValues("/api/search").Observe(0.25)
 ```
 
 <a name="MetricsCollector"></a>
-
 ## type [MetricsCollector](<https://github.com/aalemi-dev/stdlib-lab/blob/main/metrics/interface.go#L11-L55>)
 
 MetricsCollector provides an interface for collecting and exposing application metrics. It abstracts metric operations
@@ -1066,7 +1056,6 @@ type MetricsCollector interface {
 ```
 
 <a name="Observer"></a>
-
 ## type [Observer](<https://github.com/aalemi-dev/stdlib-lab/blob/main/metrics/types.go#L82-L85>)
 
 Observer is a common interface for metrics that observe values \(Histogram and Summary\).
@@ -1079,7 +1068,6 @@ type Observer interface {
 ```
 
 <a name="Summary"></a>
-
 ## type [Summary](<https://github.com/aalemi-dev/stdlib-lab/blob/main/metrics/types.go#L71-L79>)
 
 Summary calculates streaming quantiles of observed values on the client side. Unlike histograms, summaries cannot be
