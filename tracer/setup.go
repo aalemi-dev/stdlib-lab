@@ -68,11 +68,15 @@ type TracerClient struct {
 //	ctx, span := tracerClient.StartSpan(context.Background(), "process-request")
 //	defer span.End()
 func NewClient(cfg Config) (*TracerClient, error) {
+	return newClientWithContext(context.Background(), cfg)
+}
+
+func newClientWithContext(ctx context.Context, cfg Config) (*TracerClient, error) {
 	var options []trace.TracerProviderOption
 
 	if cfg.EnableExport {
 		client := otlptracehttp.NewClient()
-		exporter, err := otlptrace.New(context.Background(), client)
+		exporter, err := otlptrace.New(ctx, client)
 		if err != nil {
 			return nil, fmt.Errorf("failed to initialize OTLP exporter: %w", err)
 		}
