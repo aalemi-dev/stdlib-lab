@@ -26,6 +26,7 @@ jobs:
           - logger
           - tracer
           - observability
+          - metrics
 
     steps:
       - name: Checkout

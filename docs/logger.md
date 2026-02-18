@@ -203,17 +203,17 @@ func main() {
 - [type Config](<#Config>)
 - [type Logger](<#Logger>)
 - [type LoggerClient](<#LoggerClient>)
-    - [func NewLoggerClient\(cfg Config\) \*LoggerClient](<#NewLoggerClient>)
-    - [func \(l \*LoggerClient\) Debug\(msg string, err error, fields ...map\[string\]interface\{\}\)](<#LoggerClient.Debug>)
-    - [func \(l \*LoggerClient\) DebugWithContext\(ctx context.Context, msg string, err error, fields ...map\[string\]interface\{\}\)](<#LoggerClient.DebugWithContext>)
-    - [func \(l \*LoggerClient\) Error\(msg string, err error, fields ...map\[string\]interface\{\}\)](<#LoggerClient.Error>)
-    - [func \(l \*LoggerClient\) ErrorWithContext\(ctx context.Context, msg string, err error, fields ...map\[string\]interface\{\}\)](<#LoggerClient.ErrorWithContext>)
-    - [func \(l \*LoggerClient\) Fatal\(msg string, err error, fields ...map\[string\]interface\{\}\)](<#LoggerClient.Fatal>)
-    - [func \(l \*LoggerClient\) FatalWithContext\(ctx context.Context, msg string, err error, fields ...map\[string\]interface\{\}\)](<#LoggerClient.FatalWithContext>)
-    - [func \(l \*LoggerClient\) Info\(msg string, err error, fields ...map\[string\]interface\{\}\)](<#LoggerClient.Info>)
-    - [func \(l \*LoggerClient\) InfoWithContext\(ctx context.Context, msg string, err error, fields ...map\[string\]interface\{\}\)](<#LoggerClient.InfoWithContext>)
-    - [func \(l \*LoggerClient\) Warn\(msg string, err error, fields ...map\[string\]interface\{\}\)](<#LoggerClient.Warn>)
-    - [func \(l \*LoggerClient\) WarnWithContext\(ctx context.Context, msg string, err error, fields ...map\[string\]interface\{\}\)](<#LoggerClient.WarnWithContext>)
+  - [func NewLoggerClient\(cfg Config\) \*LoggerClient](<#NewLoggerClient>)
+  - [func \(l \*LoggerClient\) Debug\(msg string, err error, fields ...map\[string\]interface\{\}\)](<#LoggerClient.Debug>)
+  - [func \(l \*LoggerClient\) DebugWithContext\(ctx context.Context, msg string, err error, fields ...map\[string\]interface\{\}\)](<#LoggerClient.DebugWithContext>)
+  - [func \(l \*LoggerClient\) Error\(msg string, err error, fields ...map\[string\]interface\{\}\)](<#LoggerClient.Error>)
+  - [func \(l \*LoggerClient\) ErrorWithContext\(ctx context.Context, msg string, err error, fields ...map\[string\]interface\{\}\)](<#LoggerClient.ErrorWithContext>)
+  - [func \(l \*LoggerClient\) Fatal\(msg string, err error, fields ...map\[string\]interface\{\}\)](<#LoggerClient.Fatal>)
+  - [func \(l \*LoggerClient\) FatalWithContext\(ctx context.Context, msg string, err error, fields ...map\[string\]interface\{\}\)](<#LoggerClient.FatalWithContext>)
+  - [func \(l \*LoggerClient\) Info\(msg string, err error, fields ...map\[string\]interface\{\}\)](<#LoggerClient.Info>)
+  - [func \(l \*LoggerClient\) InfoWithContext\(ctx context.Context, msg string, err error, fields ...map\[string\]interface\{\}\)](<#LoggerClient.InfoWithContext>)
+  - [func \(l \*LoggerClient\) Warn\(msg string, err error, fields ...map\[string\]interface\{\}\)](<#LoggerClient.Warn>)
+  - [func \(l \*LoggerClient\) WarnWithContext\(ctx context.Context, msg string, err error, fields ...map\[string\]interface\{\}\)](<#LoggerClient.WarnWithContext>)
 
 
 ## Constants
@@ -276,7 +276,6 @@ var FXModule = fx.Module("logger",
 ```
 
 <a name="RegisterLoggerLifecycle"></a>
-
 ## func [RegisterLoggerLifecycle](<https://github.com/aalemi-dev/stdlib-lab/blob/main/logger/fx_module.go#L56>)
 
 ```go
@@ -302,7 +301,6 @@ Note: This function is automatically invoked by the FXModule and does not need t
 code.
 
 <a name="Config"></a>
-
 ## type [Config](<https://github.com/aalemi-dev/stdlib-lab/blob/main/logger/configs.go#L25-L77>)
 
 Config defines the configuration structure for the logger. It contains settings that control the behavior of the logging
@@ -365,7 +363,6 @@ type Config struct {
 ```
 
 <a name="Logger"></a>
-
 ## type [Logger](<https://github.com/aalemi-dev/stdlib-lab/blob/main/logger/interface.go#L11-L45>)
 
 Logger provides a high\-level interface for structured logging. It wraps Uber's Zap logger with a simplified API and
@@ -409,7 +406,6 @@ type Logger interface {
 ```
 
 <a name="LoggerClient"></a>
-
 ## type [LoggerClient](<https://github.com/aalemi-dev/stdlib-lab/blob/main/logger/setup.go#L16-L26>)
 
 LoggerClient is a wrapper around Uber's Zap logger. It provides a simplified interface to the underlying Zap logger,
@@ -428,7 +424,6 @@ type LoggerClient struct {
 ```
 
 <a name="NewLoggerClient"></a>
-
 ### func [NewLoggerClient](<https://github.com/aalemi-dev/stdlib-lab/blob/main/logger/setup.go#L67>)
 
 ```go
@@ -505,7 +500,6 @@ func main() {
 </details>
 
 <a name="LoggerClient.Debug"></a>
-
 ### func \(\*LoggerClient\) [Debug](<https://github.com/aalemi-dev/stdlib-lab/blob/main/logger/utils.go#L108>)
 
 ```go
@@ -558,7 +552,6 @@ func main() {
 </details>
 
 <a name="LoggerClient.DebugWithContext"></a>
-
 ### func \(\*LoggerClient\) [DebugWithContext](<https://github.com/aalemi-dev/stdlib-lab/blob/main/logger/utils.go#L213>)
 
 ```go
@@ -586,7 +579,6 @@ logger.DebugWithContext(ctx, "Processing request", nil, map[string]interface{}{
 ```
 
 <a name="LoggerClient.Error"></a>
-
 ### func \(\*LoggerClient\) [Error](<https://github.com/aalemi-dev/stdlib-lab/blob/main/logger/utils.go#L149>)
 
 ```go
@@ -644,7 +636,6 @@ func main() {
 </details>
 
 <a name="LoggerClient.ErrorWithContext"></a>
-
 ### func \(\*LoggerClient\) [ErrorWithContext](<https://github.com/aalemi-dev/stdlib-lab/blob/main/logger/utils.go#L258>)
 
 ```go
@@ -706,7 +697,6 @@ func main() {
 </details>
 
 <a name="LoggerClient.Fatal"></a>
-
 ### func \(\*LoggerClient\) [Fatal](<https://github.com/aalemi-dev/stdlib-lab/blob/main/logger/utils.go#L172>)
 
 ```go
@@ -736,7 +726,6 @@ if configErr != nil {
 Note: This function does not return as it terminates the application.
 
 <a name="LoggerClient.FatalWithContext"></a>
-
 ### func \(\*LoggerClient\) [FatalWithContext](<https://github.com/aalemi-dev/stdlib-lab/blob/main/logger/utils.go#L285>)
 
 ```go
@@ -769,7 +758,6 @@ if configErr != nil {
 Note: This function does not return as it terminates the application.
 
 <a name="LoggerClient.Info"></a>
-
 ### func \(\*LoggerClient\) [Info](<https://github.com/aalemi-dev/stdlib-lab/blob/main/logger/utils.go#L88>)
 
 ```go
@@ -821,7 +809,6 @@ func main() {
 </details>
 
 <a name="LoggerClient.InfoWithContext"></a>
-
 ### func \(\*LoggerClient\) [InfoWithContext](<https://github.com/aalemi-dev/stdlib-lab/blob/main/logger/utils.go#L191>)
 
 ```go
@@ -880,7 +867,6 @@ func main() {
 </details>
 
 <a name="LoggerClient.Warn"></a>
-
 ### func \(\*LoggerClient\) [Warn](<https://github.com/aalemi-dev/stdlib-lab/blob/main/logger/utils.go#L127>)
 
 ```go
@@ -906,7 +892,6 @@ logger.Warn("High resource usage detected", nil, map[string]interface{}{
 ```
 
 <a name="LoggerClient.WarnWithContext"></a>
-
 ### func \(\*LoggerClient\) [WarnWithContext](<https://github.com/aalemi-dev/stdlib-lab/blob/main/logger/utils.go#L234>)
 
 ```go
