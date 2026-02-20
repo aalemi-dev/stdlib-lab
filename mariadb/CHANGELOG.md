@@ -1,1 +1,13 @@
 # Changelog
+
+## [1.1.0](https://github.com/aalemi-dev/stdlib-lab/compare/mariadb/v1.0.0...mariadb/v1.1.0) (2026-02-20)
+
+
+### Features
+
+* add database pkg ([00876e0](https://github.com/aalemi-dev/stdlib-lab/commit/00876e0f054c0d1b9dc8dfb4e481c56759cee40b))
+* **logger:** improve logger compatibility with variadic fields ([2596caf](https://github.com/aalemi-dev/stdlib-lab/commit/2596caf6758190b5847786f5348124f0ede01bde))
+* **mariadb:** add query builder with fluent API and observability ([f59f118](https://github.com/aalemi-dev/stdlib-lab/commit/f59f118c2e1d775ccad08347567f3ca880b79439))
+* **postgres:** upgrade dependencies, add tests, sequentialize parallel test execution ([3d472b1](https://github.com/aalemi-dev/stdlib-lab/commit/3d472b1d5ffd02a370e7b10a97a23d6c9ae0b4f0))
+
+## Changelog
