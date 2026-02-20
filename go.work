@@ -1,9 +1,11 @@
 go 1.25.4
 
 use (
-	./logger
-	./observability
-	./tracer
-	./metrics
 	./kafka
+	./logger
+	./mariadb
+	./metrics
+	./observability
+	./postgres
+	./tracer
 )
