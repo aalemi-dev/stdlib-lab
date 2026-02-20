@@ -12,6 +12,8 @@ infrastructure.
 | [`observability`](./observability) | Unified observer interface for infrastructure packages          | [![Go Reference](https://pkg.go.dev/badge/github.com/aalemi-dev/stdlib-lab/observability.svg)](https://pkg.go.dev/github.com/aalemi-dev/stdlib-lab/observability) |
 | [`metrics`](./metrics)             | Prometheus metrics with dual-endpoint separation and fx support | [![Go Reference](https://pkg.go.dev/badge/github.com/aalemi-dev/stdlib-lab/metrics.svg)](https://pkg.go.dev/github.com/aalemi-dev/stdlib-lab/metrics)             |
 | [`kafka`](./kafka)                 | Apache Kafka client with serialization, SASL/TLS and fx support | [![Go Reference](https://pkg.go.dev/badge/github.com/aalemi-dev/stdlib-lab/kafka.svg)](https://pkg.go.dev/github.com/aalemi-dev/stdlib-lab/kafka)                 |
+| [`mariadb`](./mariadb)             | MariaDB/MySQL client with GORM, migrations, and fx support      | [![Go Reference](https://pkg.go.dev/badge/github.com/aalemi-dev/stdlib-lab/mariadb.svg)](https://pkg.go.dev/github.com/aalemi-dev/stdlib-lab/mariadb)             |
+| [`postgres`](./postgres)           | PostgreSQL client with GORM, migrations, and fx support         | [![Go Reference](https://pkg.go.dev/badge/github.com/aalemi-dev/stdlib-lab/postgres.svg)](https://pkg.go.dev/github.com/aalemi-dev/stdlib-lab/postgres)           |
 
 ## Requirements
 
