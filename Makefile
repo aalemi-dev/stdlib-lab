@@ -18,30 +18,68 @@ DOCKER_SOCK ?= $(shell \
 		echo "unix:///var/run/docker.sock"; \
 	fi)
 
-# Run tests with coverage for all modules
+# Run tests with coverage for all modules (parallel)
 test:
-	@echo "Running tests..."
-	@for pkg in $$(find . -maxdepth 1 -mindepth 1 -type d | grep -v -E "^\./(\.|docs|vendor)"); do \
+	@TMPDIR=$$(mktemp -d); \
+	PIDS=""; \
+	for pkg in $$(find . -maxdepth 1 -mindepth 1 -type d | grep -v -E "^\./(\.|docs|vendor)" | sort); do \
 		if [ ! -f "$$pkg/go.mod" ]; then continue; fi; \
 		pkgname=$$(basename $$pkg); \
-		echo "Testing $$pkgname..."; \
-		if [ "$$pkgname" = "kafka" ]; then \
-			TEST_CMD="DOCKER_HOST=$(DOCKER_SOCK) TESTCONTAINERS_RYUK_DISABLED=true $(GO) test -v -race -count=1 -coverprofile=coverage.out -covermode=atomic ./..."; \
+		if [ "$$pkgname" = "kafka" ] || [ "$$pkgname" = "mariadb" ] || [ "$$pkgname" = "postgres" ]; then \
+			TEST_CMD="DOCKER_HOST=$(DOCKER_SOCK) TESTCONTAINERS_RYUK_DISABLED=true $(GO) test -v -race -count=1 -coverprofile=$$TMPDIR/$$pkgname.cov -covermode=atomic ./..."; \
 		else \
-			TEST_CMD="$(GO) test -v -race -count=1 -coverprofile=coverage.out -covermode=atomic ./..."; \
+			TEST_CMD="$(GO) test -v -race -count=1 -coverprofile=$$TMPDIR/$$pkgname.cov -covermode=atomic ./..."; \
 		fi; \
-		(cd $$pkg && eval "$$TEST_CMD" && \
-		COVERAGE=$$($(GO) tool cover -func=coverage.out | grep total | awk '{print $$3}' | tr -d '%') && \
-		echo "  Coverage: $${COVERAGE}%  (threshold: $(COVERAGE_THRESHOLD)%)" && \
-		if [ "$$(echo "$$COVERAGE < $(COVERAGE_THRESHOLD)" | bc -l)" -eq 1 ]; then \
-			echo "  ❌ Coverage $${COVERAGE}% is below threshold $(COVERAGE_THRESHOLD)%"; \
-			rm -f coverage.out; \
-			exit 1; \
+		( \
+			cd $$pkg && eval "$$TEST_CMD" > "$$TMPDIR/$$pkgname.out" 2>&1; \
+			echo $$? > "$$TMPDIR/$$pkgname.exit"; \
+		) & \
+		PIDS="$$PIDS $$!"; \
+	done; \
+	for pid in $$PIDS; do wait $$pid 2>/dev/null || true; done; \
+	TOTAL_PASS=0; TOTAL_FAIL=0; ANY_ERROR=0; \
+	for outfile in $$(ls "$$TMPDIR"/*.out 2>/dev/null | sort); do \
+		pkgname=$$(basename "$$outfile" .out); \
+		PKG_EXIT=$$(cat "$$TMPDIR/$$pkgname.exit" 2>/dev/null || echo 1); \
+		echo ""; \
+		echo "── $$pkgname ──────────────────────────────────────"; \
+		cat "$$outfile"; \
+		PKG_PASS=$$(grep -c '^--- PASS:' "$$outfile" || true); \
+		PKG_FAIL=$$(grep -c '^--- FAIL:' "$$outfile" || true); \
+		TOTAL_PASS=$$((TOTAL_PASS + PKG_PASS)); \
+		TOTAL_FAIL=$$((TOTAL_FAIL + PKG_FAIL)); \
+		grep '^--- FAIL:' "$$outfile" | awk '{print $$3}' | while read -r name; do \
+			echo "    $$pkgname/$$name"; \
+		done >> "$$TMPDIR/failed_tests"; \
+		if [ "$$PKG_EXIT" -eq 0 ] && [ -f "$$TMPDIR/$$pkgname.cov" ]; then \
+			COVERAGE=$$($(GO) tool cover -func="$$TMPDIR/$$pkgname.cov" | grep total | awk '{print $$3}' | tr -d '%'); \
+			echo "  Coverage: $${COVERAGE}%  (threshold: $(COVERAGE_THRESHOLD)%)"; \
+			if [ "$$(echo "$$COVERAGE < $(COVERAGE_THRESHOLD)" | bc -l)" -eq 1 ]; then \
+				echo "  ❌ Coverage $${COVERAGE}% is below threshold $(COVERAGE_THRESHOLD)%"; \
+				ANY_ERROR=1; \
+			else \
+				echo "  ✅ Coverage ok"; \
+			fi; \
 		else \
-			echo "  ✅ Coverage ok"; \
-			rm -f coverage.out; \
-		fi); \
-	done
+			[ "$$PKG_EXIT" -ne 0 ] && ANY_ERROR=1; \
+		fi; \
+	done; \
+	TOTAL=$$((TOTAL_PASS + TOTAL_FAIL)); \
+	echo ""; \
+	echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"; \
+	echo "  Test Summary"; \
+	echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"; \
+	printf "  Total:     %d\n" "$$TOTAL"; \
+	printf "  ✅ Passed: %d\n" "$$TOTAL_PASS"; \
+	printf "  ❌ Failed: %d\n" "$$TOTAL_FAIL"; \
+	if [ -s "$$TMPDIR/failed_tests" ]; then \
+		echo ""; \
+		echo "  Failed tests:"; \
+		cat "$$TMPDIR/failed_tests"; \
+	fi; \
+	echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"; \
+	rm -rf "$$TMPDIR"; \
+	exit $$ANY_ERROR
 
 # Open a pull request against main, deriving the title from the branch name
 # Branch format: type/short-description → "type: short description"

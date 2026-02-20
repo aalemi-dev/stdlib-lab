@@ -26,6 +26,16 @@
       "release-type": "go",
       "package-name": "kafka",
       "changelog-path": "CHANGELOG.md"
+    },
+    "mariadb": {
+      "release-type": "go",
+      "package-name": "mariadb",
+      "changelog-path": "CHANGELOG.md"
+    },
+    "postgres": {
+      "release-type": "go",
+      "package-name": "postgres",
+      "changelog-path": "CHANGELOG.md"
     }
   },
   "pull-request-title-pattern": "chore: release${component} ${version}",

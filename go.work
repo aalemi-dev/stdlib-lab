@@ -6,4 +6,6 @@ use (
 	./tracer
 	./metrics
 	./kafka
+	./mariadb
+	./postgres
 )

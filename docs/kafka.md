@@ -1019,6 +1019,7 @@ be called once.
     - [func \(s \*StringSerializer\) Serialize\(data interface\{\}\) \(\[\]byte, error\)](<#StringSerializer.Serialize>)
 - [type TLSConfig](<#TLSConfig>)
 
+
 ## Constants
 
 <a name="DefaultMinBytes"></a>Default values for configuration
@@ -1244,7 +1245,6 @@ var FXModule = fx.Module("kafka",
 ```
 
 <a name="RegisterKafkaLifecycle"></a>
-
 ## func [RegisterKafkaLifecycle](<https://github.com/aalemi-dev/stdlib-lab/blob/main/kafka/fx_module.go#L140>)
 
 ```go
@@ -1267,7 +1267,6 @@ This ensures that the Kafka client remains available throughout the application'
 during shutdown.
 
 <a name="ValidateDataType"></a>
-
 ## func [ValidateDataType](<https://github.com/aalemi-dev/stdlib-lab/blob/main/kafka/serializer.go#L537>)
 
 ```go
@@ -1278,7 +1277,6 @@ ValidateDataType checks if the provided DataType is supported Returns error if D
 none is provided
 
 <a name="AvroDeserializer"></a>
-
 ## type [AvroDeserializer](<https://github.com/aalemi-dev/stdlib-lab/blob/main/kafka/serializer.go#L221-L224>)
 
 AvroDeserializer implements Deserializer for Apache Avro format.
@@ -1291,7 +1289,6 @@ type AvroDeserializer struct {
 ```
 
 <a name="AvroDeserializer.Deserialize"></a>
-
 ### func \(\*AvroDeserializer\) [Deserialize](<https://github.com/aalemi-dev/stdlib-lab/blob/main/kafka/serializer.go#L227>)
 
 ```go
@@ -1301,7 +1298,6 @@ func (a *AvroDeserializer) Deserialize(data []byte, target interface{}) error
 Deserialize converts Avro bytes to the target structure.
 
 <a name="AvroSerializer"></a>
-
 ## type [AvroSerializer](<https://github.com/aalemi-dev/stdlib-lab/blob/main/kafka/serializer.go#L197-L200>)
 
 AvroSerializer implements Serializer for Apache Avro format.
@@ -1328,7 +1324,6 @@ type AvroSerializer struct {
 ```
 
 <a name="AvroSerializer.Serialize"></a>
-
 ### func \(\*AvroSerializer\) [Serialize](<https://github.com/aalemi-dev/stdlib-lab/blob/main/kafka/serializer.go#L203>)
 
 ```go
@@ -1338,7 +1333,6 @@ func (a *AvroSerializer) Serialize(data interface{}) ([]byte, error)
 Serialize converts data to Avro bytes.
 
 <a name="Client"></a>
-
 ## type [Client](<https://github.com/aalemi-dev/stdlib-lab/blob/main/kafka/interface.go#L12-L65>)
 
 Client provides a high\-level interface for interacting with Apache Kafka. It abstracts producer and consumer operations
@@ -1395,7 +1389,6 @@ type Client interface {
 ```
 
 <a name="Config"></a>
-
 ## type [Config](<https://github.com/aalemi-dev/stdlib-lab/blob/main/kafka/configs.go#L11-L118>)
 
 Config defines the top\-level configuration structure for the Kafka client. It contains all the necessary configuration
@@ -1513,7 +1506,6 @@ type Config struct {
 ```
 
 <a name="ConsumerMessage"></a>
-
 ## type [ConsumerMessage](<https://github.com/aalemi-dev/stdlib-lab/blob/main/kafka/utils.go#L14-L18>)
 
 ConsumerMessage implements the Message interface and wraps a Kafka message.
@@ -1525,7 +1517,6 @@ type ConsumerMessage struct {
 ```
 
 <a name="ConsumerMessage.Body"></a>
-
 ### func \(\*ConsumerMessage\) [Body](<https://github.com/aalemi-dev/stdlib-lab/blob/main/kafka/utils.go#L320>)
 
 ```go
@@ -1535,7 +1526,6 @@ func (cm *ConsumerMessage) Body() []byte
 Body returns the message payload as a byte slice.
 
 <a name="ConsumerMessage.BodyAs"></a>
-
 ### func \(\*ConsumerMessage\) [BodyAs](<https://github.com/aalemi-dev/stdlib-lab/blob/main/kafka/utils.go#L339>)
 
 ```go
@@ -1561,7 +1551,6 @@ for msg := range msgChan {
 ```
 
 <a name="ConsumerMessage.CommitMsg"></a>
-
 ### func \(\*ConsumerMessage\) [CommitMsg](<https://github.com/aalemi-dev/stdlib-lab/blob/main/kafka/utils.go#L315>)
 
 ```go
@@ -1573,7 +1562,6 @@ CommitMsg commits the message, informing Kafka that the message has been success
 Returns an error if the commit fails.
 
 <a name="ConsumerMessage.Header"></a>
-
 ### func \(\*ConsumerMessage\) [Header](<https://github.com/aalemi-dev/stdlib-lab/blob/main/kafka/utils.go#L356>)
 
 ```go
@@ -1583,7 +1571,6 @@ func (cm *ConsumerMessage) Header() map[string]interface{}
 Header returns the headers associated with the message.
 
 <a name="ConsumerMessage.Key"></a>
-
 ### func \(\*ConsumerMessage\) [Key](<https://github.com/aalemi-dev/stdlib-lab/blob/main/kafka/utils.go#L351>)
 
 ```go
@@ -1593,7 +1580,6 @@ func (cm *ConsumerMessage) Key() string
 Key returns the message key as a string.
 
 <a name="ConsumerMessage.Offset"></a>
-
 ### func \(\*ConsumerMessage\) [Offset](<https://github.com/aalemi-dev/stdlib-lab/blob/main/kafka/utils.go#L370>)
 
 ```go
@@ -1603,7 +1589,6 @@ func (cm *ConsumerMessage) Offset() int64
 Offset returns the offset of this message.
 
 <a name="ConsumerMessage.Partition"></a>
-
 ### func \(\*ConsumerMessage\) [Partition](<https://github.com/aalemi-dev/stdlib-lab/blob/main/kafka/utils.go#L365>)
 
 ```go
@@ -1613,7 +1598,6 @@ func (cm *ConsumerMessage) Partition() int
 Partition returns the partition this message came from.
 
 <a name="Deserializer"></a>
-
 ## type [Deserializer](<https://github.com/aalemi-dev/stdlib-lab/blob/main/kafka/serializer.go#L20-L23>)
 
 Deserializer defines the interface for deserializing data received from Kafka. Implementations can provide custom
@@ -1627,7 +1611,6 @@ type Deserializer interface {
 ```
 
 <a name="GobDeserializer"></a>
-
 ## type [GobDeserializer](<https://github.com/aalemi-dev/stdlib-lab/blob/main/kafka/serializer.go#L307>)
 
 GobDeserializer implements Deserializer using Go's gob decoding.
@@ -1637,7 +1620,6 @@ type GobDeserializer struct{}
 ```
 
 <a name="GobDeserializer.Deserialize"></a>
-
 ### func \(\*GobDeserializer\) [Deserialize](<https://github.com/aalemi-dev/stdlib-lab/blob/main/kafka/serializer.go#L310>)
 
 ```go
@@ -1647,7 +1629,6 @@ func (g *GobDeserializer) Deserialize(data []byte, target interface{}) error
 Deserialize converts gob bytes to the target structure.
 
 <a name="GobSerializer"></a>
-
 ## type [GobSerializer](<https://github.com/aalemi-dev/stdlib-lab/blob/main/kafka/serializer.go#L289>)
 
 GobSerializer implements Serializer using Go's gob encoding. This is useful for Go\-to\-Go communication where both
@@ -1660,7 +1641,6 @@ type GobSerializer struct{}
 ```
 
 <a name="GobSerializer.Serialize"></a>
-
 ### func \(\*GobSerializer\) [Serialize](<https://github.com/aalemi-dev/stdlib-lab/blob/main/kafka/serializer.go#L292>)
 
 ```go
@@ -1670,7 +1650,6 @@ func (g *GobSerializer) Serialize(data interface{}) ([]byte, error)
 Serialize converts data to gob bytes.
 
 <a name="JSONDeserializer"></a>
-
 ## type [JSONDeserializer](<https://github.com/aalemi-dev/stdlib-lab/blob/main/kafka/serializer.go#L77>)
 
 JSONDeserializer implements Deserializer using JSON decoding. This is the default deserializer provided by the Kafka
@@ -1681,7 +1660,6 @@ type JSONDeserializer struct{}
 ```
 
 <a name="JSONDeserializer.Deserialize"></a>
-
 ### func \(\*JSONDeserializer\) [Deserialize](<https://github.com/aalemi-dev/stdlib-lab/blob/main/kafka/serializer.go#L80>)
 
 ```go
@@ -1691,7 +1669,6 @@ func (j *JSONDeserializer) Deserialize(data []byte, target interface{}) error
 Deserialize converts JSON bytes to the target structure.
 
 <a name="JSONSerializer"></a>
-
 ## type [JSONSerializer](<https://github.com/aalemi-dev/stdlib-lab/blob/main/kafka/serializer.go#L53>)
 
 JSONSerializer implements Serializer using JSON encoding. This is the default serializer provided by the Kafka module.
@@ -1707,7 +1684,6 @@ type JSONSerializer struct{}
 ```
 
 <a name="JSONSerializer.Serialize"></a>
-
 ### func \(\*JSONSerializer\) [Serialize](<https://github.com/aalemi-dev/stdlib-lab/blob/main/kafka/serializer.go#L56>)
 
 ```go
@@ -1717,7 +1693,6 @@ func (j *JSONSerializer) Serialize(data interface{}) ([]byte, error)
 Serialize converts data to JSON bytes.
 
 <a name="KafkaClient"></a>
-
 ## type [KafkaClient](<https://github.com/aalemi-dev/stdlib-lab/blob/main/kafka/setup.go#L24-L53>)
 
 KafkaClient represents a client for interacting with Apache Kafka. It manages connections and provides methods for
@@ -1732,7 +1707,6 @@ type KafkaClient struct {
 ```
 
 <a name="NewClient"></a>
-
 ### func [NewClient](<https://github.com/aalemi-dev/stdlib-lab/blob/main/kafka/setup.go#L71>)
 
 ```go
@@ -1760,7 +1734,6 @@ defer client.GracefulShutdown()
 ```
 
 <a name="NewClientWithDI"></a>
-
 ### func [NewClientWithDI](<https://github.com/aalemi-dev/stdlib-lab/blob/main/kafka/fx_module.go#L84>)
 
 ```go
@@ -1807,7 +1780,6 @@ Under the hood, this function injects the optional logger, serializer, deseriali
 the standard NewClient function.
 
 <a name="KafkaClient.Consume"></a>
-
 ### func \(\*KafkaClient\) [Consume](<https://github.com/aalemi-dev/stdlib-lab/blob/main/kafka/utils.go#L53>)
 
 ```go
@@ -1852,7 +1824,6 @@ for msg := range msgChan {
 ```
 
 <a name="KafkaClient.ConsumeParallel"></a>
-
 ### func \(\*KafkaClient\) [ConsumeParallel](<https://github.com/aalemi-dev/stdlib-lab/blob/main/kafka/utils.go#L84>)
 
 ```go
@@ -1891,7 +1862,6 @@ for msg := range msgChan {
 ```
 
 <a name="KafkaClient.Deserialize"></a>
-
 ### func \(\*KafkaClient\) [Deserialize](<https://github.com/aalemi-dev/stdlib-lab/blob/main/kafka/utils.go#L401>)
 
 ```go
@@ -1930,7 +1900,6 @@ for msg := range msgChan {
 ```
 
 <a name="KafkaClient.GracefulShutdown"></a>
-
 ### func \(\*KafkaClient\) [GracefulShutdown](<https://github.com/aalemi-dev/stdlib-lab/blob/main/kafka/fx_module.go#L165>)
 
 ```go
@@ -1947,7 +1916,6 @@ Any errors during shutdown are logged but not propagated, as they typically cann
 application shutdown.
 
 <a name="KafkaClient.IsAuthenticationError"></a>
-
 ### func \(\*KafkaClient\) [IsAuthenticationError](<https://github.com/aalemi-dev/stdlib-lab/blob/main/kafka/errors.go#L374>)
 
 ```go
@@ -1957,7 +1925,6 @@ func (k *KafkaClient) IsAuthenticationError(err error) bool
 IsAuthenticationError returns true if the error is authentication\-related
 
 <a name="KafkaClient.IsPermanentError"></a>
-
 ### func \(\*KafkaClient\) [IsPermanentError](<https://github.com/aalemi-dev/stdlib-lab/blob/main/kafka/errors.go#L352>)
 
 ```go
@@ -1967,7 +1934,6 @@ func (k *KafkaClient) IsPermanentError(err error) bool
 IsPermanentError returns true if the error is permanent and should not be retried
 
 <a name="KafkaClient.IsRetryableError"></a>
-
 ### func \(\*KafkaClient\) [IsRetryableError](<https://github.com/aalemi-dev/stdlib-lab/blob/main/kafka/errors.go#L325>)
 
 ```go
@@ -1977,7 +1943,6 @@ func (k *KafkaClient) IsRetryableError(err error) bool
 IsRetryableError returns true if the error is retryable
 
 <a name="KafkaClient.IsTemporaryError"></a>
-
 ### func \(\*KafkaClient\) [IsTemporaryError](<https://github.com/aalemi-dev/stdlib-lab/blob/main/kafka/errors.go#L345>)
 
 ```go
@@ -1987,7 +1952,6 @@ func (k *KafkaClient) IsTemporaryError(err error) bool
 IsTemporaryError returns true if the error is temporary
 
 <a name="KafkaClient.Publish"></a>
-
 ### func \(\*KafkaClient\) [Publish](<https://github.com/aalemi-dev/stdlib-lab/blob/main/kafka/utils.go#L225>)
 
 ```go
@@ -2048,7 +2012,6 @@ if err != nil {
 ```
 
 <a name="KafkaClient.SetDefaultSerializers"></a>
-
 ### func \(\*KafkaClient\) [SetDefaultSerializers](<https://github.com/aalemi-dev/stdlib-lab/blob/main/kafka/serializer.go#L516>)
 
 ```go
@@ -2059,7 +2022,6 @@ SetDefaultSerializers sets default serializers on the Kafka client based on conf
 during client creation if no serializers are provided
 
 <a name="KafkaClient.SetDeserializer"></a>
-
 ### func \(\*KafkaClient\) [SetDeserializer](<https://github.com/aalemi-dev/stdlib-lab/blob/main/kafka/setup.go#L277>)
 
 ```go
@@ -2070,7 +2032,6 @@ SetDeserializer sets the deserializer for the Kafka client. This is typically ca
 initialization.
 
 <a name="KafkaClient.SetSerializer"></a>
-
 ### func \(\*KafkaClient\) [SetSerializer](<https://github.com/aalemi-dev/stdlib-lab/blob/main/kafka/setup.go#L269>)
 
 ```go
@@ -2080,7 +2041,6 @@ func (k *KafkaClient) SetSerializer(s Serializer)
 SetSerializer sets the serializer for the Kafka client. This is typically called by the FX module during initialization.
 
 <a name="KafkaClient.TranslateError"></a>
-
 ### func \(\*KafkaClient\) [TranslateError](<https://github.com/aalemi-dev/stdlib-lab/blob/main/kafka/errors.go#L175>)
 
 ```go
@@ -2094,7 +2054,6 @@ It maps common Kafka errors to the standardized error types defined above. If an
 it's returned unchanged.
 
 <a name="KafkaClient.WithDeserializer"></a>
-
 ### func \(\*KafkaClient\) [WithDeserializer](<https://github.com/aalemi-dev/stdlib-lab/blob/main/kafka/setup.go#L235>)
 
 ```go
@@ -2122,7 +2081,6 @@ defer client.GracefulShutdown()
 ```
 
 <a name="KafkaClient.WithLogger"></a>
-
 ### func \(\*KafkaClient\) [WithLogger](<https://github.com/aalemi-dev/stdlib-lab/blob/main/kafka/setup.go#L191>)
 
 ```go
@@ -2150,7 +2108,6 @@ defer client.GracefulShutdown()
 ```
 
 <a name="KafkaClient.WithObserver"></a>
-
 ### func \(\*KafkaClient\) [WithObserver](<https://github.com/aalemi-dev/stdlib-lab/blob/main/kafka/setup.go#L169>)
 
 ```go
@@ -2178,7 +2135,6 @@ defer client.GracefulShutdown()
 ```
 
 <a name="KafkaClient.WithSerializer"></a>
-
 ### func \(\*KafkaClient\) [WithSerializer](<https://github.com/aalemi-dev/stdlib-lab/blob/main/kafka/setup.go#L213>)
 
 ```go
@@ -2206,7 +2162,6 @@ defer client.GracefulShutdown()
 ```
 
 <a name="KafkaLifecycleParams"></a>
-
 ## type [KafkaLifecycleParams](<https://github.com/aalemi-dev/stdlib-lab/blob/main/kafka/fx_module.go#L120-L125>)
 
 KafkaLifecycleParams groups the dependencies needed for Kafka lifecycle management
@@ -2221,7 +2176,6 @@ type KafkaLifecycleParams struct {
 ```
 
 <a name="KafkaParams"></a>
-
 ## type [KafkaParams](<https://github.com/aalemi-dev/stdlib-lab/blob/main/kafka/fx_module.go#L38-L46>)
 
 KafkaParams groups the dependencies needed to create a Kafka client
@@ -2239,7 +2193,6 @@ type KafkaParams struct {
 ```
 
 <a name="Logger"></a>
-
 ## type [Logger](<https://github.com/aalemi-dev/stdlib-lab/blob/main/kafka/configs.go#L122-L131>)
 
 Logger is an interface that matches the std/v1/logger.Logger interface. It provides context\-aware structured logging
@@ -2259,7 +2212,6 @@ type Logger interface {
 ```
 
 <a name="Message"></a>
-
 ## type [Message](<https://github.com/aalemi-dev/stdlib-lab/blob/main/kafka/interface.go#L70-L94>)
 
 Message defines the interface for consumed messages from Kafka. This interface abstracts the underlying Kafka message
@@ -2294,7 +2246,6 @@ type Message interface {
 ```
 
 <a name="MultiFormatDeserializer"></a>
-
 ## type [MultiFormatDeserializer](<https://github.com/aalemi-dev/stdlib-lab/blob/main/kafka/serializer.go#L408-L414>)
 
 MultiFormatDeserializer supports multiple deserialization formats.
@@ -2310,7 +2261,6 @@ type MultiFormatDeserializer struct {
 ```
 
 <a name="NewMultiFormatDeserializer"></a>
-
 ### func [NewMultiFormatDeserializer](<https://github.com/aalemi-dev/stdlib-lab/blob/main/kafka/serializer.go#L417>)
 
 ```go
@@ -2320,7 +2270,6 @@ func NewMultiFormatDeserializer() *MultiFormatDeserializer
 NewMultiFormatDeserializer creates a new multi\-format deserializer with default formats.
 
 <a name="MultiFormatDeserializer.Deserialize"></a>
-
 ### func \(\*MultiFormatDeserializer\) [Deserialize](<https://github.com/aalemi-dev/stdlib-lab/blob/main/kafka/serializer.go#L438>)
 
 ```go
@@ -2330,7 +2279,6 @@ func (m *MultiFormatDeserializer) Deserialize(data []byte, target interface{}) e
 Deserialize converts data using the appropriate deserializer based on format.
 
 <a name="MultiFormatDeserializer.DeserializeWithFormat"></a>
-
 ### func \(\*MultiFormatDeserializer\) [DeserializeWithFormat](<https://github.com/aalemi-dev/stdlib-lab/blob/main/kafka/serializer.go#L453>)
 
 ```go
@@ -2340,7 +2288,6 @@ func (m *MultiFormatDeserializer) DeserializeWithFormat(format string, data []by
 DeserializeWithFormat explicitly specifies the format to use.
 
 <a name="MultiFormatDeserializer.RegisterDeserializer"></a>
-
 ### func \(\*MultiFormatDeserializer\) [RegisterDeserializer](<https://github.com/aalemi-dev/stdlib-lab/blob/main/kafka/serializer.go#L430>)
 
 ```go
@@ -2350,7 +2297,6 @@ func (m *MultiFormatDeserializer) RegisterDeserializer(format string, deserializ
 RegisterDeserializer adds a custom deserializer for a specific format.
 
 <a name="MultiFormatSerializer"></a>
-
 ## type [MultiFormatSerializer](<https://github.com/aalemi-dev/stdlib-lab/blob/main/kafka/serializer.go#L352-L358>)
 
 MultiFormatSerializer supports multiple serialization formats with automatic detection. It can handle JSON, Protobuf,
@@ -2367,7 +2313,6 @@ type MultiFormatSerializer struct {
 ```
 
 <a name="NewMultiFormatSerializer"></a>
-
 ### func [NewMultiFormatSerializer](<https://github.com/aalemi-dev/stdlib-lab/blob/main/kafka/serializer.go#L361>)
 
 ```go
@@ -2377,7 +2322,6 @@ func NewMultiFormatSerializer() *MultiFormatSerializer
 NewMultiFormatSerializer creates a new multi\-format serializer with default formats.
 
 <a name="MultiFormatSerializer.RegisterSerializer"></a>
-
 ### func \(\*MultiFormatSerializer\) [RegisterSerializer](<https://github.com/aalemi-dev/stdlib-lab/blob/main/kafka/serializer.go#L374>)
 
 ```go
@@ -2387,7 +2331,6 @@ func (m *MultiFormatSerializer) RegisterSerializer(format string, serializer Ser
 RegisterSerializer adds a custom serializer for a specific format.
 
 <a name="MultiFormatSerializer.Serialize"></a>
-
 ### func \(\*MultiFormatSerializer\) [Serialize](<https://github.com/aalemi-dev/stdlib-lab/blob/main/kafka/serializer.go#L383>)
 
 ```go
@@ -2398,7 +2341,6 @@ Serialize converts data using the appropriate serializer based on format. The fo
 form "format:data" or uses DefaultFormat.
 
 <a name="MultiFormatSerializer.SerializeWithFormat"></a>
-
 ### func \(\*MultiFormatSerializer\) [SerializeWithFormat](<https://github.com/aalemi-dev/stdlib-lab/blob/main/kafka/serializer.go#L398>)
 
 ```go
@@ -2408,7 +2350,6 @@ func (m *MultiFormatSerializer) SerializeWithFormat(format string, data interfac
 SerializeWithFormat explicitly specifies the format to use.
 
 <a name="NoOpDeserializer"></a>
-
 ## type [NoOpDeserializer](<https://github.com/aalemi-dev/stdlib-lab/blob/main/kafka/serializer.go#L336>)
 
 NoOpDeserializer does not perform any deserialization. The target must be a \*\[\]byte to receive the raw bytes.
@@ -2418,7 +2359,6 @@ type NoOpDeserializer struct{}
 ```
 
 <a name="NoOpDeserializer.Deserialize"></a>
-
 ### func \(\*NoOpDeserializer\) [Deserialize](<https://github.com/aalemi-dev/stdlib-lab/blob/main/kafka/serializer.go#L339>)
 
 ```go
@@ -2428,7 +2368,6 @@ func (n *NoOpDeserializer) Deserialize(data []byte, target interface{}) error
 Deserialize copies the raw bytes to the target if it's a \*\[\]byte.
 
 <a name="NoOpSerializer"></a>
-
 ## type [NoOpSerializer](<https://github.com/aalemi-dev/stdlib-lab/blob/main/kafka/serializer.go#L323>)
 
 NoOpSerializer passes through byte slices without modification. Use this when you want to handle serialization yourself
@@ -2439,7 +2378,6 @@ type NoOpSerializer struct{}
 ```
 
 <a name="NoOpSerializer.Serialize"></a>
-
 ### func \(\*NoOpSerializer\) [Serialize](<https://github.com/aalemi-dev/stdlib-lab/blob/main/kafka/serializer.go#L326>)
 
 ```go
@@ -2449,7 +2387,6 @@ func (n *NoOpSerializer) Serialize(data interface{}) ([]byte, error)
 Serialize returns the data as\-is if it's a byte slice, otherwise returns an error.
 
 <a name="ProtoMarshaler"></a>
-
 ## type [ProtoMarshaler](<https://github.com/aalemi-dev/stdlib-lab/blob/main/kafka/serializer.go#L35-L37>)
 
 ProtoMarshaler is an interface for types that can marshal themselves to protobuf format. This is useful for custom
@@ -2462,7 +2399,6 @@ type ProtoMarshaler interface {
 ```
 
 <a name="ProtoMessage"></a>
-
 ## type [ProtoMessage](<https://github.com/aalemi-dev/stdlib-lab/blob/main/kafka/serializer.go#L27-L31>)
 
 ProtoMessage is an interface that matches the proto.Message interface from google.golang.org/protobuf. This allows the
@@ -2477,7 +2413,6 @@ type ProtoMessage interface {
 ```
 
 <a name="ProtoUnmarshaler"></a>
-
 ## type [ProtoUnmarshaler](<https://github.com/aalemi-dev/stdlib-lab/blob/main/kafka/serializer.go#L40-L42>)
 
 ProtoUnmarshaler is an interface for types that can unmarshal themselves from protobuf format.
@@ -2489,7 +2424,6 @@ type ProtoUnmarshaler interface {
 ```
 
 <a name="ProtobufDeserializer"></a>
-
 ## type [ProtobufDeserializer](<https://github.com/aalemi-dev/stdlib-lab/blob/main/kafka/serializer.go#L154-L159>)
 
 ProtobufDeserializer implements Deserializer for Protocol Buffer messages.
@@ -2514,7 +2448,6 @@ type ProtobufDeserializer struct {
 ```
 
 <a name="ProtobufDeserializer.Deserialize"></a>
-
 ### func \(\*ProtobufDeserializer\) [Deserialize](<https://github.com/aalemi-dev/stdlib-lab/blob/main/kafka/serializer.go#L162>)
 
 ```go
@@ -2524,7 +2457,6 @@ func (p *ProtobufDeserializer) Deserialize(data []byte, target interface{}) erro
 Deserialize converts protobuf bytes to the target structure.
 
 <a name="ProtobufSerializer"></a>
-
 ## type [ProtobufSerializer](<https://github.com/aalemi-dev/stdlib-lab/blob/main/kafka/serializer.go#L110-L115>)
 
 ProtobufSerializer implements Serializer for Protocol Buffer messages.
@@ -2564,7 +2496,6 @@ type ProtobufSerializer struct {
 ```
 
 <a name="ProtobufSerializer.Serialize"></a>
-
 ### func \(\*ProtobufSerializer\) [Serialize](<https://github.com/aalemi-dev/stdlib-lab/blob/main/kafka/serializer.go#L118>)
 
 ```go
@@ -2574,7 +2505,6 @@ func (p *ProtobufSerializer) Serialize(data interface{}) ([]byte, error)
 Serialize converts a protobuf message to bytes.
 
 <a name="SASLConfig"></a>
-
 ## type [SASLConfig](<https://github.com/aalemi-dev/stdlib-lab/blob/main/kafka/configs.go#L153-L166>)
 
 SASLConfig contains SASL authentication configuration parameters.
@@ -2592,12 +2522,11 @@ type SASLConfig struct {
     Username string
 
     // Password is the SASL password
-    Password string
+    Password string //nolint:gosec
 }
 ```
 
 <a name="Serializer"></a>
-
 ## type [Serializer](<https://github.com/aalemi-dev/stdlib-lab/blob/main/kafka/serializer.go#L13-L16>)
 
 Serializer defines the interface for serializing data before publishing to Kafka. Implementations can provide custom
@@ -2611,7 +2540,6 @@ type Serializer interface {
 ```
 
 <a name="StringDeserializer"></a>
-
 ## type [StringDeserializer](<https://github.com/aalemi-dev/stdlib-lab/blob/main/kafka/serializer.go#L264>)
 
 StringDeserializer implements Deserializer for string data.
@@ -2621,7 +2549,6 @@ type StringDeserializer struct{}
 ```
 
 <a name="StringDeserializer.Deserialize"></a>
-
 ### func \(\*StringDeserializer\) [Deserialize](<https://github.com/aalemi-dev/stdlib-lab/blob/main/kafka/serializer.go#L267>)
 
 ```go
@@ -2631,7 +2558,6 @@ func (s *StringDeserializer) Deserialize(data []byte, target interface{}) error
 Deserialize converts bytes to string.
 
 <a name="StringSerializer"></a>
-
 ## type [StringSerializer](<https://github.com/aalemi-dev/stdlib-lab/blob/main/kafka/serializer.go#L242-L245>)
 
 StringSerializer implements Serializer for string data. This is useful for text\-based messages.
@@ -2644,7 +2570,6 @@ type StringSerializer struct {
 ```
 
 <a name="StringSerializer.Serialize"></a>
-
 ### func \(\*StringSerializer\) [Serialize](<https://github.com/aalemi-dev/stdlib-lab/blob/main/kafka/serializer.go#L248>)
 
 ```go
@@ -2654,7 +2579,6 @@ func (s *StringSerializer) Serialize(data interface{}) ([]byte, error)
 Serialize converts data to bytes.
 
 <a name="TLSConfig"></a>
-
 ## type [TLSConfig](<https://github.com/aalemi-dev/stdlib-lab/blob/main/kafka/configs.go#L134-L150>)
 
 TLSConfig contains TLS/SSL configuration parameters.
