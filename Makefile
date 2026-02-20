@@ -25,7 +25,7 @@ test:
 	for pkg in $$(find . -maxdepth 1 -mindepth 1 -type d | grep -v -E "^\./(\.|docs|vendor)" | sort); do \
 		if [ ! -f "$$pkg/go.mod" ]; then continue; fi; \
 		pkgname=$$(basename $$pkg); \
-		if [ "$$pkgname" = "kafka" ] || [ "$$pkgname" = "mariadb" ] || [ "$$pkgname" = "postgres" ]; then \
+		if [ "$$pkgname" = "kafka" ] || [ "$$pkgname" = "mariadb" ] || [ "$$pkgname" = "minio" ] || [ "$$pkgname" = "postgres" ]; then \
 			TEST_CMD="DOCKER_HOST=$(DOCKER_SOCK) TESTCONTAINERS_RYUK_DISABLED=true $(GO) test -v -race -count=1 -coverprofile=$$TMPDIR/$$pkgname.cov -covermode=atomic ./..."; \
 		else \
 			TEST_CMD="$(GO) test -v -race -count=1 -coverprofile=$$TMPDIR/$$pkgname.cov -covermode=atomic ./..."; \
