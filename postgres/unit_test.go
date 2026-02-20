@@ -616,7 +616,7 @@ func TestQueryBuilder_QueryRows(t *testing.T) {
 	}
 	rows, err := qb.QueryRows()
 	require.NoError(t, err)
-	defer rows.Close()
+	defer func() { require.NoError(t, rows.Close()) }()
 
 	var vals []string
 	for rows.Next() {
@@ -949,7 +949,7 @@ func setupMigrations(t *testing.T, pg *Postgres) {
 
 func writeFile(t *testing.T, dir, name, content string) {
 	t.Helper()
-	require.NoError(t, os.WriteFile(filepath.Join(dir, name), []byte(content), 0o644))
+	require.NoError(t, os.WriteFile(filepath.Join(dir, name), []byte(content), 0o600)) //nolint:gosec
 }
 
 func assertObservedOp(t *testing.T, obs *TestObserver, op string) {

@@ -280,27 +280,27 @@ func (m *MariaDB) WithLogger(logger Logger) *MariaDB {
 
 // logInfo logs an informational message using the configured logger if available.
 // This is used for lifecycle and background operation logging.
-func (m *MariaDB) logInfo(ctx context.Context, msg string, fields map[string]interface{}) {
+func (m *MariaDB) logInfo(ctx context.Context, msg string, fields ...map[string]interface{}) {
 	if m.logger != nil {
-		m.logger.InfoWithContext(ctx, msg, nil, fields)
+		m.logger.InfoWithContext(ctx, msg, nil, fields...)
 	}
 	// Silently skip if no logger configured
 }
 
 // logWarn logs a warning message using the configured logger if available.
 // This is used for non-critical issues during connection monitoring.
-func (m *MariaDB) logWarn(ctx context.Context, msg string, fields map[string]interface{}) {
+func (m *MariaDB) logWarn(ctx context.Context, msg string, fields ...map[string]interface{}) {
 	if m.logger != nil {
-		m.logger.WarnWithContext(ctx, msg, nil, fields)
+		m.logger.WarnWithContext(ctx, msg, nil, fields...)
 	}
 	// Silently skip if no logger configured
 }
 
 // logError logs an error message using the configured logger if available.
 // This is only used for errors in background goroutines that can't be returned to the caller.
-func (m *MariaDB) logError(ctx context.Context, msg string, fields map[string]interface{}) {
+func (m *MariaDB) logError(ctx context.Context, msg string, fields ...map[string]interface{}) {
 	if m.logger != nil {
-		m.logger.ErrorWithContext(ctx, msg, nil, fields)
+		m.logger.ErrorWithContext(ctx, msg, nil, fields...)
 	}
 	// Silently skip if no logger configured
 }

@@ -107,14 +107,7 @@ func setupPostgresContainer(ctx context.Context) (*PostgresContainer, error) {
 
 	// Create connection config
 	config := Config{
-		Connection: struct {
-			Host     string
-			Port     string
-			User     string
-			Password string
-			DbName   string
-			SSLMode  string
-		}{
+		Connection: Connection{
 			Host:     host,
 			Port:     portStr,
 			User:     "testuser",
@@ -135,7 +128,7 @@ func setupPostgresContainer(ctx context.Context) (*PostgresContainer, error) {
 
 // getFreePort gets a free port from the OS
 func getFreePort() (int, error) {
-	addr, err := net.Listen("tcp", "localhost:0")
+	addr, err := (&net.ListenConfig{}).Listen(context.Background(), "tcp", "localhost:0")
 	if err != nil {
 		return 0, err
 	}
@@ -182,7 +175,7 @@ func waitForPostgresReady(host, port, user, password, dbname string, timeout tim
 		}
 
 		// Try a simple ping
-		err = db.Ping()
+		err = db.PingContext(context.Background())
 		if err == nil {
 			// Close the connection and return success
 			err = db.Close()
@@ -2411,6 +2404,7 @@ func TestTransactionHandling(t *testing.T) {
 
 // setupTestAccounts creates test accounts for transaction tests
 func setupTestAccounts(t *testing.T, ctx context.Context, postgres *Postgres) {
+	t.Helper()
 	// Create initial accounts
 	accounts := []Account{
 		{Name: "Alice", Balance: 1000.00},

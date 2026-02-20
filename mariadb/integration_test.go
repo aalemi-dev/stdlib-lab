@@ -130,7 +130,7 @@ func setupMariaDBContainer(ctx context.Context) (*MariaDBContainer, error) {
 
 // getFreePort gets a free port from the OS
 func getFreePort() (int, error) {
-	addr, err := net.Listen("tcp", "localhost:0")
+	addr, err := (&net.ListenConfig{}).Listen(context.Background(), "tcp", "localhost:0")
 	if err != nil {
 		return 0, err
 	}
@@ -178,7 +178,7 @@ func waitForMariaDBReady(host, port, user, password, dbname string, timeout time
 		}
 
 		// Try a simple ping
-		err = db.Ping()
+		err = db.PingContext(context.Background())
 		if err == nil {
 			// Close the connection and return success
 			err = db.Close()
@@ -863,7 +863,7 @@ func TestErrorHandling(t *testing.T) {
 			translatedErr = mariadb.TranslateError(err)
 			// Check constraint might not be enforced in all MariaDB versions
 			assert.True(t,
-				translatedErr == ErrCheckConstraintViolation || translatedErr == ErrConstraintViolation,
+				errors.Is(translatedErr, ErrCheckConstraintViolation) || errors.Is(translatedErr, ErrConstraintViolation),
 				"Expected check or constraint violation, got %v", translatedErr)
 		}
 
@@ -1764,6 +1764,7 @@ func TestTransactionHandling(t *testing.T) {
 
 // setupTestAccounts creates test accounts for transaction tests
 func setupTestAccounts(t *testing.T, ctx context.Context, mariadb *MariaDB) {
+	t.Helper()
 	// Create initial accounts
 	accounts := []Account{
 		{Name: "Alice", Balance: 1000.00},

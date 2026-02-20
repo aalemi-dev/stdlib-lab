@@ -187,7 +187,7 @@ func (m *MariaDB) GracefulShutdown() error {
 
 	sqlDB, err := dbConn.DB()
 	if err != nil {
-		return nil
+		return err
 	}
 	if err := sqlDB.Close(); err != nil {
 		return err

@@ -344,7 +344,7 @@ func (p *MariaDB) loadMigrations(dir string, direction MigrationDirection) ([]Mi
 		name := strings.Join(nameParts[2:], "_")
 
 		// Read the SQL content
-		content, err := os.ReadFile(entry)
+		content, err := os.ReadFile(entry) //nolint:gosec
 		if err != nil {
 			return nil, err
 		}
@@ -462,16 +462,16 @@ func (p *MariaDB) CreateMigration(migrationsDir, name string, migrationType Migr
 	downTemplate := fmt.Sprintf("-- Migration: %s (rollback)\n-- Type: %s\n-- Created: %s\n\n", name, migrationType, time.Now().Format(time.RFC3339))
 
 	// Ensure the migrations directory exists
-	if err := os.MkdirAll(migrationsDir, 0755); err != nil {
+	if err := os.MkdirAll(migrationsDir, 0750); err != nil { //nolint:gosec
 		return "", fmt.Errorf("failed to create migrations directory: %w", err)
 	}
 
 	// Write the files
-	if err := os.WriteFile(upFilename, []byte(upTemplate), 0644); err != nil {
+	if err := os.WriteFile(upFilename, []byte(upTemplate), 0600); err != nil { //nolint:gosec
 		return "", fmt.Errorf("failed to create up migration file: %w", err)
 	}
 
-	if err := os.WriteFile(downFilename, []byte(downTemplate), 0644); err != nil {
+	if err := os.WriteFile(downFilename, []byte(downTemplate), 0600); err != nil { //nolint:gosec
 		return "", fmt.Errorf("failed to create down migration file: %w", err)
 	}
 

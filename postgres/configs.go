@@ -28,7 +28,7 @@ type Connection struct {
 	User string
 
 	// Password specifies the database user password for authentication
-	Password string
+	Password string `json:"-"` //nolint:gosec
 
 	// DbName specifies the name of the database to connect to
 	DbName string

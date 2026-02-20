@@ -84,7 +84,9 @@ pr:
 	DESC=$$(echo $$BRANCH | cut -d'/' -f2- | tr '-' ' '); \
 	TITLE="$$TYPE: $$DESC"; \
 	echo "Opening PR with title: $$TITLE"; \
-	gh pr create --title "$$TITLE" --fill --base main
+	git push upstream HEAD; \
+	gh auth switch --user aalemi-dev; \
+	gh pr create --title "$$TITLE" --fill --base main --repo aalemi-dev/stdlib-lab
 
 # Remove build and test artifacts
 clean:
