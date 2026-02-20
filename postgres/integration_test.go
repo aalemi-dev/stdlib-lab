@@ -149,10 +149,16 @@ func getFreePort() (int, error) {
 	return addr.Addr().(*net.TCPAddr).Port, nil
 }
 
-// TestMain sets up the testing environment
+// TestMain starts a single Postgres container shared across all tests in this package.
 func TestMain(m *testing.M) {
-	// Run tests
+	ctx := context.Background()
+	c, err := setupPostgresContainer(ctx)
+	if err != nil {
+		panic("failed to start shared Postgres container: " + err.Error())
+	}
+	sharedContainer = c
 	code := m.Run()
+	_ = c.Terminate(ctx)
 	os.Exit(code)
 }
 

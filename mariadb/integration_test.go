@@ -145,9 +145,16 @@ func getFreePort() (int, error) {
 }
 
 // TestMain sets up the testing environment
+// TestMain starts a single MariaDB container shared across all tests in this package.
 func TestMain(m *testing.M) {
-	// Run tests
+	ctx := context.Background()
+	c, err := setupMariaDBContainer(ctx)
+	if err != nil {
+		panic("failed to start shared MariaDB container: " + err.Error())
+	}
+	sharedContainer = c
 	code := m.Run()
+	_ = c.Terminate(ctx)
 	os.Exit(code)
 }
 

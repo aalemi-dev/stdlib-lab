@@ -1,4 +1,5 @@
 GO ?= go
+SHELL = bash
 
 .PHONY: test pr clean lint fmt install-tools docs
 COVERAGE_THRESHOLD ?= 80
@@ -18,10 +19,9 @@ DOCKER_SOCK ?= $(shell \
 		echo "unix:///var/run/docker.sock"; \
 	fi)
 
-# Run tests with coverage for all modules (parallel)
+# Run tests with coverage for all modules (sequential)
 test:
 	@TMPDIR=$$(mktemp -d); \
-	PIDS=""; \
 	for pkg in $$(find . -maxdepth 1 -mindepth 1 -type d | grep -v -E "^\./(\.|docs|vendor)" | sort); do \
 		if [ ! -f "$$pkg/go.mod" ]; then continue; fi; \
 		pkgname=$$(basename $$pkg); \
@@ -30,20 +30,15 @@ test:
 		else \
 			TEST_CMD="$(GO) test -v -race -count=1 -coverprofile=$$TMPDIR/$$pkgname.cov -covermode=atomic ./..."; \
 		fi; \
-		( \
-			cd $$pkg && eval "$$TEST_CMD" > "$$TMPDIR/$$pkgname.out" 2>&1; \
-			echo $$? > "$$TMPDIR/$$pkgname.exit"; \
-		) & \
-		PIDS="$$PIDS $$!"; \
+		echo ""; \
+		echo "── $$pkgname ──────────────────────────────────────"; \
+		( cd $$pkg && eval "$$TEST_CMD" 2>&1 ) | tee "$$TMPDIR/$$pkgname.out"; \
+		echo $${PIPESTATUS[0]} > "$$TMPDIR/$$pkgname.exit"; \
 	done; \
-	for pid in $$PIDS; do wait $$pid 2>/dev/null || true; done; \
 	TOTAL_PASS=0; TOTAL_FAIL=0; ANY_ERROR=0; \
 	for outfile in $$(ls "$$TMPDIR"/*.out 2>/dev/null | sort); do \
 		pkgname=$$(basename "$$outfile" .out); \
 		PKG_EXIT=$$(cat "$$TMPDIR/$$pkgname.exit" 2>/dev/null || echo 1); \
-		echo ""; \
-		echo "── $$pkgname ──────────────────────────────────────"; \
-		cat "$$outfile"; \
 		PKG_PASS=$$(grep -c '^--- PASS:' "$$outfile" || true); \
 		PKG_FAIL=$$(grep -c '^--- FAIL:' "$$outfile" || true); \
 		TOTAL_PASS=$$((TOTAL_PASS + PKG_PASS)); \
