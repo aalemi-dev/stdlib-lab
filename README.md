@@ -69,7 +69,8 @@ make clean       # removes coverage files and test binaries
 ### Open a PR
 
 ```bash
-make pr          # pushes current branch and opens a PR against main
+make pr          # pushes current branch and opens a PR against main,
+                 # or just pushes if a PR is already open
 ```
 
 ## Contributing

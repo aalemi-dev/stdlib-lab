@@ -90,17 +90,21 @@ test:
 	rm -rf "$$TMPDIR"; \
 	exit $$ANY_ERROR
 
-# Open a pull request against main, deriving the title from the branch name
+# Push current branch and open a PR against main, or just push if a PR already exists.
 # Branch format: type/short-description → "type: short description"
 pr:
 	@BRANCH=$$(git rev-parse --abbrev-ref HEAD); \
-	TYPE=$$(echo $$BRANCH | cut -d'/' -f1); \
-	DESC=$$(echo $$BRANCH | cut -d'/' -f2- | tr '-' ' '); \
-	TITLE="$$TYPE: $$DESC"; \
-	echo "Opening PR with title: $$TITLE"; \
 	git push upstream HEAD; \
 	gh auth switch --user aalemi-dev; \
-	gh pr create --title "$$TITLE" --fill --base main --repo aalemi-dev/stdlib-lab
+	if gh pr view "$$BRANCH" --repo aalemi-dev/stdlib-lab > /dev/null 2>&1; then \
+		echo "PR already open for $$BRANCH — changes pushed."; \
+	else \
+		TYPE=$$(echo $$BRANCH | cut -d'/' -f1); \
+		DESC=$$(echo $$BRANCH | cut -d'/' -f2- | tr '-' ' '); \
+		TITLE="$$TYPE: $$DESC"; \
+		echo "Opening PR with title: $$TITLE"; \
+		gh pr create --title "$$TITLE" --fill --base main --repo aalemi-dev/stdlib-lab; \
+	fi
 
 # Remove build and test artifacts
 clean:
