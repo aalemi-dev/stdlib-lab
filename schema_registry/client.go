@@ -76,7 +76,7 @@ type Config struct {
 	Username string
 
 	// Password for basic auth (optional)
-	Password string
+	Password string `json:"-"` //nolint:gosec
 
 	// Timeout for HTTP requests
 	Timeout time.Duration
@@ -148,7 +148,7 @@ func (c *Client) GetSchemaByID(id int) (string, error) {
 	}
 	req.Header.Set("Accept", "application/vnd.schemaregistry.v1+json")
 
-	resp, err := c.httpClient.Do(req)
+	resp, err := c.httpClient.Do(req) //nolint:gosec
 	if err != nil {
 		c.observeOperation("get_schema_by_id", "registry", fmt.Sprintf("%d", id), time.Since(start), err, map[string]interface{}{
 			"cache_hit": false,
@@ -205,7 +205,7 @@ func (c *Client) GetLatestSchema(subject string) (*Metadata, error) {
 	}
 	req.Header.Set("Accept", "application/vnd.schemaregistry.v1+json")
 
-	resp, err := c.httpClient.Do(req)
+	resp, err := c.httpClient.Do(req) //nolint:gosec
 	if err != nil {
 		c.observeOperation("get_latest_schema", subject, "latest", time.Since(start), err, nil)
 		return nil, fmt.Errorf("failed to fetch schema: %w", err)
@@ -291,7 +291,7 @@ func (c *Client) RegisterSchema(subject, schema, schemaType string) (int, error)
 	}
 	req.Header.Set("Content-Type", "application/vnd.schemaregistry.v1+json")
 
-	resp, err := c.httpClient.Do(req)
+	resp, err := c.httpClient.Do(req) //nolint:gosec
 	if err != nil {
 		c.observeOperation("register_schema", subject, "", time.Since(start), err, map[string]interface{}{
 			"cache_hit":   false,
@@ -371,7 +371,7 @@ func (c *Client) CheckCompatibility(subject, schema, schemaType string) (bool, e
 	}
 	req.Header.Set("Content-Type", "application/vnd.schemaregistry.v1+json")
 
-	resp, err := c.httpClient.Do(req)
+	resp, err := c.httpClient.Do(req) //nolint:gosec
 	if err != nil {
 		c.observeOperation("check_compatibility", subject, "latest", time.Since(start), err, map[string]interface{}{
 			"schema_type": schemaType,

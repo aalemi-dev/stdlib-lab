@@ -19,10 +19,24 @@ DOCKER_SOCK ?= $(shell \
 		echo "unix:///var/run/docker.sock"; \
 	fi)
 
-# Run tests with coverage for all modules (sequential)
+# Run tests with coverage for all modules (sequential), or a filtered subset:
+#   make test                          – run all packages
+#   make test PKG=schema_registry      – run one package
+#   make test PKG=schema_registry,kafka – run multiple packages (comma-separated)
 test:
 	@TMPDIR=$$(mktemp -d); \
-	for pkg in $$(find . -maxdepth 1 -mindepth 1 -type d | grep -v -E "^\./(\.|docs|vendor)" | sort); do \
+	if [ -n "$(PKG)" ]; then \
+		PKGS=""; \
+		for p in $$(echo "$(PKG)" | tr ',' ' '); do \
+			if [ ! -d "./$$p" ] || [ ! -f "./$$p/go.mod" ]; then \
+				echo "Error: package '$$p' not found"; exit 1; \
+			fi; \
+			PKGS="$$PKGS ./$$p"; \
+		done; \
+	else \
+		PKGS="$$(find . -maxdepth 1 -mindepth 1 -type d | grep -v -E "^\./(\.|docs|vendor)" | sort)"; \
+	fi; \
+	for pkg in $$PKGS; do \
 		if [ ! -f "$$pkg/go.mod" ]; then continue; fi; \
 		pkgname=$$(basename $$pkg); \
 		if [ "$$pkgname" = "kafka" ] || [ "$$pkgname" = "mariadb" ] || [ "$$pkgname" = "minio" ] || [ "$$pkgname" = "postgres" ]; then \
@@ -95,7 +109,10 @@ clean:
 	@find . -name "dist" -type d -exec rm -rf {} + 2>/dev/null; true
 	@echo "Cleaned"
 
-# Run linter for all modules (installs golangci-lint from source if not present)
+# Run linter for all modules, or a filtered subset:
+#   make lint                          – lint all packages
+#   make lint PKG=schema_registry      – lint one package
+#   make lint PKG=schema_registry,kafka – lint multiple packages (comma-separated)
 lint:
 	@echo "Running linter..."
 	@GOBIN="$$($(GO) env GOBIN)"; \
@@ -105,7 +122,18 @@ lint:
 		echo "golangci-lint not found, installing from source..."; \
 		$(GO) install github.com/golangci/golangci-lint/v2/cmd/golangci-lint@latest; \
 	fi; \
-	for pkg in $$(find . -maxdepth 1 -mindepth 1 -type d | grep -v -E "^\./(\.|docs|vendor)"); do \
+	if [ -n "$(PKG)" ]; then \
+		PKGS=""; \
+		for p in $$(echo "$(PKG)" | tr ',' ' '); do \
+			if [ ! -d "./$$p" ] || [ ! -f "./$$p/go.mod" ]; then \
+				echo "Error: package '$$p' not found"; exit 1; \
+			fi; \
+			PKGS="$$PKGS ./$$p"; \
+		done; \
+	else \
+		PKGS="$$(find . -maxdepth 1 -mindepth 1 -type d | grep -v -E "^\./(\.|docs|vendor)")"; \
+	fi; \
+	for pkg in $$PKGS; do \
 		if [ ! -f "$$pkg/go.mod" ]; then continue; fi; \
 		pkgname=$$(basename $$pkg); \
 		echo "Linting $$pkgname..."; \
