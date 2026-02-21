@@ -178,7 +178,7 @@ type WebhookNotification struct {
 	Endpoint string
 
 	// AuthToken is an optional token for authenticating with the webhook endpoint
-	AuthToken string
+	AuthToken string `json:"-"` //nolint:gosec
 }
 
 // AMQPNotification defines an AMQP notification target.
@@ -228,7 +228,7 @@ type RedisNotification struct {
 	Addr string
 
 	// Password is the Redis server password, if required
-	Password string
+	Password string `json:"-"` //nolint:gosec
 
 	// Key is the Redis key where events will be published
 	Key string
@@ -260,7 +260,7 @@ type KafkaSASLAuth struct {
 	Username string
 
 	// Password for SASL authentication
-	Password string
+	Password string `json:"-"` //nolint:gosec
 }
 
 // MQTTNotification defines an MQTT notification target.
@@ -285,7 +285,7 @@ type MQTTNotification struct {
 	Username string
 
 	// Password for MQTT broker authentication
-	Password string
+	Password string `json:"-"` //nolint:gosec
 
 	// Reconnect flag enables automatic reconnection on connection loss
 	Reconnect bool
