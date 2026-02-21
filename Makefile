@@ -19,10 +19,24 @@ DOCKER_SOCK ?= $(shell \
 		echo "unix:///var/run/docker.sock"; \
 	fi)
 
-# Run tests with coverage for all modules (sequential)
+# Run tests with coverage for all modules (sequential), or a filtered subset:
+#   make test                          – run all packages
+#   make test PKG=schema_registry      – run one package
+#   make test PKG=schema_registry,kafka – run multiple packages (comma-separated)
 test:
 	@TMPDIR=$$(mktemp -d); \
-	for pkg in $$(find . -maxdepth 1 -mindepth 1 -type d | grep -v -E "^\./(\.|docs|vendor)" | sort); do \
+	if [ -n "$(PKG)" ]; then \
+		PKGS=""; \
+		for p in $$(echo "$(PKG)" | tr ',' ' '); do \
+			if [ ! -d "./$$p" ] || [ ! -f "./$$p/go.mod" ]; then \
+				echo "Error: package '$$p' not found"; exit 1; \
+			fi; \
+			PKGS="$$PKGS ./$$p"; \
+		done; \
+	else \
+		PKGS="$$(find . -maxdepth 1 -mindepth 1 -type d | grep -v -E "^\./(\.|docs|vendor)" | sort)"; \
+	fi; \
+	for pkg in $$PKGS; do \
 		if [ ! -f "$$pkg/go.mod" ]; then continue; fi; \
 		pkgname=$$(basename $$pkg); \
 		if [ "$$pkgname" = "kafka" ] || [ "$$pkgname" = "mariadb" ] || [ "$$pkgname" = "minio" ] || [ "$$pkgname" = "postgres" ]; then \
@@ -76,17 +90,21 @@ test:
 	rm -rf "$$TMPDIR"; \
 	exit $$ANY_ERROR
 
-# Open a pull request against main, deriving the title from the branch name
+# Push current branch and open a PR against main, or just push if a PR already exists.
 # Branch format: type/short-description → "type: short description"
 pr:
 	@BRANCH=$$(git rev-parse --abbrev-ref HEAD); \
-	TYPE=$$(echo $$BRANCH | cut -d'/' -f1); \
-	DESC=$$(echo $$BRANCH | cut -d'/' -f2- | tr '-' ' '); \
-	TITLE="$$TYPE: $$DESC"; \
-	echo "Opening PR with title: $$TITLE"; \
 	git push upstream HEAD; \
 	gh auth switch --user aalemi-dev; \
-	gh pr create --title "$$TITLE" --fill --base main --repo aalemi-dev/stdlib-lab
+	if gh pr view "$$BRANCH" --repo aalemi-dev/stdlib-lab > /dev/null 2>&1; then \
+		echo "PR already open for $$BRANCH — changes pushed."; \
+	else \
+		TYPE=$$(echo $$BRANCH | cut -d'/' -f1); \
+		DESC=$$(echo $$BRANCH | cut -d'/' -f2- | tr '-' ' '); \
+		TITLE="$$TYPE: $$DESC"; \
+		echo "Opening PR with title: $$TITLE"; \
+		gh pr create --title "$$TITLE" --fill --base main --repo aalemi-dev/stdlib-lab; \
+	fi
 
 # Remove build and test artifacts
 clean:
@@ -95,7 +113,10 @@ clean:
 	@find . -name "dist" -type d -exec rm -rf {} + 2>/dev/null; true
 	@echo "Cleaned"
 
-# Run linter for all modules (installs golangci-lint from source if not present)
+# Run linter for all modules, or a filtered subset:
+#   make lint                          – lint all packages
+#   make lint PKG=schema_registry      – lint one package
+#   make lint PKG=schema_registry,kafka – lint multiple packages (comma-separated)
 lint:
 	@echo "Running linter..."
 	@GOBIN="$$($(GO) env GOBIN)"; \
@@ -105,7 +126,18 @@ lint:
 		echo "golangci-lint not found, installing from source..."; \
 		$(GO) install github.com/golangci/golangci-lint/v2/cmd/golangci-lint@latest; \
 	fi; \
-	for pkg in $$(find . -maxdepth 1 -mindepth 1 -type d | grep -v -E "^\./(\.|docs|vendor)"); do \
+	if [ -n "$(PKG)" ]; then \
+		PKGS=""; \
+		for p in $$(echo "$(PKG)" | tr ',' ' '); do \
+			if [ ! -d "./$$p" ] || [ ! -f "./$$p/go.mod" ]; then \
+				echo "Error: package '$$p' not found"; exit 1; \
+			fi; \
+			PKGS="$$PKGS ./$$p"; \
+		done; \
+	else \
+		PKGS="$$(find . -maxdepth 1 -mindepth 1 -type d | grep -v -E "^\./(\.|docs|vendor)")"; \
+	fi; \
+	for pkg in $$PKGS; do \
 		if [ ! -f "$$pkg/go.mod" ]; then continue; fi; \
 		pkgname=$$(basename $$pkg); \
 		echo "Linting $$pkgname..."; \
@@ -138,13 +170,13 @@ docs:
 	fi; \
 	mkdir -p docs; \
 	rm -f docs/*.md; \
-	for pkg in $$(find . -maxdepth 1 -mindepth 1 -type d | grep -v -E "^\./(\.|docs|vendor)"); do \
+	for pkg in $$(find . -maxdepth 1 -mindepth 1 -type d | grep -v -E "^\./(\.|docs|vendor)" | sort); do \
 		pkgname=$$(basename $$pkg); \
 		if [ ! -f "$$pkg/go.mod" ]; then continue; fi; \
 		echo "Processing $$pkgname..."; \
-		$$GOMARKDOC ./$$pkg/... \
-			--output "docs/$$pkgname.md" \
+		(cd $$pkg && $$GOMARKDOC ./... \
+			--output "../docs/$$pkgname.md" \
 			--repository.url "https://github.com/aalemi-dev/stdlib-lab" \
-			--format github; \
+			--format github); \
 	done; \
 	echo "Documentation generated in docs/ directory"

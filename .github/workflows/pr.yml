@@ -34,6 +34,7 @@ jobs:
           - mariadb
           - minio
           - postgres
+          - schema_registry
         include:
           - module: kafka
             test-env: TESTCONTAINERS_RYUK_DISABLED=true

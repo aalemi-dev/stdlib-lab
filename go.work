@@ -8,5 +8,6 @@ use (
 	./minio
 	./observability
 	./postgres
+	./schema_registry
 	./tracer
 )
