@@ -7,5 +7,5 @@
   "mariadb": "1.1.0",
   "minio": "1.1.0",
   "postgres": "1.1.0",
-  "schema_registry": "1.0.0"
+  "schema_registry": "1.1.0"
 }
