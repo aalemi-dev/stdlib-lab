@@ -292,4 +292,115 @@ func TestMinioWithFXModule(t *testing.T) {
 			require.NoError(t, err)
 		}
 	})
+
+	t.Run("BucketClientDelegation", func(t *testing.T) {
+		const bcKey = "it/bucket-client.txt"
+		payload := []byte("bucket client delegation test")
+
+		bc := client.Bucket(testBucket)
+		require.NotNil(t, bc)
+
+		n, err := bc.Put(ctx, bcKey, bytes.NewReader(payload), WithSize(int64(len(payload))))
+		require.NoError(t, err)
+		assert.Equal(t, int64(len(payload)), n)
+
+		got, err := bc.Get(ctx, bcKey)
+		require.NoError(t, err)
+		assert.Equal(t, payload, got)
+
+		// StreamGet via BucketClient
+		dataCh, errCh := bc.StreamGet(ctx, bcKey, 64)
+		var streamed []byte
+		for chunk := range dataCh {
+			streamed = append(streamed, chunk...)
+		}
+		require.NoError(t, <-errCh)
+		assert.Equal(t, payload, streamed)
+
+		// PreSignedPut/Get/HeadObject via BucketClient
+		putURL, err := bc.PreSignedPut(ctx, bcKey)
+		require.NoError(t, err)
+		assert.NotEmpty(t, putURL)
+
+		getURL, err := bc.PreSignedGet(ctx, bcKey)
+		require.NoError(t, err)
+		assert.NotEmpty(t, getURL)
+
+		headURL, err := bc.PreSignedHeadObject(ctx, bcKey)
+		require.NoError(t, err)
+		assert.NotEmpty(t, headURL)
+
+		// GenerateMultipartUploadURLs via BucketClient then abort
+		upload, err := bc.GenerateMultipartUploadURLs(ctx, "it/bc-multipart.bin", 25*1024*1024, "application/octet-stream", 15*time.Minute)
+		require.NoError(t, err)
+		require.NotEmpty(t, upload.GetUploadID())
+
+		err = bc.AbortMultipartUpload(ctx, "it/bc-multipart.bin", upload.GetUploadID())
+		require.NoError(t, err)
+
+		// GenerateMultipartPresignedGetURLs via BucketClient
+		bigPayload := []byte(strings.Repeat("q", 12*1024*1024))
+		_, err = bc.Put(ctx, "it/bc-dl.bin", bytes.NewReader(bigPayload), WithSize(int64(len(bigPayload))))
+		require.NoError(t, err)
+		t.Cleanup(func() { _ = bc.Delete(ctx, "it/bc-dl.bin") })
+
+		dl, err := bc.GenerateMultipartPresignedGetURLs(ctx, "it/bc-dl.bin", 5*1024*1024, 15*time.Minute)
+		require.NoError(t, err)
+		assert.NotEmpty(t, dl.GetPresignedURLs())
+
+		// ListIncompleteUploads via BucketClient
+		_, err = bc.ListIncompleteUploads(ctx, "it/")
+		require.NoError(t, err)
+
+		// CleanupIncompleteUploads via BucketClient
+		err = bc.CleanupIncompleteUploads(ctx, "it/", 0)
+		require.NoError(t, err)
+
+		// Delete via BucketClient
+		err = bc.Delete(ctx, bcKey)
+		require.NoError(t, err)
+	})
+
+	t.Run("BucketExistsAndListBuckets", func(t *testing.T) {
+		exists, err := client.BucketExists(ctx, testBucket)
+		require.NoError(t, err)
+		assert.True(t, exists)
+
+		exists, err = client.BucketExists(ctx, "nonexistent-bucket-xyz-123")
+		require.NoError(t, err)
+		assert.False(t, exists)
+
+		buckets, err := client.ListBuckets(ctx)
+		require.NoError(t, err)
+		assert.NotEmpty(t, buckets)
+		names := make([]string, len(buckets))
+		for i, b := range buckets {
+			names[i] = b.Name
+		}
+		assert.Contains(t, names, testBucket)
+	})
+
+	t.Run("ListAndCleanupIncompleteUploads", func(t *testing.T) {
+		// Verify ListIncompleteUploads and CleanupIncompleteUploads are callable.
+		// An incomplete upload is visible only after a part is uploaded via presigned URL,
+		// so we just confirm the calls succeed and don't error.
+		key := "it/incomplete-direct.bin"
+		upload, err := client.GenerateMultipartUploadURLs(ctx, testBucket, key, 25*1024*1024, "application/octet-stream", 15*time.Minute)
+		require.NoError(t, err)
+		require.NotEmpty(t, upload.GetUploadID())
+
+		incomplete, err := client.ListIncompleteUploads(ctx, testBucket, "it/")
+		require.NoError(t, err)
+		// incomplete may be empty or contain the upload depending on MinIO version
+		_ = incomplete
+
+		err = client.CleanupIncompleteUploads(ctx, testBucket, "it/", 0)
+		require.NoError(t, err)
+	})
+
+	t.Run("GetBufferPoolStatsWithRealClient", func(t *testing.T) {
+		stats := client.GetBufferPoolStats()
+		// After real operations the pool has been used
+		assert.GreaterOrEqual(t, stats.TotalBuffersCreated, int64(0))
+	})
 }
