@@ -32,6 +32,11 @@
       "package-name": "mariadb",
       "changelog-path": "CHANGELOG.md"
     },
+    "minio": {
+      "release-type": "go",
+      "package-name": "minio",
+      "changelog-path": "CHANGELOG.md"
+    },
     "postgres": {
       "release-type": "go",
       "package-name": "postgres",

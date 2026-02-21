@@ -32,11 +32,14 @@ jobs:
           - metrics
           - kafka
           - mariadb
+          - minio
           - postgres
         include:
           - module: kafka
             test-env: TESTCONTAINERS_RYUK_DISABLED=true
           - module: mariadb
+            test-env: TESTCONTAINERS_RYUK_DISABLED=true
+          - module: minio
             test-env: TESTCONTAINERS_RYUK_DISABLED=true
           - module: postgres
             test-env: TESTCONTAINERS_RYUK_DISABLED=true

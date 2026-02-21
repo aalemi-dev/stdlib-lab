@@ -252,44 +252,44 @@ Package mariadb provides MariaDB/MySQL database operations with an interface\-fi
 - [Variables](<#variables>)
 - [func RegisterMariaDBLifecycle\(params MariaDBLifeCycleParams\)](<#RegisterMariaDBLifecycle>)
 - [type Client](<#Client>)
-    - [func ProvideClient\(db \*MariaDB\) Client](<#ProvideClient>)
+  - [func ProvideClient\(db \*MariaDB\) Client](<#ProvideClient>)
 - [type Config](<#Config>)
 - [type Connection](<#Connection>)
 - [type ConnectionDetails](<#ConnectionDetails>)
 - [type ErrorCategory](<#ErrorCategory>)
 - [type Logger](<#Logger>)
 - [type MariaDB](<#MariaDB>)
-    - [func NewMariaDB\(cfg Config\) \(\*MariaDB, error\)](<#NewMariaDB>)
-    - [func NewMariaDBClientWithDI\(params MariaDBParams\) \(\*MariaDB, error\)](<#NewMariaDBClientWithDI>)
-    - [func \(p \*MariaDB\) AutoMigrate\(models ...interface\{\}\) error](<#MariaDB.AutoMigrate>)
-    - [func \(m \*MariaDB\) Count\(ctx context.Context, model interface\{\}, count \*int64, conditions ...interface\{\}\) error](<#MariaDB.Count>)
-    - [func \(m \*MariaDB\) Create\(ctx context.Context, value interface\{\}\) error](<#MariaDB.Create>)
-    - [func \(p \*MariaDB\) CreateMigration\(migrationsDir, name string, migrationType MigrationType\) \(string, error\)](<#MariaDB.CreateMigration>)
-    - [func \(m \*MariaDB\) DB\(\) \*gorm.DB](<#MariaDB.DB>)
-    - [func \(m \*MariaDB\) Delete\(ctx context.Context, value interface\{\}, conditions ...interface\{\}\) \(int64, error\)](<#MariaDB.Delete>)
-    - [func \(m \*MariaDB\) Exec\(ctx context.Context, sql string, values ...interface\{\}\) \(int64, error\)](<#MariaDB.Exec>)
-    - [func \(m \*MariaDB\) Find\(ctx context.Context, dest interface\{\}, conditions ...interface\{\}\) error](<#MariaDB.Find>)
-    - [func \(m \*MariaDB\) First\(ctx context.Context, dest interface\{\}, conditions ...interface\{\}\) error](<#MariaDB.First>)
-    - [func \(m \*MariaDB\) GetErrorCategory\(err error\) ErrorCategory](<#MariaDB.GetErrorCategory>)
-    - [func \(p \*MariaDB\) GetMigrationStatus\(ctx context.Context, migrationsDir string\) \(\[\]map\[string\]interface\{\}, error\)](<#MariaDB.GetMigrationStatus>)
-    - [func \(m \*MariaDB\) GracefulShutdown\(\) error](<#MariaDB.GracefulShutdown>)
-    - [func \(m \*MariaDB\) IsCritical\(err error\) bool](<#MariaDB.IsCritical>)
-    - [func \(m \*MariaDB\) IsRetryable\(err error\) bool](<#MariaDB.IsRetryable>)
-    - [func \(m \*MariaDB\) IsTemporary\(err error\) bool](<#MariaDB.IsTemporary>)
-    - [func \(p \*MariaDB\) MigrateDown\(ctx context.Context, migrationsDir string\) error](<#MariaDB.MigrateDown>)
-    - [func \(p \*MariaDB\) MigrateUp\(ctx context.Context, migrationsDir string\) error](<#MariaDB.MigrateUp>)
-    - [func \(m \*MariaDB\) MonitorConnection\(ctx context.Context\)](<#MariaDB.MonitorConnection>)
-    - [func \(m \*MariaDB\) Query\(ctx context.Context\) QueryBuilder](<#MariaDB.Query>)
-    - [func \(m \*MariaDB\) RetryConnection\(ctx context.Context\)](<#MariaDB.RetryConnection>)
-    - [func \(m \*MariaDB\) Save\(ctx context.Context, value interface\{\}\) error](<#MariaDB.Save>)
-    - [func \(m \*MariaDB\) Transaction\(ctx context.Context, fn func\(tx Client\) error\) error](<#MariaDB.Transaction>)
-    - [func \(m \*MariaDB\) TranslateError\(err error\) error](<#MariaDB.TranslateError>)
-    - [func \(m \*MariaDB\) Update\(ctx context.Context, model interface\{\}, attrs interface\{\}\) \(int64, error\)](<#MariaDB.Update>)
-    - [func \(m \*MariaDB\) UpdateColumn\(ctx context.Context, model interface\{\}, columnName string, value interface\{\}\) \(int64, error\)](<#MariaDB.UpdateColumn>)
-    - [func \(m \*MariaDB\) UpdateColumns\(ctx context.Context, model interface\{\}, columnValues map\[string\]interface\{\}\) \(int64, error\)](<#MariaDB.UpdateColumns>)
-    - [func \(m \*MariaDB\) UpdateWhere\(ctx context.Context, model interface\{\}, attrs interface\{\}, condition string, args ...interface\{\}\) \(int64, error\)](<#MariaDB.UpdateWhere>)
-    - [func \(m \*MariaDB\) WithLogger\(logger Logger\) \*MariaDB](<#MariaDB.WithLogger>)
-    - [func \(m \*MariaDB\) WithObserver\(observer observability.Observer\) \*MariaDB](<#MariaDB.WithObserver>)
+  - [func NewMariaDB\(cfg Config\) \(\*MariaDB, error\)](<#NewMariaDB>)
+  - [func NewMariaDBClientWithDI\(params MariaDBParams\) \(\*MariaDB, error\)](<#NewMariaDBClientWithDI>)
+  - [func \(p \*MariaDB\) AutoMigrate\(models ...interface\{\}\) error](<#MariaDB.AutoMigrate>)
+  - [func \(m \*MariaDB\) Count\(ctx context.Context, model interface\{\}, count \*int64, conditions ...interface\{\}\) error](<#MariaDB.Count>)
+  - [func \(m \*MariaDB\) Create\(ctx context.Context, value interface\{\}\) error](<#MariaDB.Create>)
+  - [func \(p \*MariaDB\) CreateMigration\(migrationsDir, name string, migrationType MigrationType\) \(string, error\)](<#MariaDB.CreateMigration>)
+  - [func \(m \*MariaDB\) DB\(\) \*gorm.DB](<#MariaDB.DB>)
+  - [func \(m \*MariaDB\) Delete\(ctx context.Context, value interface\{\}, conditions ...interface\{\}\) \(int64, error\)](<#MariaDB.Delete>)
+  - [func \(m \*MariaDB\) Exec\(ctx context.Context, sql string, values ...interface\{\}\) \(int64, error\)](<#MariaDB.Exec>)
+  - [func \(m \*MariaDB\) Find\(ctx context.Context, dest interface\{\}, conditions ...interface\{\}\) error](<#MariaDB.Find>)
+  - [func \(m \*MariaDB\) First\(ctx context.Context, dest interface\{\}, conditions ...interface\{\}\) error](<#MariaDB.First>)
+  - [func \(m \*MariaDB\) GetErrorCategory\(err error\) ErrorCategory](<#MariaDB.GetErrorCategory>)
+  - [func \(p \*MariaDB\) GetMigrationStatus\(ctx context.Context, migrationsDir string\) \(\[\]map\[string\]interface\{\}, error\)](<#MariaDB.GetMigrationStatus>)
+  - [func \(m \*MariaDB\) GracefulShutdown\(\) error](<#MariaDB.GracefulShutdown>)
+  - [func \(m \*MariaDB\) IsCritical\(err error\) bool](<#MariaDB.IsCritical>)
+  - [func \(m \*MariaDB\) IsRetryable\(err error\) bool](<#MariaDB.IsRetryable>)
+  - [func \(m \*MariaDB\) IsTemporary\(err error\) bool](<#MariaDB.IsTemporary>)
+  - [func \(p \*MariaDB\) MigrateDown\(ctx context.Context, migrationsDir string\) error](<#MariaDB.MigrateDown>)
+  - [func \(p \*MariaDB\) MigrateUp\(ctx context.Context, migrationsDir string\) error](<#MariaDB.MigrateUp>)
+  - [func \(m \*MariaDB\) MonitorConnection\(ctx context.Context\)](<#MariaDB.MonitorConnection>)
+  - [func \(m \*MariaDB\) Query\(ctx context.Context\) QueryBuilder](<#MariaDB.Query>)
+  - [func \(m \*MariaDB\) RetryConnection\(ctx context.Context\)](<#MariaDB.RetryConnection>)
+  - [func \(m \*MariaDB\) Save\(ctx context.Context, value interface\{\}\) error](<#MariaDB.Save>)
+  - [func \(m \*MariaDB\) Transaction\(ctx context.Context, fn func\(tx Client\) error\) error](<#MariaDB.Transaction>)
+  - [func \(m \*MariaDB\) TranslateError\(err error\) error](<#MariaDB.TranslateError>)
+  - [func \(m \*MariaDB\) Update\(ctx context.Context, model interface\{\}, attrs interface\{\}\) \(int64, error\)](<#MariaDB.Update>)
+  - [func \(m \*MariaDB\) UpdateColumn\(ctx context.Context, model interface\{\}, columnName string, value interface\{\}\) \(int64, error\)](<#MariaDB.UpdateColumn>)
+  - [func \(m \*MariaDB\) UpdateColumns\(ctx context.Context, model interface\{\}, columnValues map\[string\]interface\{\}\) \(int64, error\)](<#MariaDB.UpdateColumns>)
+  - [func \(m \*MariaDB\) UpdateWhere\(ctx context.Context, model interface\{\}, attrs interface\{\}, condition string, args ...interface\{\}\) \(int64, error\)](<#MariaDB.UpdateWhere>)
+  - [func \(m \*MariaDB\) WithLogger\(logger Logger\) \*MariaDB](<#MariaDB.WithLogger>)
+  - [func \(m \*MariaDB\) WithObserver\(observer observability.Observer\) \*MariaDB](<#MariaDB.WithObserver>)
 - [type MariaDBLifeCycleParams](<#MariaDBLifeCycleParams>)
 - [type MariaDBParams](<#MariaDBParams>)
 - [type Migration](<#Migration>)
@@ -299,6 +299,7 @@ Package mariadb provides MariaDB/MySQL database operations with an interface\-fi
 - [type QueryBuilder](<#QueryBuilder>)
 - [type RowScanner](<#RowScanner>)
 - [type RowsScanner](<#RowsScanner>)
+
 
 ## Variables
 
@@ -484,7 +485,6 @@ var FXModule = fx.Module("mariadb",
 ```
 
 <a name="RegisterMariaDBLifecycle"></a>
-
 ## func [RegisterMariaDBLifecycle](<https://github.com/aalemi-dev/stdlib-lab/blob/main/mariadb/fx_module.go#L126>)
 
 ```go
@@ -498,7 +498,6 @@ database connections on application stop
 The function uses a WaitGroup to ensure that all goroutines complete before the application terminates.
 
 <a name="Client"></a>
-
 ## type [Client](<https://github.com/aalemi-dev/stdlib-lab/blob/main/mariadb/interface.go#L22-L63>)
 
 Client is the main database client interface that provides CRUD operations, query building, and transaction management.
@@ -558,7 +557,6 @@ type Client interface {
 ```
 
 <a name="ProvideClient"></a>
-
 ### func [ProvideClient](<https://github.com/aalemi-dev/stdlib-lab/blob/main/mariadb/fx_module.go#L36>)
 
 ```go
@@ -569,7 +567,6 @@ ProvideClient wraps the concrete \*MariaDB and returns it as Client interface. T
 the interface rather than concrete type.
 
 <a name="Config"></a>
-
 ## type [Config](<https://github.com/aalemi-dev/stdlib-lab/blob/main/mariadb/configs.go#L10-L16>)
 
 Config represents the complete configuration for a MariaDB/MySQL database connection. It encapsulates both the basic
@@ -586,7 +583,6 @@ type Config struct {
 ```
 
 <a name="Connection"></a>
-
 ## type [Connection](<https://github.com/aalemi-dev/stdlib-lab/blob/main/mariadb/configs.go#L20-L66>)
 
 Connection holds the basic parameters required to connect to a MariaDB/MySQL database. These parameters are used to
@@ -604,7 +600,7 @@ type Connection struct {
     User string
 
     // Password specifies the database user password for authentication
-    Password string
+    Password string `json:"-"` //nolint:gosec
 
     // DbName specifies the name of the database to connect to
     DbName string
@@ -643,7 +639,6 @@ type Connection struct {
 ```
 
 <a name="ConnectionDetails"></a>
-
 ## type [ConnectionDetails](<https://github.com/aalemi-dev/stdlib-lab/blob/main/mariadb/configs.go#L71-L87>)
 
 ConnectionDetails holds configuration settings for the database connection pool. These settings help optimize
@@ -670,7 +665,6 @@ type ConnectionDetails struct {
 ```
 
 <a name="ErrorCategory"></a>
-
 ## type [ErrorCategory](<https://github.com/aalemi-dev/stdlib-lab/blob/main/mariadb/errors.go#L464>)
 
 ErrorCategory represents different categories of database errors
@@ -698,7 +692,6 @@ const (
 ```
 
 <a name="Logger"></a>
-
 ## type [Logger](<https://github.com/aalemi-dev/stdlib-lab/blob/main/mariadb/configs.go#L91-L100>)
 
 Logger is an interface that matches the std/v1/logger.Logger interface. It provides context\-aware structured logging
@@ -718,7 +711,6 @@ type Logger interface {
 ```
 
 <a name="MariaDB"></a>
-
 ## type [MariaDB](<https://github.com/aalemi-dev/stdlib-lab/blob/main/mariadb/setup.go#L22-L32>)
 
 MariaDB is a wrapper around gorm.DB that provides connection monitoring, automatic reconnection, and standardized
@@ -736,7 +728,6 @@ type MariaDB struct {
 ```
 
 <a name="NewMariaDB"></a>
-
 ### func [NewMariaDB](<https://github.com/aalemi-dev/stdlib-lab/blob/main/mariadb/setup.go#L40>)
 
 ```go
@@ -750,7 +741,6 @@ returns an error.
 Returns \*MariaDB concrete type \(following Go best practice: "accept interfaces, return structs"\).
 
 <a name="NewMariaDBClientWithDI"></a>
-
 ### func [NewMariaDBClientWithDI](<https://github.com/aalemi-dev/stdlib-lab/blob/main/mariadb/fx_module.go#L84>)
 
 ```go
@@ -791,7 +781,6 @@ app := fx.New(
 This function creates the client and injects the optional logger and observer before returning.
 
 <a name="MariaDB.AutoMigrate"></a>
-
 ### func \(\*MariaDB\) [AutoMigrate](<https://github.com/aalemi-dev/stdlib-lab/blob/main/mariadb/migrations.go#L98>)
 
 ```go
@@ -811,7 +800,6 @@ This method is useful during development or for simple applications, but for pro
 recommended.
 
 <a name="MariaDB.Count"></a>
-
 ### func \(\*MariaDB\) [Count](<https://github.com/aalemi-dev/stdlib-lab/blob/main/mariadb/basic_ops.go#L311>)
 
 ```go
@@ -839,7 +827,6 @@ err := db.Count(ctx, &User{}, &count, "age > ?", 18)
 ```
 
 <a name="MariaDB.Create"></a>
-
 ### func \(\*MariaDB\) [Create](<https://github.com/aalemi-dev/stdlib-lab/blob/main/mariadb/basic_ops.go#L80>)
 
 ```go
@@ -865,7 +852,6 @@ err := db.Create(ctx, &user)
 ```
 
 <a name="MariaDB.CreateMigration"></a>
-
 ### func \(\*MariaDB\) [CreateMigration](<https://github.com/aalemi-dev/stdlib-lab/blob/main/mariadb/migrations.go#L449>)
 
 ```go
@@ -893,7 +879,6 @@ if err == nil {
 ```
 
 <a name="MariaDB.DB"></a>
-
 ### func \(\*MariaDB\) [DB](<https://github.com/aalemi-dev/stdlib-lab/blob/main/mariadb/utils.go#L14>)
 
 ```go
@@ -907,7 +892,6 @@ Use this method when you need to perform operations not covered by the wrapper m
 specific GORM functionality. Note that direct usage bypasses some of the safety mechanisms, so use it with care.
 
 <a name="MariaDB.Delete"></a>
-
 ### func \(\*MariaDB\) [Delete](<https://github.com/aalemi-dev/stdlib-lab/blob/main/mariadb/basic_ops.go#L248>)
 
 ```go
@@ -944,7 +928,6 @@ rowsAffected, err := db.Delete(ctx, &user)
 ```
 
 <a name="MariaDB.Exec"></a>
-
 ### func \(\*MariaDB\) [Exec](<https://github.com/aalemi-dev/stdlib-lab/blob/main/mariadb/basic_ops.go#L281>)
 
 ```go
@@ -977,7 +960,6 @@ fmt.Printf("Updated %d users\n", rowsAffected)
 ```
 
 <a name="MariaDB.Find"></a>
-
 ### func \(\*MariaDB\) [Find](<https://github.com/aalemi-dev/stdlib-lab/blob/main/mariadb/basic_ops.go#L23>)
 
 ```go
@@ -1004,7 +986,6 @@ err := db.Find(ctx, &users, "name LIKE ?", "%john%")
 ```
 
 <a name="MariaDB.First"></a>
-
 ### func \(\*MariaDB\) [First](<https://github.com/aalemi-dev/stdlib-lab/blob/main/mariadb/basic_ops.go#L53>)
 
 ```go
@@ -1034,7 +1015,6 @@ if errors.Is(err, gorm.ErrRecordNotFound) {
 ```
 
 <a name="MariaDB.GetErrorCategory"></a>
-
 ### func \(\*MariaDB\) [GetErrorCategory](<https://github.com/aalemi-dev/stdlib-lab/blob/main/mariadb/errors.go#L481>)
 
 ```go
@@ -1044,7 +1024,6 @@ func (m *MariaDB) GetErrorCategory(err error) ErrorCategory
 GetErrorCategory returns the category of the given error
 
 <a name="MariaDB.GetMigrationStatus"></a>
-
 ### func \(\*MariaDB\) [GetMigrationStatus](<https://github.com/aalemi-dev/stdlib-lab/blob/main/mariadb/migrations.go#L384>)
 
 ```go
@@ -1074,7 +1053,6 @@ if err == nil {
 ```
 
 <a name="MariaDB.GracefulShutdown"></a>
-
 ### func \(\*MariaDB\) [GracefulShutdown](<https://github.com/aalemi-dev/stdlib-lab/blob/main/mariadb/fx_module.go#L169>)
 
 ```go
@@ -1082,7 +1060,6 @@ func (m *MariaDB) GracefulShutdown() error
 ```
 
 <a name="MariaDB.IsCritical"></a>
-
 ### func \(\*MariaDB\) [IsCritical](<https://github.com/aalemi-dev/stdlib-lab/blob/main/mariadb/errors.go#L554>)
 
 ```go
@@ -1092,7 +1069,6 @@ func (m *MariaDB) IsCritical(err error) bool
 IsCritical returns true if the error indicates a serious system problem
 
 <a name="MariaDB.IsRetryable"></a>
-
 ### func \(\*MariaDB\) [IsRetryable](<https://github.com/aalemi-dev/stdlib-lab/blob/main/mariadb/errors.go#L509>)
 
 ```go
@@ -1102,7 +1078,6 @@ func (m *MariaDB) IsRetryable(err error) bool
 IsRetryable returns true if the error might be resolved by retrying the operation
 
 <a name="MariaDB.IsTemporary"></a>
-
 ### func \(\*MariaDB\) [IsTemporary](<https://github.com/aalemi-dev/stdlib-lab/blob/main/mariadb/errors.go#L533>)
 
 ```go
@@ -1112,7 +1087,6 @@ func (m *MariaDB) IsTemporary(err error) bool
 IsTemporary returns true if the error is likely temporary and might resolve itself
 
 <a name="MariaDB.MigrateDown"></a>
-
 ### func \(\*MariaDB\) [MigrateDown](<https://github.com/aalemi-dev/stdlib-lab/blob/main/mariadb/migrations.go#L248>)
 
 ```go
@@ -1137,7 +1111,6 @@ err := db.MigrateDown(ctx, "./migrations")
 ```
 
 <a name="MariaDB.MigrateUp"></a>
-
 ### func \(\*MariaDB\) [MigrateUp](<https://github.com/aalemi-dev/stdlib-lab/blob/main/mariadb/migrations.go#L150>)
 
 ```go
@@ -1162,7 +1135,6 @@ err := db.MigrateUp(ctx, "./migrations")
 ```
 
 <a name="MariaDB.MonitorConnection"></a>
-
 ### func \(\*MariaDB\) [MonitorConnection](<https://github.com/aalemi-dev/stdlib-lab/blob/main/mariadb/setup.go#L191>)
 
 ```go
@@ -1177,7 +1149,6 @@ The function respects context cancellation and shutdown signals, ensuring proper
 termination when requested.
 
 <a name="MariaDB.Query"></a>
-
 ### func \(\*MariaDB\) [Query](<https://github.com/aalemi-dev/stdlib-lab/blob/main/mariadb/query_builder.go#L35>)
 
 ```go
@@ -1212,7 +1183,6 @@ if err != nil {
 ```
 
 <a name="MariaDB.RetryConnection"></a>
-
 ### func \(\*MariaDB\) [RetryConnection](<https://github.com/aalemi-dev/stdlib-lab/blob/main/mariadb/setup.go#L149>)
 
 ```go
@@ -1227,7 +1197,6 @@ It implements two nested loops: \- The outer loop waits for retry signals \- The
 successful
 
 <a name="MariaDB.Save"></a>
-
 ### func \(\*MariaDB\) [Save](<https://github.com/aalemi-dev/stdlib-lab/blob/main/mariadb/basic_ops.go#L107>)
 
 ```go
@@ -1253,7 +1222,6 @@ err := db.Save(ctx, &user)
 ```
 
 <a name="MariaDB.Transaction"></a>
-
 ### func \(\*MariaDB\) [Transaction](<https://github.com/aalemi-dev/stdlib-lab/blob/main/mariadb/transactions.go#L44>)
 
 ```go
@@ -1281,7 +1249,6 @@ err := db.Transaction(ctx, func(tx Client) error {
 ```
 
 <a name="MariaDB.TranslateError"></a>
-
 ### func \(\*MariaDB\) [TranslateError](<https://github.com/aalemi-dev/stdlib-lab/blob/main/mariadb/errors.go#L169>)
 
 ```go
@@ -1296,7 +1263,6 @@ It maps common database errors to the standardized error types defined above. If
 it's returned unchanged.
 
 <a name="MariaDB.Update"></a>
-
 ### func \(\*MariaDB\) [Update](<https://github.com/aalemi-dev/stdlib-lab/blob/main/mariadb/basic_ops.go#L143>)
 
 ```go
@@ -1332,7 +1298,6 @@ fmt.Printf("Updated %d rows\n", rowsAffected)
 ```
 
 <a name="MariaDB.UpdateColumn"></a>
-
 ### func \(\*MariaDB\) [UpdateColumn](<https://github.com/aalemi-dev/stdlib-lab/blob/main/mariadb/basic_ops.go#L177>)
 
 ```go
@@ -1366,7 +1331,6 @@ fmt.Printf("Updated %d rows\n", rowsAffected)
 ```
 
 <a name="MariaDB.UpdateColumns"></a>
-
 ### func \(\*MariaDB\) [UpdateColumns](<https://github.com/aalemi-dev/stdlib-lab/blob/main/mariadb/basic_ops.go#L212>)
 
 ```go
@@ -1402,7 +1366,6 @@ fmt.Printf("Updated %d rows\n", rowsAffected)
 ```
 
 <a name="MariaDB.UpdateWhere"></a>
-
 ### func \(\*MariaDB\) [UpdateWhere](<https://github.com/aalemi-dev/stdlib-lab/blob/main/mariadb/basic_ops.go#L353>)
 
 ```go
@@ -1440,7 +1403,6 @@ fmt.Printf("Updated %d users to inactive status\n", rowsAffected)
 ```
 
 <a name="MariaDB.WithLogger"></a>
-
 ### func \(\*MariaDB\) [WithLogger](<https://github.com/aalemi-dev/stdlib-lab/blob/main/mariadb/setup.go#L276>)
 
 ```go
@@ -1464,7 +1426,6 @@ defer client.GracefulShutdown()
 ```
 
 <a name="MariaDB.WithObserver"></a>
-
 ### func \(\*MariaDB\) [WithObserver](<https://github.com/aalemi-dev/stdlib-lab/blob/main/mariadb/setup.go#L258>)
 
 ```go
@@ -1489,7 +1450,6 @@ defer client.GracefulShutdown()
 ```
 
 <a name="MariaDBLifeCycleParams"></a>
-
 ## type [MariaDBLifeCycleParams](<https://github.com/aalemi-dev/stdlib-lab/blob/main/mariadb/fx_module.go#L111-L116>)
 
 MariaDBLifeCycleParams groups the dependencies needed for MariaDB lifecycle management. This struct combines all the
@@ -1509,7 +1469,6 @@ type MariaDBLifeCycleParams struct {
 ```
 
 <a name="MariaDBParams"></a>
-
 ## type [MariaDBParams](<https://github.com/aalemi-dev/stdlib-lab/blob/main/mariadb/fx_module.go#L46-L52>)
 
 MariaDBParams groups the dependencies needed to create a MariaDB Client via dependency injection. This struct is
@@ -1530,7 +1489,6 @@ type MariaDBParams struct {
 ```
 
 <a name="Migration"></a>
-
 ## type [Migration](<https://github.com/aalemi-dev/stdlib-lab/blob/main/mariadb/migrations.go#L41-L57>)
 
 Migration represents a single database migration with all its metadata and content. Each migration contains the SQL to
@@ -1557,7 +1515,6 @@ type Migration struct {
 ```
 
 <a name="MigrationDirection"></a>
-
 ## type [MigrationDirection](<https://github.com/aalemi-dev/stdlib-lab/blob/main/mariadb/migrations.go#L29>)
 
 MigrationDirection specifies the direction of the migration, indicating whether it's applying a change or reverting one.
@@ -1579,7 +1536,6 @@ const (
 ```
 
 <a name="MigrationHistoryRecord"></a>
-
 ## type [MigrationHistoryRecord](<https://github.com/aalemi-dev/stdlib-lab/blob/main/mariadb/migrations.go#L62-L86>)
 
 MigrationHistoryRecord represents a record in the migration history table. It tracks when and how each migration was
@@ -1614,7 +1570,6 @@ type MigrationHistoryRecord struct {
 ```
 
 <a name="MigrationType"></a>
-
 ## type [MigrationType](<https://github.com/aalemi-dev/stdlib-lab/blob/main/mariadb/migrations.go#L15>)
 
 MigrationType defines the type of migration, categorizing the purpose of the change. This helps track and organize
@@ -1639,7 +1594,6 @@ const (
 ```
 
 <a name="QueryBuilder"></a>
-
 ## type [QueryBuilder](<https://github.com/aalemi-dev/stdlib-lab/blob/main/mariadb/interface.go#L77-L132>)
 
 QueryBuilder provides a fluent interface for building complex database queries. All chainable methods return the
@@ -1717,7 +1671,6 @@ type QueryBuilder interface {
 ```
 
 <a name="RowScanner"></a>
-
 ## type [RowScanner](<https://github.com/aalemi-dev/stdlib-lab/blob/main/mariadb/row_scanner.go#L10-L14>)
 
 RowScanner provides an interface for scanning a single row of data. It abstracts the process of parsing column values
@@ -1732,7 +1685,6 @@ type RowScanner interface {
 ```
 
 <a name="RowsScanner"></a>
-
 ## type [RowsScanner](<https://github.com/aalemi-dev/stdlib-lab/blob/main/mariadb/row_scanner.go#L19-L31>)
 
 RowsScanner provides an interface for iterating through rows of data returned by a query. It extends RowScanner

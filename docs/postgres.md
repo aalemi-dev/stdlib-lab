@@ -121,7 +121,7 @@ across different databases.
 - [Variables](<#variables>)
 - [func RegisterPostgresLifecycle\(params PostgresLifeCycleParams\)](<#RegisterPostgresLifecycle>)
 - [type Client](<#Client>)
-    - [func ProvideClient\(pg \*Postgres\) Client](<#ProvideClient>)
+  - [func ProvideClient\(pg \*Postgres\) Client](<#ProvideClient>)
 - [type Config](<#Config>)
 - [type Connection](<#Connection>)
 - [type ConnectionDetails](<#ConnectionDetails>)
@@ -132,42 +132,43 @@ across different databases.
 - [type MigrationHistoryRecord](<#MigrationHistoryRecord>)
 - [type MigrationType](<#MigrationType>)
 - [type Postgres](<#Postgres>)
-    - [func NewPostgres\(cfg Config\) \(\*Postgres, error\)](<#NewPostgres>)
-    - [func NewPostgresClientWithDI\(params PostgresParams\) \(\*Postgres, error\)](<#NewPostgresClientWithDI>)
-    - [func \(p \*Postgres\) AutoMigrate\(models ...interface\{\}\) error](<#Postgres.AutoMigrate>)
-    - [func \(p \*Postgres\) Count\(ctx context.Context, model interface\{\}, count \*int64, conditions ...interface\{\}\) error](<#Postgres.Count>)
-    - [func \(p \*Postgres\) Create\(ctx context.Context, value interface\{\}\) error](<#Postgres.Create>)
-    - [func \(p \*Postgres\) CreateMigration\(migrationsDir, name string, migrationType MigrationType\) \(string, error\)](<#Postgres.CreateMigration>)
-    - [func \(p \*Postgres\) DB\(\) \*gorm.DB](<#Postgres.DB>)
-    - [func \(p \*Postgres\) Delete\(ctx context.Context, value interface\{\}, conditions ...interface\{\}\) \(int64, error\)](<#Postgres.Delete>)
-    - [func \(p \*Postgres\) Exec\(ctx context.Context, sql string, values ...interface\{\}\) \(int64, error\)](<#Postgres.Exec>)
-    - [func \(p \*Postgres\) Find\(ctx context.Context, dest interface\{\}, conditions ...interface\{\}\) error](<#Postgres.Find>)
-    - [func \(p \*Postgres\) First\(ctx context.Context, dest interface\{\}, conditions ...interface\{\}\) error](<#Postgres.First>)
-    - [func \(p \*Postgres\) GetErrorCategory\(err error\) ErrorCategory](<#Postgres.GetErrorCategory>)
-    - [func \(p \*Postgres\) GetMigrationStatus\(ctx context.Context, migrationsDir string\) \(\[\]map\[string\]interface\{\}, error\)](<#Postgres.GetMigrationStatus>)
-    - [func \(p \*Postgres\) GracefulShutdown\(\) error](<#Postgres.GracefulShutdown>)
-    - [func \(p \*Postgres\) IsCritical\(err error\) bool](<#Postgres.IsCritical>)
-    - [func \(p \*Postgres\) IsRetryable\(err error\) bool](<#Postgres.IsRetryable>)
-    - [func \(p \*Postgres\) IsTemporary\(err error\) bool](<#Postgres.IsTemporary>)
-    - [func \(p \*Postgres\) MigrateDown\(ctx context.Context, migrationsDir string\) error](<#Postgres.MigrateDown>)
-    - [func \(p \*Postgres\) MigrateUp\(ctx context.Context, migrationsDir string\) error](<#Postgres.MigrateUp>)
-    - [func \(p \*Postgres\) MonitorConnection\(ctx context.Context\)](<#Postgres.MonitorConnection>)
-    - [func \(p \*Postgres\) Query\(ctx context.Context\) QueryBuilder](<#Postgres.Query>)
-    - [func \(p \*Postgres\) RetryConnection\(ctx context.Context\)](<#Postgres.RetryConnection>)
-    - [func \(p \*Postgres\) Save\(ctx context.Context, value interface\{\}\) error](<#Postgres.Save>)
-    - [func \(p \*Postgres\) Transaction\(ctx context.Context, fn func\(tx Client\) error\) error](<#Postgres.Transaction>)
-    - [func \(p \*Postgres\) TranslateError\(err error\) error](<#Postgres.TranslateError>)
-    - [func \(p \*Postgres\) Update\(ctx context.Context, model interface\{\}, attrs interface\{\}\) \(int64, error\)](<#Postgres.Update>)
-    - [func \(p \*Postgres\) UpdateColumn\(ctx context.Context, model interface\{\}, columnName string, value interface\{\}\) \(int64, error\)](<#Postgres.UpdateColumn>)
-    - [func \(p \*Postgres\) UpdateColumns\(ctx context.Context, model interface\{\}, columnValues map\[string\]interface\{\}\) \(int64, error\)](<#Postgres.UpdateColumns>)
-    - [func \(p \*Postgres\) UpdateWhere\(ctx context.Context, model interface\{\}, attrs interface\{\}, condition string, args ...interface\{\}\) \(int64, error\)](<#Postgres.UpdateWhere>)
-    - [func \(p \*Postgres\) WithLogger\(logger Logger\) \*Postgres](<#Postgres.WithLogger>)
-    - [func \(p \*Postgres\) WithObserver\(observer observability.Observer\) \*Postgres](<#Postgres.WithObserver>)
+  - [func NewPostgres\(cfg Config\) \(\*Postgres, error\)](<#NewPostgres>)
+  - [func NewPostgresClientWithDI\(params PostgresParams\) \(\*Postgres, error\)](<#NewPostgresClientWithDI>)
+  - [func \(p \*Postgres\) AutoMigrate\(models ...interface\{\}\) error](<#Postgres.AutoMigrate>)
+  - [func \(p \*Postgres\) Count\(ctx context.Context, model interface\{\}, count \*int64, conditions ...interface\{\}\) error](<#Postgres.Count>)
+  - [func \(p \*Postgres\) Create\(ctx context.Context, value interface\{\}\) error](<#Postgres.Create>)
+  - [func \(p \*Postgres\) CreateMigration\(migrationsDir, name string, migrationType MigrationType\) \(string, error\)](<#Postgres.CreateMigration>)
+  - [func \(p \*Postgres\) DB\(\) \*gorm.DB](<#Postgres.DB>)
+  - [func \(p \*Postgres\) Delete\(ctx context.Context, value interface\{\}, conditions ...interface\{\}\) \(int64, error\)](<#Postgres.Delete>)
+  - [func \(p \*Postgres\) Exec\(ctx context.Context, sql string, values ...interface\{\}\) \(int64, error\)](<#Postgres.Exec>)
+  - [func \(p \*Postgres\) Find\(ctx context.Context, dest interface\{\}, conditions ...interface\{\}\) error](<#Postgres.Find>)
+  - [func \(p \*Postgres\) First\(ctx context.Context, dest interface\{\}, conditions ...interface\{\}\) error](<#Postgres.First>)
+  - [func \(p \*Postgres\) GetErrorCategory\(err error\) ErrorCategory](<#Postgres.GetErrorCategory>)
+  - [func \(p \*Postgres\) GetMigrationStatus\(ctx context.Context, migrationsDir string\) \(\[\]map\[string\]interface\{\}, error\)](<#Postgres.GetMigrationStatus>)
+  - [func \(p \*Postgres\) GracefulShutdown\(\) error](<#Postgres.GracefulShutdown>)
+  - [func \(p \*Postgres\) IsCritical\(err error\) bool](<#Postgres.IsCritical>)
+  - [func \(p \*Postgres\) IsRetryable\(err error\) bool](<#Postgres.IsRetryable>)
+  - [func \(p \*Postgres\) IsTemporary\(err error\) bool](<#Postgres.IsTemporary>)
+  - [func \(p \*Postgres\) MigrateDown\(ctx context.Context, migrationsDir string\) error](<#Postgres.MigrateDown>)
+  - [func \(p \*Postgres\) MigrateUp\(ctx context.Context, migrationsDir string\) error](<#Postgres.MigrateUp>)
+  - [func \(p \*Postgres\) MonitorConnection\(ctx context.Context\)](<#Postgres.MonitorConnection>)
+  - [func \(p \*Postgres\) Query\(ctx context.Context\) QueryBuilder](<#Postgres.Query>)
+  - [func \(p \*Postgres\) RetryConnection\(ctx context.Context\)](<#Postgres.RetryConnection>)
+  - [func \(p \*Postgres\) Save\(ctx context.Context, value interface\{\}\) error](<#Postgres.Save>)
+  - [func \(p \*Postgres\) Transaction\(ctx context.Context, fn func\(tx Client\) error\) error](<#Postgres.Transaction>)
+  - [func \(p \*Postgres\) TranslateError\(err error\) error](<#Postgres.TranslateError>)
+  - [func \(p \*Postgres\) Update\(ctx context.Context, model interface\{\}, attrs interface\{\}\) \(int64, error\)](<#Postgres.Update>)
+  - [func \(p \*Postgres\) UpdateColumn\(ctx context.Context, model interface\{\}, columnName string, value interface\{\}\) \(int64, error\)](<#Postgres.UpdateColumn>)
+  - [func \(p \*Postgres\) UpdateColumns\(ctx context.Context, model interface\{\}, columnValues map\[string\]interface\{\}\) \(int64, error\)](<#Postgres.UpdateColumns>)
+  - [func \(p \*Postgres\) UpdateWhere\(ctx context.Context, model interface\{\}, attrs interface\{\}, condition string, args ...interface\{\}\) \(int64, error\)](<#Postgres.UpdateWhere>)
+  - [func \(p \*Postgres\) WithLogger\(logger Logger\) \*Postgres](<#Postgres.WithLogger>)
+  - [func \(p \*Postgres\) WithObserver\(observer observability.Observer\) \*Postgres](<#Postgres.WithObserver>)
 - [type PostgresLifeCycleParams](<#PostgresLifeCycleParams>)
 - [type PostgresParams](<#PostgresParams>)
 - [type QueryBuilder](<#QueryBuilder>)
 - [type RowScanner](<#RowScanner>)
 - [type RowsScanner](<#RowsScanner>)
+
 
 ## Variables
 
@@ -353,7 +354,6 @@ var FXModule = fx.Module("postgres",
 ```
 
 <a name="RegisterPostgresLifecycle"></a>
-
 ## func [RegisterPostgresLifecycle](<https://github.com/aalemi-dev/stdlib-lab/blob/main/postgres/fx_module.go#L126>)
 
 ```go
@@ -367,7 +367,6 @@ database connections on application stop
 The function uses a WaitGroup to ensure that all goroutines complete before the application terminates.
 
 <a name="Client"></a>
-
 ## type [Client](<https://github.com/aalemi-dev/stdlib-lab/blob/main/postgres/interface.go#L22-L63>)
 
 Client is the main database client interface that provides CRUD operations, query building, and transaction management.
@@ -427,7 +426,6 @@ type Client interface {
 ```
 
 <a name="ProvideClient"></a>
-
 ### func [ProvideClient](<https://github.com/aalemi-dev/stdlib-lab/blob/main/postgres/fx_module.go#L36>)
 
 ```go
@@ -438,7 +436,6 @@ ProvideClient wraps the concrete \*Postgres and returns it as Client interface. 
 the interface rather than concrete type.
 
 <a name="Config"></a>
-
 ## type [Config](<https://github.com/aalemi-dev/stdlib-lab/blob/main/postgres/configs.go#L10-L16>)
 
 Config represents the complete configuration for a PostgresSQL database connection. It encapsulates both the basic
@@ -455,7 +452,6 @@ type Config struct {
 ```
 
 <a name="Connection"></a>
-
 ## type [Connection](<https://github.com/aalemi-dev/stdlib-lab/blob/main/postgres/configs.go#L20-L39>)
 
 Connection holds the basic parameters required to connect to a PostgresSQL database. These parameters are used to
@@ -473,7 +469,7 @@ type Connection struct {
     User string
 
     // Password specifies the database user password for authentication
-    Password string
+    Password string `json:"-"` //nolint:gosec
 
     // DbName specifies the name of the database to connect to
     DbName string
@@ -485,7 +481,6 @@ type Connection struct {
 ```
 
 <a name="ConnectionDetails"></a>
-
 ## type [ConnectionDetails](<https://github.com/aalemi-dev/stdlib-lab/blob/main/postgres/configs.go#L44-L60>)
 
 ConnectionDetails holds configuration settings for the database connection pool. These settings help optimize
@@ -512,7 +507,6 @@ type ConnectionDetails struct {
 ```
 
 <a name="ErrorCategory"></a>
-
 ## type [ErrorCategory](<https://github.com/aalemi-dev/stdlib-lab/blob/main/postgres/errors.go#L890>)
 
 ErrorCategory represents different categories of database errors
@@ -540,7 +534,6 @@ const (
 ```
 
 <a name="Logger"></a>
-
 ## type [Logger](<https://github.com/aalemi-dev/stdlib-lab/blob/main/postgres/configs.go#L64-L73>)
 
 Logger is an interface that matches the std/v1/logger.Logger interface. It provides context\-aware structured logging
@@ -560,7 +553,6 @@ type Logger interface {
 ```
 
 <a name="Migration"></a>
-
 ## type [Migration](<https://github.com/aalemi-dev/stdlib-lab/blob/main/postgres/migrations.go#L41-L57>)
 
 Migration represents a single database migration with all its metadata and content. Each migration contains the SQL to
@@ -587,7 +579,6 @@ type Migration struct {
 ```
 
 <a name="MigrationDirection"></a>
-
 ## type [MigrationDirection](<https://github.com/aalemi-dev/stdlib-lab/blob/main/postgres/migrations.go#L29>)
 
 MigrationDirection specifies the direction of the migration, indicating whether it's applying a change or reverting one.
@@ -609,7 +600,6 @@ const (
 ```
 
 <a name="MigrationHistoryRecord"></a>
-
 ## type [MigrationHistoryRecord](<https://github.com/aalemi-dev/stdlib-lab/blob/main/postgres/migrations.go#L62-L86>)
 
 MigrationHistoryRecord represents a record in the migration history table. It tracks when and how each migration was
@@ -644,7 +634,6 @@ type MigrationHistoryRecord struct {
 ```
 
 <a name="MigrationType"></a>
-
 ## type [MigrationType](<https://github.com/aalemi-dev/stdlib-lab/blob/main/postgres/migrations.go#L15>)
 
 MigrationType defines the type of migration, categorizing the purpose of the change. This helps track and organize
@@ -669,7 +658,6 @@ const (
 ```
 
 <a name="Postgres"></a>
-
 ## type [Postgres](<https://github.com/aalemi-dev/stdlib-lab/blob/main/postgres/setup.go#L22-L32>)
 
 Postgres is a wrapper around gorm.DB that provides connection monitoring, automatic reconnection, and standardized
@@ -687,7 +675,6 @@ type Postgres struct {
 ```
 
 <a name="NewPostgres"></a>
-
 ### func [NewPostgres](<https://github.com/aalemi-dev/stdlib-lab/blob/main/postgres/setup.go#L40>)
 
 ```go
@@ -701,7 +688,6 @@ fails, it logs a fatal error and terminates.
 Returns \*Postgres concrete type \(following Go best practice: "accept interfaces, return structs"\).
 
 <a name="NewPostgresClientWithDI"></a>
-
 ### func [NewPostgresClientWithDI](<https://github.com/aalemi-dev/stdlib-lab/blob/main/postgres/fx_module.go#L84>)
 
 ```go
@@ -742,7 +728,6 @@ app := fx.New(
 This function creates the client and injects the optional logger and observer before returning.
 
 <a name="Postgres.AutoMigrate"></a>
-
 ### func \(\*Postgres\) [AutoMigrate](<https://github.com/aalemi-dev/stdlib-lab/blob/main/postgres/migrations.go#L98>)
 
 ```go
@@ -762,7 +747,6 @@ This method is useful during development or for simple applications, but for pro
 recommended.
 
 <a name="Postgres.Count"></a>
-
 ### func \(\*Postgres\) [Count](<https://github.com/aalemi-dev/stdlib-lab/blob/main/postgres/basic_ops.go#L314>)
 
 ```go
@@ -790,7 +774,6 @@ err := db.Count(ctx, &User{}, &count, "age > ?", 18)
 ```
 
 <a name="Postgres.Create"></a>
-
 ### func \(\*Postgres\) [Create](<https://github.com/aalemi-dev/stdlib-lab/blob/main/postgres/basic_ops.go#L80>)
 
 ```go
@@ -816,7 +799,6 @@ err := db.Create(ctx, &user)
 ```
 
 <a name="Postgres.CreateMigration"></a>
-
 ### func \(\*Postgres\) [CreateMigration](<https://github.com/aalemi-dev/stdlib-lab/blob/main/postgres/migrations.go#L501>)
 
 ```go
@@ -844,7 +826,6 @@ if err == nil {
 ```
 
 <a name="Postgres.DB"></a>
-
 ### func \(\*Postgres\) [DB](<https://github.com/aalemi-dev/stdlib-lab/blob/main/postgres/utils.go#L14>)
 
 ```go
@@ -858,7 +839,6 @@ Use this method when you need to perform operations not covered by the wrapper m
 specific GORM functionality. Note that direct usage bypasses some of the safety mechanisms, so use it with care.
 
 <a name="Postgres.Delete"></a>
-
 ### func \(\*Postgres\) [Delete](<https://github.com/aalemi-dev/stdlib-lab/blob/main/postgres/basic_ops.go#L251>)
 
 ```go
@@ -895,7 +875,6 @@ rowsAffected, err := db.Delete(ctx, &user)
 ```
 
 <a name="Postgres.Exec"></a>
-
 ### func \(\*Postgres\) [Exec](<https://github.com/aalemi-dev/stdlib-lab/blob/main/postgres/basic_ops.go#L284>)
 
 ```go
@@ -928,7 +907,6 @@ fmt.Printf("Updated %d users\n", rowsAffected)
 ```
 
 <a name="Postgres.Find"></a>
-
 ### func \(\*Postgres\) [Find](<https://github.com/aalemi-dev/stdlib-lab/blob/main/postgres/basic_ops.go#L23>)
 
 ```go
@@ -955,7 +933,6 @@ err := db.Find(ctx, &users, "name LIKE ?", "%john%")
 ```
 
 <a name="Postgres.First"></a>
-
 ### func \(\*Postgres\) [First](<https://github.com/aalemi-dev/stdlib-lab/blob/main/postgres/basic_ops.go#L53>)
 
 ```go
@@ -985,7 +962,6 @@ if errors.Is(err, gorm.ErrRecordNotFound) {
 ```
 
 <a name="Postgres.GetErrorCategory"></a>
-
 ### func \(\*Postgres\) [GetErrorCategory](<https://github.com/aalemi-dev/stdlib-lab/blob/main/postgres/errors.go#L907>)
 
 ```go
@@ -995,7 +971,6 @@ func (p *Postgres) GetErrorCategory(err error) ErrorCategory
 GetErrorCategory returns the category of the given error
 
 <a name="Postgres.GetMigrationStatus"></a>
-
 ### func \(\*Postgres\) [GetMigrationStatus](<https://github.com/aalemi-dev/stdlib-lab/blob/main/postgres/migrations.go#L432>)
 
 ```go
@@ -1025,7 +1000,6 @@ if err == nil {
 ```
 
 <a name="Postgres.GracefulShutdown"></a>
-
 ### func \(\*Postgres\) [GracefulShutdown](<https://github.com/aalemi-dev/stdlib-lab/blob/main/postgres/fx_module.go#L169>)
 
 ```go
@@ -1033,7 +1007,6 @@ func (p *Postgres) GracefulShutdown() error
 ```
 
 <a name="Postgres.IsCritical"></a>
-
 ### func \(\*Postgres\) [IsCritical](<https://github.com/aalemi-dev/stdlib-lab/blob/main/postgres/errors.go#L980>)
 
 ```go
@@ -1043,7 +1016,6 @@ func (p *Postgres) IsCritical(err error) bool
 IsCritical returns true if the error indicates a serious system problem
 
 <a name="Postgres.IsRetryable"></a>
-
 ### func \(\*Postgres\) [IsRetryable](<https://github.com/aalemi-dev/stdlib-lab/blob/main/postgres/errors.go#L935>)
 
 ```go
@@ -1053,7 +1025,6 @@ func (p *Postgres) IsRetryable(err error) bool
 IsRetryable returns true if the error might be resolved by retrying the operation
 
 <a name="Postgres.IsTemporary"></a>
-
 ### func \(\*Postgres\) [IsTemporary](<https://github.com/aalemi-dev/stdlib-lab/blob/main/postgres/errors.go#L959>)
 
 ```go
@@ -1063,7 +1034,6 @@ func (p *Postgres) IsTemporary(err error) bool
 IsTemporary returns true if the error is likely temporary and might resolve itself
 
 <a name="Postgres.MigrateDown"></a>
-
 ### func \(\*Postgres\) [MigrateDown](<https://github.com/aalemi-dev/stdlib-lab/blob/main/postgres/migrations.go#L274>)
 
 ```go
@@ -1088,7 +1058,6 @@ err := db.MigrateDown(ctx, "./migrations")
 ```
 
 <a name="Postgres.MigrateUp"></a>
-
 ### func \(\*Postgres\) [MigrateUp](<https://github.com/aalemi-dev/stdlib-lab/blob/main/postgres/migrations.go#L155>)
 
 ```go
@@ -1113,7 +1082,6 @@ err := db.MigrateUp(ctx, "./migrations")
 ```
 
 <a name="Postgres.MonitorConnection"></a>
-
 ### func \(\*Postgres\) [MonitorConnection](<https://github.com/aalemi-dev/stdlib-lab/blob/main/postgres/setup.go#L157>)
 
 ```go
@@ -1128,7 +1096,6 @@ The function respects context cancellation and shutdown signals, ensuring proper
 termination when requested.
 
 <a name="Postgres.Query"></a>
-
 ### func \(\*Postgres\) [Query](<https://github.com/aalemi-dev/stdlib-lab/blob/main/postgres/query_builder.go#L35>)
 
 ```go
@@ -1163,7 +1130,6 @@ if err != nil {
 ```
 
 <a name="Postgres.RetryConnection"></a>
-
 ### func \(\*Postgres\) [RetryConnection](<https://github.com/aalemi-dev/stdlib-lab/blob/main/postgres/setup.go#L115>)
 
 ```go
@@ -1178,7 +1144,6 @@ It implements two nested loops: \- The outer loop waits for retry signals \- The
 successful
 
 <a name="Postgres.Save"></a>
-
 ### func \(\*Postgres\) [Save](<https://github.com/aalemi-dev/stdlib-lab/blob/main/postgres/basic_ops.go#L107>)
 
 ```go
@@ -1204,7 +1169,6 @@ err := db.Save(ctx, &user)
 ```
 
 <a name="Postgres.Transaction"></a>
-
 ### func \(\*Postgres\) [Transaction](<https://github.com/aalemi-dev/stdlib-lab/blob/main/postgres/transactions.go#L45>)
 
 ```go
@@ -1232,7 +1196,6 @@ err := pg.Transaction(ctx, func(tx Client) error {
 ```
 
 <a name="Postgres.TranslateError"></a>
-
 ### func \(\*Postgres\) [TranslateError](<https://github.com/aalemi-dev/stdlib-lab/blob/main/postgres/errors.go#L169>)
 
 ```go
@@ -1247,7 +1210,6 @@ It maps common database errors to the standardized error types defined above. If
 it's returned unchanged.
 
 <a name="Postgres.Update"></a>
-
 ### func \(\*Postgres\) [Update](<https://github.com/aalemi-dev/stdlib-lab/blob/main/postgres/basic_ops.go#L146>)
 
 ```go
@@ -1286,7 +1248,6 @@ fmt.Printf("Updated %d rows\n", rowsAffected)
 ```
 
 <a name="Postgres.UpdateColumn"></a>
-
 ### func \(\*Postgres\) [UpdateColumn](<https://github.com/aalemi-dev/stdlib-lab/blob/main/postgres/basic_ops.go#L180>)
 
 ```go
@@ -1320,7 +1281,6 @@ fmt.Printf("Updated %d rows\n", rowsAffected)
 ```
 
 <a name="Postgres.UpdateColumns"></a>
-
 ### func \(\*Postgres\) [UpdateColumns](<https://github.com/aalemi-dev/stdlib-lab/blob/main/postgres/basic_ops.go#L215>)
 
 ```go
@@ -1356,7 +1316,6 @@ fmt.Printf("Updated %d rows\n", rowsAffected)
 ```
 
 <a name="Postgres.UpdateWhere"></a>
-
 ### func \(\*Postgres\) [UpdateWhere](<https://github.com/aalemi-dev/stdlib-lab/blob/main/postgres/basic_ops.go#L356>)
 
 ```go
@@ -1394,7 +1353,6 @@ fmt.Printf("Updated %d users to inactive status\n", rowsAffected)
 ```
 
 <a name="Postgres.WithLogger"></a>
-
 ### func \(\*Postgres\) [WithLogger](<https://github.com/aalemi-dev/stdlib-lab/blob/main/postgres/setup.go#L243>)
 
 ```go
@@ -1418,7 +1376,6 @@ defer client.GracefulShutdown()
 ```
 
 <a name="Postgres.WithObserver"></a>
-
 ### func \(\*Postgres\) [WithObserver](<https://github.com/aalemi-dev/stdlib-lab/blob/main/postgres/setup.go#L225>)
 
 ```go
@@ -1443,7 +1400,6 @@ defer client.GracefulShutdown()
 ```
 
 <a name="PostgresLifeCycleParams"></a>
-
 ## type [PostgresLifeCycleParams](<https://github.com/aalemi-dev/stdlib-lab/blob/main/postgres/fx_module.go#L111-L116>)
 
 PostgresLifeCycleParams groups the dependencies needed for Postgres lifecycle management. This struct combines all the
@@ -1463,7 +1419,6 @@ type PostgresLifeCycleParams struct {
 ```
 
 <a name="PostgresParams"></a>
-
 ## type [PostgresParams](<https://github.com/aalemi-dev/stdlib-lab/blob/main/postgres/fx_module.go#L46-L52>)
 
 PostgresParams groups the dependencies needed to create a Postgres Client via dependency injection. This struct is
@@ -1484,7 +1439,6 @@ type PostgresParams struct {
 ```
 
 <a name="QueryBuilder"></a>
-
 ## type [QueryBuilder](<https://github.com/aalemi-dev/stdlib-lab/blob/main/postgres/interface.go#L77-L132>)
 
 QueryBuilder provides a fluent interface for building complex database queries. All chainable methods return the
@@ -1562,7 +1516,6 @@ type QueryBuilder interface {
 ```
 
 <a name="RowScanner"></a>
-
 ## type [RowScanner](<https://github.com/aalemi-dev/stdlib-lab/blob/main/postgres/row_scanner.go#L12-L16>)
 
 RowScanner provides an interface for scanning a single row of data. It abstracts the process of parsing column values
@@ -1577,7 +1530,6 @@ type RowScanner interface {
 ```
 
 <a name="RowsScanner"></a>
-
 ## type [RowsScanner](<https://github.com/aalemi-dev/stdlib-lab/blob/main/postgres/row_scanner.go#L21-L33>)
 
 RowsScanner provides an interface for iterating through rows of data returned by a query. It extends RowScanner
