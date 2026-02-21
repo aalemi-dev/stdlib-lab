@@ -41,6 +41,11 @@
       "release-type": "go",
       "package-name": "postgres",
       "changelog-path": "CHANGELOG.md"
+    },
+    "schema_registry": {
+      "release-type": "go",
+      "package-name": "schema_registry",
+      "changelog-path": "CHANGELOG.md"
     }
   },
   "pull-request-title-pattern": "chore: release${component} ${version}",

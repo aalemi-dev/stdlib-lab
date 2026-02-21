@@ -138,13 +138,13 @@ docs:
 	fi; \
 	mkdir -p docs; \
 	rm -f docs/*.md; \
-	for pkg in $$(find . -maxdepth 1 -mindepth 1 -type d | grep -v -E "^\./(\.|docs|vendor)"); do \
+	for pkg in $$(find . -maxdepth 1 -mindepth 1 -type d | grep -v -E "^\./(\.|docs|vendor)" | sort); do \
 		pkgname=$$(basename $$pkg); \
 		if [ ! -f "$$pkg/go.mod" ]; then continue; fi; \
 		echo "Processing $$pkgname..."; \
-		$$GOMARKDOC ./$$pkg/... \
-			--output "docs/$$pkgname.md" \
+		(cd $$pkg && $$GOMARKDOC ./... \
+			--output "../docs/$$pkgname.md" \
 			--repository.url "https://github.com/aalemi-dev/stdlib-lab" \
-			--format github; \
+			--format github); \
 	done; \
 	echo "Documentation generated in docs/ directory"

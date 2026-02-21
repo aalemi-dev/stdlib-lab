@@ -309,81 +309,81 @@ without racing with concurrent operations.
 - [type AMQPNotification](<#AMQPNotification>)
 - [type BaseNotification](<#BaseNotification>)
 - [type BucketClient](<#BucketClient>)
-    - [func \(bc \*BucketClient\) AbortMultipartUpload\(ctx context.Context, objectKey, uploadID string\) error](<#BucketClient.AbortMultipartUpload>)
-    - [func \(bc \*BucketClient\) CleanupIncompleteUploads\(ctx context.Context, prefix string, olderThan time.Duration\) error](<#BucketClient.CleanupIncompleteUploads>)
-    - [func \(bc \*BucketClient\) CompleteMultipartUpload\(ctx context.Context, objectKey, uploadID string, partNumbers \[\]int, etags \[\]string\) error](<#BucketClient.CompleteMultipartUpload>)
-    - [func \(bc \*BucketClient\) Delete\(ctx context.Context, objectKey string\) error](<#BucketClient.Delete>)
-    - [func \(bc \*BucketClient\) GenerateMultipartPresignedGetURLs\(ctx context.Context, objectKey string, partSize int64, expiry ...time.Duration\) \(MultipartPresignedGet, error\)](<#BucketClient.GenerateMultipartPresignedGetURLs>)
-    - [func \(bc \*BucketClient\) GenerateMultipartUploadURLs\(ctx context.Context, objectKey string, fileSize int64, contentType string, expiry ...time.Duration\) \(MultipartUpload, error\)](<#BucketClient.GenerateMultipartUploadURLs>)
-    - [func \(bc \*BucketClient\) Get\(ctx context.Context, objectKey string, opts ...GetOption\) \(\[\]byte, error\)](<#BucketClient.Get>)
-    - [func \(bc \*BucketClient\) ListIncompleteUploads\(ctx context.Context, prefix string\) \(\[\]minio.ObjectMultipartInfo, error\)](<#BucketClient.ListIncompleteUploads>)
-    - [func \(bc \*BucketClient\) PreSignedGet\(ctx context.Context, objectKey string\) \(string, error\)](<#BucketClient.PreSignedGet>)
-    - [func \(bc \*BucketClient\) PreSignedHeadObject\(ctx context.Context, objectKey string\) \(string, error\)](<#BucketClient.PreSignedHeadObject>)
-    - [func \(bc \*BucketClient\) PreSignedPut\(ctx context.Context, objectKey string\) \(string, error\)](<#BucketClient.PreSignedPut>)
-    - [func \(bc \*BucketClient\) Put\(ctx context.Context, objectKey string, reader io.Reader, opts ...PutOption\) \(int64, error\)](<#BucketClient.Put>)
-    - [func \(bc \*BucketClient\) StreamGet\(ctx context.Context, objectKey string, chunkSize int\) \(\<\-chan \[\]byte, \<\-chan error\)](<#BucketClient.StreamGet>)
+  - [func \(bc \*BucketClient\) AbortMultipartUpload\(ctx context.Context, objectKey, uploadID string\) error](<#BucketClient.AbortMultipartUpload>)
+  - [func \(bc \*BucketClient\) CleanupIncompleteUploads\(ctx context.Context, prefix string, olderThan time.Duration\) error](<#BucketClient.CleanupIncompleteUploads>)
+  - [func \(bc \*BucketClient\) CompleteMultipartUpload\(ctx context.Context, objectKey, uploadID string, partNumbers \[\]int, etags \[\]string\) error](<#BucketClient.CompleteMultipartUpload>)
+  - [func \(bc \*BucketClient\) Delete\(ctx context.Context, objectKey string\) error](<#BucketClient.Delete>)
+  - [func \(bc \*BucketClient\) GenerateMultipartPresignedGetURLs\(ctx context.Context, objectKey string, partSize int64, expiry ...time.Duration\) \(MultipartPresignedGet, error\)](<#BucketClient.GenerateMultipartPresignedGetURLs>)
+  - [func \(bc \*BucketClient\) GenerateMultipartUploadURLs\(ctx context.Context, objectKey string, fileSize int64, contentType string, expiry ...time.Duration\) \(MultipartUpload, error\)](<#BucketClient.GenerateMultipartUploadURLs>)
+  - [func \(bc \*BucketClient\) Get\(ctx context.Context, objectKey string, opts ...GetOption\) \(\[\]byte, error\)](<#BucketClient.Get>)
+  - [func \(bc \*BucketClient\) ListIncompleteUploads\(ctx context.Context, prefix string\) \(\[\]minio.ObjectMultipartInfo, error\)](<#BucketClient.ListIncompleteUploads>)
+  - [func \(bc \*BucketClient\) PreSignedGet\(ctx context.Context, objectKey string\) \(string, error\)](<#BucketClient.PreSignedGet>)
+  - [func \(bc \*BucketClient\) PreSignedHeadObject\(ctx context.Context, objectKey string\) \(string, error\)](<#BucketClient.PreSignedHeadObject>)
+  - [func \(bc \*BucketClient\) PreSignedPut\(ctx context.Context, objectKey string\) \(string, error\)](<#BucketClient.PreSignedPut>)
+  - [func \(bc \*BucketClient\) Put\(ctx context.Context, objectKey string, reader io.Reader, opts ...PutOption\) \(int64, error\)](<#BucketClient.Put>)
+  - [func \(bc \*BucketClient\) StreamGet\(ctx context.Context, objectKey string, chunkSize int\) \(\<\-chan \[\]byte, \<\-chan error\)](<#BucketClient.StreamGet>)
 - [type BucketInfo](<#BucketInfo>)
 - [type BucketOption](<#BucketOption>)
-    - [func WithObjectLocking\(enabled bool\) BucketOption](<#WithObjectLocking>)
-    - [func WithRegion\(region string\) BucketOption](<#WithRegion>)
+  - [func WithObjectLocking\(enabled bool\) BucketOption](<#WithObjectLocking>)
+  - [func WithRegion\(region string\) BucketOption](<#WithRegion>)
 - [type BucketOptions](<#BucketOptions>)
 - [type BufferPool](<#BufferPool>)
-    - [func NewBufferPool\(\) \*BufferPool](<#NewBufferPool>)
-    - [func NewBufferPoolWithConfig\(config BufferPoolConfig\) \*BufferPool](<#NewBufferPoolWithConfig>)
-    - [func \(bp \*BufferPool\) Cleanup\(\)](<#BufferPool.Cleanup>)
-    - [func \(bp \*BufferPool\) Get\(\) \*bytes.Buffer](<#BufferPool.Get>)
-    - [func \(bp \*BufferPool\) GetStats\(\) BufferPoolStats](<#BufferPool.GetStats>)
-    - [func \(bp \*BufferPool\) Put\(b \*bytes.Buffer\)](<#BufferPool.Put>)
+  - [func NewBufferPool\(\) \*BufferPool](<#NewBufferPool>)
+  - [func NewBufferPoolWithConfig\(config BufferPoolConfig\) \*BufferPool](<#NewBufferPoolWithConfig>)
+  - [func \(bp \*BufferPool\) Cleanup\(\)](<#BufferPool.Cleanup>)
+  - [func \(bp \*BufferPool\) Get\(\) \*bytes.Buffer](<#BufferPool.Get>)
+  - [func \(bp \*BufferPool\) GetStats\(\) BufferPoolStats](<#BufferPool.GetStats>)
+  - [func \(bp \*BufferPool\) Put\(b \*bytes.Buffer\)](<#BufferPool.Put>)
 - [type BufferPoolConfig](<#BufferPoolConfig>)
-    - [func DefaultBufferPoolConfig\(\) BufferPoolConfig](<#DefaultBufferPoolConfig>)
+  - [func DefaultBufferPoolConfig\(\) BufferPoolConfig](<#DefaultBufferPoolConfig>)
 - [type BufferPoolStats](<#BufferPoolStats>)
 - [type ByteRange](<#ByteRange>)
 - [type Client](<#Client>)
 - [type Config](<#Config>)
 - [type ConnectionConfig](<#ConnectionConfig>)
 - [type ConnectionPoolConfig](<#ConnectionPoolConfig>)
-    - [func DefaultConnectionPoolConfig\(\) ConnectionPoolConfig](<#DefaultConnectionPoolConfig>)
+  - [func DefaultConnectionPoolConfig\(\) ConnectionPoolConfig](<#DefaultConnectionPoolConfig>)
 - [type DownloadConfig](<#DownloadConfig>)
 - [type ErrorCategory](<#ErrorCategory>)
 - [type GetOption](<#GetOption>)
-    - [func WithByteRange\(start, end int64\) GetOption](<#WithByteRange>)
-    - [func WithVersionID\(versionID string\) GetOption](<#WithVersionID>)
+  - [func WithByteRange\(start, end int64\) GetOption](<#WithByteRange>)
+  - [func WithVersionID\(versionID string\) GetOption](<#WithVersionID>)
 - [type GetOptions](<#GetOptions>)
 - [type KafkaNotification](<#KafkaNotification>)
 - [type KafkaSASLAuth](<#KafkaSASLAuth>)
 - [type Logger](<#Logger>)
 - [type MQTTNotification](<#MQTTNotification>)
 - [type MinioClient](<#MinioClient>)
-    - [func NewClient\(config Config\) \(\*MinioClient, error\)](<#NewClient>)
-    - [func NewMinioClientWithDI\(params MinioParams\) \(\*MinioClient, error\)](<#NewMinioClientWithDI>)
-    - [func \(m \*MinioClient\) AbortMultipartUpload\(ctx context.Context, bucket, objectKey, uploadID string\) error](<#MinioClient.AbortMultipartUpload>)
-    - [func \(m \*MinioClient\) Bucket\(name string\) \*BucketClient](<#MinioClient.Bucket>)
-    - [func \(m \*MinioClient\) BucketExists\(ctx context.Context, bucket string\) \(bool, error\)](<#MinioClient.BucketExists>)
-    - [func \(m \*MinioClient\) CleanupIncompleteUploads\(ctx context.Context, bucket, prefix string, olderThan time.Duration\) error](<#MinioClient.CleanupIncompleteUploads>)
-    - [func \(m \*MinioClient\) CleanupResources\(\)](<#MinioClient.CleanupResources>)
-    - [func \(m \*MinioClient\) CompleteMultipartUpload\(ctx context.Context, bucket, objectKey, uploadID string, partNumbers \[\]int, etags \[\]string\) error](<#MinioClient.CompleteMultipartUpload>)
-    - [func \(m \*MinioClient\) CreateBucket\(ctx context.Context, bucket string, opts ...BucketOption\) error](<#MinioClient.CreateBucket>)
-    - [func \(m \*MinioClient\) Delete\(ctx context.Context, bucket, objectKey string\) error](<#MinioClient.Delete>)
-    - [func \(m \*MinioClient\) DeleteBucket\(ctx context.Context, bucket string\) error](<#MinioClient.DeleteBucket>)
-    - [func \(m \*MinioClient\) GenerateMultipartPresignedGetURLs\(ctx context.Context, bucket, objectKey string, partSize int64, expiry ...time.Duration\) \(MultipartPresignedGet, error\)](<#MinioClient.GenerateMultipartPresignedGetURLs>)
-    - [func \(m \*MinioClient\) GenerateMultipartUploadURLs\(ctx context.Context, bucket, objectKey string, fileSize int64, contentType string, expiry ...time.Duration\) \(MultipartUpload, error\)](<#MinioClient.GenerateMultipartUploadURLs>)
-    - [func \(m \*MinioClient\) Get\(ctx context.Context, bucket, objectKey string, opts ...GetOption\) \(\[\]byte, error\)](<#MinioClient.Get>)
-    - [func \(m \*MinioClient\) GetBufferPoolStats\(\) BufferPoolStats](<#MinioClient.GetBufferPoolStats>)
-    - [func \(m \*MinioClient\) GetErrorCategory\(err error\) ErrorCategory](<#MinioClient.GetErrorCategory>)
-    - [func \(m \*MinioClient\) GracefulShutdown\(\)](<#MinioClient.GracefulShutdown>)
-    - [func \(m \*MinioClient\) IsPermanentError\(err error\) bool](<#MinioClient.IsPermanentError>)
-    - [func \(m \*MinioClient\) IsRetryableError\(err error\) bool](<#MinioClient.IsRetryableError>)
-    - [func \(m \*MinioClient\) IsTemporaryError\(err error\) bool](<#MinioClient.IsTemporaryError>)
-    - [func \(m \*MinioClient\) ListBuckets\(ctx context.Context\) \(\[\]BucketInfo, error\)](<#MinioClient.ListBuckets>)
-    - [func \(m \*MinioClient\) ListIncompleteUploads\(ctx context.Context, bucket, prefix string\) \(\[\]minio.ObjectMultipartInfo, error\)](<#MinioClient.ListIncompleteUploads>)
-    - [func \(m \*MinioClient\) PreSignedGet\(ctx context.Context, bucket, objectKey string\) \(string, error\)](<#MinioClient.PreSignedGet>)
-    - [func \(m \*MinioClient\) PreSignedHeadObject\(ctx context.Context, bucket, objectKey string\) \(string, error\)](<#MinioClient.PreSignedHeadObject>)
-    - [func \(m \*MinioClient\) PreSignedPut\(ctx context.Context, bucket, objectKey string\) \(string, error\)](<#MinioClient.PreSignedPut>)
-    - [func \(m \*MinioClient\) Put\(ctx context.Context, bucket, objectKey string, reader io.Reader, opts ...PutOption\) \(int64, error\)](<#MinioClient.Put>)
-    - [func \(m \*MinioClient\) StreamGet\(ctx context.Context, bucket, objectKey string, chunkSize int\) \(\<\-chan \[\]byte, \<\-chan error\)](<#MinioClient.StreamGet>)
-    - [func \(m \*MinioClient\) TranslateError\(err error\) error](<#MinioClient.TranslateError>)
-    - [func \(m \*MinioClient\) WithLogger\(logger Logger\) \*MinioClient](<#MinioClient.WithLogger>)
-    - [func \(m \*MinioClient\) WithObserver\(observer observability.Observer\) \*MinioClient](<#MinioClient.WithObserver>)
+  - [func NewClient\(config Config\) \(\*MinioClient, error\)](<#NewClient>)
+  - [func NewMinioClientWithDI\(params MinioParams\) \(\*MinioClient, error\)](<#NewMinioClientWithDI>)
+  - [func \(m \*MinioClient\) AbortMultipartUpload\(ctx context.Context, bucket, objectKey, uploadID string\) error](<#MinioClient.AbortMultipartUpload>)
+  - [func \(m \*MinioClient\) Bucket\(name string\) \*BucketClient](<#MinioClient.Bucket>)
+  - [func \(m \*MinioClient\) BucketExists\(ctx context.Context, bucket string\) \(bool, error\)](<#MinioClient.BucketExists>)
+  - [func \(m \*MinioClient\) CleanupIncompleteUploads\(ctx context.Context, bucket, prefix string, olderThan time.Duration\) error](<#MinioClient.CleanupIncompleteUploads>)
+  - [func \(m \*MinioClient\) CleanupResources\(\)](<#MinioClient.CleanupResources>)
+  - [func \(m \*MinioClient\) CompleteMultipartUpload\(ctx context.Context, bucket, objectKey, uploadID string, partNumbers \[\]int, etags \[\]string\) error](<#MinioClient.CompleteMultipartUpload>)
+  - [func \(m \*MinioClient\) CreateBucket\(ctx context.Context, bucket string, opts ...BucketOption\) error](<#MinioClient.CreateBucket>)
+  - [func \(m \*MinioClient\) Delete\(ctx context.Context, bucket, objectKey string\) error](<#MinioClient.Delete>)
+  - [func \(m \*MinioClient\) DeleteBucket\(ctx context.Context, bucket string\) error](<#MinioClient.DeleteBucket>)
+  - [func \(m \*MinioClient\) GenerateMultipartPresignedGetURLs\(ctx context.Context, bucket, objectKey string, partSize int64, expiry ...time.Duration\) \(MultipartPresignedGet, error\)](<#MinioClient.GenerateMultipartPresignedGetURLs>)
+  - [func \(m \*MinioClient\) GenerateMultipartUploadURLs\(ctx context.Context, bucket, objectKey string, fileSize int64, contentType string, expiry ...time.Duration\) \(MultipartUpload, error\)](<#MinioClient.GenerateMultipartUploadURLs>)
+  - [func \(m \*MinioClient\) Get\(ctx context.Context, bucket, objectKey string, opts ...GetOption\) \(\[\]byte, error\)](<#MinioClient.Get>)
+  - [func \(m \*MinioClient\) GetBufferPoolStats\(\) BufferPoolStats](<#MinioClient.GetBufferPoolStats>)
+  - [func \(m \*MinioClient\) GetErrorCategory\(err error\) ErrorCategory](<#MinioClient.GetErrorCategory>)
+  - [func \(m \*MinioClient\) GracefulShutdown\(\)](<#MinioClient.GracefulShutdown>)
+  - [func \(m \*MinioClient\) IsPermanentError\(err error\) bool](<#MinioClient.IsPermanentError>)
+  - [func \(m \*MinioClient\) IsRetryableError\(err error\) bool](<#MinioClient.IsRetryableError>)
+  - [func \(m \*MinioClient\) IsTemporaryError\(err error\) bool](<#MinioClient.IsTemporaryError>)
+  - [func \(m \*MinioClient\) ListBuckets\(ctx context.Context\) \(\[\]BucketInfo, error\)](<#MinioClient.ListBuckets>)
+  - [func \(m \*MinioClient\) ListIncompleteUploads\(ctx context.Context, bucket, prefix string\) \(\[\]minio.ObjectMultipartInfo, error\)](<#MinioClient.ListIncompleteUploads>)
+  - [func \(m \*MinioClient\) PreSignedGet\(ctx context.Context, bucket, objectKey string\) \(string, error\)](<#MinioClient.PreSignedGet>)
+  - [func \(m \*MinioClient\) PreSignedHeadObject\(ctx context.Context, bucket, objectKey string\) \(string, error\)](<#MinioClient.PreSignedHeadObject>)
+  - [func \(m \*MinioClient\) PreSignedPut\(ctx context.Context, bucket, objectKey string\) \(string, error\)](<#MinioClient.PreSignedPut>)
+  - [func \(m \*MinioClient\) Put\(ctx context.Context, bucket, objectKey string, reader io.Reader, opts ...PutOption\) \(int64, error\)](<#MinioClient.Put>)
+  - [func \(m \*MinioClient\) StreamGet\(ctx context.Context, bucket, objectKey string, chunkSize int\) \(\<\-chan \[\]byte, \<\-chan error\)](<#MinioClient.StreamGet>)
+  - [func \(m \*MinioClient\) TranslateError\(err error\) error](<#MinioClient.TranslateError>)
+  - [func \(m \*MinioClient\) WithLogger\(logger Logger\) \*MinioClient](<#MinioClient.WithLogger>)
+  - [func \(m \*MinioClient\) WithObserver\(observer observability.Observer\) \*MinioClient](<#MinioClient.WithObserver>)
 - [type MinioLifeCycleParams](<#MinioLifeCycleParams>)
 - [type MinioParams](<#MinioParams>)
 - [type MultipartPresignedGet](<#MultipartPresignedGet>)
@@ -393,14 +393,15 @@ without racing with concurrent operations.
 - [type NotificationConfig](<#NotificationConfig>)
 - [type PresignedConfig](<#PresignedConfig>)
 - [type PutOption](<#PutOption>)
-    - [func WithContentType\(contentType string\) PutOption](<#WithContentType>)
-    - [func WithMetadata\(metadata map\[string\]string\) PutOption](<#WithMetadata>)
-    - [func WithPartSize\(partSize uint64\) PutOption](<#WithPartSize>)
-    - [func WithSize\(size int64\) PutOption](<#WithSize>)
+  - [func WithContentType\(contentType string\) PutOption](<#WithContentType>)
+  - [func WithMetadata\(metadata map\[string\]string\) PutOption](<#WithMetadata>)
+  - [func WithPartSize\(partSize uint64\) PutOption](<#WithPartSize>)
+  - [func WithSize\(size int64\) PutOption](<#WithSize>)
 - [type PutOptions](<#PutOptions>)
 - [type RedisNotification](<#RedisNotification>)
 - [type UploadConfig](<#UploadConfig>)
 - [type WebhookNotification](<#WebhookNotification>)
+
 
 ## Constants
 
@@ -618,7 +619,6 @@ var FXModule = fx.Module("minio",
 ```
 
 <a name="RegisterLifecycle"></a>
-
 ## func [RegisterLifecycle](<https://github.com/aalemi-dev/stdlib-lab/blob/main/minio/fx_module.go#L91>)
 
 ```go
@@ -641,7 +641,6 @@ On application shutdown, it ensures these goroutines are properly terminated and
 allowing the application to exit.
 
 <a name="AMQPNotification"></a>
-
 ## type [AMQPNotification](<https://github.com/aalemi-dev/stdlib-lab/blob/main/minio/configs.go#L186-L219>)
 
 AMQPNotification defines an AMQP notification target. AMQP notifications can be used with systems like RabbitMQ.
@@ -684,7 +683,6 @@ type AMQPNotification struct {
 ```
 
 <a name="BaseNotification"></a>
-
 ## type [BaseNotification](<https://github.com/aalemi-dev/stdlib-lab/blob/main/minio/configs.go#L154-L169>)
 
 BaseNotification contains common properties for all notification types. This is embedded in specific notification target
@@ -710,7 +708,6 @@ type BaseNotification struct {
 ```
 
 <a name="BucketClient"></a>
-
 ## type [BucketClient](<https://github.com/aalemi-dev/stdlib-lab/blob/main/minio/setup.go#L800-L803>)
 
 BucketClient is a convenience wrapper that automatically applies a bucket name to all operations. This is useful when
@@ -726,7 +723,6 @@ type BucketClient struct {
 ```
 
 <a name="BucketClient.AbortMultipartUpload"></a>
-
 ### func \(\*BucketClient\) [AbortMultipartUpload](<https://github.com/aalemi-dev/stdlib-lab/blob/main/minio/setup.go#L881>)
 
 ```go
@@ -736,7 +732,6 @@ func (bc *BucketClient) AbortMultipartUpload(ctx context.Context, objectKey, upl
 AbortMultipartUpload cancels a multipart upload in the bucket.
 
 <a name="BucketClient.CleanupIncompleteUploads"></a>
-
 ### func \(\*BucketClient\) [CleanupIncompleteUploads](<https://github.com/aalemi-dev/stdlib-lab/blob/main/minio/setup.go#L891>)
 
 ```go
@@ -746,7 +741,6 @@ func (bc *BucketClient) CleanupIncompleteUploads(ctx context.Context, prefix str
 CleanupIncompleteUploads removes stale incomplete multipart uploads in the bucket.
 
 <a name="BucketClient.CompleteMultipartUpload"></a>
-
 ### func \(\*BucketClient\) [CompleteMultipartUpload](<https://github.com/aalemi-dev/stdlib-lab/blob/main/minio/setup.go#L876>)
 
 ```go
@@ -756,7 +750,6 @@ func (bc *BucketClient) CompleteMultipartUpload(ctx context.Context, objectKey, 
 CompleteMultipartUpload finalizes a multipart upload in the bucket.
 
 <a name="BucketClient.Delete"></a>
-
 ### func \(\*BucketClient\) [Delete](<https://github.com/aalemi-dev/stdlib-lab/blob/main/minio/setup.go#L845>)
 
 ```go
@@ -766,7 +759,6 @@ func (bc *BucketClient) Delete(ctx context.Context, objectKey string) error
 Delete removes an object from the bucket associated with this BucketClient.
 
 <a name="BucketClient.GenerateMultipartPresignedGetURLs"></a>
-
 ### func \(\*BucketClient\) [GenerateMultipartPresignedGetURLs](<https://github.com/aalemi-dev/stdlib-lab/blob/main/minio/setup.go#L896-L901>)
 
 ```go
@@ -776,7 +768,6 @@ func (bc *BucketClient) GenerateMultipartPresignedGetURLs(ctx context.Context, o
 GenerateMultipartPresignedGetURLs generates presigned URLs for downloading parts of an object from the bucket.
 
 <a name="BucketClient.GenerateMultipartUploadURLs"></a>
-
 ### func \(\*BucketClient\) [GenerateMultipartUploadURLs](<https://github.com/aalemi-dev/stdlib-lab/blob/main/minio/setup.go#L865-L871>)
 
 ```go
@@ -786,7 +777,6 @@ func (bc *BucketClient) GenerateMultipartUploadURLs(ctx context.Context, objectK
 GenerateMultipartUploadURLs generates presigned URLs for multipart upload to the bucket.
 
 <a name="BucketClient.Get"></a>
-
 ### func \(\*BucketClient\) [Get](<https://github.com/aalemi-dev/stdlib-lab/blob/main/minio/setup.go#L835>)
 
 ```go
@@ -796,7 +786,6 @@ func (bc *BucketClient) Get(ctx context.Context, objectKey string, opts ...GetOp
 Get retrieves an object from the bucket associated with this BucketClient.
 
 <a name="BucketClient.ListIncompleteUploads"></a>
-
 ### func \(\*BucketClient\) [ListIncompleteUploads](<https://github.com/aalemi-dev/stdlib-lab/blob/main/minio/setup.go#L886>)
 
 ```go
@@ -806,7 +795,6 @@ func (bc *BucketClient) ListIncompleteUploads(ctx context.Context, prefix string
 ListIncompleteUploads lists all incomplete multipart uploads in the bucket.
 
 <a name="BucketClient.PreSignedGet"></a>
-
 ### func \(\*BucketClient\) [PreSignedGet](<https://github.com/aalemi-dev/stdlib-lab/blob/main/minio/setup.go#L855>)
 
 ```go
@@ -816,7 +804,6 @@ func (bc *BucketClient) PreSignedGet(ctx context.Context, objectKey string) (str
 PreSignedGet generates a presigned URL for downloading an object from the bucket.
 
 <a name="BucketClient.PreSignedHeadObject"></a>
-
 ### func \(\*BucketClient\) [PreSignedHeadObject](<https://github.com/aalemi-dev/stdlib-lab/blob/main/minio/setup.go#L860>)
 
 ```go
@@ -826,7 +813,6 @@ func (bc *BucketClient) PreSignedHeadObject(ctx context.Context, objectKey strin
 PreSignedHeadObject generates a presigned URL for retrieving object metadata from the bucket.
 
 <a name="BucketClient.PreSignedPut"></a>
-
 ### func \(\*BucketClient\) [PreSignedPut](<https://github.com/aalemi-dev/stdlib-lab/blob/main/minio/setup.go#L850>)
 
 ```go
@@ -836,7 +822,6 @@ func (bc *BucketClient) PreSignedPut(ctx context.Context, objectKey string) (str
 PreSignedPut generates a presigned URL for uploading an object to the bucket.
 
 <a name="BucketClient.Put"></a>
-
 ### func \(\*BucketClient\) [Put](<https://github.com/aalemi-dev/stdlib-lab/blob/main/minio/setup.go#L830>)
 
 ```go
@@ -846,7 +831,6 @@ func (bc *BucketClient) Put(ctx context.Context, objectKey string, reader io.Rea
 Put uploads an object to the bucket associated with this BucketClient.
 
 <a name="BucketClient.StreamGet"></a>
-
 ### func \(\*BucketClient\) [StreamGet](<https://github.com/aalemi-dev/stdlib-lab/blob/main/minio/setup.go#L840>)
 
 ```go
@@ -856,7 +840,6 @@ func (bc *BucketClient) StreamGet(ctx context.Context, objectKey string, chunkSi
 StreamGet retrieves an object in chunks from the bucket associated with this BucketClient.
 
 <a name="BucketInfo"></a>
-
 ## type [BucketInfo](<https://github.com/aalemi-dev/stdlib-lab/blob/main/minio/configs.go#L361-L367>)
 
 BucketInfo contains information about a bucket.
@@ -872,7 +855,6 @@ type BucketInfo struct {
 ```
 
 <a name="BucketOption"></a>
-
 ## type [BucketOption](<https://github.com/aalemi-dev/stdlib-lab/blob/main/minio/configs.go#L349>)
 
 BucketOption is a functional option for configuring bucket operations.
@@ -882,7 +864,6 @@ type BucketOption func(*BucketOptions)
 ```
 
 <a name="WithObjectLocking"></a>
-
 ### func [WithObjectLocking](<https://github.com/aalemi-dev/stdlib-lab/blob/main/minio/options.go#L107>)
 
 ```go
@@ -900,7 +881,6 @@ err := client.CreateBucket(ctx, "my-bucket",
 ```
 
 <a name="WithRegion"></a>
-
 ### func [WithRegion](<https://github.com/aalemi-dev/stdlib-lab/blob/main/minio/options.go#L94>)
 
 ```go
@@ -917,7 +897,6 @@ err := client.CreateBucket(ctx, "my-bucket",
 ```
 
 <a name="BucketOptions"></a>
-
 ## type [BucketOptions](<https://github.com/aalemi-dev/stdlib-lab/blob/main/minio/configs.go#L352-L358>)
 
 BucketOptions contains options for bucket operations.
@@ -933,7 +912,6 @@ type BucketOptions struct {
 ```
 
 <a name="BufferPool"></a>
-
 ## type [BufferPool](<https://github.com/aalemi-dev/stdlib-lab/blob/main/minio/setup.go#L74-L89>)
 
 BufferPool implements an advanced pool of bytes.Buffers with size limits and monitoring. It prevents memory leaks by
@@ -946,7 +924,6 @@ type BufferPool struct {
 ```
 
 <a name="NewBufferPool"></a>
-
 ### func [NewBufferPool](<https://github.com/aalemi-dev/stdlib-lab/blob/main/minio/setup.go#L96>)
 
 ```go
@@ -959,7 +936,6 @@ instances as needed when none are available, with built\-in size limits to preve
 Returns a configured BufferPool ready for use.
 
 <a name="NewBufferPoolWithConfig"></a>
-
 ### func [NewBufferPoolWithConfig](<https://github.com/aalemi-dev/stdlib-lab/blob/main/minio/setup.go#L107>)
 
 ```go
@@ -976,7 +952,6 @@ Parameters:
 Returns a configured BufferPool ready for use.
 
 <a name="BufferPool.Cleanup"></a>
-
 ### func \(\*BufferPool\) [Cleanup](<https://github.com/aalemi-dev/stdlib-lab/blob/main/minio/setup.go#L215>)
 
 ```go
@@ -987,7 +962,6 @@ Cleanup forces cleanup of the buffer pool, releasing all buffers. This is useful
 is high.
 
 <a name="BufferPool.Get"></a>
-
 ### func \(\*BufferPool\) [Get](<https://github.com/aalemi-dev/stdlib-lab/blob/main/minio/setup.go#L128>)
 
 ```go
@@ -1000,7 +974,6 @@ buffer is automatically reset and ready for use.
 Returns a \*bytes.Buffer that should be returned to the pool when no longer needed.
 
 <a name="BufferPool.GetStats"></a>
-
 ### func \(\*BufferPool\) [GetStats](<https://github.com/aalemi-dev/stdlib-lab/blob/main/minio/setup.go#L188>)
 
 ```go
@@ -1011,7 +984,6 @@ GetStats returns current buffer pool statistics for monitoring. This is useful f
 and pool effectiveness.
 
 <a name="BufferPool.Put"></a>
-
 ### func \(\*BufferPool\) [Put](<https://github.com/aalemi-dev/stdlib-lab/blob/main/minio/setup.go#L141>)
 
 ```go
@@ -1026,7 +998,6 @@ Parameters:
 - b: The buffer to return to the pool
 
 <a name="BufferPoolConfig"></a>
-
 ## type [BufferPoolConfig](<https://github.com/aalemi-dev/stdlib-lab/blob/main/minio/setup.go#L54-L61>)
 
 BufferPoolConfig contains configuration for the buffer pool
@@ -1043,7 +1014,6 @@ type BufferPoolConfig struct {
 ```
 
 <a name="DefaultBufferPoolConfig"></a>
-
 ### func [DefaultBufferPoolConfig](<https://github.com/aalemi-dev/stdlib-lab/blob/main/minio/setup.go#L64>)
 
 ```go
@@ -1053,7 +1023,6 @@ func DefaultBufferPoolConfig() BufferPoolConfig
 DefaultBufferPoolConfig returns the default buffer pool configuration
 
 <a name="BufferPoolStats"></a>
-
 ## type [BufferPoolStats](<https://github.com/aalemi-dev/stdlib-lab/blob/main/minio/setup.go#L169-L184>)
 
 Stats returns statistics about buffer pool usage for monitoring and debugging.
@@ -1078,7 +1047,6 @@ type BufferPoolStats struct {
 ```
 
 <a name="ByteRange"></a>
-
 ## type [ByteRange](<https://github.com/aalemi-dev/stdlib-lab/blob/main/minio/configs.go#L340-L346>)
 
 ByteRange represents a byte range for partial object retrieval.
@@ -1094,7 +1062,6 @@ type ByteRange struct {
 ```
 
 <a name="Client"></a>
-
 ## type [Client](<https://github.com/aalemi-dev/stdlib-lab/blob/main/minio/interface.go#L19-L127>)
 
 Client provides a high\-level interface for interacting with MinIO/S3\-compatible storage. It abstracts object storage
@@ -1201,7 +1168,6 @@ type Client interface {
 ```
 
 <a name="Config"></a>
-
 ## type [Config](<https://github.com/aalemi-dev/stdlib-lab/blob/main/minio/configs.go#L43-L58>)
 
 Config defines the top\-level configuration for MinIO. This structure contains all configuration options for the MinIO
@@ -1227,7 +1193,6 @@ type Config struct {
 ```
 
 <a name="ConnectionConfig"></a>
-
 ## type [ConnectionConfig](<https://github.com/aalemi-dev/stdlib-lab/blob/main/minio/configs.go#L62-L77>)
 
 ConnectionConfig contains MinIO server connection details. These parameters are required to establish a connection to a
@@ -1253,7 +1218,6 @@ type ConnectionConfig struct {
 ```
 
 <a name="ConnectionPoolConfig"></a>
-
 ## type [ConnectionPoolConfig](<https://github.com/aalemi-dev/stdlib-lab/blob/main/minio/setup.go#L235-L244>)
 
 ConnectionPoolConfig contains configuration for connection management
@@ -1272,7 +1236,6 @@ type ConnectionPoolConfig struct {
 ```
 
 <a name="DefaultConnectionPoolConfig"></a>
-
 ### func [DefaultConnectionPoolConfig](<https://github.com/aalemi-dev/stdlib-lab/blob/main/minio/setup.go#L247>)
 
 ```go
@@ -1282,7 +1245,6 @@ func DefaultConnectionPoolConfig() ConnectionPoolConfig
 DefaultConnectionPoolConfig returns default connection pool configuration
 
 <a name="DownloadConfig"></a>
-
 ## type [DownloadConfig](<https://github.com/aalemi-dev/stdlib-lab/blob/main/minio/configs.go#L101-L112>)
 
 DownloadConfig defines parameters that control download behavior. These settings optimize memory usage when downloading
@@ -1304,7 +1266,6 @@ type DownloadConfig struct {
 ```
 
 <a name="ErrorCategory"></a>
-
 ## type [ErrorCategory](<https://github.com/aalemi-dev/stdlib-lab/blob/main/minio/errors.go#L550>)
 
 ErrorCategory represents different categories of MinIO errors
@@ -1336,7 +1297,6 @@ const (
 ```
 
 <a name="GetOption"></a>
-
 ## type [GetOption](<https://github.com/aalemi-dev/stdlib-lab/blob/main/minio/configs.go#L328>)
 
 GetOption is a functional option for configuring Get operations.
@@ -1346,7 +1306,6 @@ type GetOption func(*GetOptions)
 ```
 
 <a name="WithByteRange"></a>
-
 ### func [WithByteRange](<https://github.com/aalemi-dev/stdlib-lab/blob/main/minio/options.go#L79>)
 
 ```go
@@ -1364,7 +1323,6 @@ data, err := client.Get(ctx, bucket, key,
 ```
 
 <a name="WithVersionID"></a>
-
 ### func [WithVersionID](<https://github.com/aalemi-dev/stdlib-lab/blob/main/minio/options.go#L66>)
 
 ```go
@@ -1381,7 +1339,6 @@ data, err := client.Get(ctx, bucket, key,
 ```
 
 <a name="GetOptions"></a>
-
 ## type [GetOptions](<https://github.com/aalemi-dev/stdlib-lab/blob/main/minio/configs.go#L331-L337>)
 
 GetOptions contains options for Get operations.
@@ -1397,7 +1354,6 @@ type GetOptions struct {
 ```
 
 <a name="KafkaNotification"></a>
-
 ## type [KafkaNotification](<https://github.com/aalemi-dev/stdlib-lab/blob/main/minio/configs.go#L239-L251>)
 
 KafkaNotification defines a Kafka notification target. Kafka notifications publish events to a Kafka topic.
@@ -1419,7 +1375,6 @@ type KafkaNotification struct {
 ```
 
 <a name="KafkaSASLAuth"></a>
-
 ## type [KafkaSASLAuth](<https://github.com/aalemi-dev/stdlib-lab/blob/main/minio/configs.go#L255-L264>)
 
 KafkaSASLAuth contains Kafka SASL authentication details. SASL is used for authenticating with Kafka brokers.
@@ -1433,12 +1388,11 @@ type KafkaSASLAuth struct {
     Username string
 
     // Password for SASL authentication
-    Password string
+    Password string `json:"-"` //nolint:gosec
 }
 ```
 
 <a name="Logger"></a>
-
 ## type [Logger](<https://github.com/aalemi-dev/stdlib-lab/blob/main/minio/configs.go#L296-L305>)
 
 Logger is an interface that matches the std/v1/logger.Logger interface. It provides context\-aware structured logging
@@ -1458,7 +1412,6 @@ type Logger interface {
 ```
 
 <a name="MQTTNotification"></a>
-
 ## type [MQTTNotification](<https://github.com/aalemi-dev/stdlib-lab/blob/main/minio/configs.go#L268-L292>)
 
 MQTTNotification defines an MQTT notification target. MQTT notifications publish events to an MQTT broker.
@@ -1484,7 +1437,7 @@ type MQTTNotification struct {
     Username string
 
     // Password for MQTT broker authentication
-    Password string
+    Password string `json:"-"` //nolint:gosec
 
     // Reconnect flag enables automatic reconnection on connection loss
     Reconnect bool
@@ -1492,7 +1445,6 @@ type MQTTNotification struct {
 ```
 
 <a name="MinioClient"></a>
-
 ## type [MinioClient](<https://github.com/aalemi-dev/stdlib-lab/blob/main/minio/setup.go#L21-L51>)
 
 MinioClient represents a MinIO client with additional functionality. It wraps the standard MinIO client with features
@@ -1505,7 +1457,6 @@ type MinioClient struct {
 ```
 
 <a name="NewClient"></a>
-
 ### func [NewClient](<https://github.com/aalemi-dev/stdlib-lab/blob/main/minio/setup.go#L278>)
 
 ```go
@@ -1538,7 +1489,6 @@ defer client.GracefulShutdown()
 ```
 
 <a name="NewMinioClientWithDI"></a>
-
 ### func [NewMinioClientWithDI](<https://github.com/aalemi-dev/stdlib-lab/blob/main/minio/fx_module.go#L49>)
 
 ```go
@@ -1546,7 +1496,6 @@ func NewMinioClientWithDI(params MinioParams) (*MinioClient, error)
 ```
 
 <a name="MinioClient.AbortMultipartUpload"></a>
-
 ### func \(\*MinioClient\) [AbortMultipartUpload](<https://github.com/aalemi-dev/stdlib-lab/blob/main/minio/presigned_put_utils.go#L422>)
 
 ```go
@@ -1571,7 +1520,6 @@ err := minioClient.AbortMultipartUpload(ctx, "uploads/myfile.zip", uploadID)
 ```
 
 <a name="MinioClient.Bucket"></a>
-
 ### func \(\*MinioClient\) [Bucket](<https://github.com/aalemi-dev/stdlib-lab/blob/main/minio/setup.go#L822>)
 
 ```go
@@ -1600,7 +1548,6 @@ userBucket.Delete(ctx, "old-file.txt")
 ```
 
 <a name="MinioClient.BucketExists"></a>
-
 ### func \(\*MinioClient\) [BucketExists](<https://github.com/aalemi-dev/stdlib-lab/blob/main/minio/setup.go#L634>)
 
 ```go
@@ -1629,7 +1576,6 @@ if !exists {
 ```
 
 <a name="MinioClient.CleanupIncompleteUploads"></a>
-
 ### func \(\*MinioClient\) [CleanupIncompleteUploads](<https://github.com/aalemi-dev/stdlib-lab/blob/main/minio/presigned_put_utils.go#L561>)
 
 ```go
@@ -1655,7 +1601,6 @@ err := minioClient.CleanupIncompleteUploads(ctx, "uploads/", 24*time.Hour)
 ```
 
 <a name="MinioClient.CleanupResources"></a>
-
 ### func \(\*MinioClient\) [CleanupResources](<https://github.com/aalemi-dev/stdlib-lab/blob/main/minio/setup.go#L715>)
 
 ```go
@@ -1673,7 +1618,6 @@ defer minioClient.CleanupResources()
 ```
 
 <a name="MinioClient.CompleteMultipartUpload"></a>
-
 ### func \(\*MinioClient\) [CompleteMultipartUpload](<https://github.com/aalemi-dev/stdlib-lab/blob/main/minio/presigned_put_utils.go#L457>)
 
 ```go
@@ -1706,7 +1650,6 @@ err := minioClient.CompleteMultipartUpload(
 ```
 
 <a name="MinioClient.CreateBucket"></a>
-
 ### func \(\*MinioClient\) [CreateBucket](<https://github.com/aalemi-dev/stdlib-lab/blob/main/minio/setup.go#L535>)
 
 ```go
@@ -1734,7 +1677,6 @@ if err != nil {
 ```
 
 <a name="MinioClient.Delete"></a>
-
 ### func \(\*MinioClient\) [Delete](<https://github.com/aalemi-dev/stdlib-lab/blob/main/minio/object_utils.go#L326>)
 
 ```go
@@ -1761,7 +1703,6 @@ if err == nil {
 ```
 
 <a name="MinioClient.DeleteBucket"></a>
-
 ### func \(\*MinioClient\) [DeleteBucket](<https://github.com/aalemi-dev/stdlib-lab/blob/main/minio/setup.go#L595>)
 
 ```go
@@ -1787,7 +1728,6 @@ if err != nil {
 ```
 
 <a name="MinioClient.GenerateMultipartPresignedGetURLs"></a>
-
 ### func \(\*MinioClient\) [GenerateMultipartPresignedGetURLs](<https://github.com/aalemi-dev/stdlib-lab/blob/main/minio/presigned_get_utils.go#L100-L105>)
 
 ```go
@@ -1821,7 +1761,6 @@ download, err := minioClient.GenerateMultipartPresignedGetURLs(
 ```
 
 <a name="MinioClient.GenerateMultipartUploadURLs"></a>
-
 ### func \(\*MinioClient\) [GenerateMultipartUploadURLs](<https://github.com/aalemi-dev/stdlib-lab/blob/main/minio/presigned_put_utils.go#L251-L257>)
 
 ```go
@@ -1858,7 +1797,6 @@ upload, err := minioClient.GenerateMultipartUploadURLs(
 ```
 
 <a name="MinioClient.Get"></a>
-
 ### func \(\*MinioClient\) [Get](<https://github.com/aalemi-dev/stdlib-lab/blob/main/minio/object_utils.go#L115>)
 
 ```go
@@ -1895,7 +1833,6 @@ if err == nil {
 ```
 
 <a name="MinioClient.GetBufferPoolStats"></a>
-
 ### func \(\*MinioClient\) [GetBufferPoolStats](<https://github.com/aalemi-dev/stdlib-lab/blob/main/minio/setup.go#L701>)
 
 ```go
@@ -1918,7 +1855,6 @@ fmt.Printf("Buffers in pool: %d\n", stats.CurrentPoolSize)
 ```
 
 <a name="MinioClient.GetErrorCategory"></a>
-
 ### func \(\*MinioClient\) [GetErrorCategory](<https://github.com/aalemi-dev/stdlib-lab/blob/main/minio/errors.go#L571>)
 
 ```go
@@ -1928,7 +1864,6 @@ func (m *MinioClient) GetErrorCategory(err error) ErrorCategory
 GetErrorCategory returns the category of the given error
 
 <a name="MinioClient.GracefulShutdown"></a>
-
 ### func \(\*MinioClient\) [GracefulShutdown](<https://github.com/aalemi-dev/stdlib-lab/blob/main/minio/fx_module.go#L157>)
 
 ```go
@@ -1963,7 +1898,6 @@ func processFiles() {
 ```
 
 <a name="MinioClient.IsPermanentError"></a>
-
 ### func \(\*MinioClient\) [IsPermanentError](<https://github.com/aalemi-dev/stdlib-lab/blob/main/minio/errors.go#L629>)
 
 ```go
@@ -1973,7 +1907,6 @@ func (m *MinioClient) IsPermanentError(err error) bool
 IsPermanentError returns true if the error is permanent and should not be retried
 
 <a name="MinioClient.IsRetryableError"></a>
-
 ### func \(\*MinioClient\) [IsRetryableError](<https://github.com/aalemi-dev/stdlib-lab/blob/main/minio/errors.go#L607>)
 
 ```go
@@ -1983,7 +1916,6 @@ func (m *MinioClient) IsRetryableError(err error) bool
 IsRetryableError returns true if the error is retryable
 
 <a name="MinioClient.IsTemporaryError"></a>
-
 ### func \(\*MinioClient\) [IsTemporaryError](<https://github.com/aalemi-dev/stdlib-lab/blob/main/minio/errors.go#L624>)
 
 ```go
@@ -1993,7 +1925,6 @@ func (m *MinioClient) IsTemporaryError(err error) bool
 IsTemporaryError returns true if the error is temporary
 
 <a name="MinioClient.ListBuckets"></a>
-
 ### func \(\*MinioClient\) [ListBuckets](<https://github.com/aalemi-dev/stdlib-lab/blob/main/minio/setup.go#L668>)
 
 ```go
@@ -2021,7 +1952,6 @@ for _, bucket := range buckets {
 ```
 
 <a name="MinioClient.ListIncompleteUploads"></a>
-
 ### func \(\*MinioClient\) [ListIncompleteUploads](<https://github.com/aalemi-dev/stdlib-lab/blob/main/minio/presigned_put_utils.go#L526>)
 
 ```go
@@ -2053,7 +1983,6 @@ if err == nil {
 ```
 
 <a name="MinioClient.PreSignedGet"></a>
-
 ### func \(\*MinioClient\) [PreSignedGet](<https://github.com/aalemi-dev/stdlib-lab/blob/main/minio/presigned_get_utils.go#L265>)
 
 ```go
@@ -2083,7 +2012,6 @@ if err == nil {
 ```
 
 <a name="MinioClient.PreSignedHeadObject"></a>
-
 ### func \(\*MinioClient\) [PreSignedHeadObject](<https://github.com/aalemi-dev/stdlib-lab/blob/main/minio/presigned_put_utils.go#L600>)
 
 ```go
@@ -2113,7 +2041,6 @@ if err == nil {
 ```
 
 <a name="MinioClient.PreSignedPut"></a>
-
 ### func \(\*MinioClient\) [PreSignedPut](<https://github.com/aalemi-dev/stdlib-lab/blob/main/minio/presigned_put_utils.go#L642>)
 
 ```go
@@ -2143,7 +2070,6 @@ if err == nil {
 ```
 
 <a name="MinioClient.Put"></a>
-
 ### func \(\*MinioClient\) [Put](<https://github.com/aalemi-dev/stdlib-lab/blob/main/minio/object_utils.go#L40>)
 
 ```go
@@ -2182,7 +2108,6 @@ if err == nil {
 ```
 
 <a name="MinioClient.StreamGet"></a>
-
 ### func \(\*MinioClient\) [StreamGet](<https://github.com/aalemi-dev/stdlib-lab/blob/main/minio/object_utils.go#L214>)
 
 ```go
@@ -2204,7 +2129,6 @@ Returns:
 - \<\-chan error: Channel that receives any error that occurred
 
 <a name="MinioClient.TranslateError"></a>
-
 ### func \(\*MinioClient\) [TranslateError](<https://github.com/aalemi-dev/stdlib-lab/blob/main/minio/errors.go#L175>)
 
 ```go
@@ -2218,7 +2142,6 @@ It maps common MinIO errors to the standardized error types defined above. If an
 it's returned unchanged.
 
 <a name="MinioClient.WithLogger"></a>
-
 ### func \(\*MinioClient\) [WithLogger](<https://github.com/aalemi-dev/stdlib-lab/blob/main/minio/setup.go#L763>)
 
 ```go
@@ -2246,7 +2169,6 @@ defer client.GracefulShutdown()
 ```
 
 <a name="MinioClient.WithObserver"></a>
-
 ### func \(\*MinioClient\) [WithObserver](<https://github.com/aalemi-dev/stdlib-lab/blob/main/minio/setup.go#L741>)
 
 ```go
@@ -2274,7 +2196,6 @@ defer client.GracefulShutdown()
 ```
 
 <a name="MinioLifeCycleParams"></a>
-
 ## type [MinioLifeCycleParams](<https://github.com/aalemi-dev/stdlib-lab/blob/main/minio/fx_module.go#L69-L74>)
 
 ```go
@@ -2287,7 +2208,6 @@ type MinioLifeCycleParams struct {
 ```
 
 <a name="MinioParams"></a>
-
 ## type [MinioParams](<https://github.com/aalemi-dev/stdlib-lab/blob/main/minio/fx_module.go#L41-L47>)
 
 ```go
@@ -2301,7 +2221,6 @@ type MinioParams struct {
 ```
 
 <a name="MultipartPresignedGet"></a>
-
 ## type [MultipartPresignedGet](<https://github.com/aalemi-dev/stdlib-lab/blob/main/minio/presigned_get_utils.go#L38-L62>)
 
 MultipartPresignedGet is an interface for accessing multipart download info
@@ -2335,7 +2254,6 @@ type MultipartPresignedGet interface {
 ```
 
 <a name="MultipartPresignedGetInfo"></a>
-
 ## type [MultipartPresignedGetInfo](<https://github.com/aalemi-dev/stdlib-lab/blob/main/minio/presigned_get_utils.go#L14-L35>)
 
 MultipartPresignedGetInfo contains information for downloading an object in parts
@@ -2366,7 +2284,6 @@ type MultipartPresignedGetInfo struct {
 ```
 
 <a name="MultipartUpload"></a>
-
 ## type [MultipartUpload](<https://github.com/aalemi-dev/stdlib-lab/blob/main/minio/presigned_put_utils.go#L50-L80>)
 
 MultipartUpload represents a multipart upload session. This interface provides methods to access information about a
@@ -2407,7 +2324,6 @@ type MultipartUpload interface {
 ```
 
 <a name="MultipartUploadInfo"></a>
-
 ## type [MultipartUploadInfo](<https://github.com/aalemi-dev/stdlib-lab/blob/main/minio/presigned_put_utils.go#L18-L45>)
 
 MultipartUploadInfo contains all information needed for a multipart upload. This structure holds all the details
@@ -2446,7 +2362,6 @@ type MultipartUploadInfo struct {
 ```
 
 <a name="NotificationConfig"></a>
-
 ## type [NotificationConfig](<https://github.com/aalemi-dev/stdlib-lab/blob/main/minio/configs.go#L132-L150>)
 
 NotificationConfig defines the configuration for event notifications. MinIO can send notifications when events occur on
@@ -2475,7 +2390,6 @@ type NotificationConfig struct {
 ```
 
 <a name="PresignedConfig"></a>
-
 ## type [PresignedConfig](<https://github.com/aalemi-dev/stdlib-lab/blob/main/minio/configs.go#L116-L128>)
 
 PresignedConfig contains configuration options for presigned URLs. Presigned URLs allow temporary access to objects
@@ -2498,7 +2412,6 @@ type PresignedConfig struct {
 ```
 
 <a name="PutOption"></a>
-
 ## type [PutOption](<https://github.com/aalemi-dev/stdlib-lab/blob/main/minio/configs.go#L310>)
 
 PutOption is a functional option for configuring Put operations.
@@ -2508,7 +2421,6 @@ type PutOption func(*PutOptions)
 ```
 
 <a name="WithContentType"></a>
-
 ### func [WithContentType](<https://github.com/aalemi-dev/stdlib-lab/blob/main/minio/options.go#L25>)
 
 ```go
@@ -2526,7 +2438,6 @@ client.Put(ctx, bucket, key, reader,
 ```
 
 <a name="WithMetadata"></a>
-
 ### func [WithMetadata](<https://github.com/aalemi-dev/stdlib-lab/blob/main/minio/options.go#L41>)
 
 ```go
@@ -2547,7 +2458,6 @@ client.Put(ctx, bucket, key, reader,
 ```
 
 <a name="WithPartSize"></a>
-
 ### func [WithPartSize](<https://github.com/aalemi-dev/stdlib-lab/blob/main/minio/options.go#L54>)
 
 ```go
@@ -2564,7 +2474,6 @@ client.Put(ctx, bucket, key, reader,
 ```
 
 <a name="WithSize"></a>
-
 ### func [WithSize](<https://github.com/aalemi-dev/stdlib-lab/blob/main/minio/options.go#L12>)
 
 ```go
@@ -2581,7 +2490,6 @@ client.Put(ctx, bucket, key, reader, minio.WithSize(fileSize))
 ```
 
 <a name="PutOptions"></a>
-
 ## type [PutOptions](<https://github.com/aalemi-dev/stdlib-lab/blob/main/minio/configs.go#L313-L325>)
 
 PutOptions contains options for Put operations.
@@ -2603,7 +2511,6 @@ type PutOptions struct {
 ```
 
 <a name="RedisNotification"></a>
-
 ## type [RedisNotification](<https://github.com/aalemi-dev/stdlib-lab/blob/main/minio/configs.go#L223-L235>)
 
 RedisNotification defines a Redis notification target. Redis notifications publish events to a Redis pub/sub channel or
@@ -2618,7 +2525,7 @@ type RedisNotification struct {
     Addr string
 
     // Password is the Redis server password, if required
-    Password string
+    Password string `json:"-"` //nolint:gosec
 
     // Key is the Redis key where events will be published
     Key string
@@ -2626,7 +2533,6 @@ type RedisNotification struct {
 ```
 
 <a name="UploadConfig"></a>
-
 ## type [UploadConfig](<https://github.com/aalemi-dev/stdlib-lab/blob/main/minio/configs.go#L81-L97>)
 
 UploadConfig defines the configuration for upload constraints. These parameters control how objects are uploaded,
@@ -2653,7 +2559,6 @@ type UploadConfig struct {
 ```
 
 <a name="WebhookNotification"></a>
-
 ## type [WebhookNotification](<https://github.com/aalemi-dev/stdlib-lab/blob/main/minio/configs.go#L173-L182>)
 
 WebhookNotification defines a webhook notification target. Webhook notifications send HTTP POST requests to a specified
@@ -2668,7 +2573,7 @@ type WebhookNotification struct {
     Endpoint string
 
     // AuthToken is an optional token for authenticating with the webhook endpoint
-    AuthToken string
+    AuthToken string `json:"-"` //nolint:gosec
 }
 ```
 
