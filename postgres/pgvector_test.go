@@ -33,28 +33,43 @@ type SparseDoc struct {
 var (
 	pgvectorOnce      sync.Once
 	pgvectorContainer *PostgresContainer
+	pgvectorClient    *Postgres
 	pgvectorErr       error
 )
 
 // pgvectorSetup starts a pgvector-capable Postgres container once per test
-// process, enables the extension, and returns a *Postgres bound to it.
-// Tests share the container; each test creates and drops its own tables.
+// process, connects to it once, enables the extension once, and returns the
+// shared *Postgres. Per-test isolation is achieved by dropping and recreating
+// each test's tables, not by creating a new client per test.
 func pgvectorSetup(t *testing.T) *Postgres {
 	t.Helper()
 	pgvectorOnce.Do(func() {
 		pgvectorContainer, pgvectorErr = setupPGVectorContainer(context.Background())
+		if pgvectorErr != nil {
+			return
+		}
+		pgvectorClient, pgvectorErr = NewPostgres(pgvectorContainer.Config)
+		if pgvectorErr != nil {
+			return
+		}
+		ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
+		defer cancel()
+		pgvectorErr = pgvectorClient.EnableVectorExtension(ctx)
 	})
-	require.NoError(t, pgvectorErr, "pgvector container failed to start")
-	require.NotNil(t, pgvectorContainer)
+	require.NoError(t, pgvectorErr, "pgvector setup failed")
+	require.NotNil(t, pgvectorClient)
+	return pgvectorClient
+}
 
-	pg, err := NewPostgres(pgvectorContainer.Config)
-	require.NoError(t, err)
-	t.Cleanup(func() { _ = pg.GracefulShutdown() })
-
-	ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
-	defer cancel()
-	require.NoError(t, pg.EnableVectorExtension(ctx))
-	return pg
+// teardownPGVector is called from TestMain to close the shared client and
+// terminate the container. Safe to call even if setup never ran.
+func teardownPGVector(ctx context.Context) {
+	if pgvectorClient != nil {
+		_ = pgvectorClient.GracefulShutdown()
+	}
+	if pgvectorContainer != nil {
+		_ = pgvectorContainer.Terminate(ctx)
+	}
 }
 
 func setupPGVectorContainer(ctx context.Context) (*PostgresContainer, error) {

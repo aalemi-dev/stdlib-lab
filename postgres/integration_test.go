@@ -152,6 +152,7 @@ func TestMain(m *testing.M) {
 	sharedContainer = c
 	code := m.Run()
 	_ = c.Terminate(ctx)
+	teardownPGVector(ctx)
 	os.Exit(code)
 }
 
