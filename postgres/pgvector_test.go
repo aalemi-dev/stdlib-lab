@@ -310,6 +310,7 @@ func TestCreateIVFFlatIndex_RejectsZeroLists(t *testing.T) {
 }
 
 func TestBuildVectorIndexSQL(t *testing.T) {
+	t.Parallel()
 	cases := []struct {
 		name         string
 		method       string
