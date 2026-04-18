@@ -307,26 +307,26 @@ func TestBuildVectorIndexSQL(t *testing.T) {
 		want         string
 	}{
 		{
-			name: "hnsw_basic",
+			name:   "hnsw_basic",
 			method: "hnsw", table: "docs", column: "embedding",
 			opClass: VectorCosineOps,
 			want:    `CREATE INDEX ON "docs" USING hnsw ("embedding" vector_cosine_ops)`,
 		},
 		{
-			name: "hnsw_with_name_and_opts",
+			name:   "hnsw_with_name_and_opts",
 			method: "hnsw", table: "docs", column: "embedding",
 			opClass: VectorL2Ops, indexName: "my_idx",
 			with: "m = 16, ef_construction = 64",
 			want: `CREATE INDEX "my_idx" ON "docs" USING hnsw ("embedding" vector_l2_ops) WITH (m = 16, ef_construction = 64)`,
 		},
 		{
-			name: "ivfflat_concurrently",
+			name:   "ivfflat_concurrently",
 			method: "ivfflat", table: "docs", column: "emb",
 			opClass: VectorL2Ops, concurrently: true, with: "lists = 100",
 			want: `CREATE INDEX CONCURRENTLY ON "docs" USING ivfflat ("emb" vector_l2_ops) WITH (lists = 100)`,
 		},
 		{
-			name: "quotes_escaped_in_identifiers",
+			name:   "quotes_escaped_in_identifiers",
 			method: "hnsw", table: `weird"name`, column: "c",
 			opClass: VectorL2Ops,
 			want:    `CREATE INDEX ON "weird""name" USING hnsw ("c" vector_l2_ops)`,
