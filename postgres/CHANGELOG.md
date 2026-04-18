@@ -1,5 +1,19 @@
 # Changelog
 
+## [1.3.0](https://github.com/aalemi-dev/stdlib-lab/compare/postgres/v1.2.0...postgres/v1.3.0) (2026-04-18)
+
+
+### Features
+
+* **postgres:** add pgvector integration for vector similarity search ([b2522fd](https://github.com/aalemi-dev/stdlib-lab/commit/b2522fd1442d9521ac2f36507ffdc0067b81b922))
+* **postgres:** improve pgvector integration setup and teardown ([e2ece88](https://github.com/aalemi-dev/stdlib-lab/commit/e2ece883e8289d601fae7482475926c828061436))
+* support pgvector ([357b588](https://github.com/aalemi-dev/stdlib-lab/commit/357b5882f9f683cfba4f40e236071d2de6c684f1))
+
+
+### Bug Fixes
+
+* **postgres:** align test case formatting in pgvector_test.go ([37e6df1](https://github.com/aalemi-dev/stdlib-lab/commit/37e6df13922cc84d8d0ab6a28f8c1c89ee14c639))
+
 ## [1.2.0](https://github.com/aalemi-dev/stdlib-lab/compare/postgres/v1.1.0...postgres/v1.2.0) (2026-02-21)
 
 
