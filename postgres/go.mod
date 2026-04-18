@@ -8,6 +8,7 @@ require (
 	github.com/docker/go-connections v0.6.0
 	github.com/jackc/pgx/v5 v5.7.5
 	github.com/lib/pq v1.10.9
+	github.com/pgvector/pgvector-go v0.3.0
 	github.com/stretchr/testify v1.11.1
 	github.com/testcontainers/testcontainers-go v0.40.0
 	go.uber.org/fx v1.24.0
