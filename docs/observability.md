@@ -3,7 +3,7 @@
 # observability
 
 ```go
-import "github.com/aalemi-dev/stdlib-lab/observability"
+import "github.com/docket-legal/go-std-libs/observability"
 ```
 
 Package observability provides a unified interface for observing operations across all std infrastructure packages.
@@ -22,7 +22,7 @@ Infrastructure packages accept an optional Observer in their config:
 
 ```
 // std/v1/postgres/config.go
-import "github.com/aalemi-dev/stdlib-lab/observability"
+import "github.com/docket-legal/go-std-libs/observability"
 
 type Config struct {
     Host     string
@@ -226,7 +226,7 @@ Observer implementations must be thread\-safe. They will be called concurrently 
 
 
 <a name="NoOpObserver"></a>
-## type [NoOpObserver](<https://github.com/aalemi-dev/stdlib-lab/blob/main/observability/noop.go#L6>)
+## type [NoOpObserver](<https://github.com/docket-legal/go-std-libs/blob/main/observability/noop.go#L6>)
 
 NoOpObserver is a no\-op implementation of Observer. It does nothing when ObserveOperation is called. This can be useful for testing or as a default value.
 
@@ -235,7 +235,7 @@ type NoOpObserver struct{}
 ```
 
 <a name="NoOpObserver.ObserveOperation"></a>
-### func \(\*NoOpObserver\) [ObserveOperation](<https://github.com/aalemi-dev/stdlib-lab/blob/main/observability/noop.go#L9>)
+### func \(\*NoOpObserver\) [ObserveOperation](<https://github.com/docket-legal/go-std-libs/blob/main/observability/noop.go#L9>)
 
 ```go
 func (n *NoOpObserver) ObserveOperation(ctx OperationContext)
@@ -244,7 +244,7 @@ func (n *NoOpObserver) ObserveOperation(ctx OperationContext)
 ObserveOperation does nothing \(no\-op\).
 
 <a name="Observer"></a>
-## type [Observer](<https://github.com/aalemi-dev/stdlib-lab/blob/main/observability/interface.go#L11-L15>)
+## type [Observer](<https://github.com/docket-legal/go-std-libs/blob/main/observability/interface.go#L11-L15>)
 
 Observer is a unified interface for observability across all std packages. It allows external code to observe operations happening in infrastructure packages \(postgres, mariadb, minio, kafka, rabbitmq, redis, etc.\) without coupling them to specific observability implementations \(metrics, tracing, logging\).
 
@@ -259,7 +259,7 @@ type Observer interface {
 ```
 
 <a name="NewNoOpObserver"></a>
-### func [NewNoOpObserver](<https://github.com/aalemi-dev/stdlib-lab/blob/main/observability/noop.go#L14>)
+### func [NewNoOpObserver](<https://github.com/docket-legal/go-std-libs/blob/main/observability/noop.go#L14>)
 
 ```go
 func NewNoOpObserver() Observer
@@ -268,7 +268,7 @@ func NewNoOpObserver() Observer
 NewNoOpObserver creates a new NoOpObserver.
 
 <a name="OperationContext"></a>
-## type [OperationContext](<https://github.com/aalemi-dev/stdlib-lab/blob/main/observability/interface.go#L20-L71>)
+## type [OperationContext](<https://github.com/docket-legal/go-std-libs/blob/main/observability/interface.go#L20-L71>)
 
 OperationContext contains all information about an infrastructure operation. This struct is designed to be generic enough to work across all std packages while providing enough detail for comprehensive observability.
 

@@ -3,7 +3,7 @@ package metrics_test
 import (
 	"testing"
 
-	"github.com/aalemi-dev/stdlib-lab/metrics"
+	"github.com/docket-legal/go-std-libs/metrics"
 )
 
 // newAppMetrics returns a Metrics with only the application endpoint active.

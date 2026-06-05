@@ -3,7 +3,7 @@ package mariadb
 import (
 	"time"
 
-	"github.com/aalemi-dev/stdlib-lab/observability"
+	"github.com/docket-legal/go-std-libs/observability"
 )
 
 // observeOperation notifies the observer about an operation if one is configured.

@@ -6,7 +6,7 @@ import (
 
 	"go.uber.org/fx"
 
-	"github.com/aalemi-dev/stdlib-lab/logger"
+	"github.com/docket-legal/go-std-libs/logger"
 )
 
 // FXModule defines the Fx module for the metrics package.

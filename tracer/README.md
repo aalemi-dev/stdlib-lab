@@ -1,7 +1,7 @@
 # tracer
 
-[![Go Reference](https://pkg.go.dev/badge/github.com/aalemi-dev/stdlib-lab/tracer.svg)](https://pkg.go.dev/github.com/aalemi-dev/stdlib-lab/tracer)
-[![Go Report Card](https://goreportcard.com/badge/github.com/aalemi-dev/stdlib-lab/tracer)](https://goreportcard.com/report/github.com/aalemi-dev/stdlib-lab/tracer)
+[![Go Reference](https://pkg.go.dev/badge/github.com/docket-legal/go-std-libs/tracer.svg)](https://pkg.go.dev/github.com/docket-legal/go-std-libs/tracer)
+[![Go Report Card](https://goreportcard.com/badge/github.com/docket-legal/go-std-libs/tracer)](https://goreportcard.com/report/github.com/docket-legal/go-std-libs/tracer)
 
 Distributed tracing for Go, built on [OpenTelemetry](https://opentelemetry.io/)
 with [OTLP HTTP](https://opentelemetry.io/docs/specs/otlp/) export and [Uber fx](https://github.com/uber-go/fx) support.
@@ -9,7 +9,7 @@ with [OTLP HTTP](https://opentelemetry.io/docs/specs/otlp/) export and [Uber fx]
 ## Installation
 
 ```sh
-go get github.com/aalemi-dev/stdlib-lab/tracer
+go get github.com/docket-legal/go-std-libs/tracer
 ```
 
 ## Usage
@@ -19,7 +19,7 @@ go get github.com/aalemi-dev/stdlib-lab/tracer
 ```go
 import (
     "context"
-    "github.com/aalemi-dev/stdlib-lab/tracer"
+    "github.com/docket-legal/go-std-libs/tracer"
 )
 
 client, err := tracer.NewClient(tracer.Config{
@@ -55,7 +55,7 @@ provided separately.
 
 ```go
 import (
-    "github.com/aalemi-dev/stdlib-lab/tracer"
+    "github.com/docket-legal/go-std-libs/tracer"
     "go.uber.org/fx"
 )
 
@@ -81,7 +81,7 @@ app.Run()
 Depend on `tracer.Tracer` rather than `*TracerClient` to keep your code decoupled and testable:
 
 ```go
-import "github.com/aalemi-dev/stdlib-lab/tracer"
+import "github.com/docket-legal/go-std-libs/tracer"
 
 type MyService struct {
     tracer tracer.Tracer
@@ -104,7 +104,7 @@ func (s *MyService) Process(ctx context.Context) error {
 ```go
 package observability
 
-import stdTracer "github.com/aalemi-dev/stdlib-lab/tracer"
+import stdTracer "github.com/docket-legal/go-std-libs/tracer"
 
 type Tracer = stdTracer.Tracer
 type Span   = stdTracer.Span

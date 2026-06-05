@@ -1,9 +1,9 @@
-module github.com/aalemi-dev/stdlib-lab/schema_registry
+module github.com/docket-legal/go-std-libs/schema_registry
 
 go 1.25.4
 
 require (
-	github.com/aalemi-dev/stdlib-lab/observability v0.0.0
+	github.com/docket-legal/go-std-libs/observability v0.0.0
 	github.com/stretchr/testify v1.11.1
 	go.uber.org/fx v1.24.0
 )
@@ -21,4 +21,4 @@ require (
 	gopkg.in/yaml.v3 v3.0.1 // indirect
 )
 
-replace github.com/aalemi-dev/stdlib-lab/observability => ../observability
+replace github.com/docket-legal/go-std-libs/observability => ../observability

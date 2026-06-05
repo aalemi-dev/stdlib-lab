@@ -1,3 +1,3 @@
-module github.com/aalemi-dev/stdlib-lab/observability
+module github.com/docket-legal/go-std-libs/observability
 
 go 1.25.4

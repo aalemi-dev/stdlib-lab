@@ -1,5 +1,5 @@
-github.com/aalemi-dev/stdlib-lab/logger v1.1.0 h1:gtLFhLwbz01uIlgbg8FblimBsibGUzQG1YcLQYHd0JU=
-github.com/aalemi-dev/stdlib-lab/logger v1.1.0/go.mod h1:SmSc4XMSJveUnflmC5KfwoBxBwAleQ5+h0DLU1EdKpU=
+github.com/docket-legal/go-std-libs/logger v1.1.0 h1:gtLFhLwbz01uIlgbg8FblimBsibGUzQG1YcLQYHd0JU=
+github.com/docket-legal/go-std-libs/logger v1.1.0/go.mod h1:SmSc4XMSJveUnflmC5KfwoBxBwAleQ5+h0DLU1EdKpU=
 github.com/beorn7/perks v1.0.1 h1:VlbKKnNfV8bJzeqoa4cOKqO6bYr3WgKZxO8Z16+hsOM=
 github.com/beorn7/perks v1.0.1/go.mod h1:G2ZrVWU2WbWT9wwq4/hrbKbnv/1ERSJQ0ibhJ6rlkpw=
 github.com/cespare/xxhash/v2 v2.3.0 h1:UL815xU9SqsFlibzuggzjXhog7bL6oX9BbNZnL2UFvs=

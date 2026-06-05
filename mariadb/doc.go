@@ -22,7 +22,7 @@
 // Basic Usage:
 //
 //	import (
-//		"github.com/aalemi-dev/stdlib-lab/mariadb"
+//		"github.com/docket-legal/go-std-libs/mariadb"
 //	)
 //
 //	// Create a new database connection

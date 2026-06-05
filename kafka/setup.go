@@ -8,7 +8,7 @@ import (
 	"os"
 	"sync"
 
-	"github.com/aalemi-dev/stdlib-lab/observability"
+	"github.com/docket-legal/go-std-libs/observability"
 	"github.com/segmentio/kafka-go"
 	"github.com/segmentio/kafka-go/compress"
 	"github.com/segmentio/kafka-go/sasl"

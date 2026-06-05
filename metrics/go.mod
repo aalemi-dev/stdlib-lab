@@ -1,9 +1,9 @@
-module github.com/aalemi-dev/stdlib-lab/metrics
+module github.com/docket-legal/go-std-libs/metrics
 
 go 1.25
 
 require (
-	github.com/aalemi-dev/stdlib-lab/logger v1.1.0
+	github.com/docket-legal/go-std-libs/logger v1.1.0
 	github.com/prometheus/client_golang v1.23.2
 	go.uber.org/fx v1.24.0
 )

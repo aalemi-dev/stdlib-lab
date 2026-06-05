@@ -20,7 +20,7 @@
 // Infrastructure packages accept an optional Observer in their config:
 //
 //	// std/v1/postgres/config.go
-//	import "github.com/aalemi-dev/stdlib-lab/observability"
+//	import "github.com/docket-legal/go-std-libs/observability"
 //
 //	type Config struct {
 //	    Host     string

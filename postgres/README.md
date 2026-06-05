@@ -1,7 +1,7 @@
 # postgres
 
-[![Go Reference](https://pkg.go.dev/badge/github.com/aalemi-dev/stdlib-lab/postgres.svg)](https://pkg.go.dev/github.com/aalemi-dev/stdlib-lab/postgres)
-[![Go Report Card](https://goreportcard.com/badge/github.com/aalemi-dev/stdlib-lab/postgres)](https://goreportcard.com/report/github.com/aalemi-dev/stdlib-lab/postgres)
+[![Go Reference](https://pkg.go.dev/badge/github.com/docket-legal/go-std-libs/postgres.svg)](https://pkg.go.dev/github.com/docket-legal/go-std-libs/postgres)
+[![Go Report Card](https://goreportcard.com/badge/github.com/docket-legal/go-std-libs/postgres)](https://goreportcard.com/report/github.com/docket-legal/go-std-libs/postgres)
 
 A PostgreSQL client built on top of [GORM](https://gorm.io/), with connection pooling, automatic reconnection,
 transaction support, migrations, and optional observability hooks.
@@ -9,7 +9,7 @@ transaction support, migrations, and optional observability hooks.
 ## Installation
 
 ```sh
-go get github.com/aalemi-dev/stdlib-lab/postgres
+go get github.com/docket-legal/go-std-libs/postgres
 ```
 
 ## Usage
@@ -17,7 +17,7 @@ go get github.com/aalemi-dev/stdlib-lab/postgres
 ### Basic connection
 
 ```go
-import "github.com/aalemi-dev/stdlib-lab/postgres"
+import "github.com/docket-legal/go-std-libs/postgres"
 
 pg, err := postgres.NewPostgres(postgres.Config{
     Connection: postgres.Connection{
@@ -93,7 +93,7 @@ err = pg.MigrateDown(ctx, "./migrations", 1)
 ### Observability
 
 ```go
-import "github.com/aalemi-dev/stdlib-lab/observability"
+import "github.com/docket-legal/go-std-libs/observability"
 
 pg, err := postgres.NewPostgres(cfg)
 if err != nil {

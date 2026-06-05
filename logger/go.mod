@@ -1,4 +1,4 @@
-module github.com/aalemi-dev/stdlib-lab/logger
+module github.com/docket-legal/go-std-libs/logger
 
 go 1.25
 

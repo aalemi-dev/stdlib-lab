@@ -60,7 +60,7 @@ When adding a new infra package, mirror this layout exactly — the consistency 
 ## Lint / formatting conventions
 
 `.golangci.yml` is v2-style. Notable settings:
-- `goimports.local-prefixes = github.com/aalemi-dev/stdlib-lab` — keep intra-repo imports in their own group.
+- `goimports.local-prefixes = github.com/docket-legal/go-std-libs` — keep intra-repo imports in their own group.
 - `gosec` is disabled in `_test.go` files; `unparam` is too.
 - `nakedret` max-func-lines is 30; `misspell` locale is US.
 - `gosec/G104` is excluded (errcheck handles it).

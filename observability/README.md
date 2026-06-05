@@ -1,7 +1,7 @@
 # observability
 
-[![Go Reference](https://pkg.go.dev/badge/github.com/aalemi-dev/stdlib-lab/observability.svg)](https://pkg.go.dev/github.com/aalemi-dev/stdlib-lab/observability)
-[![Go Report Card](https://goreportcard.com/badge/github.com/aalemi-dev/stdlib-lab/observability)](https://goreportcard.com/report/github.com/aalemi-dev/stdlib-lab/observability)
+[![Go Reference](https://pkg.go.dev/badge/github.com/docket-legal/go-std-libs/observability.svg)](https://pkg.go.dev/github.com/docket-legal/go-std-libs/observability)
+[![Go Report Card](https://goreportcard.com/badge/github.com/docket-legal/go-std-libs/observability)](https://goreportcard.com/report/github.com/docket-legal/go-std-libs/observability)
 
 A unified observability interface for Go infrastructure packages. Provides a single `Observer` interface that decouples
 infrastructure packages (Kafka, Postgres, MinIO, RabbitMQ, etc.) from any specific metrics, tracing, or logging
@@ -10,7 +10,7 @@ implementation.
 ## Installation
 
 ```sh
-go get github.com/aalemi-dev/stdlib-lab/observability
+go get github.com/docket-legal/go-std-libs/observability
 ```
 
 ## Usage
@@ -18,7 +18,7 @@ go get github.com/aalemi-dev/stdlib-lab/observability
 ### Implement the Observer interface
 
 ```go
-import "github.com/aalemi-dev/stdlib-lab/observability"
+import "github.com/docket-legal/go-std-libs/observability"
 
 type MetricsObserver struct{}
 

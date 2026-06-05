@@ -1,7 +1,7 @@
 # logger
 
-[![Go Reference](https://pkg.go.dev/badge/github.com/aalemi-dev/stdlib-lab/logger.svg)](https://pkg.go.dev/github.com/aalemi-dev/stdlib-lab/logger)
-[![Go Report Card](https://goreportcard.com/badge/github.com/aalemi-dev/stdlib-lab/logger)](https://goreportcard.com/report/github.com/aalemi-dev/stdlib-lab/logger)
+[![Go Reference](https://pkg.go.dev/badge/github.com/docket-legal/go-std-libs/logger.svg)](https://pkg.go.dev/github.com/docket-legal/go-std-libs/logger)
+[![Go Report Card](https://goreportcard.com/badge/github.com/docket-legal/go-std-libs/logger)](https://goreportcard.com/report/github.com/docket-legal/go-std-libs/logger)
 
 Structured logging for Go, built on [Uber Zap](https://github.com/uber-go/zap) with
 optional [OpenTelemetry](https://opentelemetry.io/) tracing integration and [Uber fx](https://github.com/uber-go/fx)
@@ -10,7 +10,7 @@ support.
 ## Installation
 
 ```sh
-go get github.com/aalemi-dev/stdlib-lab/logger
+go get github.com/docket-legal/go-std-libs/logger
 ```
 
 ## Usage
@@ -18,7 +18,7 @@ go get github.com/aalemi-dev/stdlib-lab/logger
 ### Direct usage
 
 ```go
-import "github.com/aalemi-dev/stdlib-lab/logger"
+import "github.com/docket-legal/go-std-libs/logger"
 
 log := logger.NewLoggerClient(logger.Config{
     Level:         logger.Info,
@@ -43,7 +43,7 @@ provided separately.
 
 ```go
 import (
-    "github.com/aalemi-dev/stdlib-lab/logger"
+    "github.com/docket-legal/go-std-libs/logger"
     "go.uber.org/fx"
 )
 
@@ -68,7 +68,7 @@ app.Run()
 Depend on the `Logger` interface rather than the concrete `*LoggerClient` to keep your code decoupled:
 
 ```go
-import logger "github.com/aalemi-dev/stdlib-lab/logger"
+import logger "github.com/docket-legal/go-std-libs/logger"
 
 type MyService struct {
     log logger.Logger

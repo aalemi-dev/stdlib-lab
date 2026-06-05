@@ -1,7 +1,7 @@
 # mariadb
 
-[![Go Reference](https://pkg.go.dev/badge/github.com/aalemi-dev/stdlib-lab/mariadb.svg)](https://pkg.go.dev/github.com/aalemi-dev/stdlib-lab/mariadb)
-[![Go Report Card](https://goreportcard.com/badge/github.com/aalemi-dev/stdlib-lab/mariadb)](https://goreportcard.com/report/github.com/aalemi-dev/stdlib-lab/mariadb)
+[![Go Reference](https://pkg.go.dev/badge/github.com/docket-legal/go-std-libs/mariadb.svg)](https://pkg.go.dev/github.com/docket-legal/go-std-libs/mariadb)
+[![Go Report Card](https://goreportcard.com/badge/github.com/docket-legal/go-std-libs/mariadb)](https://goreportcard.com/report/github.com/docket-legal/go-std-libs/mariadb)
 
 A robust MariaDB/MySQL client built on top of [GORM](https://gorm.io/), with connection pooling, automatic reconnection,
 transaction support, migrations, and optional observability hooks.
@@ -9,7 +9,7 @@ transaction support, migrations, and optional observability hooks.
 ## Installation
 
 ```sh
-go get github.com/aalemi-dev/stdlib-lab/mariadb
+go get github.com/docket-legal/go-std-libs/mariadb
 ```
 
 ## Usage
@@ -17,7 +17,7 @@ go get github.com/aalemi-dev/stdlib-lab/mariadb
 ### Basic connection
 
 ```go
-import "github.com/aalemi-dev/stdlib-lab/mariadb"
+import "github.com/docket-legal/go-std-libs/mariadb"
 
 db, err := mariadb.NewMariaDB(mariadb.Config{
     Connection: mariadb.Connection{
@@ -94,7 +94,7 @@ err = db.MigrateDown(ctx, "./migrations", 1)
 ### Observability
 
 ```go
-import "github.com/aalemi-dev/stdlib-lab/observability"
+import "github.com/docket-legal/go-std-libs/observability"
 
 db, err := mariadb.NewMariaDB(cfg)
 if err != nil {

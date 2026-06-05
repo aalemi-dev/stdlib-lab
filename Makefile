@@ -176,7 +176,7 @@ docs:
 		echo "Processing $$pkgname..."; \
 		(cd $$pkg && $$GOMARKDOC ./... \
 			--output "../docs/$$pkgname.md" \
-			--repository.url "https://github.com/aalemi-dev/stdlib-lab" \
+			--repository.url "https://github.com/docket-legal/go-std-libs" \
 			--format github); \
 	done; \
 	echo "Documentation generated in docs/ directory"

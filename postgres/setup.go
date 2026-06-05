@@ -7,7 +7,7 @@ import (
 	"sync/atomic"
 	"time"
 
-	"github.com/aalemi-dev/stdlib-lab/observability"
+	"github.com/docket-legal/go-std-libs/observability"
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
 )

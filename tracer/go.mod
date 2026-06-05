@@ -1,4 +1,4 @@
-module github.com/aalemi-dev/stdlib-lab/tracer
+module github.com/docket-legal/go-std-libs/tracer
 
 go 1.25.0
 

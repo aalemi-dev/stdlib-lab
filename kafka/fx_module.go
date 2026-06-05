@@ -3,7 +3,7 @@ package kafka
 import (
 	"context"
 
-	"github.com/aalemi-dev/stdlib-lab/observability"
+	"github.com/docket-legal/go-std-libs/observability"
 	"go.uber.org/fx"
 )
 

@@ -1,7 +1,7 @@
 # metrics
 
-[![Go Reference](https://pkg.go.dev/badge/github.com/aalemi-dev/stdlib-lab/metrics.svg)](https://pkg.go.dev/github.com/aalemi-dev/stdlib-lab/metrics)
-[![Go Report Card](https://goreportcard.com/badge/github.com/aalemi-dev/stdlib-lab/metrics)](https://goreportcard.com/report/github.com/aalemi-dev/stdlib-lab/metrics)
+[![Go Reference](https://pkg.go.dev/badge/github.com/docket-legal/go-std-libs/metrics.svg)](https://pkg.go.dev/github.com/docket-legal/go-std-libs/metrics)
+[![Go Report Card](https://goreportcard.com/badge/github.com/docket-legal/go-std-libs/metrics)](https://goreportcard.com/report/github.com/docket-legal/go-std-libs/metrics)
 
 Prometheus metrics for Go, with dual-endpoint separation between system and application metrics, automatic service
 labelling, and [Uber fx](https://github.com/uber-go/fx) support.
@@ -9,7 +9,7 @@ labelling, and [Uber fx](https://github.com/uber-go/fx) support.
 ## Installation
 
 ```sh
-go get github.com/aalemi-dev/stdlib-lab/metrics
+go get github.com/docket-legal/go-std-libs/metrics
 ```
 
 ## Usage
@@ -17,7 +17,7 @@ go get github.com/aalemi-dev/stdlib-lab/metrics
 ### Direct usage
 
 ```go
-import "github.com/aalemi-dev/stdlib-lab/metrics"
+import "github.com/docket-legal/go-std-libs/metrics"
 
 m := metrics.NewMetrics(metrics.Config{
     ServiceName: "my-service",
@@ -66,7 +66,7 @@ latency.WithLabelValues("/api/users").Observe(0.013)
 
 ```go
 import (
-    "github.com/aalemi-dev/stdlib-lab/metrics"
+    "github.com/docket-legal/go-std-libs/metrics"
     "go.uber.org/fx"
 )
 
@@ -128,7 +128,7 @@ All metric types support `WithLabelValues(lvs ...string)` to select a specific l
 - Go 1.25+
 - `github.com/prometheus/client_golang` v1.23+
 - `go.uber.org/fx` v1.24+ _(only for fx integration)_
-- `github.com/aalemi-dev/stdlib-lab/logger` _(only for fx integration)_
+- `github.com/docket-legal/go-std-libs/logger` _(only for fx integration)_
 
 ## License
 

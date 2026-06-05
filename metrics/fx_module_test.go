@@ -3,8 +3,8 @@ package metrics_test
 import (
 	"testing"
 
-	"github.com/aalemi-dev/stdlib-lab/logger"
-	"github.com/aalemi-dev/stdlib-lab/metrics"
+	"github.com/docket-legal/go-std-libs/logger"
+	"github.com/docket-legal/go-std-libs/metrics"
 	"go.uber.org/fx"
 	"go.uber.org/fx/fxtest"
 )

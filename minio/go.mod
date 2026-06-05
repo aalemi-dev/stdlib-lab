@@ -1,9 +1,9 @@
-module github.com/aalemi-dev/stdlib-lab/minio
+module github.com/docket-legal/go-std-libs/minio
 
 go 1.25.5
 
 require (
-	github.com/aalemi-dev/stdlib-lab/observability v1.2.0
+	github.com/docket-legal/go-std-libs/observability v1.2.0
 	github.com/minio/minio-go/v7 v7.0.98
 	github.com/stretchr/testify v1.11.1
 	github.com/testcontainers/testcontainers-go v0.40.0
