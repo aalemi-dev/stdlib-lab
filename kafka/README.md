@@ -1,7 +1,7 @@
 # kafka
 
-[![Go Reference](https://pkg.go.dev/badge/github.com/aalemi-dev/stdlib-lab/kafka.svg)](https://pkg.go.dev/github.com/aalemi-dev/stdlib-lab/kafka)
-[![Go Report Card](https://goreportcard.com/badge/github.com/aalemi-dev/stdlib-lab/kafka)](https://goreportcard.com/report/github.com/aalemi-dev/stdlib-lab/kafka)
+[![Go Reference](https://pkg.go.dev/badge/github.com/docket-legal/go-std-libs/kafka.svg)](https://pkg.go.dev/github.com/docket-legal/go-std-libs/kafka)
+[![Go Report Card](https://goreportcard.com/badge/github.com/docket-legal/go-std-libs/kafka)](https://goreportcard.com/report/github.com/docket-legal/go-std-libs/kafka)
 
 Apache Kafka client for Go, built on [segmentio/kafka-go](https://github.com/segmentio/kafka-go) with pluggable
 serialization, SASL/TLS support, observability hooks, and [Uber fx](https://github.com/uber-go/fx) integration.
@@ -9,7 +9,7 @@ serialization, SASL/TLS support, observability hooks, and [Uber fx](https://gith
 ## Installation
 
 ```sh
-go get github.com/aalemi-dev/stdlib-lab/kafka
+go get github.com/docket-legal/go-std-libs/kafka
 ```
 
 ## Usage
@@ -17,7 +17,7 @@ go get github.com/aalemi-dev/stdlib-lab/kafka
 ### Producer
 
 ```go
-import "github.com/aalemi-dev/stdlib-lab/kafka"
+import "github.com/docket-legal/go-std-libs/kafka"
 
 client, err := kafka.NewClient(kafka.Config{
     Brokers: []string{"localhost:9092"},
@@ -72,7 +72,7 @@ msgs := client.ConsumeParallel(ctx, wg, 4) // 4 concurrent workers
 
 ```go
 import (
-    "github.com/aalemi-dev/stdlib-lab/kafka"
+    "github.com/docket-legal/go-std-libs/kafka"
     "go.uber.org/fx"
 )
 
@@ -158,7 +158,7 @@ kafka.Config{
 Pass any `observability.Observer` implementation to track all produce/consume operations:
 
 ```go
-import "github.com/aalemi-dev/stdlib-lab/observability"
+import "github.com/docket-legal/go-std-libs/observability"
 
 client.WithObserver(myObserver)
 ```

@@ -1,9 +1,9 @@
-module github.com/aalemi-dev/stdlib-lab/kafka
+module github.com/docket-legal/go-std-libs/kafka
 
 go 1.25.4
 
 require (
-	github.com/aalemi-dev/stdlib-lab/observability v1.1.0
+	github.com/docket-legal/go-std-libs/observability v1.1.0
 	github.com/docker/docker v28.5.1+incompatible
 	github.com/docker/go-connections v0.6.0
 	github.com/segmentio/kafka-go v0.4.50

@@ -35,7 +35,7 @@
 // For simple applications or tests, create a client directly:
 //
 //	import (
-//		"github.com/aalemi-dev/stdlib-lab/minio"
+//		"github.com/docket-legal/go-std-libs/minio"
 //		"context"
 //	)
 //
@@ -75,8 +75,8 @@
 // both the concrete type and interface:
 //
 //	import (
-//		"github.com/aalemi-dev/stdlib-lab/minio"
-//		"github.com/aalemi-dev/stdlib-lab/logger"
+//		"github.com/docket-legal/go-std-libs/minio"
+//		"github.com/docket-legal/go-std-libs/logger"
 //		"go.uber.org/fx"
 //	)
 //
@@ -145,7 +145,7 @@
 //
 //	package myapp
 //
-//	import stdMinio "github.com/aalemi-dev/stdlib-lab/minio"
+//	import stdMinio "github.com/docket-legal/go-std-libs/minio"
 //
 //	// Use type alias to reference std's interface
 //	type MinioClient = stdMinio.Client

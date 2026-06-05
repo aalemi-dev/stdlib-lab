@@ -3,7 +3,7 @@ package kafka
 import (
 	"time"
 
-	"github.com/aalemi-dev/stdlib-lab/observability"
+	"github.com/docket-legal/go-std-libs/observability"
 )
 
 // observeOperation safely calls the observer if it's not nil.

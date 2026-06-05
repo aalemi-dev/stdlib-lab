@@ -1,6 +1,6 @@
 # schema_registry
 
-[![Go Reference](https://pkg.go.dev/badge/github.com/aalemi-dev/stdlib-lab/schema_registry.svg)](https://pkg.go.dev/github.com/aalemi-dev/stdlib-lab/schema_registry)
+[![Go Reference](https://pkg.go.dev/badge/github.com/docket-legal/go-std-libs/schema_registry.svg)](https://pkg.go.dev/github.com/docket-legal/go-std-libs/schema_registry)
 
 A Go client for [Confluent Schema Registry](https://docs.confluent.io/platform/current/schema-registry/index.html) with
 built-in caching, Avro/Protobuf/JSON serializers, and optional observability hooks.
@@ -20,7 +20,7 @@ built-in caching, Avro/Protobuf/JSON serializers, and optional observability hoo
 ## Installation
 
 ```bash
-go get github.com/aalemi-dev/stdlib-lab/schema_registry
+go get github.com/docket-legal/go-std-libs/schema_registry
 ```
 
 ## Usage

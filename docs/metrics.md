@@ -3,7 +3,7 @@
 # metrics
 
 ```go
-import "github.com/aalemi-dev/stdlib-lab/metrics"
+import "github.com/docket-legal/go-std-libs/metrics"
 ```
 
 Package metrics provides Prometheus\-based monitoring and metrics collection functionality for Go applications.
@@ -56,7 +56,7 @@ This separation allows:
 For simple applications or tests, create metrics directly:
 
 ```
-import "github.com/aalemi-dev/stdlib-lab/metrics"
+import "github.com/docket-legal/go-std-libs/metrics"
 
 // Create metrics servers (returns concrete *Metrics)
 cfg := metrics.Config{
@@ -91,8 +91,8 @@ For production applications using Uber's fx, use the FXModule which provides bot
 ```
 import (
 	"go.uber.org/fx"
-	"github.com/aalemi-dev/stdlib-lab/metrics"
-	"github.com/aalemi-dev/stdlib-lab/logger"
+	"github.com/docket-legal/go-std-libs/metrics"
+	"github.com/docket-legal/go-std-libs/logger"
 )
 
 app := fx.New(
@@ -125,7 +125,7 @@ To simplify your code and make it metrics\-agnostic, use type aliases:
 ```
 package myapp
 
-import stdMetrics "github.com/aalemi-dev/stdlib-lab/metrics"
+import stdMetrics "github.com/docket-legal/go-std-libs/metrics"
 
 // Use type alias to reference std's interface
 type MetricsCollector = stdMetrics.MetricsCollector
@@ -254,8 +254,8 @@ import (
 	"time"
 
 	"go.uber.org/fx"
-	"github.com/aalemi-dev/stdlib-lab/metrics"
-	"github.com/aalemi-dev/stdlib-lab/logger"
+	"github.com/docket-legal/go-std-libs/metrics"
+	"github.com/docket-legal/go-std-libs/logger"
 )
 
 type HTTPMetrics struct {
@@ -627,7 +627,7 @@ var FXModule = fx.Module("metrics",
 ```
 
 <a name="Ptr"></a>
-## func [Ptr](<https://github.com/aalemi-dev/stdlib-lab/blob/main/metrics/configs.go#L78>)
+## func [Ptr](<https://github.com/docket-legal/go-std-libs/blob/main/metrics/configs.go#L78>)
 
 ```go
 func Ptr(s string) *string
@@ -646,7 +646,7 @@ cfg := metrics.Config{
 ```
 
 <a name="RegisterMetricsLifecycle"></a>
-## func [RegisterMetricsLifecycle](<https://github.com/aalemi-dev/stdlib-lab/blob/main/metrics/fx_module.go#L79>)
+## func [RegisterMetricsLifecycle](<https://github.com/docket-legal/go-std-libs/blob/main/metrics/fx_module.go#L79>)
 
 ```go
 func RegisterMetricsLifecycle(lc fx.Lifecycle, m *Metrics, log *logger.LoggerClient)
@@ -670,7 +670,7 @@ This ensures that both metrics endpoints are available for scraping during the a
 Note: This function is automatically invoked by the FXModule and does not need to be called directly in application code.
 
 <a name="Config"></a>
-## type [Config](<https://github.com/aalemi-dev/stdlib-lab/blob/main/metrics/configs.go#L15-L66>)
+## type [Config](<https://github.com/docket-legal/go-std-libs/blob/main/metrics/configs.go#L15-L66>)
 
 Config defines the configuration structure for the Prometheus metrics servers. It contains settings that control how metrics are exposed and collected.
 
@@ -732,7 +732,7 @@ type Config struct {
 ```
 
 <a name="Counter"></a>
-## type [Counter](<https://github.com/aalemi-dev/stdlib-lab/blob/main/metrics/types.go#L11-L22>)
+## type [Counter](<https://github.com/docket-legal/go-std-libs/blob/main/metrics/types.go#L11-L22>)
 
 Counter represents a cumulative metric that only increases. It is used to track totals such as request counts, errors, or bytes processed.
 
@@ -754,7 +754,7 @@ type Counter interface {
 ```
 
 <a name="Gauge"></a>
-## type [Gauge](<https://github.com/aalemi-dev/stdlib-lab/blob/main/metrics/types.go#L28-L51>)
+## type [Gauge](<https://github.com/docket-legal/go-std-libs/blob/main/metrics/types.go#L28-L51>)
 
 Gauge represents a metric that can arbitrarily go up and down. It is used for values like active connections, temperature, or queue depth.
 
@@ -788,7 +788,7 @@ type Gauge interface {
 ```
 
 <a name="Histogram"></a>
-## type [Histogram](<https://github.com/aalemi-dev/stdlib-lab/blob/main/metrics/types.go#L57-L65>)
+## type [Histogram](<https://github.com/docket-legal/go-std-libs/blob/main/metrics/types.go#L57-L65>)
 
 Histogram tracks the distribution of observations \(e.g., request durations or response sizes\). Histograms calculate quantiles, counts, and sums on the server side.
 
@@ -807,7 +807,7 @@ type Histogram interface {
 ```
 
 <a name="Metrics"></a>
-## type [Metrics](<https://github.com/aalemi-dev/stdlib-lab/blob/main/metrics/setup.go#L18-L41>)
+## type [Metrics](<https://github.com/docket-legal/go-std-libs/blob/main/metrics/setup.go#L18-L41>)
 
 Metrics encapsulates two separate Prometheus registries and HTTP servers: 1. System metrics \(Go runtime, process, build info\) \- exposed on SystemServer 2. Application metrics \(user\-defined custom metrics\) \- exposed on ApplicationServer
 
@@ -838,7 +838,7 @@ type Metrics struct {
 ```
 
 <a name="NewMetrics"></a>
-### func [NewMetrics](<https://github.com/aalemi-dev/stdlib-lab/blob/main/metrics/setup.go#L79>)
+### func [NewMetrics](<https://github.com/docket-legal/go-std-libs/blob/main/metrics/setup.go#L79>)
 
 ```go
 func NewMetrics(cfg Config) *Metrics
@@ -886,7 +886,7 @@ Access metrics at:
 - Application metrics: http://localhost:9091/metrics
 
 <a name="Metrics.CreateCounter"></a>
-### func \(\*Metrics\) [CreateCounter](<https://github.com/aalemi-dev/stdlib-lab/blob/main/metrics/utils.go#L17>)
+### func \(\*Metrics\) [CreateCounter](<https://github.com/docket-legal/go-std-libs/blob/main/metrics/utils.go#L17>)
 
 ```go
 func (m *Metrics) CreateCounter(name, help string, labels []string) Counter
@@ -905,7 +905,7 @@ counter.WithLabelValues("POST", "500").Inc()
 ```
 
 <a name="Metrics.CreateGauge"></a>
-### func \(\*Metrics\) [CreateGauge](<https://github.com/aalemi-dev/stdlib-lab/blob/main/metrics/utils.go#L56>)
+### func \(\*Metrics\) [CreateGauge](<https://github.com/docket-legal/go-std-libs/blob/main/metrics/utils.go#L56>)
 
 ```go
 func (m *Metrics) CreateGauge(name, help string, labels []string) Gauge
@@ -925,7 +925,7 @@ gauge.WithLabelValues("postgres").Dec()
 ```
 
 <a name="Metrics.CreateHistogram"></a>
-### func \(\*Metrics\) [CreateHistogram](<https://github.com/aalemi-dev/stdlib-lab/blob/main/metrics/utils.go#L38>)
+### func \(\*Metrics\) [CreateHistogram](<https://github.com/docket-legal/go-std-libs/blob/main/metrics/utils.go#L38>)
 
 ```go
 func (m *Metrics) CreateHistogram(name, help string, labels []string, buckets []float64) Histogram
@@ -948,7 +948,7 @@ hist.WithLabelValues("/api/search").Observe(0.25)
 ```
 
 <a name="Metrics.CreateSummary"></a>
-### func \(\*Metrics\) [CreateSummary](<https://github.com/aalemi-dev/stdlib-lab/blob/main/metrics/utils.go#L77>)
+### func \(\*Metrics\) [CreateSummary](<https://github.com/docket-legal/go-std-libs/blob/main/metrics/utils.go#L77>)
 
 ```go
 func (m *Metrics) CreateSummary(name, help string, labels []string, objectives map[float64]float64) Summary
@@ -971,7 +971,7 @@ summary.WithLabelValues("/api/search").Observe(0.25)
 ```
 
 <a name="MetricsCollector"></a>
-## type [MetricsCollector](<https://github.com/aalemi-dev/stdlib-lab/blob/main/metrics/interface.go#L11-L55>)
+## type [MetricsCollector](<https://github.com/docket-legal/go-std-libs/blob/main/metrics/interface.go#L11-L55>)
 
 MetricsCollector provides an interface for collecting and exposing application metrics. It abstracts metric operations with support for counters, histograms, gauges, and summaries.
 
@@ -1028,7 +1028,7 @@ type MetricsCollector interface {
 ```
 
 <a name="Observer"></a>
-## type [Observer](<https://github.com/aalemi-dev/stdlib-lab/blob/main/metrics/types.go#L82-L85>)
+## type [Observer](<https://github.com/docket-legal/go-std-libs/blob/main/metrics/types.go#L82-L85>)
 
 Observer is a common interface for metrics that observe values \(Histogram and Summary\).
 
@@ -1040,7 +1040,7 @@ type Observer interface {
 ```
 
 <a name="Summary"></a>
-## type [Summary](<https://github.com/aalemi-dev/stdlib-lab/blob/main/metrics/types.go#L71-L79>)
+## type [Summary](<https://github.com/docket-legal/go-std-libs/blob/main/metrics/types.go#L71-L79>)
 
 Summary calculates streaming quantiles of observed values on the client side. Unlike histograms, summaries cannot be aggregated across multiple instances.
 

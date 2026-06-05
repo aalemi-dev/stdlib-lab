@@ -3,7 +3,7 @@
 # logger
 
 ```go
-import "github.com/aalemi-dev/stdlib-lab/logger"
+import "github.com/docket-legal/go-std-libs/logger"
 ```
 
 Package logger provides structured logging functionality for Go applications.
@@ -34,7 +34,7 @@ Core Features:
 For simple applications or tests, create a logger directly:
 
 ```
-import "github.com/aalemi-dev/stdlib-lab/logger"
+import "github.com/docket-legal/go-std-libs/logger"
 
 // Create a new logger (returns concrete *LoggerClient)
 log := logger.NewLoggerClient(logger.Config{
@@ -61,7 +61,7 @@ For production applications using Uber's fx, use the FXModule which provides bot
 
 ```
 import (
-	"github.com/aalemi-dev/stdlib-lab/logger"
+	"github.com/docket-legal/go-std-libs/logger"
 	"go.uber.org/fx"
 )
 
@@ -89,7 +89,7 @@ To simplify your code and avoid tight coupling, use type aliases:
 ```
 package myapp
 
-import stdLogger "github.com/aalemi-dev/stdlib-lab/logger"
+import stdLogger "github.com/docket-legal/go-std-libs/logger"
 
 // Use type alias to reference the Logger interface
 type Logger = stdLogger.Logger
@@ -171,7 +171,7 @@ All methods on the Logger interface are safe for concurrent use by multiple goro
 package main
 
 import (
-	"github.com/aalemi-dev/stdlib-lab/logger"
+	"github.com/docket-legal/go-std-libs/logger"
 )
 
 func main() {
@@ -267,7 +267,7 @@ var FXModule = fx.Module("logger",
 ```
 
 <a name="RegisterLoggerLifecycle"></a>
-## func [RegisterLoggerLifecycle](<https://github.com/aalemi-dev/stdlib-lab/blob/main/logger/fx_module.go#L56>)
+## func [RegisterLoggerLifecycle](<https://github.com/docket-legal/go-std-libs/blob/main/logger/fx_module.go#L56>)
 
 ```go
 func RegisterLoggerLifecycle(lc fx.Lifecycle, client *LoggerClient)
@@ -289,7 +289,7 @@ This ensures that no log entries are lost if the application shuts down while lo
 Note: This function is automatically invoked by the FXModule and does not need to be called directly in application code.
 
 <a name="Config"></a>
-## type [Config](<https://github.com/aalemi-dev/stdlib-lab/blob/main/logger/configs.go#L25-L77>)
+## type [Config](<https://github.com/docket-legal/go-std-libs/blob/main/logger/configs.go#L25-L77>)
 
 Config defines the configuration structure for the logger. It contains settings that control the behavior of the logging system.
 
@@ -350,7 +350,7 @@ type Config struct {
 ```
 
 <a name="Logger"></a>
-## type [Logger](<https://github.com/aalemi-dev/stdlib-lab/blob/main/logger/interface.go#L11-L45>)
+## type [Logger](<https://github.com/docket-legal/go-std-libs/blob/main/logger/interface.go#L11-L45>)
 
 Logger provides a high\-level interface for structured logging. It wraps Uber's Zap logger with a simplified API and optional tracing integration.
 
@@ -392,7 +392,7 @@ type Logger interface {
 ```
 
 <a name="LoggerClient"></a>
-## type [LoggerClient](<https://github.com/aalemi-dev/stdlib-lab/blob/main/logger/setup.go#L16-L26>)
+## type [LoggerClient](<https://github.com/docket-legal/go-std-libs/blob/main/logger/setup.go#L16-L26>)
 
 LoggerClient is a wrapper around Uber's Zap logger. It provides a simplified interface to the underlying Zap logger, with additional functionality specific to the application's needs.
 
@@ -409,7 +409,7 @@ type LoggerClient struct {
 ```
 
 <a name="NewLoggerClient"></a>
-### func [NewLoggerClient](<https://github.com/aalemi-dev/stdlib-lab/blob/main/logger/setup.go#L67>)
+### func [NewLoggerClient](<https://github.com/docket-legal/go-std-libs/blob/main/logger/setup.go#L67>)
 
 ```go
 func NewLoggerClient(cfg Config) *LoggerClient
@@ -469,7 +469,7 @@ log := logger.NewLoggerClient(loggerConfig)
 package main
 
 import (
-	"github.com/aalemi-dev/stdlib-lab/logger"
+	"github.com/docket-legal/go-std-libs/logger"
 )
 
 func main() {
@@ -486,7 +486,7 @@ func main() {
 </details>
 
 <a name="LoggerClient.Debug"></a>
-### func \(\*LoggerClient\) [Debug](<https://github.com/aalemi-dev/stdlib-lab/blob/main/logger/utils.go#L108>)
+### func \(\*LoggerClient\) [Debug](<https://github.com/docket-legal/go-std-libs/blob/main/logger/utils.go#L108>)
 
 ```go
 func (l *LoggerClient) Debug(msg string, err error, fields ...map[string]interface{})
@@ -519,7 +519,7 @@ logger.Debug("Processing request", nil, map[string]interface{}{
 package main
 
 import (
-	"github.com/aalemi-dev/stdlib-lab/logger"
+	"github.com/docket-legal/go-std-libs/logger"
 )
 
 func main() {
@@ -539,7 +539,7 @@ func main() {
 </details>
 
 <a name="LoggerClient.DebugWithContext"></a>
-### func \(\*LoggerClient\) [DebugWithContext](<https://github.com/aalemi-dev/stdlib-lab/blob/main/logger/utils.go#L213>)
+### func \(\*LoggerClient\) [DebugWithContext](<https://github.com/docket-legal/go-std-libs/blob/main/logger/utils.go#L213>)
 
 ```go
 func (l *LoggerClient) DebugWithContext(ctx context.Context, msg string, err error, fields ...map[string]interface{})
@@ -565,7 +565,7 @@ logger.DebugWithContext(ctx, "Processing request", nil, map[string]interface{}{
 ```
 
 <a name="LoggerClient.Error"></a>
-### func \(\*LoggerClient\) [Error](<https://github.com/aalemi-dev/stdlib-lab/blob/main/logger/utils.go#L149>)
+### func \(\*LoggerClient\) [Error](<https://github.com/docket-legal/go-std-libs/blob/main/logger/utils.go#L149>)
 
 ```go
 func (l *LoggerClient) Error(msg string, err error, fields ...map[string]interface{})
@@ -602,7 +602,7 @@ package main
 import (
 	"errors"
 
-	"github.com/aalemi-dev/stdlib-lab/logger"
+	"github.com/docket-legal/go-std-libs/logger"
 )
 
 func main() {
@@ -623,7 +623,7 @@ func main() {
 </details>
 
 <a name="LoggerClient.ErrorWithContext"></a>
-### func \(\*LoggerClient\) [ErrorWithContext](<https://github.com/aalemi-dev/stdlib-lab/blob/main/logger/utils.go#L258>)
+### func \(\*LoggerClient\) [ErrorWithContext](<https://github.com/docket-legal/go-std-libs/blob/main/logger/utils.go#L258>)
 
 ```go
 func (l *LoggerClient) ErrorWithContext(ctx context.Context, msg string, err error, fields ...map[string]interface{})
@@ -662,7 +662,7 @@ import (
 	"context"
 	"errors"
 
-	"github.com/aalemi-dev/stdlib-lab/logger"
+	"github.com/docket-legal/go-std-libs/logger"
 )
 
 func main() {
@@ -685,7 +685,7 @@ func main() {
 </details>
 
 <a name="LoggerClient.Fatal"></a>
-### func \(\*LoggerClient\) [Fatal](<https://github.com/aalemi-dev/stdlib-lab/blob/main/logger/utils.go#L172>)
+### func \(\*LoggerClient\) [Fatal](<https://github.com/docket-legal/go-std-libs/blob/main/logger/utils.go#L172>)
 
 ```go
 func (l *LoggerClient) Fatal(msg string, err error, fields ...map[string]interface{})
@@ -713,7 +713,7 @@ if configErr != nil {
 Note: This function does not return as it terminates the application.
 
 <a name="LoggerClient.FatalWithContext"></a>
-### func \(\*LoggerClient\) [FatalWithContext](<https://github.com/aalemi-dev/stdlib-lab/blob/main/logger/utils.go#L285>)
+### func \(\*LoggerClient\) [FatalWithContext](<https://github.com/docket-legal/go-std-libs/blob/main/logger/utils.go#L285>)
 
 ```go
 func (l *LoggerClient) FatalWithContext(ctx context.Context, msg string, err error, fields ...map[string]interface{})
@@ -742,7 +742,7 @@ if configErr != nil {
 Note: This function does not return as it terminates the application.
 
 <a name="LoggerClient.Info"></a>
-### func \(\*LoggerClient\) [Info](<https://github.com/aalemi-dev/stdlib-lab/blob/main/logger/utils.go#L88>)
+### func \(\*LoggerClient\) [Info](<https://github.com/docket-legal/go-std-libs/blob/main/logger/utils.go#L88>)
 
 ```go
 func (l *LoggerClient) Info(msg string, err error, fields ...map[string]interface{})
@@ -774,7 +774,7 @@ logger.Info("User logged in successfully", nil, map[string]interface{}{
 package main
 
 import (
-	"github.com/aalemi-dev/stdlib-lab/logger"
+	"github.com/docket-legal/go-std-libs/logger"
 )
 
 func main() {
@@ -794,7 +794,7 @@ func main() {
 </details>
 
 <a name="LoggerClient.InfoWithContext"></a>
-### func \(\*LoggerClient\) [InfoWithContext](<https://github.com/aalemi-dev/stdlib-lab/blob/main/logger/utils.go#L191>)
+### func \(\*LoggerClient\) [InfoWithContext](<https://github.com/docket-legal/go-std-libs/blob/main/logger/utils.go#L191>)
 
 ```go
 func (l *LoggerClient) InfoWithContext(ctx context.Context, msg string, err error, fields ...map[string]interface{})
@@ -829,7 +829,7 @@ package main
 import (
 	"context"
 
-	"github.com/aalemi-dev/stdlib-lab/logger"
+	"github.com/docket-legal/go-std-libs/logger"
 )
 
 func main() {
@@ -853,7 +853,7 @@ func main() {
 </details>
 
 <a name="LoggerClient.Warn"></a>
-### func \(\*LoggerClient\) [Warn](<https://github.com/aalemi-dev/stdlib-lab/blob/main/logger/utils.go#L127>)
+### func \(\*LoggerClient\) [Warn](<https://github.com/docket-legal/go-std-libs/blob/main/logger/utils.go#L127>)
 
 ```go
 func (l *LoggerClient) Warn(msg string, err error, fields ...map[string]interface{})
@@ -877,7 +877,7 @@ logger.Warn("High resource usage detected", nil, map[string]interface{}{
 ```
 
 <a name="LoggerClient.WarnWithContext"></a>
-### func \(\*LoggerClient\) [WarnWithContext](<https://github.com/aalemi-dev/stdlib-lab/blob/main/logger/utils.go#L234>)
+### func \(\*LoggerClient\) [WarnWithContext](<https://github.com/docket-legal/go-std-libs/blob/main/logger/utils.go#L234>)
 
 ```go
 func (l *LoggerClient) WarnWithContext(ctx context.Context, msg string, err error, fields ...map[string]interface{})

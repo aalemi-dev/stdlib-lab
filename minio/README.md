@@ -15,7 +15,7 @@ MinIO/S3-compatible object storage client for Go with fx dependency injection su
 ## Installation
 
 ```bash
-go get github.com/aalemi-dev/stdlib-lab/minio
+go get github.com/docket-legal/go-std-libs/minio
 ```
 
 ## Usage
@@ -23,7 +23,7 @@ go get github.com/aalemi-dev/stdlib-lab/minio
 ### Standalone
 
 ```go
-import "github.com/aalemi-dev/stdlib-lab/minio"
+import "github.com/docket-legal/go-std-libs/minio"
 
 client, err := minio.NewMinioClient(minio.Config{
     Connection: minio.Connection{
@@ -51,7 +51,7 @@ url, err := client.PresignedGetObject(ctx, "my-bucket", "my-key", 15*time.Minute
 
 ```go
 import (
-    "github.com/aalemi-dev/stdlib-lab/minio"
+    "github.com/docket-legal/go-std-libs/minio"
     "go.uber.org/fx"
 )
 

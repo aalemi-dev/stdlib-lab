@@ -24,7 +24,7 @@
 //
 // For simple applications or tests, create a client directly:
 //
-//	import "github.com/aalemi-dev/stdlib-lab/schema_registry"
+//	import "github.com/docket-legal/go-std-libs/schema_registry"
 //
 //	// Create schema registry client (returns concrete *Client)
 //	client, err := schema_registry.NewClient(schema_registry.Config{
@@ -56,7 +56,7 @@
 //
 //	import (
 //	    "go.uber.org/fx"
-//	    "github.com/aalemi-dev/stdlib-lab/schema_registry"
+//	    "github.com/docket-legal/go-std-libs/schema_registry"
 //	)
 //
 //	app := fx.New(
@@ -117,7 +117,7 @@
 //
 //	package myapp
 //
-//	import stdRegistry "github.com/aalemi-dev/stdlib-lab/schema_registry"
+//	import stdRegistry "github.com/docket-legal/go-std-libs/schema_registry"
 //
 //	// Use type alias to reference std's interface
 //	type SchemaRegistry = stdRegistry.Registry

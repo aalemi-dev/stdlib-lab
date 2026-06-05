@@ -5,7 +5,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/aalemi-dev/stdlib-lab/metrics"
+	"github.com/docket-legal/go-std-libs/metrics"
 )
 
 // TestMetricsDualEndpoint verifies that the metrics package correctly

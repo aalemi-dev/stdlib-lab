@@ -47,7 +47,7 @@
 //
 // For simple applications or tests, create metrics directly:
 //
-//	import "github.com/aalemi-dev/stdlib-lab/metrics"
+//	import "github.com/docket-legal/go-std-libs/metrics"
 //
 //	// Create metrics servers (returns concrete *Metrics)
 //	cfg := metrics.Config{
@@ -81,8 +81,8 @@
 //
 //	import (
 //		"go.uber.org/fx"
-//		"github.com/aalemi-dev/stdlib-lab/metrics"
-//		"github.com/aalemi-dev/stdlib-lab/logger"
+//		"github.com/docket-legal/go-std-libs/metrics"
+//		"github.com/docket-legal/go-std-libs/logger"
 //	)
 //
 //	app := fx.New(
@@ -113,7 +113,7 @@
 //
 //	package myapp
 //
-//	import stdMetrics "github.com/aalemi-dev/stdlib-lab/metrics"
+//	import stdMetrics "github.com/docket-legal/go-std-libs/metrics"
 //
 //	// Use type alias to reference std's interface
 //	type MetricsCollector = stdMetrics.MetricsCollector
@@ -228,8 +228,8 @@
 //		"time"
 //
 //		"go.uber.org/fx"
-//		"github.com/aalemi-dev/stdlib-lab/metrics"
-//		"github.com/aalemi-dev/stdlib-lab/logger"
+//		"github.com/docket-legal/go-std-libs/metrics"
+//		"github.com/docket-legal/go-std-libs/logger"
 //	)
 //
 //	type HTTPMetrics struct {

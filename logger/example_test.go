@@ -4,7 +4,7 @@ import (
 	"context"
 	"errors"
 
-	"github.com/aalemi-dev/stdlib-lab/logger"
+	"github.com/docket-legal/go-std-libs/logger"
 )
 
 func ExampleNewLoggerClient() {

@@ -50,7 +50,7 @@
 // # Observability (Observer hook)
 //
 // The Postgres client supports optional observability through the unified
-// `observability.Observer` interface (`github.com/aalemi-dev/stdlib-lab/observability`).
+// `observability.Observer` interface (`github.com/docket-legal/go-std-libs/observability`).
 // If an observer is attached, it will be notified after each operation completes
 // (success or error) with an `observability.OperationContext`.
 //

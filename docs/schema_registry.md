@@ -3,7 +3,7 @@
 # schema\_registry
 
 ```go
-import "github.com/aalemi-dev/stdlib-lab/schema_registry"
+import "github.com/docket-legal/go-std-libs/schema_registry"
 ```
 
 Package schema\_registry provides integration with Confluent Schema Registry.
@@ -34,7 +34,7 @@ Core Features:
 For simple applications or tests, create a client directly:
 
 ```
-import "github.com/aalemi-dev/stdlib-lab/schema_registry"
+import "github.com/docket-legal/go-std-libs/schema_registry"
 
 // Create schema registry client (returns concrete *Client)
 client, err := schema_registry.NewClient(schema_registry.Config{
@@ -67,7 +67,7 @@ For production applications using Uber's fx, use the FXModule which provides bot
 ```
 import (
     "go.uber.org/fx"
-    "github.com/aalemi-dev/stdlib-lab/schema_registry"
+    "github.com/docket-legal/go-std-libs/schema_registry"
 )
 
 app := fx.New(
@@ -135,7 +135,7 @@ To simplify your code and make it registry\-agnostic, use type aliases:
 ```
 package myapp
 
-import stdRegistry "github.com/aalemi-dev/stdlib-lab/schema_registry"
+import stdRegistry "github.com/docket-legal/go-std-libs/schema_registry"
 
 // Use type alias to reference std's interface
 type SchemaRegistry = stdRegistry.Registry
@@ -380,7 +380,7 @@ var FXModule = fx.Module("schema_registry",
 
 <a name="DecodeSchemaID"></a>
 
-## func [DecodeSchemaID](<https://github.com/aalemi-dev/stdlib-lab/blob/main/schema_registry/client.go#L424>)
+## func [DecodeSchemaID](<https://github.com/docket-legal/go-std-libs/blob/main/schema_registry/client.go#L424>)
 
 ```go
 func DecodeSchemaID(data []byte) (int, []byte, error)
@@ -391,7 +391,7 @@ DecodeSchemaID decodes a schema ID from the Confluent wire format Returns the sc
 
 <a name="EncodeSchemaID"></a>
 
-## func [EncodeSchemaID](<https://github.com/aalemi-dev/stdlib-lab/blob/main/schema_registry/client.go#L415>)
+## func [EncodeSchemaID](<https://github.com/docket-legal/go-std-libs/blob/main/schema_registry/client.go#L415>)
 
 ```go
 func EncodeSchemaID(schemaID int) []byte
@@ -402,7 +402,7 @@ EncodeSchemaID encodes a schema ID in the Confluent wire format Format: \[magic\
 
 <a name="RegisterSchemaRegistryLifecycle"></a>
 
-## func [RegisterSchemaRegistryLifecycle](<https://github.com/aalemi-dev/stdlib-lab/blob/main/schema_registry/fx_module.go#L123>)
+## func [RegisterSchemaRegistryLifecycle](<https://github.com/docket-legal/go-std-libs/blob/main/schema_registry/fx_module.go#L123>)
 
 ```go
 func RegisterSchemaRegistryLifecycle(params SchemaRegistryLifecycleParams)
@@ -425,7 +425,7 @@ cleanup logic can be added here.
 
 <a name="AvroDeserializer"></a>
 
-## type [AvroDeserializer](<https://github.com/aalemi-dev/stdlib-lab/blob/main/schema_registry/avro.go#L57-L59>)
+## type [AvroDeserializer](<https://github.com/docket-legal/go-std-libs/blob/main/schema_registry/avro.go#L57-L59>)
 
 AvroDeserializer is a convenience wrapper for Avro with schema registry
 
@@ -437,7 +437,7 @@ type AvroDeserializer struct {
 
 <a name="NewAvroDeserializer"></a>
 
-### func [NewAvroDeserializer](<https://github.com/aalemi-dev/stdlib-lab/blob/main/schema_registry/avro.go#L68>)
+### func [NewAvroDeserializer](<https://github.com/docket-legal/go-std-libs/blob/main/schema_registry/avro.go#L68>)
 
 ```go
 func NewAvroDeserializer(config AvroDeserializerConfig) (*AvroDeserializer, error)
@@ -447,7 +447,7 @@ NewAvroDeserializer creates an Avro deserializer with schema registry support
 
 <a name="AvroDeserializerConfig"></a>
 
-## type [AvroDeserializerConfig](<https://github.com/aalemi-dev/stdlib-lab/blob/main/schema_registry/avro.go#L62-L65>)
+## type [AvroDeserializerConfig](<https://github.com/docket-legal/go-std-libs/blob/main/schema_registry/avro.go#L62-L65>)
 
 AvroDeserializerConfig holds configuration for Avro deserializer
 
@@ -460,7 +460,7 @@ type AvroDeserializerConfig struct {
 
 <a name="AvroSerializer"></a>
 
-## type [AvroSerializer](<https://github.com/aalemi-dev/stdlib-lab/blob/main/schema_registry/avro.go#L8-L10>)
+## type [AvroSerializer](<https://github.com/docket-legal/go-std-libs/blob/main/schema_registry/avro.go#L8-L10>)
 
 AvroSerializer is a convenience wrapper for Avro with schema registry
 
@@ -472,7 +472,7 @@ type AvroSerializer struct {
 
 <a name="NewAvroSerializer"></a>
 
-### func [NewAvroSerializer](<https://github.com/aalemi-dev/stdlib-lab/blob/main/schema_registry/avro.go#L21>)
+### func [NewAvroSerializer](<https://github.com/docket-legal/go-std-libs/blob/main/schema_registry/avro.go#L21>)
 
 ```go
 func NewAvroSerializer(config AvroSerializerConfig) (*AvroSerializer, error)
@@ -482,7 +482,7 @@ NewAvroSerializer creates an Avro serializer with schema registry support
 
 <a name="AvroSerializerConfig"></a>
 
-## type [AvroSerializerConfig](<https://github.com/aalemi-dev/stdlib-lab/blob/main/schema_registry/avro.go#L13-L18>)
+## type [AvroSerializerConfig](<https://github.com/docket-legal/go-std-libs/blob/main/schema_registry/avro.go#L13-L18>)
 
 AvroSerializerConfig holds configuration for Avro serializer
 
@@ -497,7 +497,7 @@ type AvroSerializerConfig struct {
 
 <a name="Client"></a>
 
-## type [Client](<https://github.com/aalemi-dev/stdlib-lab/blob/main/schema_registry/client.go#L47-L68>)
+## type [Client](<https://github.com/docket-legal/go-std-libs/blob/main/schema_registry/client.go#L47-L68>)
 
 Client is the default implementation of Registry that communicates with Confluent Schema Registry over HTTP.
 
@@ -509,7 +509,7 @@ type Client struct {
 
 <a name="NewClient"></a>
 
-### func [NewClient](<https://github.com/aalemi-dev/stdlib-lab/blob/main/schema_registry/client.go#L100>)
+### func [NewClient](<https://github.com/docket-legal/go-std-libs/blob/main/schema_registry/client.go#L100>)
 
 ```go
 func NewClient(config Config) (*Client, error)
@@ -519,7 +519,7 @@ NewClient creates a new schema registry client Returns the concrete \*Client typ
 
 <a name="NewClientWithDI"></a>
 
-### func [NewClientWithDI](<https://github.com/aalemi-dev/stdlib-lab/blob/main/schema_registry/fx_module.go#L84>)
+### func [NewClientWithDI](<https://github.com/docket-legal/go-std-libs/blob/main/schema_registry/fx_module.go#L84>)
 
 ```go
 func NewClientWithDI(params SchemaRegistryParams) (*Client, error)
@@ -560,7 +560,7 @@ app := fx.New(
 
 <a name="Client.CheckCompatibility"></a>
 
-### func \(\*Client\) [CheckCompatibility](<https://github.com/aalemi-dev/stdlib-lab/blob/main/schema_registry/client.go#L341>)
+### func \(\*Client\) [CheckCompatibility](<https://github.com/docket-legal/go-std-libs/blob/main/schema_registry/client.go#L341>)
 
 ```go
 func (c *Client) CheckCompatibility(subject, schema, schemaType string) (bool, error)
@@ -570,7 +570,7 @@ CheckCompatibility checks if a schema is compatible with the existing schema for
 
 <a name="Client.GetLatestSchema"></a>
 
-### func \(\*Client\) [GetLatestSchema](<https://github.com/aalemi-dev/stdlib-lab/blob/main/schema_registry/client.go#L193>)
+### func \(\*Client\) [GetLatestSchema](<https://github.com/docket-legal/go-std-libs/blob/main/schema_registry/client.go#L193>)
 
 ```go
 func (c *Client) GetLatestSchema(subject string) (*Metadata, error)
@@ -580,7 +580,7 @@ GetLatestSchema retrieves the latest version of a schema for a subject
 
 <a name="Client.GetSchemaByID"></a>
 
-### func \(\*Client\) [GetSchemaByID](<https://github.com/aalemi-dev/stdlib-lab/blob/main/schema_registry/client.go#L122>)
+### func \(\*Client\) [GetSchemaByID](<https://github.com/docket-legal/go-std-libs/blob/main/schema_registry/client.go#L122>)
 
 ```go
 func (c *Client) GetSchemaByID(id int) (string, error)
@@ -590,7 +590,7 @@ GetSchemaByID retrieves a schema from the registry by its ID
 
 <a name="Client.RegisterSchema"></a>
 
-### func \(\*Client\) [RegisterSchema](<https://github.com/aalemi-dev/stdlib-lab/blob/main/schema_registry/client.go#L246>)
+### func \(\*Client\) [RegisterSchema](<https://github.com/docket-legal/go-std-libs/blob/main/schema_registry/client.go#L246>)
 
 ```go
 func (c *Client) RegisterSchema(subject, schema, schemaType string) (int, error)
@@ -600,7 +600,7 @@ RegisterSchema registers a new schema with the schema registry
 
 <a name="Client.WithLogger"></a>
 
-### func \(\*Client\) [WithLogger](<https://github.com/aalemi-dev/stdlib-lab/blob/main/schema_registry/client.go#L456>)
+### func \(\*Client\) [WithLogger](<https://github.com/docket-legal/go-std-libs/blob/main/schema_registry/client.go#L456>)
 
 ```go
 func (c *Client) WithLogger(logger Logger) *Client
@@ -617,7 +617,7 @@ client := client.WithObserver(myObserver).WithLogger(myLogger)
 
 <a name="Client.WithObserver"></a>
 
-### func \(\*Client\) [WithObserver](<https://github.com/aalemi-dev/stdlib-lab/blob/main/schema_registry/client.go#L445>)
+### func \(\*Client\) [WithObserver](<https://github.com/docket-legal/go-std-libs/blob/main/schema_registry/client.go#L445>)
 
 ```go
 func (c *Client) WithObserver(observer observability.Observer) *Client
@@ -634,7 +634,7 @@ client := client.WithObserver(myObserver).WithLogger(myLogger)
 
 <a name="Config"></a>
 
-## type [Config](<https://github.com/aalemi-dev/stdlib-lab/blob/main/schema_registry/client.go#L71-L83>)
+## type [Config](<https://github.com/docket-legal/go-std-libs/blob/main/schema_registry/client.go#L71-L83>)
 
 Config holds configuration for schema registry client
 
@@ -656,7 +656,7 @@ type Config struct {
 
 <a name="Deserializer"></a>
 
-## type [Deserializer](<https://github.com/aalemi-dev/stdlib-lab/blob/main/schema_registry/serializer.go#L13-L15>)
+## type [Deserializer](<https://github.com/docket-legal/go-std-libs/blob/main/schema_registry/serializer.go#L13-L15>)
 
 Deserializer is the interface for decoding data
 
@@ -668,7 +668,7 @@ type Deserializer interface {
 
 <a name="JSONDeserializer"></a>
 
-## type [JSONDeserializer](<https://github.com/aalemi-dev/stdlib-lab/blob/main/schema_registry/json.go#L53-L55>)
+## type [JSONDeserializer](<https://github.com/docket-legal/go-std-libs/blob/main/schema_registry/json.go#L53-L55>)
 
 JSONDeserializer is a convenience wrapper for JSON Schema with schema registry
 
@@ -680,7 +680,7 @@ type JSONDeserializer struct {
 
 <a name="NewJSONDeserializer"></a>
 
-### func [NewJSONDeserializer](<https://github.com/aalemi-dev/stdlib-lab/blob/main/schema_registry/json.go#L63>)
+### func [NewJSONDeserializer](<https://github.com/docket-legal/go-std-libs/blob/main/schema_registry/json.go#L63>)
 
 ```go
 func NewJSONDeserializer(config JSONDeserializerConfig) (*JSONDeserializer, error)
@@ -690,7 +690,7 @@ NewJSONDeserializer creates a JSON deserializer with schema registry support
 
 <a name="JSONDeserializerConfig"></a>
 
-## type [JSONDeserializerConfig](<https://github.com/aalemi-dev/stdlib-lab/blob/main/schema_registry/json.go#L58-L60>)
+## type [JSONDeserializerConfig](<https://github.com/docket-legal/go-std-libs/blob/main/schema_registry/json.go#L58-L60>)
 
 JSONDeserializerConfig holds configuration for JSON deserializer
 
@@ -702,7 +702,7 @@ type JSONDeserializerConfig struct {
 
 <a name="JSONSerializer"></a>
 
-## type [JSONSerializer](<https://github.com/aalemi-dev/stdlib-lab/blob/main/schema_registry/json.go#L9-L11>)
+## type [JSONSerializer](<https://github.com/docket-legal/go-std-libs/blob/main/schema_registry/json.go#L9-L11>)
 
 JSONSerializer is a convenience wrapper for JSON Schema with schema registry
 
@@ -714,7 +714,7 @@ type JSONSerializer struct {
 
 <a name="NewJSONSerializer"></a>
 
-### func [NewJSONSerializer](<https://github.com/aalemi-dev/stdlib-lab/blob/main/schema_registry/json.go#L21>)
+### func [NewJSONSerializer](<https://github.com/docket-legal/go-std-libs/blob/main/schema_registry/json.go#L21>)
 
 ```go
 func NewJSONSerializer(config JSONSerializerConfig) (*JSONSerializer, error)
@@ -724,7 +724,7 @@ NewJSONSerializer creates a JSON serializer with schema registry support
 
 <a name="JSONSerializerConfig"></a>
 
-## type [JSONSerializerConfig](<https://github.com/aalemi-dev/stdlib-lab/blob/main/schema_registry/json.go#L14-L18>)
+## type [JSONSerializerConfig](<https://github.com/docket-legal/go-std-libs/blob/main/schema_registry/json.go#L14-L18>)
 
 JSONSerializerConfig holds configuration for JSON serializer
 
@@ -738,7 +738,7 @@ type JSONSerializerConfig struct {
 
 <a name="Logger"></a>
 
-## type [Logger](<https://github.com/aalemi-dev/stdlib-lab/blob/main/schema_registry/client.go#L87-L96>)
+## type [Logger](<https://github.com/docket-legal/go-std-libs/blob/main/schema_registry/client.go#L87-L96>)
 
 Logger is an interface that matches the std/v1/logger.Logger interface. It provides context\-aware structured logging
 with optional error and field parameters.
@@ -758,7 +758,7 @@ type Logger interface {
 
 <a name="Metadata"></a>
 
-## type [Metadata](<https://github.com/aalemi-dev/stdlib-lab/blob/main/schema_registry/client.go#L37-L43>)
+## type [Metadata](<https://github.com/docket-legal/go-std-libs/blob/main/schema_registry/client.go#L37-L43>)
 
 Metadata contains metadata about a registered schema
 
@@ -774,7 +774,7 @@ type Metadata struct {
 
 <a name="ProtobufDeserializer"></a>
 
-## type [ProtobufDeserializer](<https://github.com/aalemi-dev/stdlib-lab/blob/main/schema_registry/protobuf.go#L56-L58>)
+## type [ProtobufDeserializer](<https://github.com/docket-legal/go-std-libs/blob/main/schema_registry/protobuf.go#L56-L58>)
 
 ProtobufDeserializer is a convenience wrapper for Protobuf with schema registry
 
@@ -786,7 +786,7 @@ type ProtobufDeserializer struct {
 
 <a name="NewProtobufDeserializer"></a>
 
-### func [NewProtobufDeserializer](<https://github.com/aalemi-dev/stdlib-lab/blob/main/schema_registry/protobuf.go#L67>)
+### func [NewProtobufDeserializer](<https://github.com/docket-legal/go-std-libs/blob/main/schema_registry/protobuf.go#L67>)
 
 ```go
 func NewProtobufDeserializer(config ProtobufDeserializerConfig) (*ProtobufDeserializer, error)
@@ -796,7 +796,7 @@ NewProtobufDeserializer creates a Protobuf deserializer with schema registry sup
 
 <a name="ProtobufDeserializerConfig"></a>
 
-## type [ProtobufDeserializerConfig](<https://github.com/aalemi-dev/stdlib-lab/blob/main/schema_registry/protobuf.go#L61-L64>)
+## type [ProtobufDeserializerConfig](<https://github.com/docket-legal/go-std-libs/blob/main/schema_registry/protobuf.go#L61-L64>)
 
 ProtobufDeserializerConfig holds configuration for Protobuf deserializer
 
@@ -809,7 +809,7 @@ type ProtobufDeserializerConfig struct {
 
 <a name="ProtobufSerializer"></a>
 
-## type [ProtobufSerializer](<https://github.com/aalemi-dev/stdlib-lab/blob/main/schema_registry/protobuf.go#L8-L10>)
+## type [ProtobufSerializer](<https://github.com/docket-legal/go-std-libs/blob/main/schema_registry/protobuf.go#L8-L10>)
 
 ProtobufSerializer is a convenience wrapper for Protobuf with schema registry
 
@@ -821,7 +821,7 @@ type ProtobufSerializer struct {
 
 <a name="NewProtobufSerializer"></a>
 
-### func [NewProtobufSerializer](<https://github.com/aalemi-dev/stdlib-lab/blob/main/schema_registry/protobuf.go#L21>)
+### func [NewProtobufSerializer](<https://github.com/docket-legal/go-std-libs/blob/main/schema_registry/protobuf.go#L21>)
 
 ```go
 func NewProtobufSerializer(config ProtobufSerializerConfig) (*ProtobufSerializer, error)
@@ -831,7 +831,7 @@ NewProtobufSerializer creates a Protobuf serializer with schema registry support
 
 <a name="ProtobufSerializerConfig"></a>
 
-## type [ProtobufSerializerConfig](<https://github.com/aalemi-dev/stdlib-lab/blob/main/schema_registry/protobuf.go#L13-L18>)
+## type [ProtobufSerializerConfig](<https://github.com/docket-legal/go-std-libs/blob/main/schema_registry/protobuf.go#L13-L18>)
 
 ProtobufSerializerConfig holds configuration for Protobuf serializer
 
@@ -846,7 +846,7 @@ type ProtobufSerializerConfig struct {
 
 <a name="Registry"></a>
 
-## type [Registry](<https://github.com/aalemi-dev/stdlib-lab/blob/main/schema_registry/client.go#L22-L34>)
+## type [Registry](<https://github.com/docket-legal/go-std-libs/blob/main/schema_registry/client.go#L22-L34>)
 
 Registry provides an interface for interacting with a Confluent Schema Registry. It handles schema registration,
 retrieval, and caching for efficient serialization.
@@ -869,7 +869,7 @@ type Registry interface {
 
 <a name="SchemaRegistryLifecycleParams"></a>
 
-## type [SchemaRegistryLifecycleParams](<https://github.com/aalemi-dev/stdlib-lab/blob/main/schema_registry/fx_module.go#L104-L109>)
+## type [SchemaRegistryLifecycleParams](<https://github.com/docket-legal/go-std-libs/blob/main/schema_registry/fx_module.go#L104-L109>)
 
 SchemaRegistryLifecycleParams groups the dependencies needed for Schema Registry lifecycle management
 
@@ -884,7 +884,7 @@ type SchemaRegistryLifecycleParams struct {
 
 <a name="SchemaRegistryParams"></a>
 
-## type [SchemaRegistryParams](<https://github.com/aalemi-dev/stdlib-lab/blob/main/schema_registry/fx_module.go#L47-L53>)
+## type [SchemaRegistryParams](<https://github.com/docket-legal/go-std-libs/blob/main/schema_registry/fx_module.go#L47-L53>)
 
 SchemaRegistryParams groups the dependencies needed to create a Schema Registry client
 
@@ -900,7 +900,7 @@ type SchemaRegistryParams struct {
 
 <a name="Serializer"></a>
 
-## type [Serializer](<https://github.com/aalemi-dev/stdlib-lab/blob/main/schema_registry/serializer.go#L8-L10>)
+## type [Serializer](<https://github.com/docket-legal/go-std-libs/blob/main/schema_registry/serializer.go#L8-L10>)
 
 Serializer is the interface for encoding data
 
@@ -912,7 +912,7 @@ type Serializer interface {
 
 <a name="WrapperDeserializer"></a>
 
-## type [WrapperDeserializer](<https://github.com/aalemi-dev/stdlib-lab/blob/main/schema_registry/serializer.go#L95-L101>)
+## type [WrapperDeserializer](<https://github.com/docket-legal/go-std-libs/blob/main/schema_registry/serializer.go#L95-L101>)
 
 WrapperDeserializer wraps any deserializer with schema registry support. It automatically retrieves schemas and strips
 the Confluent wire format header.
@@ -925,7 +925,7 @@ type WrapperDeserializer struct {
 
 <a name="NewWrapperDeserializer"></a>
 
-### func [NewWrapperDeserializer](<https://github.com/aalemi-dev/stdlib-lab/blob/main/schema_registry/serializer.go#L110>)
+### func [NewWrapperDeserializer](<https://github.com/docket-legal/go-std-libs/blob/main/schema_registry/serializer.go#L110>)
 
 ```go
 func NewWrapperDeserializer(config WrapperDeserializerConfig) (*WrapperDeserializer, error)
@@ -935,7 +935,7 @@ NewWrapperDeserializer creates a new schema registry\-aware deserializer
 
 <a name="WrapperDeserializer.Deserialize"></a>
 
-### func \(\*WrapperDeserializer\) [Deserialize](<https://github.com/aalemi-dev/stdlib-lab/blob/main/schema_registry/serializer.go#L122>)
+### func \(\*WrapperDeserializer\) [Deserialize](<https://github.com/docket-legal/go-std-libs/blob/main/schema_registry/serializer.go#L122>)
 
 ```go
 func (d *WrapperDeserializer) Deserialize(data []byte, target interface{}) error
@@ -945,7 +945,7 @@ Deserialize strips the schema registry header and decodes data
 
 <a name="WrapperDeserializerConfig"></a>
 
-## type [WrapperDeserializerConfig](<https://github.com/aalemi-dev/stdlib-lab/blob/main/schema_registry/serializer.go#L104-L107>)
+## type [WrapperDeserializerConfig](<https://github.com/docket-legal/go-std-libs/blob/main/schema_registry/serializer.go#L104-L107>)
 
 WrapperDeserializerConfig holds configuration for schema registry deserializer
 
@@ -958,7 +958,7 @@ type WrapperDeserializerConfig struct {
 
 <a name="WrapperSerializer"></a>
 
-## type [WrapperSerializer](<https://github.com/aalemi-dev/stdlib-lab/blob/main/schema_registry/serializer.go#L19-L28>)
+## type [WrapperSerializer](<https://github.com/docket-legal/go-std-libs/blob/main/schema_registry/serializer.go#L19-L28>)
 
 WrapperSerializer wraps any serializer with schema registry support. It automatically registers schemas and prepends the
 Confluent wire format header.
@@ -971,7 +971,7 @@ type WrapperSerializer struct {
 
 <a name="NewWrapperSerializer"></a>
 
-### func [NewWrapperSerializer](<https://github.com/aalemi-dev/stdlib-lab/blob/main/schema_registry/serializer.go#L40>)
+### func [NewWrapperSerializer](<https://github.com/docket-legal/go-std-libs/blob/main/schema_registry/serializer.go#L40>)
 
 ```go
 func NewWrapperSerializer(config WrapperSerializerConfig) (*WrapperSerializer, error)
@@ -981,7 +981,7 @@ NewWrapperSerializer creates a new schema registry\-aware serializer
 
 <a name="WrapperSerializer.Serialize"></a>
 
-### func \(\*WrapperSerializer\) [Serialize](<https://github.com/aalemi-dev/stdlib-lab/blob/main/schema_registry/serializer.go#L64>)
+### func \(\*WrapperSerializer\) [Serialize](<https://github.com/docket-legal/go-std-libs/blob/main/schema_registry/serializer.go#L64>)
 
 ```go
 func (s *WrapperSerializer) Serialize(data interface{}) ([]byte, error)
@@ -991,7 +991,7 @@ Serialize encodes data and prepends the schema registry header
 
 <a name="WrapperSerializerConfig"></a>
 
-## type [WrapperSerializerConfig](<https://github.com/aalemi-dev/stdlib-lab/blob/main/schema_registry/serializer.go#L31-L37>)
+## type [WrapperSerializerConfig](<https://github.com/docket-legal/go-std-libs/blob/main/schema_registry/serializer.go#L31-L37>)
 
 WrapperSerializerConfig holds configuration for schema registry serializer
 

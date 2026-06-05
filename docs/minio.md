@@ -3,7 +3,7 @@
 # minio
 
 ```go
-import "github.com/aalemi-dev/stdlib-lab/minio"
+import "github.com/docket-legal/go-std-libs/minio"
 ```
 
 Package minio provides functionality for interacting with MinIO/S3\-compatible object storage.
@@ -45,7 +45,7 @@ For simple applications or tests, create a client directly:
 
 ```
 import (
-	"github.com/aalemi-dev/stdlib-lab/minio"
+	"github.com/docket-legal/go-std-libs/minio"
 	"context"
 )
 
@@ -86,8 +86,8 @@ For production applications using Uber's fx, use the FXModule which provides bot
 
 ```
 import (
-	"github.com/aalemi-dev/stdlib-lab/minio"
-	"github.com/aalemi-dev/stdlib-lab/logger"
+	"github.com/docket-legal/go-std-libs/minio"
+	"github.com/docket-legal/go-std-libs/logger"
 	"go.uber.org/fx"
 )
 
@@ -161,7 +161,7 @@ To simplify your code and make it storage\-agnostic, use type aliases:
 ```
 package myapp
 
-import stdMinio "github.com/aalemi-dev/stdlib-lab/minio"
+import stdMinio "github.com/docket-legal/go-std-libs/minio"
 
 // Use type alias to reference std's interface
 type MinioClient = stdMinio.Client
@@ -619,7 +619,7 @@ var FXModule = fx.Module("minio",
 ```
 
 <a name="RegisterLifecycle"></a>
-## func [RegisterLifecycle](<https://github.com/aalemi-dev/stdlib-lab/blob/main/minio/fx_module.go#L91>)
+## func [RegisterLifecycle](<https://github.com/docket-legal/go-std-libs/blob/main/minio/fx_module.go#L91>)
 
 ```go
 func RegisterLifecycle(params MinioLifeCycleParams)
@@ -641,7 +641,7 @@ On application shutdown, it ensures these goroutines are properly terminated and
 allowing the application to exit.
 
 <a name="AMQPNotification"></a>
-## type [AMQPNotification](<https://github.com/aalemi-dev/stdlib-lab/blob/main/minio/configs.go#L186-L219>)
+## type [AMQPNotification](<https://github.com/docket-legal/go-std-libs/blob/main/minio/configs.go#L186-L219>)
 
 AMQPNotification defines an AMQP notification target. AMQP notifications can be used with systems like RabbitMQ.
 
@@ -683,7 +683,7 @@ type AMQPNotification struct {
 ```
 
 <a name="BaseNotification"></a>
-## type [BaseNotification](<https://github.com/aalemi-dev/stdlib-lab/blob/main/minio/configs.go#L154-L169>)
+## type [BaseNotification](<https://github.com/docket-legal/go-std-libs/blob/main/minio/configs.go#L154-L169>)
 
 BaseNotification contains common properties for all notification types. This is embedded in specific notification target
 types.
@@ -708,7 +708,7 @@ type BaseNotification struct {
 ```
 
 <a name="BucketClient"></a>
-## type [BucketClient](<https://github.com/aalemi-dev/stdlib-lab/blob/main/minio/setup.go#L800-L803>)
+## type [BucketClient](<https://github.com/docket-legal/go-std-libs/blob/main/minio/setup.go#L800-L803>)
 
 BucketClient is a convenience wrapper that automatically applies a bucket name to all operations. This is useful when
 performing multiple operations on the same bucket to avoid repeating the bucket name.
@@ -723,7 +723,7 @@ type BucketClient struct {
 ```
 
 <a name="BucketClient.AbortMultipartUpload"></a>
-### func \(\*BucketClient\) [AbortMultipartUpload](<https://github.com/aalemi-dev/stdlib-lab/blob/main/minio/setup.go#L881>)
+### func \(\*BucketClient\) [AbortMultipartUpload](<https://github.com/docket-legal/go-std-libs/blob/main/minio/setup.go#L881>)
 
 ```go
 func (bc *BucketClient) AbortMultipartUpload(ctx context.Context, objectKey, uploadID string) error
@@ -732,7 +732,7 @@ func (bc *BucketClient) AbortMultipartUpload(ctx context.Context, objectKey, upl
 AbortMultipartUpload cancels a multipart upload in the bucket.
 
 <a name="BucketClient.CleanupIncompleteUploads"></a>
-### func \(\*BucketClient\) [CleanupIncompleteUploads](<https://github.com/aalemi-dev/stdlib-lab/blob/main/minio/setup.go#L891>)
+### func \(\*BucketClient\) [CleanupIncompleteUploads](<https://github.com/docket-legal/go-std-libs/blob/main/minio/setup.go#L891>)
 
 ```go
 func (bc *BucketClient) CleanupIncompleteUploads(ctx context.Context, prefix string, olderThan time.Duration) error
@@ -741,7 +741,7 @@ func (bc *BucketClient) CleanupIncompleteUploads(ctx context.Context, prefix str
 CleanupIncompleteUploads removes stale incomplete multipart uploads in the bucket.
 
 <a name="BucketClient.CompleteMultipartUpload"></a>
-### func \(\*BucketClient\) [CompleteMultipartUpload](<https://github.com/aalemi-dev/stdlib-lab/blob/main/minio/setup.go#L876>)
+### func \(\*BucketClient\) [CompleteMultipartUpload](<https://github.com/docket-legal/go-std-libs/blob/main/minio/setup.go#L876>)
 
 ```go
 func (bc *BucketClient) CompleteMultipartUpload(ctx context.Context, objectKey, uploadID string, partNumbers []int, etags []string) error
@@ -750,7 +750,7 @@ func (bc *BucketClient) CompleteMultipartUpload(ctx context.Context, objectKey, 
 CompleteMultipartUpload finalizes a multipart upload in the bucket.
 
 <a name="BucketClient.Delete"></a>
-### func \(\*BucketClient\) [Delete](<https://github.com/aalemi-dev/stdlib-lab/blob/main/minio/setup.go#L845>)
+### func \(\*BucketClient\) [Delete](<https://github.com/docket-legal/go-std-libs/blob/main/minio/setup.go#L845>)
 
 ```go
 func (bc *BucketClient) Delete(ctx context.Context, objectKey string) error
@@ -759,7 +759,7 @@ func (bc *BucketClient) Delete(ctx context.Context, objectKey string) error
 Delete removes an object from the bucket associated with this BucketClient.
 
 <a name="BucketClient.GenerateMultipartPresignedGetURLs"></a>
-### func \(\*BucketClient\) [GenerateMultipartPresignedGetURLs](<https://github.com/aalemi-dev/stdlib-lab/blob/main/minio/setup.go#L896-L901>)
+### func \(\*BucketClient\) [GenerateMultipartPresignedGetURLs](<https://github.com/docket-legal/go-std-libs/blob/main/minio/setup.go#L896-L901>)
 
 ```go
 func (bc *BucketClient) GenerateMultipartPresignedGetURLs(ctx context.Context, objectKey string, partSize int64, expiry ...time.Duration) (MultipartPresignedGet, error)
@@ -768,7 +768,7 @@ func (bc *BucketClient) GenerateMultipartPresignedGetURLs(ctx context.Context, o
 GenerateMultipartPresignedGetURLs generates presigned URLs for downloading parts of an object from the bucket.
 
 <a name="BucketClient.GenerateMultipartUploadURLs"></a>
-### func \(\*BucketClient\) [GenerateMultipartUploadURLs](<https://github.com/aalemi-dev/stdlib-lab/blob/main/minio/setup.go#L865-L871>)
+### func \(\*BucketClient\) [GenerateMultipartUploadURLs](<https://github.com/docket-legal/go-std-libs/blob/main/minio/setup.go#L865-L871>)
 
 ```go
 func (bc *BucketClient) GenerateMultipartUploadURLs(ctx context.Context, objectKey string, fileSize int64, contentType string, expiry ...time.Duration) (MultipartUpload, error)
@@ -777,7 +777,7 @@ func (bc *BucketClient) GenerateMultipartUploadURLs(ctx context.Context, objectK
 GenerateMultipartUploadURLs generates presigned URLs for multipart upload to the bucket.
 
 <a name="BucketClient.Get"></a>
-### func \(\*BucketClient\) [Get](<https://github.com/aalemi-dev/stdlib-lab/blob/main/minio/setup.go#L835>)
+### func \(\*BucketClient\) [Get](<https://github.com/docket-legal/go-std-libs/blob/main/minio/setup.go#L835>)
 
 ```go
 func (bc *BucketClient) Get(ctx context.Context, objectKey string, opts ...GetOption) ([]byte, error)
@@ -786,7 +786,7 @@ func (bc *BucketClient) Get(ctx context.Context, objectKey string, opts ...GetOp
 Get retrieves an object from the bucket associated with this BucketClient.
 
 <a name="BucketClient.ListIncompleteUploads"></a>
-### func \(\*BucketClient\) [ListIncompleteUploads](<https://github.com/aalemi-dev/stdlib-lab/blob/main/minio/setup.go#L886>)
+### func \(\*BucketClient\) [ListIncompleteUploads](<https://github.com/docket-legal/go-std-libs/blob/main/minio/setup.go#L886>)
 
 ```go
 func (bc *BucketClient) ListIncompleteUploads(ctx context.Context, prefix string) ([]minio.ObjectMultipartInfo, error)
@@ -795,7 +795,7 @@ func (bc *BucketClient) ListIncompleteUploads(ctx context.Context, prefix string
 ListIncompleteUploads lists all incomplete multipart uploads in the bucket.
 
 <a name="BucketClient.PreSignedGet"></a>
-### func \(\*BucketClient\) [PreSignedGet](<https://github.com/aalemi-dev/stdlib-lab/blob/main/minio/setup.go#L855>)
+### func \(\*BucketClient\) [PreSignedGet](<https://github.com/docket-legal/go-std-libs/blob/main/minio/setup.go#L855>)
 
 ```go
 func (bc *BucketClient) PreSignedGet(ctx context.Context, objectKey string) (string, error)
@@ -804,7 +804,7 @@ func (bc *BucketClient) PreSignedGet(ctx context.Context, objectKey string) (str
 PreSignedGet generates a presigned URL for downloading an object from the bucket.
 
 <a name="BucketClient.PreSignedHeadObject"></a>
-### func \(\*BucketClient\) [PreSignedHeadObject](<https://github.com/aalemi-dev/stdlib-lab/blob/main/minio/setup.go#L860>)
+### func \(\*BucketClient\) [PreSignedHeadObject](<https://github.com/docket-legal/go-std-libs/blob/main/minio/setup.go#L860>)
 
 ```go
 func (bc *BucketClient) PreSignedHeadObject(ctx context.Context, objectKey string) (string, error)
@@ -813,7 +813,7 @@ func (bc *BucketClient) PreSignedHeadObject(ctx context.Context, objectKey strin
 PreSignedHeadObject generates a presigned URL for retrieving object metadata from the bucket.
 
 <a name="BucketClient.PreSignedPut"></a>
-### func \(\*BucketClient\) [PreSignedPut](<https://github.com/aalemi-dev/stdlib-lab/blob/main/minio/setup.go#L850>)
+### func \(\*BucketClient\) [PreSignedPut](<https://github.com/docket-legal/go-std-libs/blob/main/minio/setup.go#L850>)
 
 ```go
 func (bc *BucketClient) PreSignedPut(ctx context.Context, objectKey string) (string, error)
@@ -822,7 +822,7 @@ func (bc *BucketClient) PreSignedPut(ctx context.Context, objectKey string) (str
 PreSignedPut generates a presigned URL for uploading an object to the bucket.
 
 <a name="BucketClient.Put"></a>
-### func \(\*BucketClient\) [Put](<https://github.com/aalemi-dev/stdlib-lab/blob/main/minio/setup.go#L830>)
+### func \(\*BucketClient\) [Put](<https://github.com/docket-legal/go-std-libs/blob/main/minio/setup.go#L830>)
 
 ```go
 func (bc *BucketClient) Put(ctx context.Context, objectKey string, reader io.Reader, opts ...PutOption) (int64, error)
@@ -831,7 +831,7 @@ func (bc *BucketClient) Put(ctx context.Context, objectKey string, reader io.Rea
 Put uploads an object to the bucket associated with this BucketClient.
 
 <a name="BucketClient.StreamGet"></a>
-### func \(\*BucketClient\) [StreamGet](<https://github.com/aalemi-dev/stdlib-lab/blob/main/minio/setup.go#L840>)
+### func \(\*BucketClient\) [StreamGet](<https://github.com/docket-legal/go-std-libs/blob/main/minio/setup.go#L840>)
 
 ```go
 func (bc *BucketClient) StreamGet(ctx context.Context, objectKey string, chunkSize int) (<-chan []byte, <-chan error)
@@ -840,7 +840,7 @@ func (bc *BucketClient) StreamGet(ctx context.Context, objectKey string, chunkSi
 StreamGet retrieves an object in chunks from the bucket associated with this BucketClient.
 
 <a name="BucketInfo"></a>
-## type [BucketInfo](<https://github.com/aalemi-dev/stdlib-lab/blob/main/minio/configs.go#L361-L367>)
+## type [BucketInfo](<https://github.com/docket-legal/go-std-libs/blob/main/minio/configs.go#L361-L367>)
 
 BucketInfo contains information about a bucket.
 
@@ -855,7 +855,7 @@ type BucketInfo struct {
 ```
 
 <a name="BucketOption"></a>
-## type [BucketOption](<https://github.com/aalemi-dev/stdlib-lab/blob/main/minio/configs.go#L349>)
+## type [BucketOption](<https://github.com/docket-legal/go-std-libs/blob/main/minio/configs.go#L349>)
 
 BucketOption is a functional option for configuring bucket operations.
 
@@ -864,7 +864,7 @@ type BucketOption func(*BucketOptions)
 ```
 
 <a name="WithObjectLocking"></a>
-### func [WithObjectLocking](<https://github.com/aalemi-dev/stdlib-lab/blob/main/minio/options.go#L107>)
+### func [WithObjectLocking](<https://github.com/docket-legal/go-std-libs/blob/main/minio/options.go#L107>)
 
 ```go
 func WithObjectLocking(enabled bool) BucketOption
@@ -881,7 +881,7 @@ err := client.CreateBucket(ctx, "my-bucket",
 ```
 
 <a name="WithRegion"></a>
-### func [WithRegion](<https://github.com/aalemi-dev/stdlib-lab/blob/main/minio/options.go#L94>)
+### func [WithRegion](<https://github.com/docket-legal/go-std-libs/blob/main/minio/options.go#L94>)
 
 ```go
 func WithRegion(region string) BucketOption
@@ -897,7 +897,7 @@ err := client.CreateBucket(ctx, "my-bucket",
 ```
 
 <a name="BucketOptions"></a>
-## type [BucketOptions](<https://github.com/aalemi-dev/stdlib-lab/blob/main/minio/configs.go#L352-L358>)
+## type [BucketOptions](<https://github.com/docket-legal/go-std-libs/blob/main/minio/configs.go#L352-L358>)
 
 BucketOptions contains options for bucket operations.
 
@@ -912,7 +912,7 @@ type BucketOptions struct {
 ```
 
 <a name="BufferPool"></a>
-## type [BufferPool](<https://github.com/aalemi-dev/stdlib-lab/blob/main/minio/setup.go#L74-L89>)
+## type [BufferPool](<https://github.com/docket-legal/go-std-libs/blob/main/minio/setup.go#L74-L89>)
 
 BufferPool implements an advanced pool of bytes.Buffers with size limits and monitoring. It prevents memory leaks by
 limiting buffer sizes and pool capacity.
@@ -924,7 +924,7 @@ type BufferPool struct {
 ```
 
 <a name="NewBufferPool"></a>
-### func [NewBufferPool](<https://github.com/aalemi-dev/stdlib-lab/blob/main/minio/setup.go#L96>)
+### func [NewBufferPool](<https://github.com/docket-legal/go-std-libs/blob/main/minio/setup.go#L96>)
 
 ```go
 func NewBufferPool() *BufferPool
@@ -936,7 +936,7 @@ instances as needed when none are available, with built\-in size limits to preve
 Returns a configured BufferPool ready for use.
 
 <a name="NewBufferPoolWithConfig"></a>
-### func [NewBufferPoolWithConfig](<https://github.com/aalemi-dev/stdlib-lab/blob/main/minio/setup.go#L107>)
+### func [NewBufferPoolWithConfig](<https://github.com/docket-legal/go-std-libs/blob/main/minio/setup.go#L107>)
 
 ```go
 func NewBufferPoolWithConfig(config BufferPoolConfig) *BufferPool
@@ -952,7 +952,7 @@ Parameters:
 Returns a configured BufferPool ready for use.
 
 <a name="BufferPool.Cleanup"></a>
-### func \(\*BufferPool\) [Cleanup](<https://github.com/aalemi-dev/stdlib-lab/blob/main/minio/setup.go#L215>)
+### func \(\*BufferPool\) [Cleanup](<https://github.com/docket-legal/go-std-libs/blob/main/minio/setup.go#L215>)
 
 ```go
 func (bp *BufferPool) Cleanup()
@@ -962,7 +962,7 @@ Cleanup forces cleanup of the buffer pool, releasing all buffers. This is useful
 is high.
 
 <a name="BufferPool.Get"></a>
-### func \(\*BufferPool\) [Get](<https://github.com/aalemi-dev/stdlib-lab/blob/main/minio/setup.go#L128>)
+### func \(\*BufferPool\) [Get](<https://github.com/docket-legal/go-std-libs/blob/main/minio/setup.go#L128>)
 
 ```go
 func (bp *BufferPool) Get() *bytes.Buffer
@@ -974,7 +974,7 @@ buffer is automatically reset and ready for use.
 Returns a \*bytes.Buffer that should be returned to the pool when no longer needed.
 
 <a name="BufferPool.GetStats"></a>
-### func \(\*BufferPool\) [GetStats](<https://github.com/aalemi-dev/stdlib-lab/blob/main/minio/setup.go#L188>)
+### func \(\*BufferPool\) [GetStats](<https://github.com/docket-legal/go-std-libs/blob/main/minio/setup.go#L188>)
 
 ```go
 func (bp *BufferPool) GetStats() BufferPoolStats
@@ -984,7 +984,7 @@ GetStats returns current buffer pool statistics for monitoring. This is useful f
 and pool effectiveness.
 
 <a name="BufferPool.Put"></a>
-### func \(\*BufferPool\) [Put](<https://github.com/aalemi-dev/stdlib-lab/blob/main/minio/setup.go#L141>)
+### func \(\*BufferPool\) [Put](<https://github.com/docket-legal/go-std-libs/blob/main/minio/setup.go#L141>)
 
 ```go
 func (bp *BufferPool) Put(b *bytes.Buffer)
@@ -998,7 +998,7 @@ Parameters:
 - b: The buffer to return to the pool
 
 <a name="BufferPoolConfig"></a>
-## type [BufferPoolConfig](<https://github.com/aalemi-dev/stdlib-lab/blob/main/minio/setup.go#L54-L61>)
+## type [BufferPoolConfig](<https://github.com/docket-legal/go-std-libs/blob/main/minio/setup.go#L54-L61>)
 
 BufferPoolConfig contains configuration for the buffer pool
 
@@ -1014,7 +1014,7 @@ type BufferPoolConfig struct {
 ```
 
 <a name="DefaultBufferPoolConfig"></a>
-### func [DefaultBufferPoolConfig](<https://github.com/aalemi-dev/stdlib-lab/blob/main/minio/setup.go#L64>)
+### func [DefaultBufferPoolConfig](<https://github.com/docket-legal/go-std-libs/blob/main/minio/setup.go#L64>)
 
 ```go
 func DefaultBufferPoolConfig() BufferPoolConfig
@@ -1023,7 +1023,7 @@ func DefaultBufferPoolConfig() BufferPoolConfig
 DefaultBufferPoolConfig returns the default buffer pool configuration
 
 <a name="BufferPoolStats"></a>
-## type [BufferPoolStats](<https://github.com/aalemi-dev/stdlib-lab/blob/main/minio/setup.go#L169-L184>)
+## type [BufferPoolStats](<https://github.com/docket-legal/go-std-libs/blob/main/minio/setup.go#L169-L184>)
 
 Stats returns statistics about buffer pool usage for monitoring and debugging.
 
@@ -1047,7 +1047,7 @@ type BufferPoolStats struct {
 ```
 
 <a name="ByteRange"></a>
-## type [ByteRange](<https://github.com/aalemi-dev/stdlib-lab/blob/main/minio/configs.go#L340-L346>)
+## type [ByteRange](<https://github.com/docket-legal/go-std-libs/blob/main/minio/configs.go#L340-L346>)
 
 ByteRange represents a byte range for partial object retrieval.
 
@@ -1062,7 +1062,7 @@ type ByteRange struct {
 ```
 
 <a name="Client"></a>
-## type [Client](<https://github.com/aalemi-dev/stdlib-lab/blob/main/minio/interface.go#L19-L127>)
+## type [Client](<https://github.com/docket-legal/go-std-libs/blob/main/minio/interface.go#L19-L127>)
 
 Client provides a high\-level interface for interacting with MinIO/S3\-compatible storage. It abstracts object storage
 operations with features like multipart uploads, presigned URLs, and resource monitoring.
@@ -1168,7 +1168,7 @@ type Client interface {
 ```
 
 <a name="Config"></a>
-## type [Config](<https://github.com/aalemi-dev/stdlib-lab/blob/main/minio/configs.go#L43-L58>)
+## type [Config](<https://github.com/docket-legal/go-std-libs/blob/main/minio/configs.go#L43-L58>)
 
 Config defines the top\-level configuration for MinIO. This structure contains all configuration options for the MinIO
 client, organized into logical sections for different aspects of functionality.
@@ -1193,7 +1193,7 @@ type Config struct {
 ```
 
 <a name="ConnectionConfig"></a>
-## type [ConnectionConfig](<https://github.com/aalemi-dev/stdlib-lab/blob/main/minio/configs.go#L62-L77>)
+## type [ConnectionConfig](<https://github.com/docket-legal/go-std-libs/blob/main/minio/configs.go#L62-L77>)
 
 ConnectionConfig contains MinIO server connection details. These parameters are required to establish a connection to a
 MinIO server.
@@ -1218,7 +1218,7 @@ type ConnectionConfig struct {
 ```
 
 <a name="ConnectionPoolConfig"></a>
-## type [ConnectionPoolConfig](<https://github.com/aalemi-dev/stdlib-lab/blob/main/minio/setup.go#L235-L244>)
+## type [ConnectionPoolConfig](<https://github.com/docket-legal/go-std-libs/blob/main/minio/setup.go#L235-L244>)
 
 ConnectionPoolConfig contains configuration for connection management
 
@@ -1236,7 +1236,7 @@ type ConnectionPoolConfig struct {
 ```
 
 <a name="DefaultConnectionPoolConfig"></a>
-### func [DefaultConnectionPoolConfig](<https://github.com/aalemi-dev/stdlib-lab/blob/main/minio/setup.go#L247>)
+### func [DefaultConnectionPoolConfig](<https://github.com/docket-legal/go-std-libs/blob/main/minio/setup.go#L247>)
 
 ```go
 func DefaultConnectionPoolConfig() ConnectionPoolConfig
@@ -1245,7 +1245,7 @@ func DefaultConnectionPoolConfig() ConnectionPoolConfig
 DefaultConnectionPoolConfig returns default connection pool configuration
 
 <a name="DownloadConfig"></a>
-## type [DownloadConfig](<https://github.com/aalemi-dev/stdlib-lab/blob/main/minio/configs.go#L101-L112>)
+## type [DownloadConfig](<https://github.com/docket-legal/go-std-libs/blob/main/minio/configs.go#L101-L112>)
 
 DownloadConfig defines parameters that control download behavior. These settings optimize memory usage when downloading
 objects of different sizes.
@@ -1266,7 +1266,7 @@ type DownloadConfig struct {
 ```
 
 <a name="ErrorCategory"></a>
-## type [ErrorCategory](<https://github.com/aalemi-dev/stdlib-lab/blob/main/minio/errors.go#L550>)
+## type [ErrorCategory](<https://github.com/docket-legal/go-std-libs/blob/main/minio/errors.go#L550>)
 
 ErrorCategory represents different categories of MinIO errors
 
@@ -1297,7 +1297,7 @@ const (
 ```
 
 <a name="GetOption"></a>
-## type [GetOption](<https://github.com/aalemi-dev/stdlib-lab/blob/main/minio/configs.go#L328>)
+## type [GetOption](<https://github.com/docket-legal/go-std-libs/blob/main/minio/configs.go#L328>)
 
 GetOption is a functional option for configuring Get operations.
 
@@ -1306,7 +1306,7 @@ type GetOption func(*GetOptions)
 ```
 
 <a name="WithByteRange"></a>
-### func [WithByteRange](<https://github.com/aalemi-dev/stdlib-lab/blob/main/minio/options.go#L79>)
+### func [WithByteRange](<https://github.com/docket-legal/go-std-libs/blob/main/minio/options.go#L79>)
 
 ```go
 func WithByteRange(start, end int64) GetOption
@@ -1323,7 +1323,7 @@ data, err := client.Get(ctx, bucket, key,
 ```
 
 <a name="WithVersionID"></a>
-### func [WithVersionID](<https://github.com/aalemi-dev/stdlib-lab/blob/main/minio/options.go#L66>)
+### func [WithVersionID](<https://github.com/docket-legal/go-std-libs/blob/main/minio/options.go#L66>)
 
 ```go
 func WithVersionID(versionID string) GetOption
@@ -1339,7 +1339,7 @@ data, err := client.Get(ctx, bucket, key,
 ```
 
 <a name="GetOptions"></a>
-## type [GetOptions](<https://github.com/aalemi-dev/stdlib-lab/blob/main/minio/configs.go#L331-L337>)
+## type [GetOptions](<https://github.com/docket-legal/go-std-libs/blob/main/minio/configs.go#L331-L337>)
 
 GetOptions contains options for Get operations.
 
@@ -1354,7 +1354,7 @@ type GetOptions struct {
 ```
 
 <a name="KafkaNotification"></a>
-## type [KafkaNotification](<https://github.com/aalemi-dev/stdlib-lab/blob/main/minio/configs.go#L239-L251>)
+## type [KafkaNotification](<https://github.com/docket-legal/go-std-libs/blob/main/minio/configs.go#L239-L251>)
 
 KafkaNotification defines a Kafka notification target. Kafka notifications publish events to a Kafka topic.
 
@@ -1375,7 +1375,7 @@ type KafkaNotification struct {
 ```
 
 <a name="KafkaSASLAuth"></a>
-## type [KafkaSASLAuth](<https://github.com/aalemi-dev/stdlib-lab/blob/main/minio/configs.go#L255-L264>)
+## type [KafkaSASLAuth](<https://github.com/docket-legal/go-std-libs/blob/main/minio/configs.go#L255-L264>)
 
 KafkaSASLAuth contains Kafka SASL authentication details. SASL is used for authenticating with Kafka brokers.
 
@@ -1393,7 +1393,7 @@ type KafkaSASLAuth struct {
 ```
 
 <a name="Logger"></a>
-## type [Logger](<https://github.com/aalemi-dev/stdlib-lab/blob/main/minio/configs.go#L296-L305>)
+## type [Logger](<https://github.com/docket-legal/go-std-libs/blob/main/minio/configs.go#L296-L305>)
 
 Logger is an interface that matches the std/v1/logger.Logger interface. It provides context\-aware structured logging
 with optional error and field parameters.
@@ -1412,7 +1412,7 @@ type Logger interface {
 ```
 
 <a name="MQTTNotification"></a>
-## type [MQTTNotification](<https://github.com/aalemi-dev/stdlib-lab/blob/main/minio/configs.go#L268-L292>)
+## type [MQTTNotification](<https://github.com/docket-legal/go-std-libs/blob/main/minio/configs.go#L268-L292>)
 
 MQTTNotification defines an MQTT notification target. MQTT notifications publish events to an MQTT broker.
 
@@ -1445,7 +1445,7 @@ type MQTTNotification struct {
 ```
 
 <a name="MinioClient"></a>
-## type [MinioClient](<https://github.com/aalemi-dev/stdlib-lab/blob/main/minio/setup.go#L21-L51>)
+## type [MinioClient](<https://github.com/docket-legal/go-std-libs/blob/main/minio/setup.go#L21-L51>)
 
 MinioClient represents a MinIO client with additional functionality. It wraps the standard MinIO client with features
 for connection management, reconnection handling, and resource monitoring.
@@ -1457,7 +1457,7 @@ type MinioClient struct {
 ```
 
 <a name="NewClient"></a>
-### func [NewClient](<https://github.com/aalemi-dev/stdlib-lab/blob/main/minio/setup.go#L278>)
+### func [NewClient](<https://github.com/docket-legal/go-std-libs/blob/main/minio/setup.go#L278>)
 
 ```go
 func NewClient(config Config) (*MinioClient, error)
@@ -1489,14 +1489,14 @@ defer client.GracefulShutdown()
 ```
 
 <a name="NewMinioClientWithDI"></a>
-### func [NewMinioClientWithDI](<https://github.com/aalemi-dev/stdlib-lab/blob/main/minio/fx_module.go#L49>)
+### func [NewMinioClientWithDI](<https://github.com/docket-legal/go-std-libs/blob/main/minio/fx_module.go#L49>)
 
 ```go
 func NewMinioClientWithDI(params MinioParams) (*MinioClient, error)
 ```
 
 <a name="MinioClient.AbortMultipartUpload"></a>
-### func \(\*MinioClient\) [AbortMultipartUpload](<https://github.com/aalemi-dev/stdlib-lab/blob/main/minio/presigned_put_utils.go#L422>)
+### func \(\*MinioClient\) [AbortMultipartUpload](<https://github.com/docket-legal/go-std-libs/blob/main/minio/presigned_put_utils.go#L422>)
 
 ```go
 func (m *MinioClient) AbortMultipartUpload(ctx context.Context, bucket, objectKey, uploadID string) error
@@ -1520,7 +1520,7 @@ err := minioClient.AbortMultipartUpload(ctx, "uploads/myfile.zip", uploadID)
 ```
 
 <a name="MinioClient.Bucket"></a>
-### func \(\*MinioClient\) [Bucket](<https://github.com/aalemi-dev/stdlib-lab/blob/main/minio/setup.go#L822>)
+### func \(\*MinioClient\) [Bucket](<https://github.com/docket-legal/go-std-libs/blob/main/minio/setup.go#L822>)
 
 ```go
 func (m *MinioClient) Bucket(name string) *BucketClient
@@ -1548,7 +1548,7 @@ userBucket.Delete(ctx, "old-file.txt")
 ```
 
 <a name="MinioClient.BucketExists"></a>
-### func \(\*MinioClient\) [BucketExists](<https://github.com/aalemi-dev/stdlib-lab/blob/main/minio/setup.go#L634>)
+### func \(\*MinioClient\) [BucketExists](<https://github.com/docket-legal/go-std-libs/blob/main/minio/setup.go#L634>)
 
 ```go
 func (m *MinioClient) BucketExists(ctx context.Context, bucket string) (bool, error)
@@ -1576,7 +1576,7 @@ if !exists {
 ```
 
 <a name="MinioClient.CleanupIncompleteUploads"></a>
-### func \(\*MinioClient\) [CleanupIncompleteUploads](<https://github.com/aalemi-dev/stdlib-lab/blob/main/minio/presigned_put_utils.go#L561>)
+### func \(\*MinioClient\) [CleanupIncompleteUploads](<https://github.com/docket-legal/go-std-libs/blob/main/minio/presigned_put_utils.go#L561>)
 
 ```go
 func (m *MinioClient) CleanupIncompleteUploads(ctx context.Context, bucket, prefix string, olderThan time.Duration) error
@@ -1601,7 +1601,7 @@ err := minioClient.CleanupIncompleteUploads(ctx, "uploads/", 24*time.Hour)
 ```
 
 <a name="MinioClient.CleanupResources"></a>
-### func \(\*MinioClient\) [CleanupResources](<https://github.com/aalemi-dev/stdlib-lab/blob/main/minio/setup.go#L715>)
+### func \(\*MinioClient\) [CleanupResources](<https://github.com/docket-legal/go-std-libs/blob/main/minio/setup.go#L715>)
 
 ```go
 func (m *MinioClient) CleanupResources()
@@ -1618,7 +1618,7 @@ defer minioClient.CleanupResources()
 ```
 
 <a name="MinioClient.CompleteMultipartUpload"></a>
-### func \(\*MinioClient\) [CompleteMultipartUpload](<https://github.com/aalemi-dev/stdlib-lab/blob/main/minio/presigned_put_utils.go#L457>)
+### func \(\*MinioClient\) [CompleteMultipartUpload](<https://github.com/docket-legal/go-std-libs/blob/main/minio/presigned_put_utils.go#L457>)
 
 ```go
 func (m *MinioClient) CompleteMultipartUpload(ctx context.Context, bucket, objectKey, uploadID string, partNumbers []int, etags []string) error
@@ -1650,7 +1650,7 @@ err := minioClient.CompleteMultipartUpload(
 ```
 
 <a name="MinioClient.CreateBucket"></a>
-### func \(\*MinioClient\) [CreateBucket](<https://github.com/aalemi-dev/stdlib-lab/blob/main/minio/setup.go#L535>)
+### func \(\*MinioClient\) [CreateBucket](<https://github.com/docket-legal/go-std-libs/blob/main/minio/setup.go#L535>)
 
 ```go
 func (m *MinioClient) CreateBucket(ctx context.Context, bucket string, opts ...BucketOption) error
@@ -1677,7 +1677,7 @@ if err != nil {
 ```
 
 <a name="MinioClient.Delete"></a>
-### func \(\*MinioClient\) [Delete](<https://github.com/aalemi-dev/stdlib-lab/blob/main/minio/object_utils.go#L326>)
+### func \(\*MinioClient\) [Delete](<https://github.com/docket-legal/go-std-libs/blob/main/minio/object_utils.go#L326>)
 
 ```go
 func (m *MinioClient) Delete(ctx context.Context, bucket, objectKey string) error
@@ -1703,7 +1703,7 @@ if err == nil {
 ```
 
 <a name="MinioClient.DeleteBucket"></a>
-### func \(\*MinioClient\) [DeleteBucket](<https://github.com/aalemi-dev/stdlib-lab/blob/main/minio/setup.go#L595>)
+### func \(\*MinioClient\) [DeleteBucket](<https://github.com/docket-legal/go-std-libs/blob/main/minio/setup.go#L595>)
 
 ```go
 func (m *MinioClient) DeleteBucket(ctx context.Context, bucket string) error
@@ -1728,7 +1728,7 @@ if err != nil {
 ```
 
 <a name="MinioClient.GenerateMultipartPresignedGetURLs"></a>
-### func \(\*MinioClient\) [GenerateMultipartPresignedGetURLs](<https://github.com/aalemi-dev/stdlib-lab/blob/main/minio/presigned_get_utils.go#L100-L105>)
+### func \(\*MinioClient\) [GenerateMultipartPresignedGetURLs](<https://github.com/docket-legal/go-std-libs/blob/main/minio/presigned_get_utils.go#L100-L105>)
 
 ```go
 func (m *MinioClient) GenerateMultipartPresignedGetURLs(ctx context.Context, bucket, objectKey string, partSize int64, expiry ...time.Duration) (MultipartPresignedGet, error)
@@ -1761,7 +1761,7 @@ download, err := minioClient.GenerateMultipartPresignedGetURLs(
 ```
 
 <a name="MinioClient.GenerateMultipartUploadURLs"></a>
-### func \(\*MinioClient\) [GenerateMultipartUploadURLs](<https://github.com/aalemi-dev/stdlib-lab/blob/main/minio/presigned_put_utils.go#L251-L257>)
+### func \(\*MinioClient\) [GenerateMultipartUploadURLs](<https://github.com/docket-legal/go-std-libs/blob/main/minio/presigned_put_utils.go#L251-L257>)
 
 ```go
 func (m *MinioClient) GenerateMultipartUploadURLs(ctx context.Context, bucket, objectKey string, fileSize int64, contentType string, expiry ...time.Duration) (MultipartUpload, error)
@@ -1797,7 +1797,7 @@ upload, err := minioClient.GenerateMultipartUploadURLs(
 ```
 
 <a name="MinioClient.Get"></a>
-### func \(\*MinioClient\) [Get](<https://github.com/aalemi-dev/stdlib-lab/blob/main/minio/object_utils.go#L115>)
+### func \(\*MinioClient\) [Get](<https://github.com/docket-legal/go-std-libs/blob/main/minio/object_utils.go#L115>)
 
 ```go
 func (m *MinioClient) Get(ctx context.Context, bucket, objectKey string, opts ...GetOption) ([]byte, error)
@@ -1833,7 +1833,7 @@ if err == nil {
 ```
 
 <a name="MinioClient.GetBufferPoolStats"></a>
-### func \(\*MinioClient\) [GetBufferPoolStats](<https://github.com/aalemi-dev/stdlib-lab/blob/main/minio/setup.go#L701>)
+### func \(\*MinioClient\) [GetBufferPoolStats](<https://github.com/docket-legal/go-std-libs/blob/main/minio/setup.go#L701>)
 
 ```go
 func (m *MinioClient) GetBufferPoolStats() BufferPoolStats
@@ -1855,7 +1855,7 @@ fmt.Printf("Buffers in pool: %d\n", stats.CurrentPoolSize)
 ```
 
 <a name="MinioClient.GetErrorCategory"></a>
-### func \(\*MinioClient\) [GetErrorCategory](<https://github.com/aalemi-dev/stdlib-lab/blob/main/minio/errors.go#L571>)
+### func \(\*MinioClient\) [GetErrorCategory](<https://github.com/docket-legal/go-std-libs/blob/main/minio/errors.go#L571>)
 
 ```go
 func (m *MinioClient) GetErrorCategory(err error) ErrorCategory
@@ -1864,7 +1864,7 @@ func (m *MinioClient) GetErrorCategory(err error) ErrorCategory
 GetErrorCategory returns the category of the given error
 
 <a name="MinioClient.GracefulShutdown"></a>
-### func \(\*MinioClient\) [GracefulShutdown](<https://github.com/aalemi-dev/stdlib-lab/blob/main/minio/fx_module.go#L157>)
+### func \(\*MinioClient\) [GracefulShutdown](<https://github.com/docket-legal/go-std-libs/blob/main/minio/fx_module.go#L157>)
 
 ```go
 func (m *MinioClient) GracefulShutdown()
@@ -1898,7 +1898,7 @@ func processFiles() {
 ```
 
 <a name="MinioClient.IsPermanentError"></a>
-### func \(\*MinioClient\) [IsPermanentError](<https://github.com/aalemi-dev/stdlib-lab/blob/main/minio/errors.go#L629>)
+### func \(\*MinioClient\) [IsPermanentError](<https://github.com/docket-legal/go-std-libs/blob/main/minio/errors.go#L629>)
 
 ```go
 func (m *MinioClient) IsPermanentError(err error) bool
@@ -1907,7 +1907,7 @@ func (m *MinioClient) IsPermanentError(err error) bool
 IsPermanentError returns true if the error is permanent and should not be retried
 
 <a name="MinioClient.IsRetryableError"></a>
-### func \(\*MinioClient\) [IsRetryableError](<https://github.com/aalemi-dev/stdlib-lab/blob/main/minio/errors.go#L607>)
+### func \(\*MinioClient\) [IsRetryableError](<https://github.com/docket-legal/go-std-libs/blob/main/minio/errors.go#L607>)
 
 ```go
 func (m *MinioClient) IsRetryableError(err error) bool
@@ -1916,7 +1916,7 @@ func (m *MinioClient) IsRetryableError(err error) bool
 IsRetryableError returns true if the error is retryable
 
 <a name="MinioClient.IsTemporaryError"></a>
-### func \(\*MinioClient\) [IsTemporaryError](<https://github.com/aalemi-dev/stdlib-lab/blob/main/minio/errors.go#L624>)
+### func \(\*MinioClient\) [IsTemporaryError](<https://github.com/docket-legal/go-std-libs/blob/main/minio/errors.go#L624>)
 
 ```go
 func (m *MinioClient) IsTemporaryError(err error) bool
@@ -1925,7 +1925,7 @@ func (m *MinioClient) IsTemporaryError(err error) bool
 IsTemporaryError returns true if the error is temporary
 
 <a name="MinioClient.ListBuckets"></a>
-### func \(\*MinioClient\) [ListBuckets](<https://github.com/aalemi-dev/stdlib-lab/blob/main/minio/setup.go#L668>)
+### func \(\*MinioClient\) [ListBuckets](<https://github.com/docket-legal/go-std-libs/blob/main/minio/setup.go#L668>)
 
 ```go
 func (m *MinioClient) ListBuckets(ctx context.Context) ([]BucketInfo, error)
@@ -1952,7 +1952,7 @@ for _, bucket := range buckets {
 ```
 
 <a name="MinioClient.ListIncompleteUploads"></a>
-### func \(\*MinioClient\) [ListIncompleteUploads](<https://github.com/aalemi-dev/stdlib-lab/blob/main/minio/presigned_put_utils.go#L526>)
+### func \(\*MinioClient\) [ListIncompleteUploads](<https://github.com/docket-legal/go-std-libs/blob/main/minio/presigned_put_utils.go#L526>)
 
 ```go
 func (m *MinioClient) ListIncompleteUploads(ctx context.Context, bucket, prefix string) ([]minio.ObjectMultipartInfo, error)
@@ -1983,7 +1983,7 @@ if err == nil {
 ```
 
 <a name="MinioClient.PreSignedGet"></a>
-### func \(\*MinioClient\) [PreSignedGet](<https://github.com/aalemi-dev/stdlib-lab/blob/main/minio/presigned_get_utils.go#L265>)
+### func \(\*MinioClient\) [PreSignedGet](<https://github.com/docket-legal/go-std-libs/blob/main/minio/presigned_get_utils.go#L265>)
 
 ```go
 func (m *MinioClient) PreSignedGet(ctx context.Context, bucket, objectKey string) (string, error)
@@ -2012,7 +2012,7 @@ if err == nil {
 ```
 
 <a name="MinioClient.PreSignedHeadObject"></a>
-### func \(\*MinioClient\) [PreSignedHeadObject](<https://github.com/aalemi-dev/stdlib-lab/blob/main/minio/presigned_put_utils.go#L600>)
+### func \(\*MinioClient\) [PreSignedHeadObject](<https://github.com/docket-legal/go-std-libs/blob/main/minio/presigned_put_utils.go#L600>)
 
 ```go
 func (m *MinioClient) PreSignedHeadObject(ctx context.Context, bucket, objectKey string) (string, error)
@@ -2041,7 +2041,7 @@ if err == nil {
 ```
 
 <a name="MinioClient.PreSignedPut"></a>
-### func \(\*MinioClient\) [PreSignedPut](<https://github.com/aalemi-dev/stdlib-lab/blob/main/minio/presigned_put_utils.go#L642>)
+### func \(\*MinioClient\) [PreSignedPut](<https://github.com/docket-legal/go-std-libs/blob/main/minio/presigned_put_utils.go#L642>)
 
 ```go
 func (m *MinioClient) PreSignedPut(ctx context.Context, bucket, objectKey string) (string, error)
@@ -2070,7 +2070,7 @@ if err == nil {
 ```
 
 <a name="MinioClient.Put"></a>
-### func \(\*MinioClient\) [Put](<https://github.com/aalemi-dev/stdlib-lab/blob/main/minio/object_utils.go#L40>)
+### func \(\*MinioClient\) [Put](<https://github.com/docket-legal/go-std-libs/blob/main/minio/object_utils.go#L40>)
 
 ```go
 func (m *MinioClient) Put(ctx context.Context, bucket, objectKey string, reader io.Reader, opts ...PutOption) (int64, error)
@@ -2108,7 +2108,7 @@ if err == nil {
 ```
 
 <a name="MinioClient.StreamGet"></a>
-### func \(\*MinioClient\) [StreamGet](<https://github.com/aalemi-dev/stdlib-lab/blob/main/minio/object_utils.go#L214>)
+### func \(\*MinioClient\) [StreamGet](<https://github.com/docket-legal/go-std-libs/blob/main/minio/object_utils.go#L214>)
 
 ```go
 func (m *MinioClient) StreamGet(ctx context.Context, bucket, objectKey string, chunkSize int) (<-chan []byte, <-chan error)
@@ -2129,7 +2129,7 @@ Returns:
 - \<\-chan error: Channel that receives any error that occurred
 
 <a name="MinioClient.TranslateError"></a>
-### func \(\*MinioClient\) [TranslateError](<https://github.com/aalemi-dev/stdlib-lab/blob/main/minio/errors.go#L175>)
+### func \(\*MinioClient\) [TranslateError](<https://github.com/docket-legal/go-std-libs/blob/main/minio/errors.go#L175>)
 
 ```go
 func (m *MinioClient) TranslateError(err error) error
@@ -2142,7 +2142,7 @@ It maps common MinIO errors to the standardized error types defined above. If an
 it's returned unchanged.
 
 <a name="MinioClient.WithLogger"></a>
-### func \(\*MinioClient\) [WithLogger](<https://github.com/aalemi-dev/stdlib-lab/blob/main/minio/setup.go#L763>)
+### func \(\*MinioClient\) [WithLogger](<https://github.com/docket-legal/go-std-libs/blob/main/minio/setup.go#L763>)
 
 ```go
 func (m *MinioClient) WithLogger(logger Logger) *MinioClient
@@ -2169,7 +2169,7 @@ defer client.GracefulShutdown()
 ```
 
 <a name="MinioClient.WithObserver"></a>
-### func \(\*MinioClient\) [WithObserver](<https://github.com/aalemi-dev/stdlib-lab/blob/main/minio/setup.go#L741>)
+### func \(\*MinioClient\) [WithObserver](<https://github.com/docket-legal/go-std-libs/blob/main/minio/setup.go#L741>)
 
 ```go
 func (m *MinioClient) WithObserver(observer observability.Observer) *MinioClient
@@ -2196,7 +2196,7 @@ defer client.GracefulShutdown()
 ```
 
 <a name="MinioLifeCycleParams"></a>
-## type [MinioLifeCycleParams](<https://github.com/aalemi-dev/stdlib-lab/blob/main/minio/fx_module.go#L69-L74>)
+## type [MinioLifeCycleParams](<https://github.com/docket-legal/go-std-libs/blob/main/minio/fx_module.go#L69-L74>)
 
 ```go
 type MinioLifeCycleParams struct {
@@ -2208,7 +2208,7 @@ type MinioLifeCycleParams struct {
 ```
 
 <a name="MinioParams"></a>
-## type [MinioParams](<https://github.com/aalemi-dev/stdlib-lab/blob/main/minio/fx_module.go#L41-L47>)
+## type [MinioParams](<https://github.com/docket-legal/go-std-libs/blob/main/minio/fx_module.go#L41-L47>)
 
 ```go
 type MinioParams struct {
@@ -2221,7 +2221,7 @@ type MinioParams struct {
 ```
 
 <a name="MultipartPresignedGet"></a>
-## type [MultipartPresignedGet](<https://github.com/aalemi-dev/stdlib-lab/blob/main/minio/presigned_get_utils.go#L38-L62>)
+## type [MultipartPresignedGet](<https://github.com/docket-legal/go-std-libs/blob/main/minio/presigned_get_utils.go#L38-L62>)
 
 MultipartPresignedGet is an interface for accessing multipart download info
 
@@ -2254,7 +2254,7 @@ type MultipartPresignedGet interface {
 ```
 
 <a name="MultipartPresignedGetInfo"></a>
-## type [MultipartPresignedGetInfo](<https://github.com/aalemi-dev/stdlib-lab/blob/main/minio/presigned_get_utils.go#L14-L35>)
+## type [MultipartPresignedGetInfo](<https://github.com/docket-legal/go-std-libs/blob/main/minio/presigned_get_utils.go#L14-L35>)
 
 MultipartPresignedGetInfo contains information for downloading an object in parts
 
@@ -2284,7 +2284,7 @@ type MultipartPresignedGetInfo struct {
 ```
 
 <a name="MultipartUpload"></a>
-## type [MultipartUpload](<https://github.com/aalemi-dev/stdlib-lab/blob/main/minio/presigned_put_utils.go#L50-L80>)
+## type [MultipartUpload](<https://github.com/docket-legal/go-std-libs/blob/main/minio/presigned_put_utils.go#L50-L80>)
 
 MultipartUpload represents a multipart upload session. This interface provides methods to access information about a
 multipart upload while hiding the internal implementation details.
@@ -2324,7 +2324,7 @@ type MultipartUpload interface {
 ```
 
 <a name="MultipartUploadInfo"></a>
-## type [MultipartUploadInfo](<https://github.com/aalemi-dev/stdlib-lab/blob/main/minio/presigned_put_utils.go#L18-L45>)
+## type [MultipartUploadInfo](<https://github.com/docket-legal/go-std-libs/blob/main/minio/presigned_put_utils.go#L18-L45>)
 
 MultipartUploadInfo contains all information needed for a multipart upload. This structure holds all the details
 required for managing and completing a multipart upload, including upload identifiers, presigned URLs for each part, and
@@ -2362,7 +2362,7 @@ type MultipartUploadInfo struct {
 ```
 
 <a name="NotificationConfig"></a>
-## type [NotificationConfig](<https://github.com/aalemi-dev/stdlib-lab/blob/main/minio/configs.go#L132-L150>)
+## type [NotificationConfig](<https://github.com/docket-legal/go-std-libs/blob/main/minio/configs.go#L132-L150>)
 
 NotificationConfig defines the configuration for event notifications. MinIO can send notifications when events occur on
 buckets \(e.g., object created\).
@@ -2390,7 +2390,7 @@ type NotificationConfig struct {
 ```
 
 <a name="PresignedConfig"></a>
-## type [PresignedConfig](<https://github.com/aalemi-dev/stdlib-lab/blob/main/minio/configs.go#L116-L128>)
+## type [PresignedConfig](<https://github.com/docket-legal/go-std-libs/blob/main/minio/configs.go#L116-L128>)
 
 PresignedConfig contains configuration options for presigned URLs. Presigned URLs allow temporary access to objects
 without requiring AWS credentials.
@@ -2412,7 +2412,7 @@ type PresignedConfig struct {
 ```
 
 <a name="PutOption"></a>
-## type [PutOption](<https://github.com/aalemi-dev/stdlib-lab/blob/main/minio/configs.go#L310>)
+## type [PutOption](<https://github.com/docket-legal/go-std-libs/blob/main/minio/configs.go#L310>)
 
 PutOption is a functional option for configuring Put operations.
 
@@ -2421,7 +2421,7 @@ type PutOption func(*PutOptions)
 ```
 
 <a name="WithContentType"></a>
-### func [WithContentType](<https://github.com/aalemi-dev/stdlib-lab/blob/main/minio/options.go#L25>)
+### func [WithContentType](<https://github.com/docket-legal/go-std-libs/blob/main/minio/options.go#L25>)
 
 ```go
 func WithContentType(contentType string) PutOption
@@ -2438,7 +2438,7 @@ client.Put(ctx, bucket, key, reader,
 ```
 
 <a name="WithMetadata"></a>
-### func [WithMetadata](<https://github.com/aalemi-dev/stdlib-lab/blob/main/minio/options.go#L41>)
+### func [WithMetadata](<https://github.com/docket-legal/go-std-libs/blob/main/minio/options.go#L41>)
 
 ```go
 func WithMetadata(metadata map[string]string) PutOption
@@ -2458,7 +2458,7 @@ client.Put(ctx, bucket, key, reader,
 ```
 
 <a name="WithPartSize"></a>
-### func [WithPartSize](<https://github.com/aalemi-dev/stdlib-lab/blob/main/minio/options.go#L54>)
+### func [WithPartSize](<https://github.com/docket-legal/go-std-libs/blob/main/minio/options.go#L54>)
 
 ```go
 func WithPartSize(partSize uint64) PutOption
@@ -2474,7 +2474,7 @@ client.Put(ctx, bucket, key, reader,
 ```
 
 <a name="WithSize"></a>
-### func [WithSize](<https://github.com/aalemi-dev/stdlib-lab/blob/main/minio/options.go#L12>)
+### func [WithSize](<https://github.com/docket-legal/go-std-libs/blob/main/minio/options.go#L12>)
 
 ```go
 func WithSize(size int64) PutOption
@@ -2490,7 +2490,7 @@ client.Put(ctx, bucket, key, reader, minio.WithSize(fileSize))
 ```
 
 <a name="PutOptions"></a>
-## type [PutOptions](<https://github.com/aalemi-dev/stdlib-lab/blob/main/minio/configs.go#L313-L325>)
+## type [PutOptions](<https://github.com/docket-legal/go-std-libs/blob/main/minio/configs.go#L313-L325>)
 
 PutOptions contains options for Put operations.
 
@@ -2511,7 +2511,7 @@ type PutOptions struct {
 ```
 
 <a name="RedisNotification"></a>
-## type [RedisNotification](<https://github.com/aalemi-dev/stdlib-lab/blob/main/minio/configs.go#L223-L235>)
+## type [RedisNotification](<https://github.com/docket-legal/go-std-libs/blob/main/minio/configs.go#L223-L235>)
 
 RedisNotification defines a Redis notification target. Redis notifications publish events to a Redis pub/sub channel or
 list.
@@ -2533,7 +2533,7 @@ type RedisNotification struct {
 ```
 
 <a name="UploadConfig"></a>
-## type [UploadConfig](<https://github.com/aalemi-dev/stdlib-lab/blob/main/minio/configs.go#L81-L97>)
+## type [UploadConfig](<https://github.com/docket-legal/go-std-libs/blob/main/minio/configs.go#L81-L97>)
 
 UploadConfig defines the configuration for upload constraints. These parameters control how objects are uploaded,
 particularly for large objects.
@@ -2559,7 +2559,7 @@ type UploadConfig struct {
 ```
 
 <a name="WebhookNotification"></a>
-## type [WebhookNotification](<https://github.com/aalemi-dev/stdlib-lab/blob/main/minio/configs.go#L173-L182>)
+## type [WebhookNotification](<https://github.com/docket-legal/go-std-libs/blob/main/minio/configs.go#L173-L182>)
 
 WebhookNotification defines a webhook notification target. Webhook notifications send HTTP POST requests to a specified
 endpoint.

@@ -30,7 +30,7 @@
 // # Basic Usage (Direct)
 //
 //	import (
-//		"github.com/aalemi-dev/stdlib-lab/kafka"
+//		"github.com/docket-legal/go-std-libs/kafka"
 //		"context"
 //		"sync"
 //	)
@@ -62,7 +62,7 @@
 // The package provides an FX module that injects both concrete and interface types:
 //
 //	import (
-//		"github.com/aalemi-dev/stdlib-lab/kafka"
+//		"github.com/docket-legal/go-std-libs/kafka"
 //		"go.uber.org/fx"
 //	)
 //
@@ -94,7 +94,7 @@
 //	// In your application's messaging package
 //	package messaging
 //
-//	import stdKafka "github.com/aalemi-dev/stdlib-lab/kafka"
+//	import stdKafka "github.com/docket-legal/go-std-libs/kafka"
 //
 //	// Type aliases reference std interfaces directly
 //	type Client = stdKafka.Client
@@ -151,7 +151,7 @@
 // Publisher Example (sending trace context):
 //
 //	import (
-//		"github.com/aalemi-dev/stdlib-lab/tracer"
+//		"github.com/docket-legal/go-std-libs/tracer"
 //		// other imports...
 //	)
 //
@@ -236,8 +236,8 @@
 // You can integrate the std/v1/logger for better error logging:
 //
 //	import (
-//		"github.com/aalemi-dev/stdlib-lab/logger"
-//		"github.com/aalemi-dev/stdlib-lab/kafka"
+//		"github.com/docket-legal/go-std-libs/logger"
+//		"github.com/docket-legal/go-std-libs/kafka"
 //	)
 //
 //	// Create logger
@@ -413,7 +413,7 @@
 //
 //	import (
 //	    "go.uber.org/fx"
-//	    "github.com/aalemi-dev/stdlib-lab/kafka"
+//	    "github.com/docket-legal/go-std-libs/kafka"
 //	)
 //
 //	type UserEvent struct {
@@ -466,7 +466,7 @@
 //
 //	import (
 //	    "google.golang.org/protobuf/proto"
-//	    "github.com/aalemi-dev/stdlib-lab/kafka"
+//	    "github.com/docket-legal/go-std-libs/kafka"
 //	)
 //
 //	app := fx.New(
@@ -569,8 +569,8 @@
 // use the separate schema_registry package:
 //
 //	import (
-//	    "github.com/aalemi-dev/stdlib-lab/kafka"
-//	    "github.com/aalemi-dev/stdlib-lab/schema_registry"
+//	    "github.com/docket-legal/go-std-libs/kafka"
+//	    "github.com/docket-legal/go-std-libs/schema_registry"
 //	)
 //
 //	// Create schema registry client
@@ -636,7 +636,7 @@
 //
 // To enable observability, provide an Observer implementation in the configuration:
 //
-//	import "github.com/aalemi-dev/stdlib-lab/observability"
+//	import "github.com/docket-legal/go-std-libs/observability"
 //
 //	// Implement the Observer interface
 //	type MyObserver struct {
@@ -728,7 +728,7 @@
 //
 //	import (
 //	    "github.com/prometheus/client_golang/prometheus"
-//	    "github.com/aalemi-dev/stdlib-lab/observability"
+//	    "github.com/docket-legal/go-std-libs/observability"
 //	)
 //
 //	type KafkaObserver struct {
@@ -822,8 +822,8 @@
 //
 //	import (
 //	    "go.uber.org/fx"
-//	    "github.com/aalemi-dev/stdlib-lab/kafka"
-//	    "github.com/aalemi-dev/stdlib-lab/observability"
+//	    "github.com/docket-legal/go-std-libs/kafka"
+//	    "github.com/docket-legal/go-std-libs/observability"
 //	)
 //
 //	app := fx.New(

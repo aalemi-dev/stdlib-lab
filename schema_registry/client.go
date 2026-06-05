@@ -11,7 +11,7 @@ import (
 	"sync"
 	"time"
 
-	"github.com/aalemi-dev/stdlib-lab/observability"
+	"github.com/docket-legal/go-std-libs/observability"
 )
 
 // bgctx is a convenience alias used for HTTP requests that don't receive a caller context.
